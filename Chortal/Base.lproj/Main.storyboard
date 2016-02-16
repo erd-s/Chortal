@@ -734,13 +734,25 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="frK-Kv-yyV" id="wK0-Pg-IX9"/>
+                                    <outlet property="delegate" destination="frK-Kv-yyV" id="4C9-We-Vcl"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="*Organization* Task List" id="yBy-dX-FCQ">
-                        <barButtonItem key="leftBarButtonItem" title="☰" style="done" id="0Mo-9i-LVg"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="cBn-7y-WVR"/>
+                        <barButtonItem key="leftBarButtonItem" title="☰" style="done" id="0Mo-9i-LVg">
+                            <connections>
+                                <action selector="menuButtonTap:" destination="frK-Kv-yyV" id="r7H-Of-WH7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="cBn-7y-WVR">
+                            <connections>
+                                <action selector="createTaskButtonTap:" destination="frK-Kv-yyV" id="zB3-e6-uvA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <attributedString key="userComments">
                         <fragment content="no constraints">
@@ -750,6 +762,10 @@
                             </attributes>
                         </fragment>
                     </attributedString>
+                    <connections>
+                        <outlet property="tabBar" destination="yBa-oZ-ng2" id="5Ik-jX-Fhc"/>
+                        <outlet property="tableView" destination="Ne4-M0-AOE" id="g7D-YO-pBN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Nn-tI-ICv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
