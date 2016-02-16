@@ -8,12 +8,16 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     
     
     //MARK: Outlets
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var organizationNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -21,7 +25,12 @@ class LoginViewController: UIViewController {
     }
     
     //MARK: Custom Functions
+    @IBAction func forgotInfoButtonTap(sender: AnyObject) {
+    }
     
+    @IBAction func loginButtonTap(sender: UIButton) {
+    }
+
     //MARK: IBActions
     
     //MARK: Delegate Functions

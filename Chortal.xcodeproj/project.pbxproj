@@ -14,7 +14,6 @@
 		9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */; };
 		9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41431C7382AE007A16D3 /* TaskViewController.swift */; };
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
-		9B5FC26B1C737B8B005976FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC26A1C737B8B005976FB /* ViewController.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
 		9B5FC2731C737B8B005976FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */; };
@@ -30,7 +29,6 @@
 		9B3E41431C7382AE007A16D3 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B5FC26A1C737B8B005976FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B5FC26D1C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B5FC26F1C737B8B005976FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B5FC2721C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				9B3E413C1C738239007A16D3 /* ViewControllers */,
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
-				9B5FC26A1C737B8B005976FB /* ViewController.swift */,
 				9B5FC26C1C737B8B005976FB /* Main.storyboard */,
 				9B5FC26F1C737B8B005976FB /* Assets.xcassets */,
 				9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */,
@@ -173,7 +170,6 @@
 				9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
-				9B5FC26B1C737B8B005976FB /* ViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
 				9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */,
