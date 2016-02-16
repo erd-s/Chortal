@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		135F92041C737EEC005CBD24 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F92031C737EEC005CBD24 /* CloudKit.framework */; };
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
 		9B5FC26B1C737B8B005976FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC26A1C737B8B005976FB /* ViewController.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		135F92021C737EE8005CBD24 /* Chortal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Chortal.entitlements; sourceTree = "<group>"; };
+		135F92031C737EEC005CBD24 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B5FC26A1C737B8B005976FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				135F92041C737EEC005CBD24 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +42,7 @@
 		9B5FC25C1C737B8B005976FB = {
 			isa = PBXGroup;
 			children = (
+				135F92031C737EEC005CBD24 /* CloudKit.framework */,
 				9B5FC2671C737B8B005976FB /* Chortal */,
 				9B5FC2661C737B8B005976FB /* Products */,
 			);
@@ -54,6 +59,7 @@
 		9B5FC2671C737B8B005976FB /* Chortal */ = {
 			isa = PBXGroup;
 			children = (
+				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
 				9B5FC26A1C737B8B005976FB /* ViewController.swift */,
 				9B5FC26C1C737B8B005976FB /* Main.storyboard */,
@@ -96,6 +102,12 @@
 				TargetAttributes = {
 					9B5FC2641C737B8B005976FB = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = D95EZ83BDJ;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -247,10 +259,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chortal/Chortal.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Chortal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JonerDos.Chortal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -258,10 +274,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chortal/Chortal.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Chortal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JonerDos.Chortal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -284,6 +304,7 @@
 				9B5FC2791C737B8B005976FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
