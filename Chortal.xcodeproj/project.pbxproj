@@ -17,6 +17,7 @@
 		9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */; };
 		9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */; };
 		9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */; };
+		9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */; };
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueIDViewController.swift; sourceTree = "<group>"; };
 		9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignUIDViewController.swift; sourceTree = "<group>"; };
+		9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudKitAccess.swift; path = ../CloudKitAccess.swift; sourceTree = "<group>"; };
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B5FC26D1C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				9B3E413C1C738239007A16D3 /* ViewControllers */,
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
+				9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
 				9B5FC26C1C737B8B005976FB /* Main.storyboard */,
 				9B5FC26F1C737B8B005976FB /* Assets.xcassets */,
@@ -184,6 +187,7 @@
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
 				9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
+				9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */,
 				9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
