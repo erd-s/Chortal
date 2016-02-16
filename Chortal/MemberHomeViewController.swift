@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberHomeViewController: UIViewController {
+class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     
     
@@ -31,6 +31,17 @@ class MemberHomeViewController: UIViewController {
     @IBAction func myTaskButtonTap(sender: UIBarButtonItem) {
     }
     //MARK: Delegate Functions
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
+        
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
     
     //MARK: Segues
     

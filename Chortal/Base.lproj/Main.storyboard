@@ -648,6 +648,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WqG-jG-oPD" id="dqd-8u-IOP"/>
+                                    <outlet property="delegate" destination="WqG-jG-oPD" id="mi7-F4-1jn"/>
+                                </connections>
                             </tableView>
                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LGs-Ef-nlo">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
