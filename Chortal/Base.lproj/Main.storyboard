@@ -584,6 +584,10 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="jop-HQ-7R7" id="wr2-jF-e3m"/>
+                                    <outlet property="delegate" destination="jop-HQ-7R7" id="lS1-uj-UGv"/>
+                                </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a photo!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HF8-5K-MT0">
                                 <rect key="frame" x="137" y="285" width="326" height="171"/>
@@ -618,6 +622,12 @@
                             </attributes>
                         </fragment>
                     </attributedString>
+                    <connections>
+                        <outlet property="collectionView" destination="xcx-95-avs" id="Rnu-qD-EJ4"/>
+                        <outlet property="descriptionTextView" destination="zVJ-WS-sCH" id="N5i-nz-zM3"/>
+                        <outlet property="taskNameLabel" destination="mD5-87-juK" id="BYE-aA-Xhj"/>
+                        <outlet property="timerLabel" destination="U4D-eM-Hly" id="Zws-gX-0lk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
