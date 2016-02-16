@@ -14,6 +14,8 @@ class MemberHomeViewController: UIViewController {
     
     //MARK: Outlets
     
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var taskTableView: UITableView!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -23,7 +25,11 @@ class MemberHomeViewController: UIViewController {
     //MARK: Custom Functions
     
     //MARK: IBActions
+    @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
+    }
     
+    @IBAction func myTaskButtonTap(sender: UIBarButtonItem) {
+    }
     //MARK: Delegate Functions
     
     //MARK: Segues

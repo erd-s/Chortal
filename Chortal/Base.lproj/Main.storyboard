@@ -654,7 +654,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem title="Untaken" id="AGU-g3-Jdp"/>
-                                    <tabBarItem title="My Task" id="LNZ-r3-LBk"/>
                                     <tabBarItem title="Complete" id="5Vf-jx-TCf"/>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -665,7 +664,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="*organization* Task List" id="F3b-Nl-sNJ">
-                        <barButtonItem key="leftBarButtonItem" title="☰" id="EwG-bk-wjh"/>
+                        <barButtonItem key="leftBarButtonItem" title="☰" id="EwG-bk-wjh">
+                            <connections>
+                                <action selector="menuButtonTapped:" destination="WqG-jG-oPD" id="yAr-pq-W3m"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="My Task" id="Req-SM-Lkl">
+                            <connections>
+                                <action selector="myTaskButtonTap:" destination="WqG-jG-oPD" id="eAZ-ky-aBx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <attributedString key="userComments">
                         <fragment content="no constraints">
@@ -676,6 +684,8 @@
                         </fragment>
                     </attributedString>
                     <connections>
+                        <outlet property="tabBar" destination="LGs-Ef-nlo" id="Ibt-eL-oqS"/>
+                        <outlet property="taskTableView" destination="NsM-RI-JO2" id="3ml-tG-O6E"/>
                         <segue destination="jop-HQ-7R7" kind="presentation" identifier="myTaskSegue" id="obb-4O-DYj"/>
                     </connections>
                 </viewController>
