@@ -65,10 +65,14 @@
 				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
 				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
+<<<<<<< HEAD
+				A8E6E68E1C73BE0200F68F0E /* CustomCamCollectionViewCell.swift */,
+=======
 				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
 				9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */,
 				9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */,
 				9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */,
+>>>>>>> e6ba710216063bc2a24a511d714a323b06102ada
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
