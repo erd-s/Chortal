@@ -389,6 +389,7 @@
                                     <color key="titleColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.90716594829999997" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="createOrganizationTap:" destination="jP6-LE-g8W" eventType="touchUpInside" id="iTv-OW-WtV"/>
                                     <action selector="onCreateButtonTap:" destination="jP6-LE-g8W" eventType="touchUpInside" id="xFK-Lu-PGr"/>
                                 </connections>
                             </button>
@@ -506,9 +507,10 @@
                         </fragment>
                     </attributedString>
                     <connections>
-                        <outlet property="adminNameTextField" destination="lWW-Ro-sJF" id="F3N-rK-KL0"/>
-                        <outlet property="organizationNameTextField" destination="HGZ-6e-BTY" id="U34-8g-NfB"/>
-                        <outlet property="organizationTypeTextField" destination="8ui-Hl-z6N" id="yMu-G1-ayr"/>
+                        <outlet property="adminNameTextField" destination="lWW-Ro-sJF" id="a6o-RS-FfD"/>
+                        <outlet property="adminPasswordTextField" destination="wnP-r9-xv0" id="rCw-tW-Lkm"/>
+                        <outlet property="organizationNameTextField" destination="HGZ-6e-BTY" id="74u-tA-WvE"/>
+                        <outlet property="organizationTypeTextField" destination="8ui-Hl-z6N" id="76V-qQ-ihq"/>
                         <outlet property="passwordTextField" destination="wnP-r9-xv0" id="IpQ-lT-4cy"/>
                         <outletCollection property="passwordTextFields" destination="ng4-NZ-UQB" collectionClass="NSMutableArray" id="Rva-4Q-DCj"/>
                         <outletCollection property="nameTextFields" destination="vAQ-yX-uD4" collectionClass="NSMutableArray" id="MKt-Mr-Av3"/>
@@ -516,6 +518,16 @@
                         <outletCollection property="nameTextFields" destination="WJU-hT-AEt" collectionClass="NSMutableArray" id="ah1-We-ffn"/>
                         <outletCollection property="nameTextFields" destination="VLo-ev-UoA" collectionClass="NSMutableArray" id="NnV-RK-QcI"/>
                         <outletCollection property="nameTextFields" destination="Iqk-ce-59Y" collectionClass="NSMutableArray" id="gUg-LQ-jhi"/>
+                        <outletCollection property="memberNameTextFields" destination="Iqk-ce-59Y" collectionClass="NSMutableArray" id="q9t-Kx-8VX"/>
+                        <outletCollection property="memberNameTextFields" destination="vAQ-yX-uD4" collectionClass="NSMutableArray" id="YrE-I7-e9B"/>
+                        <outletCollection property="memberNameTextFields" destination="6Ah-wF-v2P" collectionClass="NSMutableArray" id="2dc-8E-hqQ"/>
+                        <outletCollection property="memberNameTextFields" destination="WJU-hT-AEt" collectionClass="NSMutableArray" id="cTK-zm-LLz"/>
+                        <outletCollection property="memberNameTextFields" destination="VLo-ev-UoA" collectionClass="NSMutableArray" id="fhX-vk-fzi"/>
+                        <outletCollection property="memberPasswordTextFields" destination="ng4-NZ-UQB" collectionClass="NSMutableArray" id="BXB-8z-yZP"/>
+                        <outletCollection property="memberPasswordTextFields" destination="dON-te-VEu" collectionClass="NSMutableArray" id="Meg-8p-9V1"/>
+                        <outletCollection property="memberPasswordTextFields" destination="pqA-HI-QHP" collectionClass="NSMutableArray" id="QKu-o4-Dpr"/>
+                        <outletCollection property="memberPasswordTextFields" destination="Vjm-re-wBr" collectionClass="NSMutableArray" id="p5i-9p-SYZ"/>
+                        <outletCollection property="memberPasswordTextFields" destination="ZBO-Bt-9Bi" collectionClass="NSMutableArray" id="rfR-LV-QRy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLu-Oo-c9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
