@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  UniqueIDViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/16/16.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class UniqueIDViewController: UIViewController {
     //MARK: Properties
     
     
     //MARK: Outlets
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
+    
+    @IBOutlet weak var uidTextField: UITextField!
+    
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -22,14 +23,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Custom Functions
-
-    //MARK: IBActions
-    @IBAction func loginButtonTap(sender: AnyObject) {
-    }
     
+    //MARK: IBActions
+    @IBAction func joinButtonTap(sender: AnyObject) {
+    }
     
     //MARK: Delegate Functions
     
-    //MARK: Segues
-    
+    //MARK: Segue
+
 }

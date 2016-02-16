@@ -13,6 +13,8 @@
 		9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */; };
 		9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */; };
 		9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41431C7382AE007A16D3 /* TaskViewController.swift */; };
+		9B3E41461C7391D3007A16D3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */; };
+		9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */; };
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 		9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOrganizationViewController.swift; sourceTree = "<group>"; };
 		9B3E41431C7382AE007A16D3 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = ../WelcomeViewController.swift; sourceTree = "<group>"; };
+		9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueIDViewController.swift; sourceTree = "<group>"; };
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B5FC26D1C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,6 +59,7 @@
 				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
 				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
+				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -83,6 +88,7 @@
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
 				9B5FC26C1C737B8B005976FB /* Main.storyboard */,
+				9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */,
 				9B5FC26F1C737B8B005976FB /* Assets.xcassets */,
 				9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */,
 				9B5FC2741C737B8B005976FB /* Info.plist */,
@@ -169,10 +175,12 @@
 			files = (
 				9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
+				9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
 				9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */,
+				9B3E41461C7391D3007A16D3 /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
