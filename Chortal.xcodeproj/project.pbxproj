@@ -22,6 +22,7 @@
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
 		9B5FC2731C737B8B005976FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */; };
 		A8E6E68F1C73BE0200F68F0E /* CustomCamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6E68E1C73BE0200F68F0E /* CustomCamCollectionViewCell.swift */; };
+		A8E6E6911C73E81300F68F0E /* CustomCamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E6E6901C73E81300F68F0E /* CustomCamCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		9B5FC2721C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B5FC2741C737B8B005976FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8E6E68E1C73BE0200F68F0E /* CustomCamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCamCollectionViewCell.swift; path = ../CustomCamCollectionViewCell.swift; sourceTree = "<group>"; };
+		A8E6E6901C73E81300F68F0E /* CustomCamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
 				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
+				A8E6E6901C73E81300F68F0E /* CustomCamCollectionViewCell.swift */,
 				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
 				9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */,
 				9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */,
@@ -190,6 +193,7 @@
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
 				A8E6E68F1C73BE0200F68F0E /* CustomCamCollectionViewCell.swift in Sources */,
+				A8E6E6911C73E81300F68F0E /* CustomCamCollectionViewCell.swift in Sources */,
 				9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */,
 				9B3E41461C7391D3007A16D3 /* WelcomeViewController.swift in Sources */,
 			);
