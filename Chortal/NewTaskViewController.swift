@@ -10,17 +10,15 @@ import UIKit
 
 class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
-    
+    var memberArray = [AnyObject]()
     
     //MARK: Outlets
-    
     @IBOutlet weak var taskNameTextField: UITextField!
     @IBOutlet weak var taskDescriptionTextField: UITextField!
     @IBOutlet weak var incentiveTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var memberSegmentedControl: UISegmentedControl!
     @IBOutlet weak var requirePhotoSwitch: UISwitch!
-    
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -32,7 +30,10 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
-
+        let date = datePicker.date
+        let assignedMemberInt = memberSegmentedControl.selectedSegmentIndex
+        let assignedUser = memberArray[assignedMemberInt]
+        
         if requirePhotoSwitch.selected {
             //require a photo
         }
