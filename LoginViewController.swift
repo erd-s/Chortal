@@ -26,6 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Custom Functions
     @IBAction func forgotInfoButtonTap(sender: AnyObject) {
+        
     }
     
     @IBAction func loginButtonTap(sender: UIButton) {
