@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		135F92041C737EEC005CBD24 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F92031C737EEC005CBD24 /* CloudKit.framework */; };
+		9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413A1C73817E007A16D3 /* LoginViewController.swift */; };
+		9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */; };
+		9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */; };
+		9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */; };
+		9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41431C7382AE007A16D3 /* TaskViewController.swift */; };
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
 		9B5FC26B1C737B8B005976FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC26A1C737B8B005976FB /* ViewController.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
@@ -18,6 +23,11 @@
 /* Begin PBXFileReference section */
 		135F92021C737EE8005CBD24 /* Chortal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Chortal.entitlements; sourceTree = "<group>"; };
 		135F92031C737EEC005CBD24 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		9B3E413A1C73817E007A16D3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHomeViewController.swift; sourceTree = "<group>"; };
+		9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
+		9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOrganizationViewController.swift; sourceTree = "<group>"; };
+		9B3E41431C7382AE007A16D3 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B5FC26A1C737B8B005976FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +49,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B3E413C1C738239007A16D3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9B3E413A1C73817E007A16D3 /* LoginViewController.swift */,
+				9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */,
+				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
+				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
+				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		9B5FC25C1C737B8B005976FB = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +81,7 @@
 		9B5FC2671C737B8B005976FB /* Chortal */ = {
 			isa = PBXGroup;
 			children = (
+				9B3E413C1C738239007A16D3 /* ViewControllers */,
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
 				9B5FC26A1C737B8B005976FB /* ViewController.swift */,
@@ -147,8 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */,
+				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
+				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
 				9B5FC26B1C737B8B005976FB /* ViewController.swift in Sources */,
+				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
+				9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
