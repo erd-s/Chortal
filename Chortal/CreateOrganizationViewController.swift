@@ -7,32 +7,79 @@
 //
 
 import UIKit
+import CloudKit
 
 class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     
     
     //MARK: Outlets
-    
     @IBOutlet weak var organizationNameTextField: UITextField!
     @IBOutlet weak var adminNameTextField: UITextField!
     @IBOutlet weak var adminPasswordTextField: UITextField!
     @IBOutlet weak var organizationTypeTextField: UITextField!
-    @IBOutlet var memberNameTextFields: [UITextField]!
-    @IBOutlet var memberPasswordTextFields: [UITextField]!
     
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     //MARK: Custom Functions
+    func dismissKeyboard(){
+        self.setEditing(false, animated: true)
+    }
+    
+    func setUID(organization: CKRecord, admin: CKRecord) {
+        let timestamp = String(NSDate.timeIntervalSinceReferenceDate())
+        let timestampParts = timestamp.componentsSeparatedByString(".")
+        var uid = timestampParts[0]
+        uid.appendContentsOf(timestampParts[1])
+        organization.setObject(uid, forKey: "uid")
+        admin.setObject(uid, forKey: "uid")
+    }
     
     //MARK: IBActions
-    
     @IBAction func createOrganizationTap(sender: UIButton) {
+        let container = CKContainer.defaultContainer()
+        let publicDatabase = container.publicCloudDatabase
+        let newOrg = CKRecord(recordType: "Organization")
+        let newAdmin = CKRecord(recordType: "Admin")
+        
+        
+        let adminOrgRef = CKReference.init(recordID: newOrg.recordID, action: .None)
+        newAdmin.setObject(adminOrgRef, forKey: "organization")
+        let orgAdminRef = CKReference.init(recordID: newAdmin.recordID, action: .None)
+        newOrg.setObject(orgAdminRef, forKey: "admin")
+        
+        newOrg.setObject(organizationTypeTextField.text, forKey: "type")
+        newOrg.setObject(organizationNameTextField.text, forKey: "name")
+        newOrg.setObject(adminNameTextField.text, forKey: "admin_name")
+        newAdmin.setObject(adminNameTextField.text, forKey: "name")
+        setUID(newOrg, admin: newAdmin)
+        
+        publicDatabase.saveRecord(newOrg) { (newOrg, error) -> Void in
+            if error != nil {
+                print(error)
+            } else {
+                print("Organization to iCloud: \(newOrg)")
+            }
+        }
+        publicDatabase.saveRecord(newAdmin) { (newAdmin, error) -> Void in
+            if error != nil {
+                print(error)
+            } else {
+                print("Admin to iCloud: \(newOrg)")
+            }
+        }
     }
+    
     //MARK: Delegate Functions
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
     
     //MARK: Segues
     
