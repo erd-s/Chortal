@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
@@ -30,12 +31,25 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
-        let date = datePicker.date
-        let assignedMemberInt = memberSegmentedControl.selectedSegmentIndex
-        let assignedUser = memberArray[assignedMemberInt]
-        
+        let container = CKContainer.defaultContainer()
+        let publicDatabase = container.publicCloudDatabase
+        let newTask = CKRecord(recordType: "Task", recordID: CKRecordID(recordName: "1"))
+        newTask.setObject(datePicker.date, forKey: "date")
         if requirePhotoSwitch.selected {
-            //require a photo
+            newTask.setObject(String("yes"), forKey: "photo_required")
+        }
+        newTask.setObject(taskDescriptionTextField.text, forKey: "description")
+        newTask.setObject(taskNameTextField.text, forKey: "name")
+        newTask.setObject(incentiveTextField.text, forKey: "incentive")
+        
+        //        let assignedMemberInt = memberSegmentedControl.selectedSegmentIndex
+        //        let assignedUser = memberArray[assignedMemberInt]
+        //        newTask.setObject(assignedUser, forKey: "member")
+        
+        publicDatabase.saveRecord(newTask) { (newTask, error) -> Void in
+            if error != nil {
+                print(error)
+            }
         }
     }
 
