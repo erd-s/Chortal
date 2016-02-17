@@ -24,10 +24,16 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     //MARK: Custom Functions
-    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
@@ -54,7 +60,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
+    
     @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
         memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
     }
@@ -63,8 +69,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
-    
-    
+
     //MARK: Segue
     
     
