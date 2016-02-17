@@ -29,7 +29,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     //MARK: Delegate Functions
-    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
     //MARK: Segues
     
 }
