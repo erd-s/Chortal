@@ -33,15 +33,15 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     @IBAction func createTaskButtonTap(sender: AnyObject) {
         let container = CKContainer.defaultContainer()
         let publicDatabase = container.publicCloudDatabase
-        let newTask = CKRecord(recordType: "Task", recordID: CKRecordID(recordName: "1"))
-        newTask.setObject(datePicker.date, forKey: "date")
+        let newTask = CKRecord(recordType: "Task")
+        newTask.setObject(datePicker.date, forKey: "due")
         if requirePhotoSwitch.selected {
             newTask.setObject(String("yes"), forKey: "photo_required")
         }
         newTask.setObject(taskDescriptionTextField.text, forKey: "description")
         newTask.setObject(taskNameTextField.text, forKey: "name")
         newTask.setObject(incentiveTextField.text, forKey: "incentive")
-        
+        //        newTask.setObject(currentOrganization, forKey: "organization")
         //        let assignedMemberInt = memberSegmentedControl.selectedSegmentIndex
         //        let assignedUser = memberArray[assignedMemberInt]
         //        newTask.setObject(assignedUser, forKey: "member")
@@ -49,6 +49,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         publicDatabase.saveRecord(newTask) { (newTask, error) -> Void in
             if error != nil {
                 print(error)
+            } else {
+                print("added \(newTask) to icloud")
             }
         }
     }
@@ -58,6 +60,10 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Delegate Functions
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
     
     //MARK: Segue
     
