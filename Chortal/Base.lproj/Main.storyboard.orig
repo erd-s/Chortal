@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <<<<<<< HEAD
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jop-HQ-7R7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xb6-PG-PuI">
 =======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xb6-PG-PuI">
->>>>>>> e6ba710216063bc2a24a511d714a323b06102ada
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5tU-rL-jQg">
+>>>>>>> aa773fd98ecafaaee63eab9b8af78df5dec2e9d7
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -285,7 +285,6 @@
                         <outlet property="adminPasswordTextField" destination="wnP-r9-xv0" id="rCw-tW-Lkm"/>
                         <outlet property="organizationNameTextField" destination="HGZ-6e-BTY" id="74u-tA-WvE"/>
                         <outlet property="organizationTypeTextField" destination="8ui-Hl-z6N" id="76V-qQ-ihq"/>
-                        <outlet property="passwordTextField" destination="wnP-r9-xv0" id="IpQ-lT-4cy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLu-Oo-c9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -400,11 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="1396" y="206"/>
-=======
-            <point key="canvasLocation" x="1821" y="106"/>
->>>>>>> e6ba710216063bc2a24a511d714a323b06102ada
+            <point key="canvasLocation" x="2084" y="66"/>
         </scene>
         <!--Member home-->
         <scene sceneID="nhW-I9-ZqO">
@@ -571,16 +566,25 @@
                                 <rect key="frame" x="156" y="124" width="368" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5tU-rL-jQg" id="aCr-uw-QC8"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbM-di-1Az">
                                 <rect key="frame" x="156" y="162" width="368" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5tU-rL-jQg" id="2Xw-51-5OR"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Incentive" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oCK-7t-ixH">
                                 <rect key="frame" x="156" y="202" width="368" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5tU-rL-jQg" id="9ao-gi-O5i"/>
+                                </connections>
                             </textField>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kCw-wu-9Sq">
                                 <rect key="frame" x="157" y="240" width="368" height="149"/>
@@ -637,14 +641,28 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTc-NE-xKL">
                                 <rect key="frame" x="259" y="533" width="82" height="30"/>
                                 <state key="normal" title="Create Task"/>
+                                <connections>
+                                    <action selector="createTaskButtonTap:" destination="5tU-rL-jQg" eventType="touchUpInside" id="Nde-QM-yVT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVV-g0-Sua">
                                 <rect key="frame" x="495" y="396" width="30" height="30"/>
                                 <state key="normal" title="🚫"/>
+                                <connections>
+                                    <action selector="clearSegmentedControlButtonTap:" destination="5tU-rL-jQg" eventType="touchUpInside" id="EEL-9c-qsl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="kCw-wu-9Sq" id="Izx-Pf-kqX"/>
+                        <outlet property="incentiveTextField" destination="oCK-7t-ixH" id="PBv-oQ-Bwu"/>
+                        <outlet property="memberSegmentedControl" destination="22I-OT-ZvU" id="4iN-K4-cK0"/>
+                        <outlet property="requirePhotoSwitch" destination="8qN-lA-Aso" id="l7m-Zc-PYK"/>
+                        <outlet property="taskDescriptionTextField" destination="FbM-di-1Az" id="uP0-MF-BkJ"/>
+                        <outlet property="taskNameTextField" destination="vmJ-If-47o" id="Qr7-V3-2By"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
