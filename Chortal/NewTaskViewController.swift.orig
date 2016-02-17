@@ -20,6 +20,14 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var memberSegmentedControl: UISegmentedControl!
     @IBOutlet weak var requirePhotoSwitch: UISwitch!
     
+    @IBOutlet weak var taskNameTextField: UITextField!
+    @IBOutlet weak var taskDescriptionTextField: UITextField!
+    @IBOutlet weak var incentiveTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var memberSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var requirePhotoSwitch: UISwitch!
+    
+    
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +38,14 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
+<<<<<<< HEAD
+
+=======
         let date = datePicker.date
         let assignedMemberInt = memberSegmentedControl.selectedSegmentIndex
         let assignedUser = memberArray[assignedMemberInt]
         
+>>>>>>> 47afeb90b6d7c98e760ad525b4b3df59661ab3d0
         if requirePhotoSwitch.selected {
             //require a photo
         }
