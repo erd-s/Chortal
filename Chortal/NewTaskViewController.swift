@@ -51,7 +51,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         newTask.setObject(taskNameTextField.text, forKey: "name")
         newTask.setObject(incentiveTextField.text, forKey: "incentive")
         if (requirePhotoSwitch != nil) {
-        newTask.setObject("true", forKey: "photo_required")
+            newTask.setObject("true", forKey: "photo_required")
         } else {
             newTask.setObject("false", forKey: "photo_required")
         }
@@ -68,7 +68,26 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
                     if error != nil {
                         print(error)
                     } else {
-                        let ref = CKReference.init(recordID: records![0].recordID, action: .None)
+                        let currentOrganization = records![0]
+                        let ref = CKReference.init(recordID: currentOrganization.recordID, action: .None)
+                        let orgReferenceToTask = CKReference(recordID: newTask.recordID, action: .None)
+                        let referencesArray = NSMutableArray(object: orgReferenceToTask)
+                        
+                        if currentOrganization.valueForKey("tasks") != nil {
+                            print(currentOrganization.valueForKey("tasks"))
+                            referencesArray.addObjectsFromArray(currentOrganization.valueForKey("tasks") as! [AnyObject])
+                        }
+
+                        currentOrganization.setObject(referencesArray, forKey: "tasks")
+                        
+                        publicDatabase.saveRecord(currentOrganization, completionHandler: { (currentRecord: CKRecord?, error) -> Void in
+                            if error != nil {
+                                print(error)
+                            } else{
+                                print("saved: \(currentOrganization)")
+                            }
+                        })
+                        
                         newTask.setObject(ref, forKey: "organization")
                         publicDatabase.saveRecord(newTask) { (newTask, error) -> Void in
                             if error != nil {
@@ -76,7 +95,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
                             } else {
                                 print("added \(newTask) to icloud")
                             }
+                            
                         }
+
                     }
                 })
             }
