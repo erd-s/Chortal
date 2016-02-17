@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		135F92041C737EEC005CBD24 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F92031C737EEC005CBD24 /* CloudKit.framework */; };
-		135F92061C73922D005CBD24 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135F92051C73922D005CBD24 /* CloudKitHelper.swift */; };
 		9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413A1C73817E007A16D3 /* LoginViewController.swift */; };
 		9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */; };
 		9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */; };
@@ -18,7 +17,11 @@
 		9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */; };
 		9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */; };
 		9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */; };
+<<<<<<< HEAD
+		9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */; };
+=======
 		9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */; };
+>>>>>>> cloudkit
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
@@ -28,7 +31,6 @@
 /* Begin PBXFileReference section */
 		135F92021C737EE8005CBD24 /* Chortal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Chortal.entitlements; sourceTree = "<group>"; };
 		135F92031C737EEC005CBD24 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		135F92051C73922D005CBD24 /* CloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
 		9B3E413A1C73817E007A16D3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHomeViewController.swift; sourceTree = "<group>"; };
 		9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
@@ -38,7 +40,11 @@
 		9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueIDViewController.swift; sourceTree = "<group>"; };
 		9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignUIDViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCamCollectionViewCell.swift; path = ../CustomCamCollectionViewCell.swift; sourceTree = "<group>"; };
+=======
 		9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudKitAccess.swift; path = ../CloudKitAccess.swift; sourceTree = "<group>"; };
+>>>>>>> cloudkit
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B5FC26D1C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,7 +71,6 @@
 				9B3E413A1C73817E007A16D3 /* LoginViewController.swift */,
 				9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */,
 				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
-				135F92051C73922D005CBD24 /* CloudKitHelper.swift */,
 				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
 				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
@@ -74,6 +79,14 @@
 				9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9B3E41551C73EA96007A16D3 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */,
+			);
+			name = "Custom Classes";
 			sourceTree = "<group>";
 		};
 		9B5FC25C1C737B8B005976FB = {
@@ -96,6 +109,7 @@
 		9B5FC2671C737B8B005976FB /* Chortal */ = {
 			isa = PBXGroup;
 			children = (
+				9B3E41551C73EA96007A16D3 /* Custom Classes */,
 				9B3E413C1C738239007A16D3 /* ViewControllers */,
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */,
@@ -188,14 +202,13 @@
 				9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
+				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
 				9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
-<<<<<<< HEAD
 				9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */,
 				9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
-				A8E6E68F1C73BE0200F68F0E /* CustomCamCollectionViewCell.swift in Sources */,
 				9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */,
 				9B3E41461C7391D3007A16D3 /* WelcomeViewController.swift in Sources */,
 			);
@@ -300,6 +313,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
