@@ -12,6 +12,8 @@ import CloudKit
 class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var memberArray = [AnyObject]()
+    var adminRecordID: CKRecordID!
+    var query: CKQuery!
     
     //MARK: Outlets
     @IBOutlet weak var taskNameTextField: UITextField!
@@ -27,6 +29,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
     }
     
     //MARK: Custom Functions
@@ -39,6 +42,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         let container = CKContainer.defaultContainer()
         let publicDatabase = container.publicCloudDatabase
         let newTask = CKRecord(recordType: "Task")
+        
         newTask.setObject(datePicker.date, forKey: "due")
         if requirePhotoSwitch.selected {
             newTask.setObject(String("yes"), forKey: "photo_required")
@@ -46,16 +50,35 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         newTask.setObject(taskDescriptionTextField.text, forKey: "description")
         newTask.setObject(taskNameTextField.text, forKey: "name")
         newTask.setObject(incentiveTextField.text, forKey: "incentive")
-        //        newTask.setObject(currentOrganization, forKey: "organization")
-        //        let assignedMemberInt = memberSegmentedControl.selectedSegmentIndex
-        //        let assignedUser = memberArray[assignedMemberInt]
-        //        newTask.setObject(assignedUser, forKey: "member")
+        if (requirePhotoSwitch != nil) {
+        newTask.setObject("true", forKey: "photo_required")
+        } else {
+            newTask.setObject("false", forKey: "photo_required")
+        }
         
-        publicDatabase.saveRecord(newTask) { (newTask, error) -> Void in
+        container.fetchUserRecordIDWithCompletionHandler { (record, error) -> Void in
             if error != nil {
                 print(error)
             } else {
-                print("added \(newTask) to icloud")
+                self.adminRecordID = record
+                let adminRef = CKReference.init(recordID: self.adminRecordID, action: .None)
+                let predicate = NSPredicate(format: "creatorUserRecordID == %@", adminRef)
+                self.query = CKQuery(recordType: "Organization", predicate: predicate)
+                publicDatabase.performQuery(self.query, inZoneWithID: nil, completionHandler: { (records: [CKRecord]?, error) -> Void in
+                    if error != nil {
+                        print(error)
+                    } else {
+                        let ref = CKReference.init(recordID: records![0].recordID, action: .None)
+                        newTask.setObject(ref, forKey: "organization")
+                        publicDatabase.saveRecord(newTask) { (newTask, error) -> Void in
+                            if error != nil {
+                                print(error)
+                            } else {
+                                print("added \(newTask) to icloud")
+                            }
+                        }
+                    }
+                })
             }
         }
     }
@@ -68,7 +91,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
-
+    
     //MARK: Segue
     
     
