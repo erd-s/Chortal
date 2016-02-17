@@ -45,6 +45,7 @@
 		9B5FC26F1C737B8B005976FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B5FC2721C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B5FC2741C737B8B005976FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +81,7 @@
 			children = (
 				9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */,
 				9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */,
+				9BF5DC341C74D257006C82AC /* playground.playground */,
 			);
 			name = "Custom Classes";
 			sourceTree = "<group>";
