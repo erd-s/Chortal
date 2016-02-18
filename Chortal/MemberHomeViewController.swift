@@ -55,6 +55,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     print(error)
                 } else {
                     self.taskArray.append(task!)
+                    print("appended task: \(task)")
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.taskTableView.reloadData()
