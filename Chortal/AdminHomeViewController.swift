@@ -20,6 +20,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view loaded")
     }
     
     //MARK: Custom Functions

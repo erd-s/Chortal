@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vs4-mI-qZK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -71,7 +71,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -245,7 +245,7 @@
                                     <constraint firstAttribute="height" constant="30" id="W12-88-Pmo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="jP6-LE-g8W" id="VaT-91-S2M"/>
                                 </connections>
@@ -262,21 +262,6 @@
                                     <outlet property="delegate" destination="jP6-LE-g8W" id="E3K-Wp-KQp"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30N-7Z-GOP">
-                                <rect key="frame" x="230" y="449" width="140" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="CZE-dl-p4A"/>
-                                    <constraint firstAttribute="height" constant="23" id="Kha-J4-lbZ"/>
-                                </constraints>
-                                <state key="normal" title="Create Organization">
-                                    <color key="titleColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.90716594829999997" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="createOrganizationTap:" destination="jP6-LE-g8W" eventType="touchUpInside" id="iTv-OW-WtV"/>
-                                    <action selector="onCreateButtonTap:" destination="jP6-LE-g8W" eventType="touchUpInside" id="xFK-Lu-PGr"/>
-                                    <segue destination="U6J-0l-ExC" kind="show" id="Sbb-Dw-44n"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBC-QL-I3q">
                                 <rect key="frame" x="20" y="152" width="560" height="42.5"/>
                                 <constraints>
@@ -296,6 +281,20 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30N-7Z-GOP">
+                                <rect key="frame" x="230" y="449" width="140" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="CZE-dl-p4A"/>
+                                    <constraint firstAttribute="height" constant="23" id="Kha-J4-lbZ"/>
+                                </constraints>
+                                <state key="normal" title="Create Organization">
+                                    <color key="titleColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.90716594829999997" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="createOrganizationTap:" destination="jP6-LE-g8W" eventType="touchUpInside" id="iTv-OW-WtV"/>
+                                    <segue destination="U6J-0l-ExC" kind="show" id="Sbb-Dw-44n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -348,7 +347,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -515,7 +514,7 @@
                     <attributedString key="userComments">
                         <fragment content="No constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -653,7 +652,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -728,7 +727,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -787,7 +786,7 @@
                                     <outlet property="delegate" destination="5tU-rL-jQg" id="9ao-gi-O5i"/>
                                 </connections>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kCw-wu-9Sq">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="kCw-wu-9Sq">
                                 <rect key="frame" x="20" y="275" width="560" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="149" id="0wC-mO-0AF"/>
@@ -885,6 +884,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="createTaskButtonTap:" destination="5tU-rL-jQg" eventType="touchUpInside" id="Nde-QM-yVT"/>
+                                    <segue destination="frK-Kv-yyV" kind="show" id="XOz-LF-HlV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVV-g0-Sua">
@@ -984,7 +984,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2592" y="726"/>
+            <point key="canvasLocation" x="2592" y="750"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
@@ -1172,7 +1172,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUP-J3-Aao">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="72" y="478" width="42" height="21"/>
@@ -1213,6 +1213,10 @@
                                 <exclude reference="fUP-J3-Aao"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="58R-3G-ch8"/>
+                                <exclude reference="HPY-UN-3qX"/>
+                                <exclude reference="U2P-Kf-SK2"/>
+                                <exclude reference="pRJ-yf-dkb"/>
                                 <exclude reference="J2h-1D-sEh"/>
                                 <exclude reference="chX-Rj-r67"/>
                                 <exclude reference="hII-jQ-g87"/>
@@ -1221,10 +1225,6 @@
                                 <exclude reference="n3p-Nz-jhB"/>
                                 <exclude reference="6wr-t3-Nu8"/>
                                 <exclude reference="TFq-yH-iPf"/>
-                                <exclude reference="58R-3G-ch8"/>
-                                <exclude reference="HPY-UN-3qX"/>
-                                <exclude reference="U2P-Kf-SK2"/>
-                                <exclude reference="pRJ-yf-dkb"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1235,6 +1235,10 @@
                                 <include reference="fUP-J3-Aao"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="58R-3G-ch8"/>
+                                <include reference="HPY-UN-3qX"/>
+                                <include reference="U2P-Kf-SK2"/>
+                                <include reference="pRJ-yf-dkb"/>
                                 <exclude reference="65O-mf-R4S"/>
                                 <include reference="J2h-1D-sEh"/>
                                 <exclude reference="OOg-ux-0xA"/>
@@ -1254,10 +1258,6 @@
                                 <exclude reference="ByJ-aj-6tQ"/>
                                 <include reference="TFq-yH-iPf"/>
                                 <exclude reference="mce-dZ-hQq"/>
-                                <include reference="58R-3G-ch8"/>
-                                <include reference="HPY-UN-3qX"/>
-                                <include reference="U2P-Kf-SK2"/>
-                                <include reference="pRJ-yf-dkb"/>
                             </mask>
                         </variation>
                     </view>
@@ -1381,6 +1381,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="XOz-LF-HlV"/>
         <segue reference="V3e-ZH-xcN"/>
     </inferredMetricsTieBreakers>
 </document>
