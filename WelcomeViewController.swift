@@ -19,12 +19,15 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     var memOrgRef: CKReference?
     var memArray: NSMutableArray?
     var modifiedRecords: [CKRecord]?
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var userSwitch: UISwitch!
+    
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +47,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         if newMem == nil {
             newMem = CKRecord(recordType: "Member")
             newMem!.setValue(nameTextField.text, forKey: "name")
-            
             memOrgRef = CKReference(recordID: orgRecord!.recordID, action: .None)
             newMem!.setValue(memOrgRef, forKey: "organization")
             print("New member Created: \(newMem)")
@@ -97,8 +99,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 
             }else {
                 print("Successfully saved")
-                self.errorLabel.numberOfLines = 0
-                self.errorLabel.text = "Oops - Something went wrong. Please try again."
+                
                 self.performSegueWithIdentifier("logInSegue", sender: self)
             }
         }
@@ -123,7 +124,19 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if segue.identifier == "logInSegue" {
+            if userSwitch == true {
+                let userName = newMem?.valueForKey("name")
+                userDefaults.setValue(userName, forKey: "currentUserName")
+                
+            } else {
+                userDefaults.setValue("Multiple Users", forKey: "currentUserName")
+            
+            }
+            let currentOrgUID = orgRecord?.valueForKey("uid")
+            userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")
+
+        }
     }
     
 }
