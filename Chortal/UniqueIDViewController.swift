@@ -20,8 +20,7 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: View Loading
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad()        
     }
     
     //MARK: Custom Functions

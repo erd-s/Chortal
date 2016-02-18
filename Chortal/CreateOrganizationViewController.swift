@@ -11,6 +11,7 @@ import CloudKit
 
 class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
+    var uid: String!
     
     
     //MARK: Outlets
@@ -35,7 +36,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     func setUID(organization: CKRecord, admin: CKRecord) {
         let timestamp = String(NSDate.timeIntervalSinceReferenceDate())
         let timestampParts = timestamp.componentsSeparatedByString(".")
-        var uid = timestampParts[0]
+        uid = timestampParts[0]
         uid.appendContentsOf(timestampParts[1])
         organization.setObject(uid, forKey: "uid")
         admin.setObject(uid, forKey: "uid")
@@ -82,5 +83,9 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let dvc = segue.destinationViewController as! AssignUIDViewController
+        dvc.orgUID = uid
+    }
     
 }
