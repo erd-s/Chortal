@@ -23,7 +23,8 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,8 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        activityIndicator.stopAnimating()
+        activityIndicator.hidden = true
         print("record: \(orgRecord)")
         let orgName = orgRecord!.valueForKey("name")!
         welcomeLabel.text = "Welcome to \(orgName)"
@@ -45,7 +48,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             memOrgRef = CKReference(recordID: orgRecord!.recordID, action: .None)
             newMem!.setValue(memOrgRef, forKey: "organization")
             print("New member Created: \(newMem)")
-           // saveRecord(newMem!)
             
             orgMemRef = CKReference(recordID: newMem!.recordID, action: .None)
             
@@ -55,9 +57,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     func fetchRecord() {
         ckh.publicDatabase.fetchRecordWithID(orgRecord!.recordID, completionHandler: { (record, error) -> Void in
-            
-            // Jon - you were in the middle of organizing the below code into separate 'fetch' and 'save' functions. Carefully going through this should hopefully resolve the memory leak and maybe even reveal the issue when attempting to write to CK.
-            
             print("Fetching records")
             
             self.orgRecord = record
@@ -78,13 +77,9 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             }
             
             print("Members: \(self.orgRecord?.valueForKey("members"))")
-        //    self.orgRecord!.setValue(self.memArray, forKey: "members")
-       //     print("Org Mem Value: \(self.orgRecord)")
             self.modifiedRecords = [self.orgRecord!, self.newMem!]
             print("Records to be modified: \(self.modifiedRecords)")
-            
             self.modifyRecords(self.modifiedRecords!)
-         //   self.saveRecord(self.orgRecord!)
             
         })
     }
@@ -97,8 +92,14 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 print(error!.description)
+                self.errorLabel.numberOfLines = 0
+                self.errorLabel.text = "Oops - Something went wrong. Please try again."
+                
             }else {
                 print("Successfully saved")
+                self.errorLabel.numberOfLines = 0
+                self.errorLabel.text = "Oops - Something went wrong. Please try again."
+                self.performSegueWithIdentifier("logInSegue", sender: self)
             }
         }
         ckh.publicDatabase.addOperation(modOpp)
@@ -107,16 +108,22 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: IBActions
     @IBAction func logInButtonTapped(sender: UIButton) {
+        if nameTextField.text?.characters.count > 0 {
+            activityIndicator.startAnimating()
+            activityIndicator.hidden = false
+            errorLabel.text = "Working..."
+            newMember(orgRecord!)
+        }
     }
     
     //MARK: Delegate Functions
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField.text?.characters.count > 0 {
-            newMember(orgRecord!)
-        }
         return textField.resignFirstResponder()
     }
     
     //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
     
 }
