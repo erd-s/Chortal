@@ -71,7 +71,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -347,7 +347,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -514,7 +514,7 @@
                     <attributedString key="userComments">
                         <fragment content="No constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -552,7 +552,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pizza" id="vWH-ii-Knf">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vWH-ii-Knf" id="Ci0-4d-7MC">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -652,7 +652,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -727,7 +727,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -1167,18 +1167,27 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9at-BR-WIk">
                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="299" y="473" width="51" height="31"/>
+                                    <rect key="frame" x="316" y="541" width="51" height="31"/>
                                 </variation>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUP-J3-Aao">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUP-J3-Aao">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="72" y="478" width="42" height="21"/>
+                                    <rect key="frame" x="301" y="478" width="0.0" height="0.0"/>
                                 </variation>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Are you the only Chortal user on this device?" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sR-OG-Yhs">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="528" width="281" height="44"/>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1212,6 +1221,7 @@
                                 <exclude reference="css-sg-dqg"/>
                                 <exclude reference="9at-BR-WIk"/>
                                 <exclude reference="fUP-J3-Aao"/>
+                                <exclude reference="3sR-OG-Yhs"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="58R-3G-ch8"/>
@@ -1234,6 +1244,7 @@
                                 <include reference="css-sg-dqg"/>
                                 <include reference="9at-BR-WIk"/>
                                 <include reference="fUP-J3-Aao"/>
+                                <include reference="3sR-OG-Yhs"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="58R-3G-ch8"/>
@@ -1266,12 +1277,151 @@
                         <outlet property="activityIndicator" destination="css-sg-dqg" id="DuI-8z-YLx"/>
                         <outlet property="errorLabel" destination="bda-ka-V90" id="088-Mx-scU"/>
                         <outlet property="nameTextField" destination="7HF-WC-7M8" id="u6a-t0-Rzr"/>
+                        <outlet property="userSwitch" destination="9at-BR-WIk" id="r6L-Sb-dQi"/>
                         <outlet property="welcomeLabel" destination="AgP-Z4-hs7" id="Uhg-qi-J4B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="582" y="-674"/>
+            <point key="canvasLocation" x="565.5" y="-592"/>
+        </scene>
+        <!--Member Home View Controller-->
+        <scene sceneID="3ea-CF-1KO">
+            <objects>
+                <viewController id="3Kf-A8-SXb" customClass="MemberHomeViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uD3-Z3-iEM"/>
+                        <viewControllerLayoutGuide type="bottom" id="WcM-gW-fgi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q5I-Sa-sTt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-EM-mdf">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memberID" id="8kW-Gk-It5">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8kW-Gk-It5" id="GMT-I3-4Br">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="129" width="360" height="278"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="3Kf-A8-SXb" id="S7T-hR-gxM"/>
+                                    <outlet property="delegate" destination="3Kf-A8-SXb" id="e6n-96-tZd"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLO-tp-RAM">
+                                <rect key="frame" x="20" y="149" width="560" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="UMC-Ug-ybR"/>
+                                    <constraint firstAttribute="height" constant="43" id="bG2-Rm-fNV"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Welcome to *orgName*">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="28" name="Menlo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="UMC-Ug-ybR"/>
+                                        <exclude reference="bG2-Rm-fNV"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="20" y="36" width="360" height="43"/>
+                                    <mask key="constraints">
+                                        <include reference="UMC-Ug-ybR"/>
+                                        <include reference="bG2-Rm-fNV"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjw-gC-dgk">
+                                <rect key="frame" x="20" y="149" width="560" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="FBd-Vh-nD5"/>
+                                    <constraint firstAttribute="width" constant="360" id="KmE-5e-oJQ"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Select your name:">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Menlo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FBd-Vh-nD5"/>
+                                        <exclude reference="KmE-5e-oJQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="20" y="87" width="360" height="43"/>
+                                    <mask key="constraints">
+                                        <include reference="FBd-Vh-nD5"/>
+                                        <include reference="KmE-5e-oJQ"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't see yourself here? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIv-jo-oM9">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="488" width="259" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66Z-Vr-92U">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Add Yourself Now"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="517" width="122" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="WDK-DS-eTY" kind="show" id="kyT-jB-3iZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="bVE-EM-mdf"/>
+                                <exclude reference="YLO-tp-RAM"/>
+                                <exclude reference="Hjw-gC-dgk"/>
+                                <exclude reference="wIv-jo-oM9"/>
+                                <exclude reference="66Z-Vr-92U"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="bVE-EM-mdf"/>
+                                <include reference="YLO-tp-RAM"/>
+                                <include reference="Hjw-gC-dgk"/>
+                                <include reference="wIv-jo-oM9"/>
+                                <include reference="66Z-Vr-92U"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1186.5" y="-1258"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -1437,10 +1587,10 @@
                                 <exclude reference="Izr-Jw-Iab"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="8jm-XX-ZgW"/>
-                                <exclude reference="wJ3-3u-wsS"/>
                                 <exclude reference="CqC-Xr-Kdo"/>
                                 <exclude reference="daw-yl-icF"/>
+                                <exclude reference="8jm-XX-ZgW"/>
+                                <exclude reference="wJ3-3u-wsS"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1449,10 +1599,10 @@
                                 <include reference="Izr-Jw-Iab"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="8jm-XX-ZgW"/>
-                                <include reference="wJ3-3u-wsS"/>
                                 <include reference="CqC-Xr-Kdo"/>
                                 <include reference="daw-yl-icF"/>
+                                <include reference="8jm-XX-ZgW"/>
+                                <include reference="wJ3-3u-wsS"/>
                             </mask>
                         </variation>
                     </view>
@@ -1468,6 +1618,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="kyT-jB-3iZ"/>
         <segue reference="V0y-r8-QFq"/>
     </inferredMetricsTieBreakers>
 </document>
