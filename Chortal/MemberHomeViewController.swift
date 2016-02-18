@@ -9,14 +9,12 @@
 import UIKit
 import CloudKit
 
-let container = CKContainer.defaultContainer()
-let publicDatabase = container.publicCloudDatabase
-
 class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     var taskArray = [CKRecord]()
     var userDefaults = NSUserDefaults.standardUserDefaults()
     var memberName: String?
+    var orgID: String?
     var currentOrganization: CKRecord?
     var arrayOfTasks: [CKRecord]?
 
@@ -30,6 +28,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         memberName = userDefaults.stringForKey("currentUserName")
+        orgID = userDefaults.stringForKey("currentOrgUID")
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,7 +39,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: Custom Functions
     func getOrganization() {
-        let predicate = NSPredicate(format: "member_list CONTAINS %@", memberName!)
+        let predicate = NSPredicate(format: "uid CONTAINS %@", orgID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
         self.currentOrganization = organizations![0] as CKRecord
