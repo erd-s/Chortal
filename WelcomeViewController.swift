@@ -18,6 +18,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     var orgMemRef: CKReference?
     var memOrgRef: CKReference?
     var memArray: NSMutableArray?
+    var modifiedRecords: [CKRecord]?
     
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -42,33 +43,13 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             newMem!.setValue(nameTextField.text, forKey: "name")
             
             memOrgRef = CKReference(recordID: orgRecord!.recordID, action: .None)
-            self.newMem!.setValue(memOrgRef, forKey: "organization")
-            
-            //saveRecord(newMem!)
+            newMem!.setValue(memOrgRef, forKey: "organization")
+            print("New member Created: \(newMem)")
+           // saveRecord(newMem!)
             
             orgMemRef = CKReference(recordID: newMem!.recordID, action: .None)
             
             fetchRecord()
-            
-            
-//            var modifiedRecords = [newMem!, self.orgRecord!]
-//            let modOpp = CKModifyRecordsOperation.init(recordsToSave: modifiedRecords, recordIDsToDelete: nil)
-//            modOpp.savePolicy = .ChangedKeys
-//            modOpp.atomic = true
-//            ckh.publicDatabase.addOperation(modOpp)
-//            
-//            modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
-//                if modOpp.finished == true {
-//                    
-//                }
-//            }
-            
-            //                        ckh.publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
-            //                            if error != nil {
-            //                                print("Error: \(error?.description)")
-            //                            }
-            //                        })
-            //
         }
     }
     
@@ -77,11 +58,14 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             
             // Jon - you were in the middle of organizing the below code into separate 'fetch' and 'save' functions. Carefully going through this should hopefully resolve the memory leak and maybe even reveal the issue when attempting to write to CK.
             
+            print("Fetching records")
+            
             self.orgRecord = record
             
             if self.orgRecord!.mutableArrayValueForKey("members").count == 0 {
                 
                 self.memArray = [self.orgMemRef!]
+                
                 print("Empty key-value pair for Record members")
                 print("Organization Members: \(self.memArray)")
                 print(self.memArray)
@@ -90,31 +74,38 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 
                 self.memArray = self.orgRecord!.mutableArrayValueForKey("members")
                 self.memArray!.addObject(self.orgMemRef!)
-                print("Non-Empty key-value pair for record members")
-                
+                print("Non-Empty key-value pair for record members: \(self.memArray)")
             }
             
-            self.orgRecord!.setValue(self.memArray, forKey: "members")
+            print("Members: \(self.orgRecord?.valueForKey("members"))")
+        //    self.orgRecord!.setValue(self.memArray, forKey: "members")
+       //     print("Org Mem Value: \(self.orgRecord)")
+            self.modifiedRecords = [self.orgRecord!, self.newMem!]
+            print("Records to be modified: \(self.modifiedRecords)")
             
-            self.saveRecord(self.orgRecord!)
+            self.modifyRecords(self.modifiedRecords!)
+         //   self.saveRecord(self.orgRecord!)
             
         })
     }
     
-    func saveRecord (record: CKRecord) {
-        ckh.publicDatabase.saveRecord(record, completionHandler: { (completeRecord, error) -> Void in
+    func modifyRecords (records: [CKRecord]) {
+        print("Modify records function called")
+        let modOpp = CKModifyRecordsOperation.init(recordsToSave: modifiedRecords, recordIDsToDelete: nil)
+        modOpp.savePolicy = .ChangedKeys
+        modOpp.atomic = true
+        modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
-                print("Error: \(error!.description)")
-            } else {
-                print("Saved successfully: \(record)")
+                print(error!.description)
+            }else {
+                print("Successfully saved")
             }
-        })
-        
+        }
+        ckh.publicDatabase.addOperation(modOpp)
+
         
     }
-    
     //MARK: IBActions
-    
     @IBAction func logInButtonTapped(sender: UIButton) {
     }
     
