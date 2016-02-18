@@ -9,11 +9,18 @@
 import UIKit
 import CloudKit
 
+let container = CKContainer.defaultContainer()
+let publicDatabase = container.publicCloudDatabase
+
 class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var memberArray = [AnyObject]()
     var adminRecordID: CKRecordID!
     var query: CKQuery!
+    var newTask: CKRecord!
+    var taskToOrgRef: CKReference!
+    var orgToTaskRef: CKReference!
+    var currentOrganization: CKRecord!
     
     //MARK: Outlets
     @IBOutlet weak var taskNameTextField: UITextField!
@@ -29,7 +36,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        
     }
     
     //MARK: Custom Functions
@@ -37,12 +43,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    //MARK: IBActions
-    @IBAction func createTaskButtonTap(sender: AnyObject) {
-        let container = CKContainer.defaultContainer()
-        let publicDatabase = container.publicCloudDatabase
-        let newTask = CKRecord(recordType: "Task")
-        
+    func createNewTask() {
+        newTask = CKRecord(recordType: "Task")
         newTask.setObject(datePicker.date, forKey: "due")
         if requirePhotoSwitch.selected {
             newTask.setObject(String("yes"), forKey: "photo_required")
@@ -55,53 +57,59 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             newTask.setObject("false", forKey: "photo_required")
         }
-        
+    }
+    
+    func fetchRecordID() {
         container.fetchUserRecordIDWithCompletionHandler { (record, error) -> Void in
             if error != nil {
                 print(error)
             } else {
                 self.adminRecordID = record
                 let adminRef = CKReference.init(recordID: self.adminRecordID, action: .None)
-                let predicate = NSPredicate(format: "creatorUserRecordID == %@", adminRef)
-                self.query = CKQuery(recordType: "Organization", predicate: predicate)
-                publicDatabase.performQuery(self.query, inZoneWithID: nil, completionHandler: { (records: [CKRecord]?, error) -> Void in
-                    if error != nil {
-                        print(error)
-                    } else {
-                        let currentOrganization = records![0]
-                        let ref = CKReference.init(recordID: currentOrganization.recordID, action: .None)
-                        let orgReferenceToTask = CKReference(recordID: newTask.recordID, action: .None)
-                        let referencesArray = NSMutableArray(object: orgReferenceToTask)
-                        
-                        if currentOrganization.valueForKey("tasks") != nil {
-                            print(currentOrganization.valueForKey("tasks"))
-                            referencesArray.addObjectsFromArray(currentOrganization.valueForKey("tasks") as! [AnyObject])
-                        }
-
-                        currentOrganization.setObject(referencesArray, forKey: "tasks")
-                        
-                        publicDatabase.saveRecord(currentOrganization, completionHandler: { (currentRecord: CKRecord?, error) -> Void in
-                            if error != nil {
-                                print(error)
-                            } else{
-                                print("saved: \(currentOrganization)")
-                            }
-                        })
-                        
-                        newTask.setObject(ref, forKey: "organization")
-                        publicDatabase.saveRecord(newTask) { (newTask, error) -> Void in
-                            if error != nil {
-                                print(error)
-                            } else {
-                                print("added \(newTask) to icloud")
-                            }
-                            
-                        }
-
-                    }
-                })
+                self.queryDatabaseForOrganization(adminRef)
             }
         }
+    }
+    
+    func queryDatabaseForOrganization(adminRef: CKReference) {
+        let predicate = NSPredicate(format: "creatorUserRecordID == %@", adminRef)
+        self.query = CKQuery(recordType: "Organization", predicate: predicate)
+        publicDatabase.performQuery(self.query, inZoneWithID: nil, completionHandler: { (records: [CKRecord]?, error) -> Void in
+            if error != nil {
+                print(error)
+            } else {
+                self.currentOrganization = records![0]
+                self.orgToTaskRef = CKReference.init(recordID: self.currentOrganization.recordID, action: .None)
+                self.taskToOrgRef = CKReference(recordID: self.newTask.recordID, action: .None)
+                self.assignReferences()
+            }
+        })
+    }
+    
+    func assignReferences() {
+        let arrayOfTaskRefs = NSMutableArray(object: taskToOrgRef)
+        print("arrayoftaskrefs initializes with object: \(taskToOrgRef)")
+        
+        if currentOrganization.valueForKey("tasks") != nil {
+            arrayOfTaskRefs.addObjectsFromArray(currentOrganization.valueForKey("tasks") as! [AnyObject])
+            currentOrganization.setObject(arrayOfTaskRefs, forKey: "tasks")
+            print("current tasks= \(arrayOfTaskRefs) including: \(taskToOrgRef)")
+        } else {
+            currentOrganization.setObject(arrayOfTaskRefs, forKey: "tasks")
+            print("only added new task: \(taskToOrgRef)")
+        }
+        newTask.setObject(orgToTaskRef, forKey: "organization")
+        saveTaskAndOrganization([newTask, currentOrganization])
+    }
+    func saveTaskAndOrganization(records: [CKRecord]) {
+        let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        publicDatabase.addOperation(saveRecordsOp)
+    }
+    
+    //MARK: IBActions
+    @IBAction func createTaskButtonTap(sender: AnyObject) {
+    createNewTask()
+    fetchRecordID() //on completetion --> queries db --> assigns refs --> save records
     }
     
     @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
