@@ -64,7 +64,7 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "enterNameSegue" {
             let dvc = segue.destinationViewController as! WelcomeViewController
-            dvc.record = record
+            dvc.orgRecord = record
             
             
         }
