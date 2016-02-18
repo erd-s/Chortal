@@ -16,8 +16,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     var memberName: String?
     var orgID: String?
     var currentOrganization: CKRecord?
-    var arrayOfTasks: [CKRecord]?
-
+    
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -26,39 +25,44 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         memberName = userDefaults.stringForKey("currentUserName")
         orgID = userDefaults.stringForKey("currentOrgUID")
-        
+        getOrganization()
     }
     
     override func viewWillAppear(animated: Bool) {
-        getOrganization()
+        
     }
     
     
     //MARK: Custom Functions
     func getOrganization() {
-        let predicate = NSPredicate(format: "uid CONTAINS %@", orgID!)
+        let predicate = NSPredicate(format: "uid == %@", orgID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
+        print("query: \(query)")
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
-        self.currentOrganization = organizations![0] as CKRecord
-        self.getTasks()
+            print("performing query, organizations: \(organizations![0]["name"])")
+            self.currentOrganization = organizations![0] as CKRecord
+            self.getTasks()
         }
     }
     
     func getTasks() {
         let taskReferenceArray = currentOrganization!.mutableArrayValueForKey("tasks")
         for taskRef in taskReferenceArray {
-            print(taskRef.recordName)
-            let predicate = NSPredicate(format: "recordName = %@", taskRef.recordName)
-            let query = CKQuery(recordType: "Task", predicate: predicate)
-            publicDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (tasks, error) -> Void in
-                self.taskArray = tasks!
-                self.taskTableView.reloadData()
+            publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
+                if error != nil {
+                    print(error)
+                } else {
+                    self.taskArray.append(task!)
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.taskTableView.reloadData()
+                })
             })
+            
         }
-        }
+    }
     
     
     
@@ -75,8 +79,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
         let task = taskArray[indexPath.row]
-        cell.textLabel?.text = task["name"] as? String
-        cell.detailTextLabel?.text = task["description"] as? String
+        cell.textLabel?.text = task.valueForKey("name") as? String
+        cell.detailTextLabel?.text = task.valueForKey("description") as? String
         
         return cell
     }
