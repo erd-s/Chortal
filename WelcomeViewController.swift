@@ -78,6 +78,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 print("Non-Empty key-value pair for record members: \(self.memArray)")
             }
             
+            self.orgRecord?.setValue(self.memArray, forKey: "members")
             print("Members: \(self.orgRecord?.valueForKey("members"))")
             self.modifiedRecords = [self.orgRecord!, self.newMem!]
             print("Records to be modified: \(self.modifiedRecords)")
