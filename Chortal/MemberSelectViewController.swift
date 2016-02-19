@@ -65,11 +65,14 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                 }
                 self.memberArray.append(record!)
                 print(record!.valueForKey("name")!)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.memberTableView.reloadData()
+                }
+                
             })
             
-            dispatch_async(dispatch_get_main_queue()) {
-                self.memberTableView.reloadData()
-            }
+            
             
         }
         
