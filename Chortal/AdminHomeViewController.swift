@@ -21,6 +21,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = userDefaults.valueForKey("currentOrgName") as! String
+
         getOrganization()
     }
     
@@ -38,7 +40,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             } else {
             print("performing query, organizations: \(organizations![0]["name"])")
             self.currentOrganization = organizations![0] as CKRecord
-            self.title = self.currentOrganization?["name"] as? String
             self.getTasks()
             }
         }

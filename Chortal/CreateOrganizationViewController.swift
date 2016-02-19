@@ -62,6 +62,8 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         newAdmin.setObject(adminNameTextField.text, forKey: "name")
         setUID(newOrg, admin: newAdmin)
         
+        userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
+        
         publicDatabase.saveRecord(newOrg) { (newOrg, error) -> Void in
             if error != nil {
                 print(error)
