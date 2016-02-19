@@ -91,6 +91,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         let modOpp = CKModifyRecordsOperation.init(recordsToSave: modifiedRecords, recordIDsToDelete: nil)
         modOpp.savePolicy = .ChangedKeys
         modOpp.atomic = true
+        
         modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 print(error!.description)
