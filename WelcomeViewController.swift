@@ -106,7 +106,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             }
         }
         ckh.publicDatabase.addOperation(modOpp)
-
+        
         
     }
     //MARK: IBActions
@@ -127,18 +127,22 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "logInSegue" {
+            
+            let dvc = segue.destinationViewController as! MemberHomeViewController
+            dvc.navigationController?.title = orgRecord?.valueForKey("name") as? String
+            
             if userSwitch == true {
                 let userName = newMem?.valueForKey("name")
                 userDefaults.setValue(userName, forKey: "currentUserName")
                 
             } else {
                 userDefaults.setValue("Multiple Users", forKey: "currentUserName")
-            
+                
             }
             let currentOrgUID = orgRecord?.valueForKey("uid")
             userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")
             userDefaults.setValue(orgRecord?.valueForKey("name"), forKey: "currentOrgName")
-
+            
         }
     }
     
