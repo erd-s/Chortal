@@ -1122,28 +1122,6 @@
                                     <segue destination="yq2-bm-1H0" kind="show" identifier="logInSegue" id="KsT-la-nst"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bda-ka-V90">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="LM9-5m-DDb"/>
-                                    <constraint firstAttribute="width" constant="131.5" id="kkO-tf-58g"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="LM9-5m-DDb"/>
-                                        <exclude reference="kkO-tf-58g"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="LM9-5m-DDb"/>
-                                        <include reference="kkO-tf-58g"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="css-sg-dqg">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                                 <constraints>
@@ -1188,6 +1166,29 @@
                                     <rect key="frame" x="20" y="528" width="281" height="44"/>
                                 </variation>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bda-ka-V90">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="LM9-5m-DDb"/>
+                                    <constraint firstAttribute="width" constant="131.5" id="kkO-tf-58g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LM9-5m-DDb"/>
+                                        <exclude reference="kkO-tf-58g"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="135" y="450" width="131.5" height="55"/>
+                                    <mask key="constraints">
+                                        <include reference="LM9-5m-DDb"/>
+                                        <include reference="kkO-tf-58g"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1217,11 +1218,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="bda-ka-V90"/>
                                 <exclude reference="css-sg-dqg"/>
                                 <exclude reference="9at-BR-WIk"/>
                                 <exclude reference="fUP-J3-Aao"/>
                                 <exclude reference="3sR-OG-Yhs"/>
+                                <exclude reference="bda-ka-V90"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="58R-3G-ch8"/>
@@ -1240,11 +1241,11 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="bda-ka-V90"/>
                                 <include reference="css-sg-dqg"/>
                                 <include reference="9at-BR-WIk"/>
                                 <include reference="fUP-J3-Aao"/>
                                 <include reference="3sR-OG-Yhs"/>
+                                <include reference="bda-ka-V90"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="58R-3G-ch8"/>
@@ -1283,12 +1284,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="565.5" y="-592"/>
+            <point key="canvasLocation" x="591" y="-610"/>
         </scene>
-        <!--Member Home View Controller-->
+        <!--Member Select View Controller-->
         <scene sceneID="3ea-CF-1KO">
             <objects>
-                <viewController id="3Kf-A8-SXb" customClass="MemberHomeViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Kf-A8-SXb" customClass="MemberSelectViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uD3-Z3-iEM"/>
                         <viewControllerLayoutGuide type="bottom" id="WcM-gW-fgi"/>
@@ -1297,27 +1298,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-EM-mdf">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memberID" id="8kW-Gk-It5">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8kW-Gk-It5" id="GMT-I3-4Br">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="129" width="360" height="278"/>
-                                </variation>
-                                <connections>
-                                    <outlet property="dataSource" destination="3Kf-A8-SXb" id="S7T-hR-gxM"/>
-                                    <outlet property="delegate" destination="3Kf-A8-SXb" id="e6n-96-tZd"/>
-                                </connections>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLO-tp-RAM">
                                 <rect key="frame" x="20" y="149" width="560" height="33"/>
                                 <constraints>
@@ -1397,31 +1377,56 @@
                                     <segue destination="WDK-DS-eTY" kind="show" id="kyT-jB-3iZ"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-EM-mdf">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memberID" id="8kW-Gk-It5">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8kW-Gk-It5" id="GMT-I3-4Br">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="129" width="360" height="278"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="3Kf-A8-SXb" id="S7T-hR-gxM"/>
+                                    <outlet property="delegate" destination="3Kf-A8-SXb" id="e6n-96-tZd"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="bVE-EM-mdf"/>
                                 <exclude reference="YLO-tp-RAM"/>
                                 <exclude reference="Hjw-gC-dgk"/>
                                 <exclude reference="wIv-jo-oM9"/>
                                 <exclude reference="66Z-Vr-92U"/>
+                                <exclude reference="bVE-EM-mdf"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="bVE-EM-mdf"/>
                                 <include reference="YLO-tp-RAM"/>
                                 <include reference="Hjw-gC-dgk"/>
                                 <include reference="wIv-jo-oM9"/>
                                 <include reference="66Z-Vr-92U"/>
+                                <include reference="bVE-EM-mdf"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="memberTableView" destination="bVE-EM-mdf" id="jum-C2-UOJ"/>
+                        <segue destination="WqG-jG-oPD" kind="show" identifier="memberSelectSegue" id="U2s-RD-m6F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1186.5" y="-1258"/>
+            <point key="canvasLocation" x="1240.5" y="-1298"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -1618,6 +1623,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="U2s-RD-m6F"/>
         <segue reference="kyT-jB-3iZ"/>
         <segue reference="V0y-r8-QFq"/>
     </inferredMetricsTieBreakers>
