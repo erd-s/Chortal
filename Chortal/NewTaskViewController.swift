@@ -9,9 +9,6 @@
 import UIKit
 import CloudKit
 
-let container = CKContainer.defaultContainer()
-let publicDatabase = container.publicCloudDatabase
-
 class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var memberArray = [AnyObject]()
@@ -71,15 +68,13 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     func queryDatabaseForOrganization(adminRef: CKReference) {
-        let predicate = NSPredicate(format: "creatorUserRecordID == %@", adminRef)
-        let sortByCreationDate = NSSortDescriptor(key: "creationDate", ascending: true)
+        let predicate = NSPredicate(format: "uid == %@", orgID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
-        query.sortDescriptors = [sortByCreationDate]
         publicDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records: [CKRecord]?, error) -> Void in
             if error != nil {
                 print(error)
             } else {
-                self.currentOrganization = records!.last
+                self.currentOrganization = records![0]
                 self.orgToTaskRef = CKReference.init(recordID: self.currentOrganization.recordID, action: .None)
                 self.taskToOrgRef = CKReference(recordID: self.newTask.recordID, action: .None)
                 self.assignReferences()
@@ -104,13 +99,21 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     func saveTaskAndOrganization(records: [CKRecord]) {
         let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        saveRecordsOp.modifyRecordsCompletionBlock = { saved, deleted, error in
+            if error != nil {
+                print(error)
+            } else {
+            print("saved records")
+           self.performSegueWithIdentifier("createdTaskSegue", sender: self)
+        }
+    }
         publicDatabase.addOperation(saveRecordsOp)
     }
     
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
     createNewTask()
-    fetchRecordID() //on completetion --> queries db --> assigns refs --> save records
+    fetchRecordID() //on completetion --> queries db --> assigns refs --> save records --> segue
     }
     
     @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
@@ -123,6 +126,5 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Segue
-    
     
 }

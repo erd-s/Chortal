@@ -9,9 +9,6 @@
 import UIKit
 import CloudKit
 
-let cka = CloudKitAccess()
-let userDefaults = NSUserDefaults.standardUserDefaults()
-
 class MemberSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK: Properties
     var memberArray = [CKRecord]()
@@ -20,11 +17,11 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     //MARK: Outlets
     @IBOutlet weak var memberTableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
+    
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         currentOrg()
-        
     }
     
     //MARK: Custom Functions
