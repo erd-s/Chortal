@@ -25,6 +25,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = userDefaults.valueForKey("currentOrgName") as? String
         getOrganization()
     }
     

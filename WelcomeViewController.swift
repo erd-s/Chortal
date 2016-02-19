@@ -128,9 +128,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "logInSegue" {
             
-            let dvc = segue.destinationViewController as! MemberHomeViewController
-            dvc.navigationController?.title = orgRecord?.valueForKey("name") as? String
-            
             if userSwitch == true {
                 let userName = newMem?.valueForKey("name")
                 userDefaults.setValue(userName, forKey: "currentUserName")
