@@ -21,7 +21,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = userDefaults.valueForKey("currentOrgName") as! String
+        title = userDefaults.valueForKey("currentOrgName") as? String
 
         getOrganization()
     }
