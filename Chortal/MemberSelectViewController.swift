@@ -23,6 +23,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        welcomeLabel.text = userDefaults.valueForKey("currentOrgName") as? String
         currentOrg()
         
     }
@@ -43,10 +44,6 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                     self.orgRecord = record
                     print("Org Record: \(self.orgRecord) -----------")
                     self.fetchRecords(self.orgRecord!)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.welcomeLabel.text = "\(self.orgRecord!.valueForKey("name")!)"
-                    }
                     
                 } else {
                     
