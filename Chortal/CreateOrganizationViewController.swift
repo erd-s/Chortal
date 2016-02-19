@@ -86,8 +86,10 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "continueToUIDSegue" {
         let dvc = segue.destinationViewController as! AssignUIDViewController
         dvc.orgUID = uid
+        }
     }
     
 }
