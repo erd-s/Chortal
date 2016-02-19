@@ -78,7 +78,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 print(error)
             } else {
-                self.currentOrganization = records![0]
+                self.currentOrganization = records!.last
                 self.orgToTaskRef = CKReference.init(recordID: self.currentOrganization.recordID, action: .None)
                 self.taskToOrgRef = CKReference(recordID: self.newTask.recordID, action: .None)
                 self.assignReferences()
