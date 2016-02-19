@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -47,10 +48,10 @@
                                     <constraint firstAttribute="height" constant="34" id="xIS-7M-viG"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Chortal">
+                                    <fragment content="Chore.tl">
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="28" name="Menlo-Regular"/>
+                                            <font key="NSFont" size="28" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -274,7 +275,7 @@
                                     <fragment content="Create Organization">
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="28" name="Menlo-Regular"/>
+                                            <font key="NSFont" size="28" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -361,6 +362,7 @@
                                 <exclude reference="L8b-z2-kJ7"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="XJB-BW-A2N"/>
                                 <exclude reference="yeH-ph-aRr"/>
                                 <exclude reference="0Mj-RI-DUO"/>
                                 <exclude reference="uiM-Wk-8ut"/>
@@ -369,7 +371,6 @@
                                 <exclude reference="AeT-NH-986"/>
                                 <exclude reference="Se1-iS-J1G"/>
                                 <exclude reference="pw2-zY-P19"/>
-                                <exclude reference="XJB-BW-A2N"/>
                                 <exclude reference="Oim-SL-iHW"/>
                             </mask>
                         </variation>
@@ -676,7 +677,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="*organization* Task List" id="F3b-Nl-sNJ">
+                    <navigationItem key="navigationItem" id="F3b-Nl-sNJ">
                         <barButtonItem key="leftBarButtonItem" title="☰" id="EwG-bk-wjh">
                             <connections>
                                 <action selector="menuButtonTapped:" destination="WqG-jG-oPD" id="yAr-pq-W3m"/>
@@ -751,7 +752,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="*Organization*" id="yBy-dX-FCQ">
+                    <navigationItem key="navigationItem" id="yBy-dX-FCQ">
                         <barButtonItem key="leftBarButtonItem" title="☰" style="done" id="0Mo-9i-LVg">
                             <connections>
                                 <action selector="menuButtonTap:" destination="frK-Kv-yyV" id="r7H-Of-WH7"/>
@@ -1660,8 +1661,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="c14-lP-jh5"/>
         <segue reference="IeD-g1-6Nb"/>
         <segue reference="Dzb-Q2-GxJ"/>
-        <segue reference="U2s-RD-m6F"/>
     </inferredMetricsTieBreakers>
 </document>
