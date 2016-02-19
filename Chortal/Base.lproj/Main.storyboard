@@ -71,7 +71,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -292,7 +292,6 @@
                                 </state>
                                 <connections>
                                     <action selector="createOrganizationTap:" destination="jP6-LE-g8W" eventType="touchUpInside" id="iTv-OW-WtV"/>
-                                    <segue destination="U6J-0l-ExC" kind="show" id="Sbb-Dw-44n"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -347,7 +346,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -357,6 +356,7 @@
                         <outlet property="adminPasswordTextField" destination="wnP-r9-xv0" id="rCw-tW-Lkm"/>
                         <outlet property="organizationNameTextField" destination="HGZ-6e-BTY" id="74u-tA-WvE"/>
                         <outlet property="organizationTypeTextField" destination="8ui-Hl-z6N" id="76V-qQ-ihq"/>
+                        <segue destination="U6J-0l-ExC" kind="show" identifier="continueToUIDSegue" id="eqE-h2-U1L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLu-Oo-c9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -514,7 +514,7 @@
                     <attributedString key="userComments">
                         <fragment content="No constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -652,7 +652,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -727,7 +727,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -884,7 +884,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="createTaskButtonTap:" destination="5tU-rL-jQg" eventType="touchUpInside" id="Nde-QM-yVT"/>
-                                    <segue destination="frK-Kv-yyV" kind="show" id="XOz-LF-HlV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVV-g0-Sua">
@@ -980,11 +979,12 @@
                         <outlet property="requirePhotoSwitch" destination="8qN-lA-Aso" id="l7m-Zc-PYK"/>
                         <outlet property="taskDescriptionTextField" destination="FbM-di-1Az" id="uP0-MF-BkJ"/>
                         <outlet property="taskNameTextField" destination="vmJ-If-47o" id="Qr7-V3-2By"/>
+                        <segue destination="lX3-pa-Vxg" kind="show" identifier="createdTaskSegue" id="Dzb-Q2-GxJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2838" y="588"/>
+            <point key="canvasLocation" x="2668" y="828"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
@@ -1620,8 +1620,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kyT-jB-3iZ"/>
+        <segue reference="IeD-g1-6Nb"/>
+        <segue reference="Dzb-Q2-GxJ"/>
         <segue reference="U2s-RD-m6F"/>
-        <segue reference="V0y-r8-QFq"/>
     </inferredMetricsTieBreakers>
 </document>

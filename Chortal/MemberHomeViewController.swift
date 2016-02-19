@@ -9,12 +9,12 @@
 import UIKit
 import CloudKit
 
+
+
+
 class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     var taskArray = [CKRecord]()
-    var userDefaults = NSUserDefaults.standardUserDefaults()
-    var memberName: String?
-    var orgID: String?
     var currentOrganization: CKRecord?
     
     
@@ -25,8 +25,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        memberName = userDefaults.stringForKey("currentUserName")
-        orgID = userDefaults.stringForKey("currentOrgUID")
         getOrganization()
     }
     
@@ -63,8 +61,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         }
     }
-    
-    
     
     //MARK: IBActions
     @IBAction func menuButtonTapped(sender: UIBarButtonItem) {

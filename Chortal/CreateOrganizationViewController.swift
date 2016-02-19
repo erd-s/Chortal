@@ -40,6 +40,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         uid.appendContentsOf(timestampParts[1])
         organization.setObject(uid, forKey: "uid")
         admin.setObject(uid, forKey: "uid")
+        userDefaults.setValue(uid, forKey: "currentOrgUID")
     }
     
     //MARK: IBActions
@@ -66,6 +67,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
                 print(error)
             } else {
                 print("Organization to iCloud: \(newOrg)")
+                self.performSegueWithIdentifier("continueToUIDSegue", sender: self)
             }
         }
         publicDatabase.saveRecord(newAdmin) { (newAdmin, error) -> Void in
