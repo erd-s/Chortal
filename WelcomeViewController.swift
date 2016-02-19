@@ -63,35 +63,45 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             
             self.orgRecord = record
             
+            print(self.orgRecord?.valueForKey("members"))
+            
             if self.orgRecord!.mutableArrayValueForKey("members").count == 0 {
                 
                 self.memArray = [self.orgMemRef!]
                 
-                print("Empty key-value pair for Record members")
-                print("Organization Members: \(self.memArray)")
-                print(self.memArray)
+//                print("Empty key-value pair for Record members")
+//                print("Organization Members: \(self.memArray)")
+//                print(self.memArray)
+                self.orgRecord?.setObject(self.memArray, forKey: "members")
+                self.modifyRecords([self.orgRecord!, self.newMem!])
+
                 
             } else {
                 
                 self.memArray = self.orgRecord!.mutableArrayValueForKey("members")
                 self.memArray!.addObject(self.orgMemRef!)
-                print("Non-Empty key-value pair for record members: \(self.memArray)")
+                //self.orgRecord?.setObject(self.memArray, forKey: "members")
+                print(self.orgRecord?.objectForKey("members"))
+                self.modifyRecords([self.orgRecord!, self.newMem!])
+                
             }
             
-            self.orgRecord?.setValue(self.memArray, forKey: "members")
-            print("Members: \(self.orgRecord?.valueForKey("members"))")
-            self.modifiedRecords = [self.orgRecord!, self.newMem!]
-            print("Records to be modified: \(self.modifiedRecords)")
-            self.modifyRecords(self.modifiedRecords!)
+            
+//            print("Members: \(self.orgRecord?.valueForKey("members"))")
+//            self.modifiedRecords = [self.orgRecord!, self.newMem!]
+//            print("Records to be modified: \(self.modifiedRecords)")
+//            self.modifyRecords(self.modifiedRecords!)
             
         })
     }
     
     func modifyRecords (records: [CKRecord]) {
         print("Modify records function called")
-        let modOpp = CKModifyRecordsOperation.init(recordsToSave: modifiedRecords, recordIDsToDelete: nil)
+        let modOpp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         modOpp.savePolicy = .ChangedKeys
         modOpp.atomic = true
+        
+        publicDatabase.addOperation(modOpp)
         
         modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
@@ -105,7 +115,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 self.performSegueWithIdentifier("logInSegue", sender: self)
             }
         }
-        ckh.publicDatabase.addOperation(modOpp)
+        
         
         
     }
