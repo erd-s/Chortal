@@ -16,7 +16,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var memberArray = [AnyObject]()
     var adminRecordID: CKRecordID!
-    var query: CKQuery!
     var newTask: CKRecord!
     var taskToOrgRef: CKReference!
     var orgToTaskRef: CKReference!
@@ -73,12 +72,14 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     
     func queryDatabaseForOrganization(adminRef: CKReference) {
         let predicate = NSPredicate(format: "creatorUserRecordID == %@", adminRef)
-        self.query = CKQuery(recordType: "Organization", predicate: predicate)
-        publicDatabase.performQuery(self.query, inZoneWithID: nil, completionHandler: { (records: [CKRecord]?, error) -> Void in
+        let sortByCreationDate = NSSortDescriptor(key: "creationDate", ascending: true)
+        let query = CKQuery(recordType: "Organization", predicate: predicate)
+        query.sortDescriptors = [sortByCreationDate]
+        publicDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records: [CKRecord]?, error) -> Void in
             if error != nil {
                 print(error)
             } else {
-                self.currentOrganization = records![0]
+                self.currentOrganization = records!.last
                 self.orgToTaskRef = CKReference.init(recordID: self.currentOrganization.recordID, action: .None)
                 self.taskToOrgRef = CKReference(recordID: self.newTask.recordID, action: .None)
                 self.assignReferences()

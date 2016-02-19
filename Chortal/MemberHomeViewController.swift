@@ -61,7 +61,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.taskTableView.reloadData()
                 })
             })
-            
         }
     }
     
