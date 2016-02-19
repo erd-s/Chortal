@@ -14,12 +14,12 @@ let userDefaults = NSUserDefaults.standardUserDefaults()
 
 class MemberSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK: Properties
-    var memberArray: [CKRecord]?
+    var memberArray = [CKRecord]()
     var orgRecord: CKRecord?
     
     //MARK: Outlets
     @IBOutlet weak var memberTableView: UITableView!
-    
+    @IBOutlet weak var welcomeLabel: UILabel!
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +38,15 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                 print("Error: \(error?.description)")
             } else {
                 if results != nil {
+                    print(results)
                     let record = results![0]
                     self.orgRecord = record
+                    print("Org Record: \(self.orgRecord) -----------")
                     self.fetchRecords(self.orgRecord!)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.welcomeLabel.text = "\(self.orgRecord!.valueForKey("name")!)"
+                    }
                     
                 } else {
                     
@@ -57,15 +63,16 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                 if error != nil {
                     print(error?.description)
                 }
-                self.memberArray?.append(record!)
+                self.memberArray.append(record!)
+                print(record!.valueForKey("name")!)
             })
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.memberTableView.reloadData()
-                
             }
             
         }
+        
     }
     
     //MARK: IBActions
@@ -75,14 +82,14 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("memberID")
         
-        let cellRecord = self.memberArray![indexPath.row]
+        let cellRecord = self.memberArray[indexPath.row]
         cell?.textLabel!.text = cellRecord.valueForKey("name") as? String
         
         return cell!
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memberArray!.count
+        return memberArray.count
     }
     
     //MARK: Segue

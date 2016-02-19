@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -9,7 +9,7 @@
         <!--Login View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Login View" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstScreen" id="BYZ-38-t0r" userLabel="Login View" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -71,7 +71,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -347,7 +347,7 @@
                     <attributedString key="userComments">
                         <fragment content="constraints done">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -514,7 +514,7 @@
                     <attributedString key="userComments">
                         <fragment content="No constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -552,7 +552,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pizza" id="vWH-ii-Knf">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vWH-ii-Knf" id="Ci0-4d-7MC">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -652,7 +652,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -727,7 +727,7 @@
                     <attributedString key="userComments">
                         <fragment content="no constraints">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
@@ -1180,8 +1180,7 @@
                                         <exclude reference="kkO-tf-58g"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="135" y="450" width="131.5" height="55"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="LM9-5m-DDb"/>
                                         <include reference="kkO-tf-58g"/>
@@ -1289,7 +1288,7 @@
         <!--Member Select View Controller-->
         <scene sceneID="3ea-CF-1KO">
             <objects>
-                <viewController id="3Kf-A8-SXb" customClass="MemberSelectViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="memberSelect" id="3Kf-A8-SXb" customClass="MemberSelectViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uD3-Z3-iEM"/>
                         <viewControllerLayoutGuide type="bottom" id="WcM-gW-fgi"/>
@@ -1301,11 +1300,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLO-tp-RAM">
                                 <rect key="frame" x="20" y="149" width="560" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="360" id="UMC-Ug-ybR"/>
-                                    <constraint firstAttribute="height" constant="43" id="bG2-Rm-fNV"/>
+                                    <constraint firstAttribute="height" constant="43" id="JdO-aB-trI"/>
+                                    <constraint firstAttribute="width" constant="360" id="Xta-60-oIv"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Welcome to *orgName*">
+                                    <fragment content="  ">
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="28" name="Menlo-Regular"/>
@@ -1316,24 +1315,19 @@
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="UMC-Ug-ybR"/>
-                                        <exclude reference="bG2-Rm-fNV"/>
+                                        <exclude reference="JdO-aB-trI"/>
+                                        <exclude reference="Xta-60-oIv"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="20" y="36" width="360" height="43"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="UMC-Ug-ybR"/>
-                                        <include reference="bG2-Rm-fNV"/>
+                                        <include reference="JdO-aB-trI"/>
+                                        <include reference="Xta-60-oIv"/>
                                     </mask>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjw-gC-dgk">
                                 <rect key="frame" x="20" y="149" width="560" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="FBd-Vh-nD5"/>
-                                    <constraint firstAttribute="width" constant="360" id="KmE-5e-oJQ"/>
-                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="Select your name:">
                                         <attributes>
@@ -1344,18 +1338,8 @@
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="FBd-Vh-nD5"/>
-                                        <exclude reference="KmE-5e-oJQ"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="20" y="87" width="360" height="43"/>
-                                    <mask key="constraints">
-                                        <include reference="FBd-Vh-nD5"/>
-                                        <include reference="KmE-5e-oJQ"/>
-                                    </mask>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't see yourself here? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIv-jo-oM9">
@@ -1400,6 +1384,10 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YLO-tp-RAM" firstAttribute="centerX" secondItem="Q5I-Sa-sTt" secondAttribute="centerX" id="TtY-WK-rWE"/>
+                            <constraint firstItem="YLO-tp-RAM" firstAttribute="top" secondItem="uD3-Z3-iEM" secondAttribute="bottom" constant="16" id="gm1-Co-GKN"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="YLO-tp-RAM"/>
@@ -1407,6 +1395,10 @@
                                 <exclude reference="wIv-jo-oM9"/>
                                 <exclude reference="66Z-Vr-92U"/>
                                 <exclude reference="bVE-EM-mdf"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="TtY-WK-rWE"/>
+                                <exclude reference="gm1-Co-GKN"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1417,10 +1409,15 @@
                                 <include reference="66Z-Vr-92U"/>
                                 <include reference="bVE-EM-mdf"/>
                             </mask>
+                            <mask key="constraints">
+                                <include reference="TtY-WK-rWE"/>
+                                <include reference="gm1-Co-GKN"/>
+                            </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="memberTableView" destination="bVE-EM-mdf" id="jum-C2-UOJ"/>
+                        <outlet property="welcomeLabel" destination="YLO-tp-RAM" id="1Dg-cW-c6J"/>
                         <segue destination="WqG-jG-oPD" kind="show" identifier="memberSelectSegue" id="U2s-RD-m6F"/>
                     </connections>
                 </viewController>
@@ -1431,7 +1428,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yq2-bm-1H0" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="memberHome" automaticallyAdjustsScrollViewInsets="NO" id="yq2-bm-1H0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gxi-cp-KNj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1623,8 +1620,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U2s-RD-m6F"/>
         <segue reference="kyT-jB-3iZ"/>
+        <segue reference="U2s-RD-m6F"/>
         <segue reference="V0y-r8-QFq"/>
     </inferredMetricsTieBreakers>
 </document>
