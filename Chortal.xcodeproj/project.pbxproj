@@ -24,6 +24,7 @@
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
 		9B5FC2731C737B8B005976FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */; };
+		9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */; };
 		9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD82BC1C77825B005A3967 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		9B5FC26F1C737B8B005976FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B5FC2721C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B5FC2741C737B8B005976FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeTaskViewController.swift; sourceTree = "<group>"; };
 		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 		9BFD82BC1C77825B005A3967 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 				135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */,
 				9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */,
 				9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */,
+				9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
 				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
+				9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */,
 				9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
 				9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */,
