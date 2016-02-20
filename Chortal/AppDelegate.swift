@@ -18,28 +18,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         var initialViewController: UIViewController?
         
-        if let user = userDefaults.valueForKey("currentUserName") {
-            if user as! String == "Multiple Users" {
-               initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberSelect")
-                self.window?.rootViewController = initialViewController
-                self.window?.makeKeyAndVisible()
-            } else {
-                initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberHome")
-                self.window?.rootViewController = initialViewController
-                self.window?.makeKeyAndVisible()
-            }
+        if userDefaults.boolForKey("isAdmin") == true {
             
-        } else {
-            initialViewController = storyboard.instantiateViewControllerWithIdentifier("firstScreen")
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier("adminHome")
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
+            
+        } else {
+            if userDefaults.boolForKey("multipleUsers") == true {
+                
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberSelect")
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+                
+            } else {
+                
+                if (userDefaults.valueForKey("currentUserName") != nil) {
+                    
+                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberHome")
+                    self.window?.rootViewController = initialViewController
+                    self.window?.makeKeyAndVisible()
+                    
+                } else {
+                    
+                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("firstScreen")
+                    self.window?.rootViewController = initialViewController
+                    self.window?.makeKeyAndVisible()
+                    
+                }
+            }
+            
         }
-        
-        
-        
+
         return true
     }
 

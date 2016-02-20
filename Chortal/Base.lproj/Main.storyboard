@@ -820,12 +820,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ScF-pV-oId" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282.5" y="106"/>
+            <point key="canvasLocation" x="1198.5" y="70"/>
         </scene>
         <!--Admin Home-->
         <scene sceneID="tOB-Nl-9Gy">
             <objects>
-                <viewController id="frK-Kv-yyV" userLabel="Admin Home" customClass="AdminHomeViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="adminHome" id="frK-Kv-yyV" userLabel="Admin Home" customClass="AdminHomeViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UJR-2D-c5r"/>
                         <viewControllerLayoutGuide type="bottom" id="kGn-4d-bE8"/>
@@ -1380,7 +1380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="354" y="-688"/>
+            <point key="canvasLocation" x="387" y="-734"/>
         </scene>
         <!--Member Select View Controller-->
         <scene sceneID="3ea-CF-1KO">
@@ -1516,7 +1516,7 @@
                     <connections>
                         <outlet property="memberTableView" destination="bVE-EM-mdf" id="jum-C2-UOJ"/>
                         <outlet property="welcomeLabel" destination="YLO-tp-RAM" id="1Dg-cW-c6J"/>
-                        <segue destination="yq2-bm-1H0" kind="show" id="Mux-iH-yfS"/>
+                        <segue destination="yq2-bm-1H0" kind="show" identifier="memberSelectSegue" id="Mux-iH-yfS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1539,7 +1539,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUe-jN-2bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="86"/>
+            <point key="canvasLocation" x="561" y="70"/>
         </scene>
         <!--AssignUID View Controller-->
         <scene sceneID="vHi-mh-3xK">

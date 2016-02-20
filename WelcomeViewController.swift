@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     var modifiedRecords: [CKRecord]?
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var fromMemSelect: Bool?
+    var alert: UIAlertController?
     
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -73,12 +74,12 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 
                 self.memArray = [self.orgMemRef!]
                 
-//                print("Empty key-value pair for Record members")
-//                print("Organization Members: \(self.memArray)")
-//                print(self.memArray)
+                //                print("Empty key-value pair for Record members")
+                //                print("Organization Members: \(self.memArray)")
+                //                print(self.memArray)
                 self.orgRecord?.setObject(self.memArray, forKey: "members")
                 self.modifyRecords([self.orgRecord!, self.newMem!])
-
+                
                 
             } else {
                 
@@ -91,10 +92,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             }
             
             
-//            print("Members: \(self.orgRecord?.valueForKey("members"))")
-//            self.modifiedRecords = [self.orgRecord!, self.newMem!]
-//            print("Records to be modified: \(self.modifiedRecords)")
-//            self.modifyRecords(self.modifiedRecords!)
+            //            print("Members: \(self.orgRecord?.valueForKey("members"))")
+            //            self.modifiedRecords = [self.orgRecord!, self.newMem!]
+            //            print("Records to be modified: \(self.modifiedRecords)")
+            //            self.modifyRecords(self.modifiedRecords!)
             
         })
     }
@@ -110,15 +111,19 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 print(error!.description)
-            
+                
                 
             }else {
                 print("Successfully saved")
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.performSegueWithIdentifier("logInSegue", sender: self)
-
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.dismissViewControllerAnimated(false, completion: nil)
+                }
+   
             }
+            self.performSegueWithIdentifier("logInSegue", sender: self)
         }
+        
         
         
         
@@ -128,16 +133,16 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         if nameTextField.text?.characters.count > 0 {
             
             
-            let alert = UIAlertController(title: nil, message: "Joining Group...", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.view.tintColor = UIColor.blackColor()
+            alert = UIAlertController(title: nil, message: "Joining Group...", preferredStyle: UIAlertControllerStyle.Alert)
+            alert!.view.tintColor = UIColor.blackColor()
             let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(10,5,50,50)) as UIActivityIndicatorView
             loadingIndicator.hidesWhenStopped = true
             loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
             loadingIndicator.startAnimating()
-    
             
-            alert.view.addSubview(loadingIndicator)
-            presentViewController(alert, animated: true, completion: nil)
+            
+            alert!.view.addSubview(loadingIndicator)
+            presentViewController(alert!, animated: true, completion: nil)
             
             
             newMember(orgRecord!)
@@ -154,13 +159,13 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "logInSegue" {
             let userName = newMem?.valueForKey("name")
             userDefaults.setValue(userName, forKey: "currentUserName")
-
+            
             if userSwitch == true {
                 userDefaults.setBool(false, forKey: "multipleUsers")
             } else {
                 userDefaults.setValue("Multiple Users", forKey: "currentUserName")
                 userDefaults.setBool(true, forKey: "multipleUsers")
-
+                
             }
             let currentOrgUID = orgRecord?.valueForKey("uid")
             userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")
