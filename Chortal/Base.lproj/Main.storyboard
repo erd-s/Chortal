@@ -106,8 +106,8 @@
                                     <outlet property="delegate" destination="vs4-mI-qZK" id="bE4-9R-Uaf"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPS-bP-H92">
-                                <rect key="frame" x="262" y="368" width="77" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPS-bP-H92">
+                                <rect key="frame" x="264" y="368" width="75" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5le-2C-sLv"/>
                                     <constraint firstAttribute="width" constant="75" id="fAe-Jg-m5J"/>
@@ -422,16 +422,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="176" y="170" width="33" height="21"/>
+                                    <rect key="frame" x="113" y="171" width="162" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjc-6U-uLU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjc-6U-uLU">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="149" y="216" width="86" height="21"/>
+                                    <rect key="frame" x="130" y="200" width="145" height="62"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ud-lx-7HI">
@@ -440,10 +440,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="180" y="315" width="29" height="21"/>
+                                    <rect key="frame" x="113" y="315" width="200" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="take task"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -459,7 +459,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="144" y="268" width="113" height="21"/>
+                                    <rect key="frame" x="47" y="268" width="210" height="21"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0A-om-SM2">
@@ -468,7 +468,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="154" y="378" width="64" height="21"/>
+                                    <rect key="frame" x="72" y="378" width="185" height="21"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -501,12 +501,13 @@
                         <outlet property="taskDescriptionLabel" destination="jjc-6U-uLU" id="DBj-6S-g2b"/>
                         <outlet property="taskMemberLabel" destination="a0A-om-SM2" id="EBR-v3-3PA"/>
                         <outlet property="taskNameLabel" destination="ECH-m9-9Q0" id="1Wv-dO-3nq"/>
-                        <segue destination="WqG-jG-oPD" kind="show" identifier="backHomeSegue" id="C7G-Lb-Jo5"/>
+                        <segue destination="7cD-xV-vOc" kind="unwind" identifier="backHomeSegue" unwindAction="unwind:" id="eMw-hd-GUy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YZ-K0-gQj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7cD-xV-vOc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2136" y="159"/>
+            <point key="canvasLocation" x="2106" y="-629"/>
         </scene>
         <!--My Task-->
         <scene sceneID="2Yc-82-opS">
@@ -697,7 +698,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pizza" textLabel="anc-H6-sqN" detailTextLabel="myr-Mg-Ldi" style="IBUITableViewCellStyleSubtitle" id="vWH-ii-Knf">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vWH-ii-Knf" id="Ci0-4d-7MC">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -726,7 +727,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="OdL-Yf-9ve" kind="show" identifier="viewTaskSegue" id="PWR-ZJ-SCV"/>
+                                            <segue destination="OdL-Yf-9ve" kind="presentation" identifier="takeTaskSegue" id="PWR-ZJ-SCV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1732,10 +1733,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U2s-RD-m6F"/>
-        <segue reference="kyT-jB-3iZ"/>
-        <segue reference="IeD-g1-6Nb"/>
-        <segue reference="C7G-Lb-Jo5"/>
         <segue reference="Dzb-Q2-GxJ"/>
+        <segue reference="IeD-g1-6Nb"/>
+        <segue reference="c14-lP-jh5"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -41,6 +41,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         organization.setObject(uid, forKey: "uid")
         admin.setObject(uid, forKey: "uid")
         userDefaults.setValue(uid, forKey: "currentOrgUID")
+        userDefaults.setBool(true, forKey: "isAdmin:")
     }
     
     //MARK: IBActions

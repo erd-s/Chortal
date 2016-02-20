@@ -13,7 +13,6 @@ class TakeTaskViewController: UIViewController {
     //MARK: Properties
     var task: CKRecord?
     var photoRequiredYesOrNo: String?
-    var currentMember: CKRecord?
     var organization: CKRecord?
     var dueDate: NSDate?
     
@@ -29,35 +28,22 @@ class TakeTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dueDate = task!["due"] as? NSDate
+        dueDate = task?["due"] as? NSDate
         
-        if task!["photo_required"] as? String == "yes" {
+        if task?["photo_required"] as? String == "yes" {
             photoRequiredYesOrNo = "are required."
         } else {
             photoRequiredYesOrNo = "are not required"
         }
         
-        photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo)."
+        photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo!)."
         taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
         dueLabel.text = String(dueDate!)
-        taskMemberLabel.text = task!["member"] as? String
-        fetchCurrentMember(userDefaults.valueForKey("currentUserName") as! String)
+        taskMemberLabel.text = "\(task!["member"] as! CKReference)"
     }
     
     //MARK: Custom Functions
-    func fetchCurrentMember(memberName: String) {
-        for ref in organization!["members"] as! [CKReference] {
-            publicDatabase.fetchRecordWithID(ref.recordID, completionHandler: { (member, error) -> Void in
-                if member!["name"] as? String == memberName {
-                    self.currentMember = member
-                    self.takeTaskButton.userInteractionEnabled = true
-                    self.takeTaskButton.enabled = true
-                }
-            })
-        }
-    }
-    
     func presentAlertController() {
         let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(String(dueDate!)). Photos \(photoRequiredYesOrNo). The timer will start when you click \"Accept\".", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -71,12 +57,12 @@ class TakeTaskViewController: UIViewController {
     
     func setReferences() {
         let taskRef = CKReference(record: task!, action: .None)
-        currentMember?.setValue(taskRef, forKey: "current_task")
+        currentUser?.setValue(taskRef, forKey: "current_task")
         
-        let memberRef = CKReference(record: currentMember!, action: .None)
+        let memberRef = CKReference(record: currentUser!, action: .None)
         task?.setValue(memberRef, forKey: "member")
         
-        saveTaskAndMember([task!, currentMember!])
+        saveTaskAndMember([task!, currentUser!])
     }
     
     func saveTaskAndMember(recordsToSave: [CKRecord]) {

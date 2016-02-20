@@ -9,9 +9,6 @@
 import UIKit
 import CloudKit
 
-
-
-
 class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     var taskArray = [CKRecord]()
@@ -42,6 +39,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             print("performing query, organizations: \(organizations![0]["name"])")
             self.currentOrganization = organizations![0] as CKRecord
             self.getTasks()
+            self.getCurrentMember()
         }
     }
     
@@ -53,7 +51,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     print(error)
                 } else {
                     self.taskArray.append(task!)
-                    print("appended task: \(task)")
+                    print("got tasks")
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.taskTableView.reloadData()
@@ -61,6 +59,19 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         }
     }
+    
+    func getCurrentMember() {
+        for memberRef in currentOrganization!["members"] as! [CKReference] {
+            publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
+                if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
+                    currentUser = memberRecord
+                    print("current user is set")
+                    //add spinner stuff & error handling
+                }
+            })
+        }
+    }
+    
     
     //MARK: IBActions
     @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
@@ -88,9 +99,14 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
         if segue.identifier == "takeTaskSegue" {
-           let dvc = segue.destinationViewController as! TakeTaskViewController
+            let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
+            print("seguing task: \(dvc.task) over")
             dvc.organization = self.currentOrganization
         }
+    }
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        
     }
 }
