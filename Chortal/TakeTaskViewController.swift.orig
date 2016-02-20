@@ -13,29 +13,43 @@ class TakeTaskViewController: UIViewController {
     //MARK: Properties
     var task: CKRecord?
     var photoRequiredYesOrNo: String?
+<<<<<<< HEAD
     var organization: CKRecord?
     var dueDate: NSDate?
+=======
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
     
     //MARK: Outlets
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var photoRequiredLabel: UILabel!
     @IBOutlet weak var taskDescriptionLabel: UILabel!
     @IBOutlet weak var taskNameLabel: UILabel!
+<<<<<<< HEAD
     @IBOutlet weak var takeTaskButton: UIButton!
     @IBOutlet weak var taskMemberLabel: UILabel!
+=======
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
     
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         dueDate = task?["due"] as? NSDate
         
         if task?["photo_required"] as? String == "yes" {
+=======
+        
+        let date = task!["due"] as? NSDate
+        
+        if task!["photo_required"] as? String == "yes" {
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
             photoRequiredYesOrNo = "are required."
         } else {
             photoRequiredYesOrNo = "are not required"
         }
         
+<<<<<<< HEAD
         photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo!)."
         taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
@@ -50,11 +64,31 @@ class TakeTaskViewController: UIViewController {
         let take = UIAlertAction(title: "Accept", style: .Default) { (UIAlertAction) -> Void in
             self.setReferences()
         }
+=======
+        photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo)."
+        taskDescriptionLabel.text = task!["description"] as? String
+        taskNameLabel.text = task!["name"] as? String
+        dueLabel.text = String(date!)
+    }
+
+    //MARK: Custom Functions
+    func presentAlertController() {
+        let dueDate = ""
+        let requiredYesOrNo = ""
+        let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(dueDate). Photos \(requiredYesOrNo).", preferredStyle: .Alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let take = UIAlertAction(title: "Take Task", style: .Default) { (UIAlertAction) -> Void in
+            self.assignTaskToSelf()
+        }
+        
+        
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
         alert.addAction(cancel)
         alert.addAction(take)
         presentViewController(alert, animated: true, completion: nil)
     }
     
+<<<<<<< HEAD
     func setReferences() {
         let taskRef = CKReference(record: task!, action: .None)
         currentUser?.setValue(taskRef, forKey: "current_task")
@@ -79,11 +113,25 @@ class TakeTaskViewController: UIViewController {
         }
         publicDatabase.addOperation(saveOperation)
     }
+=======
+    func assignTaskToSelf() {
+        
+    }
+    
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
     
     
     //MARK: Actions
     @IBAction func takeTaskButton(sender: UIButton) {
+<<<<<<< HEAD
         presentAlertController() // --> setRefs --> save --> segue back home
+=======
+        
+        
+        
+        
+        
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
     }
     
     //MARK: Delegate Functions
