@@ -55,19 +55,24 @@ class TakeTaskViewController: UIViewController {
     }
     
     func presentAlertController() {
-        let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(String(dueDate!)). Photos \(photoRequiredYesOrNo).", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(String(dueDate!)). Photos \(photoRequiredYesOrNo). The timer will start when you click \"Accept\".", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        let take = UIAlertAction(title: "Take Task", style: .Default) { (UIAlertAction) -> Void in
-            self.assignTaskToSelf()
+        let take = UIAlertAction(title: "Accept", style: .Default) { (UIAlertAction) -> Void in
+            self.setReferences()
         }
         alert.addAction(cancel)
         alert.addAction(take)
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    func assignTaskToSelf() {
-        let taskRef = CKReference(record: task!, action: CKReferenceAction.None)
+    func setReferences() {
+        let taskRef = CKReference(record: task!, action: .None)
         currentMember?.setValue(taskRef, forKey: "current_task")
+        
+        let memberRef = CKReference(record: currentMember!, action: .None)
+        task?.setValue(memberRef, forKey: "member")
+        
+        saveTaskAndMember([task!, currentMember!])
     }
     
     func saveTaskAndMember(recordsToSave: [CKRecord]) {
@@ -77,6 +82,8 @@ class TakeTaskViewController: UIViewController {
                 print(error)
             } else {
                 print("saved records successfully")
+                //start timer
+                self.performSegueWithIdentifier("backHomeSegue", sender: self)
             }
         }
         publicDatabase.addOperation(saveOperation)
@@ -85,7 +92,7 @@ class TakeTaskViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func takeTaskButton(sender: UIButton) {
-        
+        presentAlertController() // --> setRefs --> save --> segue back home
     }
     
     //MARK: Delegate Functions
