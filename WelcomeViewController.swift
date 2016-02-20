@@ -24,8 +24,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var userSwitch: UISwitch!
     
     //MARK: View Loading
@@ -35,8 +33,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        activityIndicator.stopAnimating()
-        activityIndicator.hidden = true
         print("record: \(orgRecord)")
         let orgName = orgRecord!.valueForKey("name")!
         welcomeLabel.text = "Welcome to \(orgName)"
@@ -106,12 +102,11 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 print(error!.description)
-                self.errorLabel.numberOfLines = 0
-                self.errorLabel.text = "Oops - Something went wrong. Please try again."
+            
                 
             }else {
                 print("Successfully saved")
-                
+                self.dismissViewControllerAnimated(false, completion: nil)
                 self.performSegueWithIdentifier("logInSegue", sender: self)
             }
         }
@@ -122,9 +117,19 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     //MARK: IBActions
     @IBAction func logInButtonTapped(sender: UIButton) {
         if nameTextField.text?.characters.count > 0 {
-            activityIndicator.startAnimating()
-            activityIndicator.hidden = false
-            errorLabel.text = "Working..."
+            
+            
+            let alert = UIAlertController(title: nil, message: "Joining Group...", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.view.tintColor = UIColor.blackColor()
+            let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(10,5,50,50)) as UIActivityIndicatorView
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            loadingIndicator.startAnimating()
+            
+            alert.view.addSubview(loadingIndicator)
+            presentViewController(alert, animated: true, completion: nil)
+            
+            
             newMember(orgRecord!)
         }
     }
