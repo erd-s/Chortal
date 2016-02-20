@@ -6,8 +6,13 @@
 //  Copyright © 2016 JonerDos. All rights reserved.
 //
 
+<<<<<<< d945b6fff3fd7ad274dbcb95dae8c06b5e72988c
+//import Cocoa
+import UIKit
+=======
 import UIKit
 import CloudKit
+>>>>>>> added logic to get data about the task. passed on the task through prep for segue in memhomevc
 
 class TakeTaskViewController: UIViewController {
     //MARK: Properties
