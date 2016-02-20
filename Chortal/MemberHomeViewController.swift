@@ -93,6 +93,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "takeTaskSegue" {
            let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
+            dvc.organization = self.currentOrganization
         }
         
         
