@@ -114,7 +114,9 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 
             }else {
                 print("Successfully saved")
+                self.dismissViewControllerAnimated(true, completion: nil)
                 self.performSegueWithIdentifier("logInSegue", sender: self)
+
             }
         }
         
@@ -150,14 +152,15 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "logInSegue" {
-            
+            let userName = newMem?.valueForKey("name")
+            userDefaults.setValue(userName, forKey: "currentUserName")
+
             if userSwitch == true {
-                let userName = newMem?.valueForKey("name")
-                userDefaults.setValue(userName, forKey: "currentUserName")
-                
+                userDefaults.setBool(false, forKey: "multipleUsers")
             } else {
                 userDefaults.setValue("Multiple Users", forKey: "currentUserName")
-                
+                userDefaults.setBool(true, forKey: "multipleUsers")
+
             }
             let currentOrgUID = orgRecord?.valueForKey("uid")
             userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")

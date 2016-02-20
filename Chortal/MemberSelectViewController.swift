@@ -11,6 +11,7 @@ import CloudKit
 
 class MemberSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK: Properties
+    var selIndexPath: NSIndexPath?
     var memberArray = [CKRecord]()
     var orgRecord: CKRecord?
     
@@ -63,13 +64,8 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                 dispatch_async(dispatch_get_main_queue()) {
                     self.memberTableView.reloadData()
                 }
-                
             })
-            
-            
-            
         }
-        
     }
     
     //MARK: IBActions
@@ -88,6 +84,15 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         return cell!
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selIndexPath = indexPath
+        let selectedMember = memberArray[indexPath.row]
+        let selName = selectedMember.valueForKey("name")
+        userDefaults.setValue(selName, forKey: "currentUserName")
+        
+        performSegueWithIdentifier("memberSelectSegue", sender: self)
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memberArray.count
     }
@@ -99,7 +104,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
             dvc.fromMemSelect = true
             dvc.orgRecord = orgRecord
             
-        } else {
+        } else if segue.identifier == "memberSelectSegue" {
             
             
         }

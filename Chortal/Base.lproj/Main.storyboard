@@ -161,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jF0-k8-fKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119" y="106"/>
+            <point key="canvasLocation" x="-252" y="106"/>
         </scene>
         <!--Create Organization-->
         <scene sceneID="Jea-3f-MMg">
@@ -1380,7 +1380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="-610"/>
+            <point key="canvasLocation" x="354" y="-688"/>
         </scene>
         <!--Member Select View Controller-->
         <scene sceneID="3ea-CF-1KO">
@@ -1516,12 +1516,12 @@
                     <connections>
                         <outlet property="memberTableView" destination="bVE-EM-mdf" id="jum-C2-UOJ"/>
                         <outlet property="welcomeLabel" destination="YLO-tp-RAM" id="1Dg-cW-c6J"/>
-                        <segue destination="WqG-jG-oPD" kind="show" identifier="memberSelectSegue" id="U2s-RD-m6F"/>
+                        <segue destination="yq2-bm-1H0" kind="show" id="Mux-iH-yfS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240.5" y="-1298"/>
+            <point key="canvasLocation" x="1198.5" y="-1290"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -1718,7 +1718,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U2s-RD-m6F"/>
+        <segue reference="Mux-iH-yfS"/>
         <segue reference="kyT-jB-3iZ"/>
         <segue reference="Dzb-Q2-GxJ"/>
     </inferredMetricsTieBreakers>
