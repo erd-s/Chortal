@@ -99,6 +99,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
         if segue.identifier == "takeTaskSegue" {
+<<<<<<< HEAD
             let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
             print("seguing task: \(dvc.task) over")
@@ -107,6 +108,14 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
+=======
+           let dvc = segue.destinationViewController as! TakeTaskViewController
+            dvc.task = taskArray[indexPath!.row]
+        }
+        
+        
+        
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
         
     }
 }
