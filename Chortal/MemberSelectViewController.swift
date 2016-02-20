@@ -74,6 +74,9 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     
     //MARK: IBActions
     
+    @IBAction func addMemberButtonTapped(sender: UIButton) {
+        performSegueWithIdentifier("joinOrgSegue", sender: self)
+    }
     
     //MARK: Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -90,6 +93,17 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "joinOrgSegue" {
+            let dvc = segue.destinationViewController as! WelcomeViewController
+            dvc.fromMemSelect = true
+            dvc.orgRecord = orgRecord
+            
+        } else {
+            
+            
+        }
+    }
     
     
 }

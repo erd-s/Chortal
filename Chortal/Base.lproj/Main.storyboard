@@ -1371,6 +1371,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="multiUserTextView" destination="3sR-OG-Yhs" id="CKS-0w-eYL"/>
                         <outlet property="nameTextField" destination="7HF-WC-7M8" id="u6a-t0-Rzr"/>
                         <outlet property="userSwitch" destination="9at-BR-WIk" id="r6L-Sb-dQi"/>
                         <outlet property="welcomeLabel" destination="AgP-Z4-hs7" id="Uhg-qi-J4B"/>
@@ -1454,7 +1455,8 @@
                                     <rect key="frame" x="20" y="517" width="122" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="WDK-DS-eTY" kind="show" id="kyT-jB-3iZ"/>
+                                    <action selector="addMemberButtonTapped:" destination="3Kf-A8-SXb" eventType="touchUpInside" id="Lh0-2D-0sy"/>
+                                    <segue destination="WDK-DS-eTY" kind="show" identifier="joinOrgSegue" id="kyT-jB-3iZ"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-EM-mdf">
@@ -1716,8 +1718,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="c14-lP-jh5"/>
-        <segue reference="IeD-g1-6Nb"/>
+        <segue reference="U2s-RD-m6F"/>
+        <segue reference="kyT-jB-3iZ"/>
         <segue reference="Dzb-Q2-GxJ"/>
     </inferredMetricsTieBreakers>
 </document>

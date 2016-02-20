@@ -20,11 +20,13 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     var memArray: NSMutableArray?
     var modifiedRecords: [CKRecord]?
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    var fromMemSelect: Bool?
     
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var userSwitch: UISwitch!
+    @IBOutlet weak var multiUserTextView: UITextView!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -34,8 +36,14 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         print("record: \(orgRecord)")
+        
         let orgName = orgRecord!.valueForKey("name")!
         welcomeLabel.text = "Welcome to \(orgName)"
+        
+        if fromMemSelect == true {
+            multiUserTextView.hidden = true
+            userSwitch.hidden = true
+        }
     }
     
     //MARK: Custom Functions
@@ -106,7 +114,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 
             }else {
                 print("Successfully saved")
-                self.dismissViewControllerAnimated(false, completion: nil)
                 self.performSegueWithIdentifier("logInSegue", sender: self)
             }
         }
@@ -125,6 +132,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             loadingIndicator.hidesWhenStopped = true
             loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
             loadingIndicator.startAnimating()
+    
             
             alert.view.addSubview(loadingIndicator)
             presentViewController(alert, animated: true, completion: nil)
