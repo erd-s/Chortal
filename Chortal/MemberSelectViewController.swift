@@ -23,7 +23,15 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         welcomeLabel.text = userDefaults.valueForKey("currentOrgName") as? String
+        
+        
         currentOrg()
+        
+        
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        loadingAlert("Loading members...", viewController: self)
     }
     
     //MARK: Custom Functions
@@ -64,7 +72,9 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                 dispatch_async(dispatch_get_main_queue()) {
                     self.memberTableView.reloadData()
                 }
+                self.dismissViewControllerAnimated(true, completion: nil)
             })
+            
         }
     }
     

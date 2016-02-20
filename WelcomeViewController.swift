@@ -9,6 +9,24 @@
 import UIKit
 import CloudKit
 
+extension UIViewController {
+    
+    func loadingAlert (loadMessage: String, viewController: UIViewController){
+        let alert = UIAlertController(title: nil, message: loadMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.view.tintColor = UIColor.blackColor()
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(10,5,50,50)) as UIActivityIndicatorView
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        loadingIndicator.startAnimating()
+        
+        alert.view.addSubview(loadingIndicator)
+        
+        viewController.presentViewController(alert, animated: true, completion: nil)
+
+    }
+    
+}
+
 class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
@@ -132,18 +150,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func logInButtonTapped(sender: UIButton) {
         if nameTextField.text?.characters.count > 0 {
             
-            
-            alert = UIAlertController(title: nil, message: "Joining Group...", preferredStyle: UIAlertControllerStyle.Alert)
-            alert!.view.tintColor = UIColor.blackColor()
-            let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(10,5,50,50)) as UIActivityIndicatorView
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-            loadingIndicator.startAnimating()
-            
-            
-            alert!.view.addSubview(loadingIndicator)
-            presentViewController(alert!, animated: true, completion: nil)
-            
+            loadingAlert("Loading...", viewController: self)
             
             newMember(orgRecord!)
         }
