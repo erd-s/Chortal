@@ -443,7 +443,7 @@
                                     <rect key="frame" x="180" y="315" width="29" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="take task"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -462,6 +462,15 @@
                                     <rect key="frame" x="144" y="268" width="113" height="21"/>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0A-om-SM2">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="154" y="378" width="64" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -471,6 +480,7 @@
                                 <exclude reference="9Ud-lx-7HI"/>
                                 <exclude reference="6nR-Q9-4dB"/>
                                 <exclude reference="aUB-6n-p6D"/>
+                                <exclude reference="a0A-om-SM2"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -480,20 +490,23 @@
                                 <include reference="9Ud-lx-7HI"/>
                                 <include reference="6nR-Q9-4dB"/>
                                 <include reference="aUB-6n-p6D"/>
+                                <include reference="a0A-om-SM2"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="dueLabel" destination="9Ud-lx-7HI" id="aTS-EW-zTJ"/>
                         <outlet property="photoRequiredLabel" destination="aUB-6n-p6D" id="RP7-Ke-L6f"/>
+                        <outlet property="takeTaskButton" destination="6nR-Q9-4dB" id="fWb-mK-tKo"/>
                         <outlet property="taskDescriptionLabel" destination="jjc-6U-uLU" id="DBj-6S-g2b"/>
+                        <outlet property="taskMemberLabel" destination="a0A-om-SM2" id="EBR-v3-3PA"/>
                         <outlet property="taskNameLabel" destination="ECH-m9-9Q0" id="1Wv-dO-3nq"/>
                         <segue destination="WqG-jG-oPD" kind="show" identifier="backHomeSegue" id="C7G-Lb-Jo5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YZ-K0-gQj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1861.5" y="126"/>
+            <point key="canvasLocation" x="2136" y="159"/>
         </scene>
         <!--My Task-->
         <scene sceneID="2Yc-82-opS">

@@ -22,6 +22,8 @@ class TakeTaskViewController: UIViewController {
     @IBOutlet weak var photoRequiredLabel: UILabel!
     @IBOutlet weak var taskDescriptionLabel: UILabel!
     @IBOutlet weak var taskNameLabel: UILabel!
+    @IBOutlet weak var takeTaskButton: UIButton!
+    @IBOutlet weak var taskMemberLabel: UILabel!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -39,7 +41,7 @@ class TakeTaskViewController: UIViewController {
         taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
         dueLabel.text = String(dueDate!)
-        
+        taskMemberLabel.text = task!["member"] as? String
         fetchCurrentMember(userDefaults.valueForKey("currentUserName") as! String)
     }
     
@@ -49,6 +51,8 @@ class TakeTaskViewController: UIViewController {
             publicDatabase.fetchRecordWithID(ref.recordID, completionHandler: { (member, error) -> Void in
                 if member!["name"] as? String == memberName {
                     self.currentMember = member
+                    self.takeTaskButton.userInteractionEnabled = true
+                    self.takeTaskButton.enabled = true
                 }
             })
         }
@@ -77,6 +81,7 @@ class TakeTaskViewController: UIViewController {
     
     func saveTaskAndMember(recordsToSave: [CKRecord]) {
         let saveOperation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
+        saveOperation.atomic = true
         saveOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
             if error != nil {
                 print(error)

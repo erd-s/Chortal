@@ -17,7 +17,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     var taskArray = [CKRecord]()
     var currentOrganization: CKRecord?
     
-    
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var taskTableView: UITableView!
@@ -70,8 +69,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func myTaskButtonTap(sender: UIBarButtonItem) {
     }
     
-    
-    
     //MARK: Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
@@ -95,9 +92,5 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             dvc.task = taskArray[indexPath!.row]
             dvc.organization = self.currentOrganization
         }
-        
-        
-        
-        
     }
 }
