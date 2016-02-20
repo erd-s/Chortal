@@ -88,5 +88,15 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     //MARK: Segues
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
+        if segue.identifier == "takeTaskSegue" {
+           let dvc = segue.destinationViewController as! TakeTaskViewController
+            dvc.task = taskArray[indexPath!.row]
+        }
+        
+        
+        
+        
+    }
 }
