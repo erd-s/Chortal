@@ -1,0 +1,142 @@
+//
+//  MemberHomeViewController.swift
+//  Chortal
+//
+//  Created by Christopher Erdos on 2/16/16.
+//  Copyright © 2016 JonerDos. All rights reserved.
+//
+
+import UIKit
+import CloudKit
+<<<<<<< HEAD
+
+let container = CKContainer.defaultContainer()
+let publicDatabase = container.publicCloudDatabase
+=======
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+
+class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    //MARK: Properties
+    var taskArray = [CKRecord]()
+    var userDefaults = NSUserDefaults.standardUserDefaults()
+    var memberName: String?
+<<<<<<< HEAD
+    var currentOrganization: CKRecord?
+    var arrayOfTasks: [CKRecord]?
+
+=======
+    var orgID: String?
+    var currentOrganization: CKRecord?
+    
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+    
+    //MARK: Outlets
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var taskTableView: UITableView!
+    
+    //MARK: View Loading
+    override func viewDidLoad() {
+        super.viewDidLoad()
+<<<<<<< HEAD
+        
+        memberName = userDefaults.stringForKey("currentUserName")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        getOrganization()
+=======
+        memberName = userDefaults.stringForKey("currentUserName")
+        orgID = userDefaults.stringForKey("currentOrgUID")
+        getOrganization()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+    }
+    
+    
+    //MARK: Custom Functions
+    func getOrganization() {
+<<<<<<< HEAD
+        let predicate = NSPredicate(format: "member_list CONTAINS %@", memberName!)
+        let query = CKQuery(recordType: "Organization", predicate: predicate)
+        publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
+        self.currentOrganization = organizations![0] as CKRecord
+        self.getTasks()
+=======
+        let predicate = NSPredicate(format: "uid == %@", orgID!)
+        let query = CKQuery(recordType: "Organization", predicate: predicate)
+        print("query: \(query)")
+        publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
+            print("performing query, organizations: \(organizations![0]["name"])")
+            self.currentOrganization = organizations![0] as CKRecord
+            self.getTasks()
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+        }
+    }
+    
+    func getTasks() {
+        let taskReferenceArray = currentOrganization!.mutableArrayValueForKey("tasks")
+        for taskRef in taskReferenceArray {
+<<<<<<< HEAD
+            print(taskRef.recordName)
+            let predicate = NSPredicate(format: "recordName = %@", taskRef.recordName)
+            let query = CKQuery(recordType: "Task", predicate: predicate)
+            publicDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (tasks, error) -> Void in
+                self.taskArray = tasks!
+                self.taskTableView.reloadData()
+            })
+        }
+        }
+=======
+            publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
+                if error != nil {
+                    print(error)
+                } else {
+                    self.taskArray.append(task!)
+                    print("appended task: \(task)")
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.taskTableView.reloadData()
+                })
+            })
+            
+        }
+    }
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+    
+    
+    
+    //MARK: IBActions
+    @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func myTaskButtonTap(sender: UIBarButtonItem) {
+    }
+    
+    
+    
+    //MARK: Delegate Functions
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
+        let task = taskArray[indexPath.row]
+<<<<<<< HEAD
+        cell.textLabel?.text = task["name"] as? String
+        cell.detailTextLabel?.text = task["description"] as? String
+=======
+        cell.textLabel?.text = task.valueForKey("name") as? String
+        cell.detailTextLabel?.text = task.valueForKey("description") as? String
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return taskArray.count
+    }
+    
+    
+    //MARK: Segues
+    
+}
