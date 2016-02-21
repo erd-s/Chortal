@@ -129,17 +129,14 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 print(error!.description)
-                
-                
             }else {
                 print("Successfully saved")
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                }
-   
             }
-            self.performSegueWithIdentifier("logInSegue", sender: self)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.performSegueWithIdentifier("logInSegue", sender: self)
+                })
+            }
         }
         
         
