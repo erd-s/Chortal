@@ -8,11 +8,34 @@
 
 import UIKit
 import CloudKit
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+let container = CKContainer.defaultContainer()
+let publicDatabase = container.publicCloudDatabase
+=======
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+=======
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
 
 class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     var taskArray = [CKRecord]()
+<<<<<<< HEAD
+    var userDefaults = NSUserDefaults.standardUserDefaults()
+    var memberName: String?
+<<<<<<< HEAD
     var currentOrganization: CKRecord?
+    var arrayOfTasks: [CKRecord]?
+
+=======
+    var orgID: String?
+    var currentOrganization: CKRecord?
+    
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+=======
+    var currentOrganization: CKRecord?
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -21,17 +44,44 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
+<<<<<<< HEAD
+        
+        memberName = userDefaults.stringForKey("currentUserName")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        getOrganization()
+=======
+        memberName = userDefaults.stringForKey("currentUserName")
+        orgID = userDefaults.stringForKey("currentOrgUID")
+=======
         title = userDefaults.valueForKey("currentOrgName") as? String
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
         getOrganization()
     }
     
     override func viewWillAppear(animated: Bool) {
         
+<<<<<<< HEAD
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+=======
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
     }
     
     
     //MARK: Custom Functions
     func getOrganization() {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        let predicate = NSPredicate(format: "member_list CONTAINS %@", memberName!)
+        let query = CKQuery(recordType: "Organization", predicate: predicate)
+        publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
+        self.currentOrganization = organizations![0] as CKRecord
+        self.getTasks()
+=======
+=======
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
         let predicate = NSPredicate(format: "uid == %@", orgID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         print("query: \(query)")
@@ -39,24 +89,53 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             print("performing query, organizations: \(organizations![0]["name"])")
             self.currentOrganization = organizations![0] as CKRecord
             self.getTasks()
+<<<<<<< HEAD
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+=======
             self.getCurrentMember()
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
         }
     }
     
     func getTasks() {
         let taskReferenceArray = currentOrganization!.mutableArrayValueForKey("tasks")
         for taskRef in taskReferenceArray {
+<<<<<<< HEAD
+<<<<<<< HEAD
+            print(taskRef.recordName)
+            let predicate = NSPredicate(format: "recordName = %@", taskRef.recordName)
+            let query = CKQuery(recordType: "Task", predicate: predicate)
+            publicDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (tasks, error) -> Void in
+                self.taskArray = tasks!
+                self.taskTableView.reloadData()
+            })
+        }
+        }
+=======
+=======
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
                     print(error)
                 } else {
                     self.taskArray.append(task!)
+<<<<<<< HEAD
+                    print("appended task: \(task)")
+=======
                     print("got tasks")
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.taskTableView.reloadData()
                 })
             })
+<<<<<<< HEAD
+            
+        }
+    }
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+    
+=======
         }
     }
     
@@ -71,6 +150,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         }
     }
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
     
     
     //MARK: IBActions
@@ -80,12 +160,27 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func myTaskButtonTap(sender: UIBarButtonItem) {
     }
     
+<<<<<<< HEAD
+    
+    
+=======
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
     //MARK: Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
         let task = taskArray[indexPath.row]
+<<<<<<< HEAD
+<<<<<<< HEAD
+        cell.textLabel?.text = task["name"] as? String
+        cell.detailTextLabel?.text = task["description"] as? String
+=======
         cell.textLabel?.text = task.valueForKey("name") as? String
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
+>>>>>>> a575e4dccb417e194193dff34cb20e8a1116bf8d
+=======
+        cell.textLabel?.text = task.valueForKey("name") as? String
+        cell.detailTextLabel?.text = task.valueForKey("description") as? String
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
         
         return cell
     }
@@ -96,9 +191,13 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     //MARK: Segues
+<<<<<<< HEAD
+    
+=======
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
         if segue.identifier == "takeTaskSegue" {
+<<<<<<< HEAD
             let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
             print("seguing task: \(dvc.task) over")
@@ -107,6 +206,15 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
+=======
+           let dvc = segue.destinationViewController as! TakeTaskViewController
+            dvc.task = taskArray[indexPath!.row]
+        }
+        
+        
+        
+>>>>>>> 32b5066cc68f8b19123675a4d74ecc8c960761f3
         
     }
+>>>>>>> 07a40d8a201a2a4b52461c8222d721465ddbe31b
 }

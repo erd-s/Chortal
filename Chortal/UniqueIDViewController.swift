@@ -21,7 +21,6 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     //MARK: Custom Functions
@@ -46,9 +45,9 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
                     
                 }
             }
-        dispatch_async(dispatch_get_main_queue()) {
-            self.performSegueWithIdentifier("enterNameSegue", sender: self)
-        }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("enterNameSegue", sender: self)
+            }
         }
         
     }

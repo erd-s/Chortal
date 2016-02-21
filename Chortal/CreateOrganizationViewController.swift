@@ -11,6 +11,7 @@ import CloudKit
 
 class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
+    var uid: String!
     
     
     //MARK: Outlets
@@ -35,10 +36,12 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     func setUID(organization: CKRecord, admin: CKRecord) {
         let timestamp = String(NSDate.timeIntervalSinceReferenceDate())
         let timestampParts = timestamp.componentsSeparatedByString(".")
-        var uid = timestampParts[0]
+        uid = timestampParts[0]
         uid.appendContentsOf(timestampParts[1])
         organization.setObject(uid, forKey: "uid")
         admin.setObject(uid, forKey: "uid")
+        userDefaults.setValue(uid, forKey: "currentOrgUID")
+        userDefaults.setBool(true, forKey: "isAdmin:")
     }
     
     //MARK: IBActions
@@ -60,11 +63,14 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         newAdmin.setObject(adminNameTextField.text, forKey: "name")
         setUID(newOrg, admin: newAdmin)
         
+        userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
+        
         publicDatabase.saveRecord(newOrg) { (newOrg, error) -> Void in
             if error != nil {
                 print(error)
             } else {
                 print("Organization to iCloud: \(newOrg)")
+                self.performSegueWithIdentifier("continueToUIDSegue", sender: self)
             }
         }
         publicDatabase.saveRecord(newAdmin) { (newAdmin, error) -> Void in
@@ -82,5 +88,11 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "continueToUIDSegue" {
+        let dvc = segue.destinationViewController as! AssignUIDViewController
+        dvc.orgUID = uid
+        }
+    }
     
 }

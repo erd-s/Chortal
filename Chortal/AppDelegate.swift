@@ -16,6 +16,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var initialViewController: UIViewController?
+        
+        if userDefaults.boolForKey("isAdmin") == true {
+            
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier("adminHome")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+            
+        } else {
+            if userDefaults.boolForKey("multipleUsers") == true {
+                
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberSelect")
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+                
+            } else {
+                
+                if (userDefaults.valueForKey("currentUserName") != nil) {
+                    
+                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberHome")
+                    self.window?.rootViewController = initialViewController
+                    self.window?.makeKeyAndVisible()
+                    
+                } else {
+                    
+                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("firstScreen")
+                    self.window?.rootViewController = initialViewController
+                    self.window?.makeKeyAndVisible()
+                    
+                }
+            }
+            
+        }
+
         return true
     }
 
