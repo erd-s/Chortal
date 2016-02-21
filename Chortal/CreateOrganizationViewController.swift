@@ -81,6 +81,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         
         userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
         userDefaults.setBool(true, forKey: "isAdmin")
+        userDefaults.setValue(adminNameTextField.text, forKey: "adminName")
         
         saveRecords([newOrg, newAdmin])
     }

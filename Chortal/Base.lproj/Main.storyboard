@@ -402,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLu-Oo-c9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1000.5" y="382"/>
+            <point key="canvasLocation" x="-952.5" y="454"/>
         </scene>
         <!--Take Task View Controller-->
         <scene sceneID="s8M-hs-W84">
@@ -531,10 +531,10 @@
             </objects>
             <point key="canvasLocation" x="1726.5" y="-1328"/>
         </scene>
-        <!--Sidebar Table View Controller-->
+        <!--Member Sidebar Table View Controller-->
         <scene sceneID="Rw1-rp-cRL">
             <objects>
-                <tableViewController id="vQL-Rb-PEq" customClass="SidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vQL-Rb-PEq" customClass="MemberSidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="5" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EQE-Lg-BRc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -549,14 +549,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Welcome *member name*." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J1s-xA-GMG">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J1s-xA-GMG">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Welcome *member name*.">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue-BoldItalic"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -601,6 +607,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="jop-HQ-7R7" kind="show" id="oeD-hA-DD0"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="K3f-ml-ahl" style="IBUITableViewCellStyleDefault" id="xqM-vb-mjr">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
@@ -670,6 +679,11 @@
                             <outlet property="delegate" destination="vQL-Rb-PEq" id="yrR-Aa-YbC"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="memberNameLabel" destination="eXI-yZ-Pho" id="Jm5-zg-SU6"/>
+                        <outlet property="organizationLabel" destination="K3f-ml-ahl" id="Inu-so-mw9"/>
+                        <outlet property="welcomeMemberLabel" destination="J1s-xA-GMG" id="B2y-nQ-l82"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1072,7 +1086,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Nn-tI-ICv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681.5" y="1230"/>
+            <point key="canvasLocation" x="2244" y="342"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="50l-w7-Uff">
@@ -1312,12 +1326,12 @@
                         <outlet property="requirePhotoSwitch" destination="8qN-lA-Aso" id="l7m-Zc-PYK"/>
                         <outlet property="taskDescriptionTextField" destination="FbM-di-1Az" id="uP0-MF-BkJ"/>
                         <outlet property="taskNameTextField" destination="vmJ-If-47o" id="Qr7-V3-2By"/>
-                        <segue destination="nQn-5v-qES" kind="show" identifier="createdTaskSegue" id="IGB-Fy-jWx"/>
+                        <segue destination="lX3-pa-Vxg" kind="show" identifier="createdTaskSegue" id="Dzb-Q2-GxJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3004.5" y="344"/>
+            <point key="canvasLocation" x="2973" y="350"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
@@ -1335,7 +1349,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJN-IO-RBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="544.5" y="1230"/>
+            <point key="canvasLocation" x="1399.5" y="1240"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="buH-2w-740">
@@ -1552,7 +1566,7 @@
                         <outlet property="nameTextField" destination="7HF-WC-7M8" id="u6a-t0-Rzr"/>
                         <outlet property="userSwitch" destination="9at-BR-WIk" id="r6L-Sb-dQi"/>
                         <outlet property="welcomeLabel" destination="AgP-Z4-hs7" id="Uhg-qi-J4B"/>
-                        <segue destination="yq2-bm-1H0" kind="show" identifier="logInSegue" id="ksP-3C-TmO"/>
+                        <segue destination="Zag-Vo-TJP" kind="show" identifier="logInSegue" id="pHe-wc-cuA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1698,7 +1712,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988.5" y="-1338"/>
+            <point key="canvasLocation" x="991.5" y="-1752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -1913,12 +1927,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yb1-Lw-Oxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="544.5" y="480"/>
+            <point key="canvasLocation" x="652.5" y="350"/>
         </scene>
-        <!--Sidebar Table View Controller-->
+        <!--Admin Sidebar Table View Controller-->
         <scene sceneID="tlH-Zh-9V5">
             <objects>
-                <tableViewController id="loB-Fs-DcT" customClass="SidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="loB-Fs-DcT" customClass="AdminSidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="5" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jKb-hg-B7J">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1933,14 +1947,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Welcome *admin name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejp-rl-7V6">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejp-rl-7V6">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Welcome *admin name*">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue-BoldItalic"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -2034,6 +2054,10 @@
                             <outlet property="delegate" destination="loB-Fs-DcT" id="zyV-l8-Dxa"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="organizationOverviewLabel" destination="ypE-DU-QbE" id="gNL-ce-Z7l"/>
+                        <outlet property="welcomeAdminLabel" destination="ejp-rl-7V6" id="Jap-zg-4NP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cvg-6p-bfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2041,8 +2065,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="7Kh-Yt-WH9"/>
         <segue reference="kyT-jB-3iZ"/>
-        <segue reference="6dW-wp-01z"/>
-        <segue reference="IGB-Fy-jWx"/>
+        <segue reference="Dzb-Q2-GxJ"/>
     </inferredMetricsTieBreakers>
 </document>
