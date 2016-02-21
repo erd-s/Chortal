@@ -25,7 +25,8 @@
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
 		9B5FC2731C737B8B005976FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */; };
 		9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */; };
-		9BA89FD31C7A695800721A3D /* SidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD21C7A695800721A3D /* SidebarTableViewController.swift */; };
+		9BA89FD51C7A76D500721A3D /* MemberSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */; };
+		9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */; };
 		9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */; };
 		9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD82BC1C77825B005A3967 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -54,7 +55,8 @@
 		9B87FCCF1C7A591000BB77DA /* Chortal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chortal-Bridging-Header.h"; sourceTree = "<group>"; };
 		9B87FCD01C7A591000BB77DA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		9BA89FD21C7A695800721A3D /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SidebarTableViewController.swift; path = ../SidebarTableViewController.swift; sourceTree = "<group>"; };
+		9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberSidebarTableViewController.swift; path = ../MemberSidebarTableViewController.swift; sourceTree = "<group>"; };
+		9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminSidebarTableViewController.swift; path = ../AdminSidebarTableViewController.swift; sourceTree = "<group>"; };
 		9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeTaskViewController.swift; sourceTree = "<group>"; };
 		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 		9BFD82BC1C77825B005A3967 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -75,7 +77,8 @@
 		9B3E413C1C738239007A16D3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9BA89FD21C7A695800721A3D /* SidebarTableViewController.swift */,
+				9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */,
+				9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */,
 				9B3E413A1C73817E007A16D3 /* LoginViewController.swift */,
 				9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */,
 				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
@@ -224,7 +227,6 @@
 			files = (
 				135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */,
 				9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */,
-				9BA89FD31C7A695800721A3D /* SidebarTableViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
 				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
@@ -233,7 +235,9 @@
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
 				9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */,
 				9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */,
+				9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
+				9BA89FD51C7A76D500721A3D /* MemberSidebarTableViewController.swift in Sources */,
 				9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
 				9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */,
