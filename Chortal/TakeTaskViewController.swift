@@ -27,7 +27,7 @@ class TakeTaskViewController: UIViewController {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         dueDate = task?["due"] as? NSDate
         
         if task?["photo_required"] as? String == "yes" {
@@ -40,7 +40,9 @@ class TakeTaskViewController: UIViewController {
         taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
         dueLabel.text = String(dueDate!)
-        taskMemberLabel.text = "\(task!["member"] as! CKReference)"
+        if task!["member"] != nil {
+            taskMemberLabel.text = "\(task!["member"] as! CKReference)"
+        }
     }
     
     //MARK: Custom Functions
@@ -66,6 +68,7 @@ class TakeTaskViewController: UIViewController {
     }
     
     func saveTaskAndMember(recordsToSave: [CKRecord]) {
+        loadingAlert("Taking task...", viewController: self)
         let saveOperation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
         saveOperation.atomic = true
         saveOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
@@ -74,7 +77,11 @@ class TakeTaskViewController: UIViewController {
             } else {
                 print("saved records successfully")
                 //start timer
-                self.performSegueWithIdentifier("backHomeSegue", sender: self)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.performSegueWithIdentifier("backHomeSegue", sender: self)
+                    })
+                }
             }
         }
         publicDatabase.addOperation(saveOperation)

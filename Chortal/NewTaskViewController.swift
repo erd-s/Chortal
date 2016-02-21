@@ -103,17 +103,23 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 print(error)
             } else {
-            print("saved records")
-           self.performSegueWithIdentifier("createdTaskSegue", sender: self)
+                print("saved records")
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.performSegueWithIdentifier("createdTaskSegue", sender: self)
+                    })
+                }
+            }
         }
-    }
         publicDatabase.addOperation(saveRecordsOp)
     }
     
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
-    createNewTask()
-    fetchRecordID() //on completetion --> queries db --> assigns refs --> save records --> segue
+        loadingAlert("Saving task...", viewController: self)
+        createNewTask()
+        fetchRecordID() //on completetion --> queries db --> assigns refs --> save records --> segue
     }
     
     @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
