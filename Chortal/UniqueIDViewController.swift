@@ -21,11 +21,14 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     //MARK: Custom Functions
-    
-    
+    func dismissKeyboard(){
+        self.setEditing(false, animated: true)
+    }
     
     //MARK: IBActions
     @IBAction func joinButtonTap(sender: AnyObject) {
