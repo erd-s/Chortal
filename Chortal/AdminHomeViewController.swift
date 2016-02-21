@@ -17,6 +17,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -24,6 +25,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         title = userDefaults.valueForKey("currentOrgName") as? String
 
         getOrganization()
+        
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

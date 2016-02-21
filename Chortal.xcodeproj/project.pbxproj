@@ -24,6 +24,7 @@
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
 		9B5FC2731C737B8B005976FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */; };
+		9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */; };
 		9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */; };
 		9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD82BC1C77825B005A3967 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,9 @@
 		9B5FC26F1C737B8B005976FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B5FC2721C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B5FC2741C737B8B005976FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B87FCCF1C7A591000BB77DA /* Chortal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chortal-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B87FCD01C7A591000BB77DA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeTaskViewController.swift; sourceTree = "<group>"; };
 		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 		9BFD82BC1C77825B005A3967 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -71,7 +75,6 @@
 			children = (
 				9B3E413A1C73817E007A16D3 /* LoginViewController.swift */,
 				9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */,
-				9BFD82BC1C77825B005A3967 /* Constants.swift */,
 				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
 				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
@@ -88,6 +91,7 @@
 		9B3E41551C73EA96007A16D3 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9BFD82BC1C77825B005A3967 /* Constants.swift */,
 				9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */,
 				9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */,
 				9BF5DC341C74D257006C82AC /* playground.playground */,
@@ -115,8 +119,9 @@
 		9B5FC2671C737B8B005976FB /* Chortal */ = {
 			isa = PBXGroup;
 			children = (
-				9B3E41551C73EA96007A16D3 /* Custom Classes */,
 				9B3E413C1C738239007A16D3 /* ViewControllers */,
+				9B87FCD31C7A592000BB77DA /* Sidebar */,
+				9B3E41551C73EA96007A16D3 /* Custom Classes */,
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
 				9B5FC26C1C737B8B005976FB /* Main.storyboard */,
@@ -125,6 +130,16 @@
 				9B5FC2741C737B8B005976FB /* Info.plist */,
 			);
 			path = Chortal;
+			sourceTree = "<group>";
+		};
+		9B87FCD31C7A592000BB77DA /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				9B87FCD01C7A591000BB77DA /* SWRevealViewController.h */,
+				9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */,
+				9B87FCCF1C7A591000BB77DA /* Chortal-Bridging-Header.h */,
+			);
+			name = Sidebar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +230,7 @@
 				9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */,
 				9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
+				9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
 				9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */,
 				9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */,
@@ -329,6 +345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Chortal/Chortal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -337,6 +354,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = JonerDos.Chortal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Chortal/Chortal-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -344,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Chortal/Chortal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -352,6 +372,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = JonerDos.Chortal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Chortal/Chortal-Bridging-Header.h";
 			};
 			name = Release;
 		};
