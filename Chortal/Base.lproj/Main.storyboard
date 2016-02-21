@@ -512,7 +512,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="ZdP-TJ-s3S">
             <objects>
-                <viewController id="Zag-Vo-TJP" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="memberHomeMenu" id="Zag-Vo-TJP" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iGK-x0-8ws"/>
                         <viewControllerLayoutGuide type="bottom" id="2Wo-FP-nz9"/>
@@ -1072,7 +1072,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Nn-tI-ICv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="1094"/>
+            <point key="canvasLocation" x="1681.5" y="1230"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="50l-w7-Uff">
@@ -1317,7 +1317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2385" y="350"/>
+            <point key="canvasLocation" x="3004.5" y="344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
@@ -1335,7 +1335,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJN-IO-RBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1390.5" y="1094"/>
+            <point key="canvasLocation" x="544.5" y="1230"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="buH-2w-740">
@@ -1896,7 +1896,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="Nhn-gx-OPC">
             <objects>
-                <viewController id="nQn-5v-qES" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="adminHomeMenu" id="nQn-5v-qES" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0HJ-lS-K05"/>
                         <viewControllerLayoutGuide type="bottom" id="Boe-7f-li1"/>
@@ -1913,7 +1913,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yb1-Lw-Oxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652.5" y="350"/>
+            <point key="canvasLocation" x="544.5" y="480"/>
         </scene>
         <!--Sidebar Table View Controller-->
         <scene sceneID="tlH-Zh-9V5">

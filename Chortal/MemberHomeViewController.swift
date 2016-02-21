@@ -69,11 +69,13 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getCurrentMember() {
+        loadingAlert("Loading \(userDefaults.valueForKey("currentUserName")!)", viewController: self)
         for memberRef in currentOrganization!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
                     currentUser = memberRecord
                     print("current user is set")
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     //add spinner stuff & error handling
                 }
             })
@@ -83,9 +85,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: IBActions
     @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func myTaskButtonTap(sender: UIBarButtonItem) {
     }
     
     //MARK: Delegate Functions

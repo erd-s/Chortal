@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userDefaults.boolForKey("isAdmin") == true {
             
-            initialViewController = storyboard.instantiateViewControllerWithIdentifier("adminHome")
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier("adminHomeMenu")
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
             
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if (userDefaults.valueForKey("currentUserName") != nil) {
                     
-                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberHome")
+                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("memberHomeMenu")
                     self.window?.rootViewController = initialViewController
                     self.window?.makeKeyAndVisible()
                     
