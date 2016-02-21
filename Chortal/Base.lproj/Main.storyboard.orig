@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="frK-Kv-yyV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -542,7 +542,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pizza" id="09d-pJ-zQf">
-                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09d-pJ-zQf" id="TYc-Gi-CBk">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -571,7 +571,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pizza2" id="9fr-6p-8oL">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9fr-6p-8oL" id="eZh-g6-MsE">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -863,7 +863,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2800.5" y="-758"/>
+            <point key="canvasLocation" x="2290.5" y="106"/>
         </scene>
         <!--Member home-->
         <scene sceneID="nhW-I9-ZqO">
@@ -1024,11 +1024,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ScF-pV-oId" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< ae79402d9499b3ceac49f17ee0c2166fb48ab6aa
             <point key="canvasLocation" x="1240.5" y="86"/>
-=======
-            <point key="canvasLocation" x="2032.5" y="-1088"/>
->>>>>>> Added backbone of side menu
         </scene>
         <!--Admin Home-->
         <scene sceneID="tOB-Nl-9Gy">
@@ -1104,7 +1100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Nn-tI-ICv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="888" y="410"/>
+            <point key="canvasLocation" x="2040" y="818"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="50l-w7-Uff">
@@ -1349,7 +1345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1545" y="410"/>
+            <point key="canvasLocation" x="2668" y="828"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
@@ -1367,7 +1363,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJN-IO-RBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232.5" y="410"/>
+            <point key="canvasLocation" x="1282.5" y="886"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="buH-2w-740">
@@ -1589,7 +1585,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="627" y="-1146"/>
+            <point key="canvasLocation" x="591" y="-610"/>
         </scene>
         <!--Member Select View Controller-->
         <scene sceneID="3ea-CF-1KO">
@@ -1730,7 +1726,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1294.5" y="-1414"/>
+            <point key="canvasLocation" x="1240.5" y="-1298"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -1748,7 +1744,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUe-jN-2bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1294.5" y="-758"/>
+            <point key="canvasLocation" x="591" y="86"/>
         </scene>
         <!--AssignUID View Controller-->
         <scene sceneID="vHi-mh-3xK">
@@ -1923,18 +1919,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tzm-lf-bIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-492" y="410"/>
+            <point key="canvasLocation" x="534" y="750"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-<<<<<<< ae79402d9499b3ceac49f17ee0c2166fb48ab6aa
+<<<<<<< e82aa3ed728642e73cd0f083d2fc445795d420b3
         <segue reference="Coc-0f-EBB"/>
         <segue reference="kyT-jB-3iZ"/>
-=======
-        <segue reference="U2s-RD-m6F"/>
-        <segue reference="kyT-jB-3iZ"/>
-        <segue reference="ksP-3C-TmO"/>
->>>>>>> Added backbone of side menu
         <segue reference="Dzb-Q2-GxJ"/>
+=======
+        <segue reference="c14-lP-jh5"/>
+        <segue reference="Y41-5W-Ye9"/>
+        <segue reference="c2D-2G-DSQ"/>
+        <segue reference="kyT-jB-3iZ"/>
+>>>>>>> Added backbone of side menu
     </inferredMetricsTieBreakers>
 </document>
