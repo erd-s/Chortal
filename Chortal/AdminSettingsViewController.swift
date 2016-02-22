@@ -30,6 +30,26 @@ class AdminSettingsViewController: UIViewController {
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        nameTextField.text = userDefaults.stringForKey("adminName")!
+        organizationNameTextField.text = currentOrg!["name"] as? String
+        inviteCodeLabel.text = orgID
+        
+        if userDefaults.boolForKey("push_taskCompleted")    { taskCompletedSwitch.on = true
+                                                     } else { taskCompletedSwitch.on = false }
+        if userDefaults.boolForKey("push_taskTaken")        { taskTakenSwitch.on = true
+                                                     } else { taskTakenSwitch.on = false }
+        if userDefaults.boolForKey("push_timeRunningOut")   { timeRunningOutSwitch.on = true
+                                                     } else { timeRunningOutSwitch.on = false }
+        if userDefaults.boolForKey("push_memberJoined")     { memberJoinedOrganizationSwitch.on = true
+                                                     } else { memberJoinedOrganizationSwitch.on = false }
+        if userDefaults.boolForKey("push_taskResubmitted")  { taskResubmittedSwitch.on = true
+                                                     } else { taskResubmittedSwitch.on = false }
+    }
+    
     //MARK: Custom Functions
     func dismissKeyboard() {
         view.endEditing(true)
@@ -77,8 +97,8 @@ class AdminSettingsViewController: UIViewController {
     }
 
     @IBAction func copyInviteCode(sender: AnyObject) {
-        let pasteboard = UIPasteboard()
-        pasteboard.string = "You have been invited to \(userDefaults.valueForKey("currentOrgName")!)!. Your invite code is \(inviteCodeLabel!.text!)"
+        let pasteboard = UIPasteboard.generalPasteboard()
+        pasteboard.string = "You have been invited to join \(userDefaults.valueForKey("currentOrgName")!). Your invite code is \(inviteCodeLabel!.text!)."
         inviteCodeLabel.text = "Copied!"
     }
     
