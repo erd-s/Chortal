@@ -19,7 +19,6 @@ class MemberSettingsViewController: UIViewController {
     @IBOutlet weak var timeRunningOutSwitch: UISwitch!
     @IBOutlet weak var newTasksAddedSwitch: UISwitch!
     @IBOutlet weak var taskAssignedSwitch: UISwitch!
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var defaultPhotoImageView: UIImageView!
     
@@ -31,7 +30,6 @@ class MemberSettingsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
         
         if userDefaults.boolForKey("multipleUsers") { multipleUsersSwitch.setOn(true, animated: true) }
         else { multipleUsersSwitch.setOn(false, animated: true) }
@@ -91,9 +89,10 @@ class MemberSettingsViewController: UIViewController {
                     print("name not saved, error:\(error)")
                 } else {
                     print("saved new username successfully")
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        self.performSegueWithIdentifier("saveSettingsSegue", sender: self)
-                        
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            self.performSegueWithIdentifier("saveSettingsSegue", sender: self)
+                        })
                     })
                 }
             })
