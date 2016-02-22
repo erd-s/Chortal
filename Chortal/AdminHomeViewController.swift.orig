@@ -7,40 +7,38 @@
 //
 
 import UIKit
-<<<<<<< HEAD
-import CloudKit 
-
-class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    //MARK: Properties
-
-=======
 import CloudKit
 
 class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK: Properties
     var taskArray = [CKRecord]()
-    var currentOrganization: CKRecord?
->>>>>>> 6859ddc5554f52b489648bdc37e05cf6cb79f770
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
-<<<<<<< HEAD
-
-    
-=======
->>>>>>> 6859ddc5554f52b489648bdc37e05cf6cb79f770
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         title = userDefaults.valueForKey("currentOrgName") as? String
-
+        
         getOrganization()
+        
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
+<<<<<<< HEAD
+        super.viewWillAppear(true)
         
+        tableView.reloadData()
+=======
+>>>>>>> settings
     }
     
     //MARK: Custom Functions
@@ -51,23 +49,29 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             if error != nil {
                 print(error)
             } else {
+<<<<<<< HEAD
+                print("performing query, organizations: \(organizations![0]["name"])")
+                self.currentOrganization = organizations![0] as CKRecord
+                self.getTasks()
+=======
             print("performing query, organizations: \(organizations![0]["name"])")
-            self.currentOrganization = organizations![0] as CKRecord
+            currentOrg = organizations![0] as CKRecord
             self.getTasks()
+>>>>>>> settings
             }
         }
     }
     
     func getTasks() {
-        let taskReferenceArray = currentOrganization!.mutableArrayValueForKey("tasks")
+        let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
                     print(error)
                 } else {
                     if task != nil {
-                    self.taskArray.append(task!)
-                    print("appended task: \(task)")
+                        self.taskArray.append(task!)
+                        print("appended task: \(task)")
                     }
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -99,6 +103,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: Segues
+    @IBAction func unwindFromTaskCreate (segue: UIStoryboardSegue) {
+        
+        
+    }
     
-
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		135F92041C737EEC005CBD24 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F92031C737EEC005CBD24 /* CloudKit.framework */; };
 		135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */; };
+		9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */; };
+		9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */; };
 		9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413A1C73817E007A16D3 /* LoginViewController.swift */; };
 		9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */; };
 		9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */; };
@@ -35,6 +37,8 @@
 		135F92021C737EE8005CBD24 /* Chortal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Chortal.entitlements; sourceTree = "<group>"; };
 		135F92031C737EEC005CBD24 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectViewController.swift; sourceTree = "<group>"; };
+		9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingsViewController.swift; sourceTree = "<group>"; };
+		9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewController.swift; sourceTree = "<group>"; };
 		9B3E413A1C73817E007A16D3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHomeViewController.swift; sourceTree = "<group>"; };
 		9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
@@ -77,19 +81,21 @@
 		9B3E413C1C738239007A16D3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */,
+				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
 				9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */,
+				9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */,
+				9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */,
+				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
 				9B3E413A1C73817E007A16D3 /* LoginViewController.swift */,
 				9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */,
-				9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */,
-				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
-				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
-				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
-				9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */,
 				135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */,
-				9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */,
+				9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */,
+				9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */,
 				9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */,
 				9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */,
+				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
+				9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */,
+				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -230,7 +236,9 @@
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
 				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
+				9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */,
 				9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */,
+				9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */,
 				9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
 				9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */,

@@ -95,6 +95,11 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             print("only added new task: \(taskToOrgRef)")
         }
         newTask.setObject(orgToTaskRef, forKey: "organization")
+        newTask.setValue("false", forKey: "inProgress")
+        newTask.setValue("false", forKey: "completed")
+        print(newTask.valueForKey("inProgress"))
+        print(newTask.valueForKey("completed"))
+            
         saveTaskAndOrganization([newTask, currentOrganization])
     }
     func saveTaskAndOrganization(records: [CKRecord]) {
@@ -107,7 +112,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        self.performSegueWithIdentifier("createdTaskSegue", sender: self)
+                        //   self.performSegueWithIdentifier("createdTaskSegue", sender: self)
+                        self.performSegueWithIdentifier("unwindFromTaskCreate", sender: self)
                     })
                 }
             }
@@ -117,9 +123,16 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
-        loadingAlert("Saving task...", viewController: self)
-        createNewTask()
-        fetchRecordID() //on completetion --> queries db --> assigns refs --> save records --> segue
+        if taskNameTextField.text?.characters.count > 0 {
+            loadingAlert("Saving task...", viewController: self)
+            createNewTask()
+            fetchRecordID() //on completetion --> queries db --> assigns refs --> save records --> segue
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
+            let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+            alert.addAction(okay)
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
@@ -132,5 +145,11 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindFromTaskCreate" {
+            let vc = segue.destinationViewController as! AdminHomeViewController
+            vc.taskArray.append(newTask)
+        }
+    }
     
 }
