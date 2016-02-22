@@ -601,6 +601,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="jop-HQ-7R7" kind="show" id="ztg-fO-cEM"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="K3f-ml-ahl" style="IBUITableViewCellStyleDefault" id="xqM-vb-mjr">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
@@ -721,9 +724,6 @@
                                     <constraint firstAttribute="width" constant="326" id="s41-8P-jdx"/>
                                 </constraints>
                                 <state key="normal" title="✅ Job's done! Give me my *incentive*"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="37" y="424" width="326" height="30"/>
-                                </variation>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xcx-95-avs">
                                 <rect key="frame" x="137" y="214.5" width="326" height="171"/>
@@ -1096,9 +1096,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="166" y="133" width="169.5" height="30"/>
-                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="5tU-rL-jQg" id="aCr-uw-QC8"/>
                                 </connections>
@@ -1709,7 +1706,7 @@
         <!--Settings-->
         <scene sceneID="602-Pc-aDd">
             <objects>
-                <viewController storyboardIdentifier="settingsVC" id="IX6-oG-d5E" userLabel="Settings" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsVC" id="IX6-oG-d5E" userLabel="Settings" customClass="MemberSettingsViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M5q-ok-e6k"/>
                         <viewControllerLayoutGuide type="bottom" id="9I7-qI-YMn"/>
@@ -1883,6 +1880,9 @@
                                         <include reference="n0U-Qr-tcb"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="changePhotoButtonTap:" destination="IX6-oG-d5E" eventType="touchUpInside" id="DpN-PZ-oHU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTq-MG-peT">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1890,6 +1890,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="183" y="540" width="34" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="saveButtonTap:" destination="IX6-oG-d5E" eventType="touchUpInside" id="40w-ee-B2J"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g2y-D3-oUg">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -2011,7 +2014,11 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Settings" id="top-Eg-eM2">
-                                        <barButtonItem key="leftBarButtonItem" title="Undo" id="u53-AH-uyS"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Undo" id="u53-AH-uyS">
+                                            <connections>
+                                                <segue destination="WCD-Ar-8bs" kind="unwind" unwindAction="unwindToSidebar:" id="wLb-pF-Pln"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="default">
@@ -2357,10 +2364,22 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="defaultPhotoImageView" destination="LNG-kR-qfj" id="EHy-jT-RQS"/>
+                        <outlet property="multipleUsersSwitch" destination="qcQ-kT-UyI" id="1Oa-Tr-HqW"/>
+                        <outlet property="nameTextField" destination="g2y-D3-oUg" id="huW-TM-Hbt"/>
+                        <outlet property="newTasksAddedSwitch" destination="WtR-PG-T8O" id="MSK-dM-Bt1"/>
+                        <outlet property="taskApprovedSwitch" destination="QLH-re-YyS" id="Xpx-qL-REH"/>
+                        <outlet property="taskAssignedSwitch" destination="nwU-01-8PP" id="2iu-3N-ffg"/>
+                        <outlet property="taskDeniedSwitch" destination="UuE-th-hVt" id="yG1-iB-kfb"/>
+                        <outlet property="timeRunningOutSwitch" destination="rYx-Rf-gDR" id="tJt-Oc-3aG"/>
+                        <segue destination="Zag-Vo-TJP" kind="show" identifier="saveSettingsSegue" id="i07-nw-ycZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7e-IA-2eH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WCD-Ar-8bs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="565.5" y="-505"/>
+            <point key="canvasLocation" x="2401.5" y="-1997"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -2687,9 +2706,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="IX6-oG-d5E" kind="show" id="ty5-3k-8Mf"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -2706,9 +2722,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ty5-3k-8Mf"/>
+        <segue reference="i07-nw-ycZ"/>
+        <segue reference="6dW-wp-01z"/>
         <segue reference="IGB-Fy-jWx"/>
         <segue reference="kyT-jB-3iZ"/>
-        <segue reference="6dW-wp-01z"/>
     </inferredMetricsTieBreakers>
 </document>
