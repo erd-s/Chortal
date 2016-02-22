@@ -27,6 +27,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.delegate = self
+        tabBar.selectedItem = tabBar.items![0]
+
         title = userDefaults.valueForKey("currentOrgName") as? String
         getOrganization()
         
@@ -62,7 +65,18 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 if error != nil {
                     print(error)
                 } else {
-                    self.taskArray.append(task!)
+                    //self.taskArray.append(task!)
+                    if task!.valueForKey("inProgress") as? String == "true" {
+                        self.inProgressArray?.append(task!)
+                    } else {
+                        if task!.valueForKey("completed") as? String == "true" {
+                            self.completedArray?.append(task!)
+                        } else {
+                            self.unclaimedArray?.append(task!)
+                        }
+                    }
+                    
+                    
                     print("got tasks")
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -105,19 +119,23 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         switch item.tag {
             
         case 1:
-            
+            taskArray = unclaimedArray!
+            taskTableView.reloadData()
             break
             
         case 2:
-            
+            taskArray = inProgressArray!
+            taskTableView.reloadData()
             break
             
         case 3:
-            
+            taskArray = completedArray!
+            taskTableView.reloadData()
             break
             
         default:
-            
+            taskArray = unclaimedArray!
+            taskTableView.reloadData()
             break
         }
     }

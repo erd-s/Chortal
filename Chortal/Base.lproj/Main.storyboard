@@ -1053,7 +1053,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="cBn-7y-WVR">
                             <connections>
                                 <action selector="createTaskButtonTap:" destination="frK-Kv-yyV" id="zB3-e6-uvA"/>
-                                <segue destination="5tU-rL-jQg" kind="show" id="3dJ-Ez-gd4"/>
+                                <segue destination="5tU-rL-jQg" kind="presentation" modalTransitionStyle="crossDissolve" id="3dJ-Ez-gd4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1316,10 +1316,11 @@
                         <outlet property="requirePhotoSwitch" destination="8qN-lA-Aso" id="l7m-Zc-PYK"/>
                         <outlet property="taskDescriptionTextField" destination="FbM-di-1Az" id="uP0-MF-BkJ"/>
                         <outlet property="taskNameTextField" destination="vmJ-If-47o" id="Qr7-V3-2By"/>
-                        <segue destination="nQn-5v-qES" kind="show" identifier="createdTaskSegue" id="IGB-Fy-jWx"/>
+                        <segue destination="e5T-GF-FMf" kind="unwind" identifier="unwindFromTaskCreate" unwindAction="unwindFromTaskCreate:" id="cgc-pQ-EMw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="e5T-GF-FMf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3004.5" y="344"/>
         </scene>
@@ -2045,8 +2046,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6dW-wp-01z"/>
         <segue reference="kyT-jB-3iZ"/>
-        <segue reference="IGB-Fy-jWx"/>
+        <segue reference="6dW-wp-01z"/>
     </inferredMetricsTieBreakers>
 </document>

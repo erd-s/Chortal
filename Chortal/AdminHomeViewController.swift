@@ -23,7 +23,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         title = userDefaults.valueForKey("currentOrgName") as? String
-
+        
         getOrganization()
         
         if self.revealViewController() != nil {
@@ -34,7 +34,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         
+        tableView.reloadData()
     }
     
     //MARK: Custom Functions
@@ -45,9 +47,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             if error != nil {
                 print(error)
             } else {
-            print("performing query, organizations: \(organizations![0]["name"])")
-            self.currentOrganization = organizations![0] as CKRecord
-            self.getTasks()
+                print("performing query, organizations: \(organizations![0]["name"])")
+                self.currentOrganization = organizations![0] as CKRecord
+                self.getTasks()
             }
         }
     }
@@ -60,8 +62,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     print(error)
                 } else {
                     if task != nil {
-                    self.taskArray.append(task!)
-                    print("appended task: \(task)")
+                        self.taskArray.append(task!)
+                        print("appended task: \(task)")
                     }
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -93,6 +95,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: Segues
+    @IBAction func unwindFromTaskCreate (segue: UIStoryboardSegue) {
+        
+        
+    }
     
-
 }

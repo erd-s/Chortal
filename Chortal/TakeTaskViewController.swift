@@ -63,7 +63,7 @@ class TakeTaskViewController: UIViewController {
         
         let memberRef = CKReference(record: currentUser!, action: .None)
         task?.setValue(memberRef, forKey: "member")
-        
+        task?.setValue("true", forKey: "inProgress")
         saveTaskAndMember([task!, currentUser!])
     }
     
