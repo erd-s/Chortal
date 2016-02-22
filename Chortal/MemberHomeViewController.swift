@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, UITabBarDelegate {
+class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, UITabBarDelegate, ClaimTaskDelegate{
     //MARK: Properties
     var unclaimedArray: [CKRecord]?
     var inProgressArray: [CKRecord]?
@@ -27,9 +27,10 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tabBar.delegate = self
-        tabBar.selectedItem = tabBar.items![0]
-
+        tabBar.selectedItem = tabBar.items!.first! as UITabBarItem
+        print("VDL TabBarItem: \(tabBar.selectedItem!.tag)")
         title = userDefaults.valueForKey("currentOrgName") as? String
         getOrganization()
         
@@ -41,7 +42,11 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+     //   tabBar.selectedItem?.tag = 0
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+         tabBar.selectedItem = tabBar.items?.first
     }
     
     
@@ -59,6 +64,10 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getTasks() {
+        inProgressArray = [CKRecord]()
+        completedArray = [CKRecord]()
+        unclaimedArray = [CKRecord]()
+        
         let taskReferenceArray = currentOrganization!.mutableArrayValueForKey("tasks")
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
@@ -68,17 +77,33 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     //self.taskArray.append(task!)
                     if task!.valueForKey("inProgress") as? String == "true" {
                         self.inProgressArray?.append(task!)
+                        print("claimed: \(task?.valueForKey("inProgress"))")
+                        print("claimed: \(task?.valueForKey("completed"))")
                     } else {
                         if task!.valueForKey("completed") as? String == "true" {
                             self.completedArray?.append(task!)
+                            print("completed: \(task?.valueForKey("inProgress"))")
+                            print("completed: \(task?.valueForKey("completed"))")
                         } else {
                             self.unclaimedArray?.append(task!)
+                            print("unclaimed: \(task?.valueForKey("inProgress"))")
+                            print("unclaimed: \(task?.valueForKey("completed"))")
+                            print("uncliamed: \(self.unclaimedArray?.count)")
                         }
                     }
                     
                     
                     print("got tasks")
                 }
+                
+                if self.tabBar.selectedItem!.tag == 1 {
+                    self.taskArray = self.unclaimedArray!
+                } else if self.tabBar.selectedItem!.tag == 2 {
+                    self.taskArray = self.inProgressArray!
+                } else {
+                    self.taskArray = self.completedArray!
+                }
+
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.taskTableView.reloadData()
                 })
@@ -108,6 +133,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
+        if tabBar.selectedItem  == tabBar.items!.first! as UITabBarItem {
+            taskArray = unclaimedArray!
+        }
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.valueForKey("name") as? String
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
@@ -141,18 +169,18 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let selIndexPath = tableView.indexPathForSelectedRow {
             
-            let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
-            let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
+            let selectedCellSourceView = tableView.cellForRowAtIndexPath(selIndexPath)
+            let selectedCellSourceRect = tableView.cellForRowAtIndexPath(selIndexPath)!.bounds
             
-            var popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
+            let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
+            popOver.delegate = self
             popOver.task = taskArray[indexPath.row]
             popOver.organization = currentOrganization
-            
-            
-            
+                 
             popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
             popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
             
@@ -164,19 +192,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             
             popOver.preferredContentSize = CGSizeMake(320, 320)
             self.presentViewController(popOver, animated: true, completion: nil)
-            
-            
-            
-            //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //
-            //        let taskVC = storyboard.instantiateViewControllerWithIdentifier("taskVC")
-            //        let controller = taskVC.popoverPresentationController
-            //        controller?.delegate = self
-            //
-            //        taskVC.modalPresentationStyle = UIModalPresentationStyle.Popover
-            //
-            //        taskVC.popoverPresentationController?.sourceView = tableView.cellForRowAtIndexPath(indexPath)
-            //        presentViewController(taskVC, animated: true, completion: nil)
             
         }
         
@@ -190,6 +205,15 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
     }
+    
+    func claimTaskPressed(claimedTask: CKRecord?) {
+        let index = unclaimedArray?.indexOf(claimedTask!)
+        unclaimedArray?.removeAtIndex(index!)
+        inProgressArray?.append(claimedTask!)
+        
+    }
+    
+    
     
     
     //MARK: Segues

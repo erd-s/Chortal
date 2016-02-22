@@ -97,6 +97,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         newTask.setObject(orgToTaskRef, forKey: "organization")
         newTask.setValue("false", forKey: "inProgress")
         newTask.setValue("false", forKey: "completed")
+        print(newTask.valueForKey("inProgress"))
+        print(newTask.valueForKey("completed"))
+            
         saveTaskAndOrganization([newTask, currentOrganization])
     }
     func saveTaskAndOrganization(records: [CKRecord]) {
