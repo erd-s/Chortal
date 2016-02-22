@@ -9,8 +9,12 @@
 import UIKit
 import CloudKit
 
-class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate{
+class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, UITabBarDelegate {
     //MARK: Properties
+    var unclaimedArray: [CKRecord]?
+    var inProgressArray: [CKRecord]?
+    var completedArray: [CKRecord]?
+    
     var taskArray = [CKRecord]()
     var currentOrganization: CKRecord?
     
@@ -96,6 +100,28 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         return cell
     }
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        switch item.tag {
+            
+        case 1:
+            
+            break
+            
+        case 2:
+            
+            break
+            
+        case 3:
+            
+            break
+            
+        default:
+            
+            break
+        }
+    }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let selIndexPath = tableView.indexPathForSelectedRow {

@@ -921,8 +921,9 @@
                                     <constraint firstAttribute="height" constant="49" id="33b-nO-bJ2"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem title="Untaken" id="AGU-g3-Jdp"/>
-                                    <tabBarItem title="Complete" id="5Vf-jx-TCf"/>
+                                    <tabBarItem tag="1" title="Untaken" id="AGU-g3-Jdp"/>
+                                    <tabBarItem tag="2" title="In Progress" id="yeH-7l-X7j"/>
+                                    <tabBarItem tag="3" title="Complete" id="5Vf-jx-TCf"/>
                                 </items>
                                 <variation key="default">
                                     <mask key="constraints">
