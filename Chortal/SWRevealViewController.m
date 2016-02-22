@@ -1770,7 +1770,9 @@ const int FrontViewPositionNone = 0xff;
     [super encodeRestorableStateWithCoder:coder];
 }
 
-
+- (IBAction)unwindToSidebar:(UIStoryboardSegue *)segue {
+    
+}
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder
 {
     _rearViewRevealWidth = [coder decodeDoubleForKey:@"_rearViewRevealWidth"];

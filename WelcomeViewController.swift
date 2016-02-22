@@ -66,6 +66,16 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Custom Functions
+    func setPushSettings() {
+    //If user has approved push notifications ->
+        userDefaults.setBool(true, forKey: "push_taskApproved")
+        userDefaults.setBool(true, forKey: "push_taskDenied")
+        userDefaults.setBool(true, forKey: "push_timeRunningOut")
+        userDefaults.setBool(true, forKey: "push_newTasks")
+        userDefaults.setBool(true, forKey: "push_taskAssigned")
+    }
+    
+    
     func newMember(preRecord: CKRecord) {
         if newMem == nil {
             newMem = CKRecord(recordType: "Member")
@@ -100,7 +110,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 
                 
             } else {
-                
+                self.setPushSettings()
                 self.memArray = self.orgRecord!.mutableArrayValueForKey("members")
                 self.memArray!.addObject(self.orgMemRef!)
                 //self.orgRecord?.setObject(self.memArray, forKey: "members")
@@ -108,13 +118,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 self.modifyRecords([self.orgRecord!, self.newMem!])
                 
             }
-            
-            
-            //            print("Members: \(self.orgRecord?.valueForKey("members"))")
-            //            self.modifiedRecords = [self.orgRecord!, self.newMem!]
-            //            print("Records to be modified: \(self.modifiedRecords)")
-            //            self.modifyRecords(self.modifiedRecords!)
-            
         })
     }
     
@@ -138,11 +141,8 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 })
             }
         }
-        
-        
-        
-        
     }
+    
     //MARK: IBActions
     @IBAction func logInButtonTapped(sender: UIButton) {
         if nameTextField.text?.characters.count > 0 {

@@ -20,11 +20,9 @@ class MemberSidebarTableViewController: UITableViewController {
         
         welcomeMemberLabel?.text = "Welcome \(userDefaults.valueForKey("currentUserName")!)"
         memberNameLabel?.text = "\(userDefaults.valueForKey("currentUserName")!) Overview"
-        organizationLabel?.text = "\(userDefaults.valueForKey("currentOrgName"))"
-    
+        organizationLabel?.text = "\(userDefaults.valueForKey("currentOrgName")!)"
     }
-    
-    
+
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
