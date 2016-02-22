@@ -18,8 +18,8 @@ class AdminSidebarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        welcomeAdminLabel?.text = "Welcome \(userDefaults.valueForKey("adminName"))"
-        organizationOverviewLabel?.text = "\(userDefaults.valueForKey("currentOrgName"))"
+        welcomeAdminLabel?.text = "Welcome \(userDefaults.valueForKey("adminName")!)"
+        organizationOverviewLabel?.text = "\(userDefaults.valueForKey("currentOrgName")!) Overview"
 
     }
     

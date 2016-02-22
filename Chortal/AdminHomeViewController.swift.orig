@@ -22,7 +22,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         title = userDefaults.valueForKey("currentOrgName") as? String
-
+        
         getOrganization()
         
         if self.revealViewController() != nil {
@@ -33,6 +33,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
+<<<<<<< HEAD
+        super.viewWillAppear(true)
+        
+        tableView.reloadData()
+=======
+>>>>>>> settings
     }
     
     //MARK: Custom Functions
@@ -43,9 +49,15 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             if error != nil {
                 print(error)
             } else {
+<<<<<<< HEAD
+                print("performing query, organizations: \(organizations![0]["name"])")
+                self.currentOrganization = organizations![0] as CKRecord
+                self.getTasks()
+=======
             print("performing query, organizations: \(organizations![0]["name"])")
             currentOrg = organizations![0] as CKRecord
             self.getTasks()
+>>>>>>> settings
             }
         }
     }

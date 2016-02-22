@@ -33,6 +33,19 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         self.setEditing(false, animated: true)
     }
     
+    func setUserDefaults() {
+        // if pushnotifs enabled ->
+        userDefaults.setBool(true, forKey: "push_taskCompleted")
+        userDefaults.setBool(true, forKey: "push_taskTaken")
+        userDefaults.setBool(true, forKey: "push_timeRunningOut")
+        userDefaults.setBool(true, forKey: "push_memberJoined")
+        userDefaults.setBool(true, forKey: "push_taskResubmitted")
+        userDefaults.setValue(uid, forKey: "currentOrgUID")
+        userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
+        userDefaults.setBool(true, forKey: "isAdmin")
+        userDefaults.setValue(adminNameTextField.text, forKey: "adminName")
+    }
+    
     func setUID(organization: CKRecord, admin: CKRecord) {
         let timestamp = String(NSDate.timeIntervalSinceReferenceDate())
         let timestampParts = timestamp.componentsSeparatedByString(".")
@@ -40,8 +53,6 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         uid.appendContentsOf(timestampParts[1])
         organization.setObject(uid, forKey: "uid")
         admin.setObject(uid, forKey: "uid")
-        userDefaults.setValue(uid, forKey: "currentOrgUID")
-        userDefaults.setBool(true, forKey: "isAdmin:")
     }
     
     func saveRecords(recordsToSave: [CKRecord]) {
@@ -79,10 +90,8 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         
         setUID(newOrg, admin: newAdmin)
         
-        userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
-        userDefaults.setBool(true, forKey: "isAdmin")
-        userDefaults.setValue(adminNameTextField.text, forKey: "adminName")
-        
+
+        setUserDefaults()
         saveRecords([newOrg, newAdmin])
     }
     
