@@ -16,8 +16,6 @@ class AssignUIDViewController: UIViewController {
     //MARK: Outlets
     
     @IBOutlet weak var uidLabel: UILabel!
-    
-    @IBOutlet weak var copiedLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     //MARK: View Loading
@@ -41,8 +39,8 @@ class AssignUIDViewController: UIViewController {
     
     @IBAction func onCopyButtonTap(sender: UIButton) {
         let pasteboard = UIPasteboard.generalPasteboard()
-        pasteboard.string = uidLabel.text
-        copiedLabel.text = "Copied!"
+        pasteboard.string = "You have been invited to \(userDefaults.valueForKey("currentOrgName")!)!. Your invite code is \(uidLabel!.text!)"
+        uidLabel.text = "Copied!"
     }
     
     //MARK: Delegate Functions

@@ -12,7 +12,6 @@ import CloudKit
 class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK: Properties
     var taskArray = [CKRecord]()
-    var currentOrganization: CKRecord?
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -34,7 +33,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
-        
     }
     
     //MARK: Custom Functions
@@ -46,14 +44,14 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 print(error)
             } else {
             print("performing query, organizations: \(organizations![0]["name"])")
-            self.currentOrganization = organizations![0] as CKRecord
+            currentOrg = organizations![0] as CKRecord
             self.getTasks()
             }
         }
     }
     
     func getTasks() {
-        let taskReferenceArray = currentOrganization!.mutableArrayValueForKey("tasks")
+        let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
