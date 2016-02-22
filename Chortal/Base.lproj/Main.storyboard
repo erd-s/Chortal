@@ -534,7 +534,7 @@
         <!--Member Sidebar-->
         <scene sceneID="Rw1-rp-cRL">
             <objects>
-                <tableViewController id="vQL-Rb-PEq" userLabel="Member Sidebar" customClass="SidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vQL-Rb-PEq" userLabel="Member Sidebar" customClass="MemberSidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="5" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EQE-Lg-BRc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -549,14 +549,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Welcome *member name*." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J1s-xA-GMG">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="J1s-xA-GMG">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Welcome *member name*.">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue-BoldItalic"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -569,7 +576,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="*Member Name* Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eXI-yZ-Pho">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="*Member Name* Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" id="eXI-yZ-Pho">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -612,7 +619,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Organization Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K3f-ml-ahl">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Organization Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="K3f-ml-ahl">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -676,6 +683,11 @@
                             <outlet property="delegate" destination="vQL-Rb-PEq" id="yrR-Aa-YbC"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="memberNameLabel" destination="eXI-yZ-Pho" id="WOZ-Kw-ibD"/>
+                        <outlet property="organizationLabel" destination="K3f-ml-ahl" id="hgI-5R-VcS"/>
+                        <outlet property="welcomeMemberLabel" destination="J1s-xA-GMG" id="OE0-tV-Wk4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1703,10 +1715,10 @@
             </objects>
             <point key="canvasLocation" x="994.5" y="-1328"/>
         </scene>
-        <!--Settings-->
+        <!--Member Settings-->
         <scene sceneID="602-Pc-aDd">
             <objects>
-                <viewController storyboardIdentifier="settingsVC" id="IX6-oG-d5E" userLabel="Settings" customClass="MemberSettingsViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsVC" id="IX6-oG-d5E" userLabel="Member Settings" customClass="MemberSettingsViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M5q-ok-e6k"/>
                         <viewControllerLayoutGuide type="bottom" id="9I7-qI-YMn"/>
@@ -1911,6 +1923,9 @@
                                         <include reference="V8d-Tf-3oL"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="IX6-oG-d5E" id="mgd-mI-Jqf"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvB-2Z-jlf">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -2379,7 +2394,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7e-IA-2eH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="WCD-Ar-8bs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2401.5" y="-1997"/>
+            <point key="canvasLocation" x="2437.5" y="-2181"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -2599,7 +2614,7 @@
         <!--Admin Sidebar-->
         <scene sceneID="tlH-Zh-9V5">
             <objects>
-                <tableViewController id="loB-Fs-DcT" userLabel="Admin Sidebar" customClass="SidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="loB-Fs-DcT" userLabel="Admin Sidebar" customClass="AdminSidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="5" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jKb-hg-B7J">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2614,14 +2629,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Welcome *admin name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejp-rl-7V6">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejp-rl-7V6">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Welcome *admin name*">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue-BoldItalic"/>
+                                                                <font key="NSOriginalFont" size="16" name="HelveticaNeue-BoldItalic"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -2654,7 +2677,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Organization overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ypE-DU-QbE">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Organization Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ypE-DU-QbE">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2715,10 +2738,14 @@
                             <outlet property="delegate" destination="loB-Fs-DcT" id="zyV-l8-Dxa"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="organizationOverviewLabel" destination="ypE-DU-QbE" id="Biz-Hh-drM"/>
+                        <outlet property="welcomeAdminLabel" destination="ejp-rl-7V6" id="h3h-0o-vem"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cvg-6p-bfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681.5" y="350"/>
+            <point key="canvasLocation" x="1726.5" y="322"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
