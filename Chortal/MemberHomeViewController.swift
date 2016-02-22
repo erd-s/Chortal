@@ -17,12 +17,20 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var taskTableView: UITableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         title = userDefaults.valueForKey("currentOrgName") as? String
         getOrganization()
+        
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,11 +69,13 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getCurrentMember() {
+        loadingAlert("Loading \(userDefaults.valueForKey("currentUserName")!)", viewController: self)
         for memberRef in currentOrganization!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
                     currentUser = memberRecord
                     print("current user is set")
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     //add spinner stuff & error handling
                 }
             })
@@ -75,9 +85,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: IBActions
     @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func myTaskButtonTap(sender: UIBarButtonItem) {
     }
     
     //MARK: Delegate Functions
@@ -97,8 +104,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //MARK: Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
         if segue.identifier == "takeTaskSegue" {
+            let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
             let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
             print("seguing task: \(dvc.task) over")

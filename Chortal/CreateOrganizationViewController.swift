@@ -44,13 +44,28 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         userDefaults.setBool(true, forKey: "isAdmin:")
     }
     
+    func saveRecords(recordsToSave: [CKRecord]) {
+        let saveOperation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
+        
+        saveOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
+            if error != nil {
+                print(error)
+            } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.performSegueWithIdentifier("continueToUIDSegue", sender: self)
+                    })
+                })
+            }
+        }
+        publicDatabase.addOperation(saveOperation)
+    }
+    
     //MARK: IBActions
     @IBAction func createOrganizationTap(sender: UIButton) {
-        let container = CKContainer.defaultContainer()
-        let publicDatabase = container.publicCloudDatabase
+        loadingAlert("Creating Organization...", viewController: self)
         let newOrg = CKRecord(recordType: "Organization")
         let newAdmin = CKRecord(recordType: "Admin")
-        
         
         let adminOrgRef = CKReference.init(recordID: newOrg.recordID, action: .None)
         newAdmin.setObject(adminOrgRef, forKey: "organization")
@@ -61,25 +76,14 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         newOrg.setObject(organizationNameTextField.text, forKey: "name")
         newOrg.setObject(adminNameTextField.text, forKey: "admin_name")
         newAdmin.setObject(adminNameTextField.text, forKey: "name")
+        
         setUID(newOrg, admin: newAdmin)
         
         userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
+        userDefaults.setBool(true, forKey: "isAdmin")
+        userDefaults.setValue(adminNameTextField.text, forKey: "adminName")
         
-        publicDatabase.saveRecord(newOrg) { (newOrg, error) -> Void in
-            if error != nil {
-                print(error)
-            } else {
-                print("Organization to iCloud: \(newOrg)")
-                self.performSegueWithIdentifier("continueToUIDSegue", sender: self)
-            }
-        }
-        publicDatabase.saveRecord(newAdmin) { (newAdmin, error) -> Void in
-            if error != nil {
-                print(error)
-            } else {
-                print("Admin to iCloud: \(newOrg)")
-            }
-        }
+        saveRecords([newOrg, newAdmin])
     }
     
     //MARK: Delegate Functions

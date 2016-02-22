@@ -21,16 +21,20 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     //MARK: Custom Functions
-    
-    
+    func dismissKeyboard(){
+        self.setEditing(false, animated: true)
+    }
     
     //MARK: IBActions
     @IBAction func joinButtonTap(sender: AnyObject) {
         let predicate = NSPredicate(format: "uid == %@", uidTextField.text!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
+        loadingAlert("Joining Group...", viewController: self)
         
         let cka = CloudKitAccess.init()
         cka.publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
@@ -42,11 +46,14 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
                     print(record.valueForKey("name"))
                     self.record = record
                     print(record.valueForKey("uid"))
-                    
+
                 }
+                
             }
             dispatch_async(dispatch_get_main_queue()) {
-                self.performSegueWithIdentifier("enterNameSegue", sender: self)
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.performSegueWithIdentifier("enterNameSegue", sender: self)
+                })
             }
         }
         

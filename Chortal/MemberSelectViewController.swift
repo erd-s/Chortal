@@ -100,7 +100,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         let selName = selectedMember.valueForKey("name")
         userDefaults.setValue(selName, forKey: "currentUserName")
         
-        performSegueWithIdentifier("memberSelectSegue", sender: self)
+        performSegueWithIdentifier("memSelectSegue", sender: self)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,7 +114,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
             dvc.fromMemSelect = true
             dvc.orgRecord = orgRecord
             
-        } else if segue.identifier == "memberSelectSegue" {
+        } else if segue.identifier == "memSelectSegue" {
             
             
         }
