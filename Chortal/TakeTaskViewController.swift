@@ -9,12 +9,20 @@
 import UIKit
 import CloudKit
 
+protocol ClaimTaskDelegate {
+    func claimTaskPressed (claimedTask: CKRecord?)
+    
+    
+}
+
+
 class TakeTaskViewController: UIViewController {
     //MARK: Properties
     var task: CKRecord?
     var photoRequiredYesOrNo: String?
     var organization: CKRecord?
     var dueDate: NSDate?
+    var delegate: ClaimTaskDelegate?
     
     //MARK: Outlets
     @IBOutlet weak var dueLabel: UILabel!
@@ -27,7 +35,7 @@ class TakeTaskViewController: UIViewController {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         dueDate = task?["due"] as? NSDate
         
         if task?["photo_required"] as? String == "yes" {
@@ -40,12 +48,34 @@ class TakeTaskViewController: UIViewController {
         taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
         dueLabel.text = String(dueDate!)
+        self.taskMemberLabel.text = "Claimed By:"
         if task!["member"] != nil {
-            taskMemberLabel.text = "\(task!["member"] as! CKReference)"
+            takeTaskButton.enabled = false
+            getTaskOwner()
+            //taskMemberLabel.text = "\(task!["member"] as! CKReference)"
+        } else {
+            self.taskMemberLabel.text = "Claimed By: No One!"
         }
     }
     
     //MARK: Custom Functions
+    
+    func getTaskOwner() {
+        let ownerReference = task!["member"] as! CKReference
+        publicDatabase.fetchRecordWithID(ownerReference.recordID, completionHandler: { (task, error) -> Void in
+            if error != nil {
+                print(error)
+            } else {
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.taskMemberLabel.text = "Claimed By: \(task!["name"]!)"
+            })
+        })
+    }
+    
+    
     func presentAlertController() {
         let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(String(dueDate!)). Photos \(photoRequiredYesOrNo). The timer will start when you click \"Accept\".", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -79,12 +109,19 @@ class TakeTaskViewController: UIViewController {
                 //start timer
                 dispatch_async(dispatch_get_main_queue()) {
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.setDelegate()
                         self.performSegueWithIdentifier("backHomeSegue", sender: self)
                     })
                 }
             }
         }
         publicDatabase.addOperation(saveOperation)
+    }
+    
+    func setDelegate () {
+        if let delegate = self.delegate {
+            delegate.claimTaskPressed(task)
+        }
     }
     
     
