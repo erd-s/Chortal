@@ -27,7 +27,7 @@ class TakeTaskViewController: UIViewController {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         dueDate = task?["due"] as? NSDate
         
         if task?["photo_required"] as? String == "yes" {
@@ -37,16 +37,10 @@ class TakeTaskViewController: UIViewController {
         }
         
         photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo!)."
-        if task?["description"] != nil {
-            taskDescriptionLabel.text = task!["description"] as? String
-        }
-        if ((task?["name"]) != nil) {
+        taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
-        }
-        if String(dueDate) != nil {
-        dueLabel.text = String(dueDate)
-        }
-        if task?["member"] != nil {
+        dueLabel.text = String(dueDate!)
+        if task!["member"] != nil {
             taskMemberLabel.text = "\(task!["member"] as! CKReference)"
         }
     }

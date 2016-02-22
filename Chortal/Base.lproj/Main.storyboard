@@ -407,7 +407,7 @@
         <!--Take Task View Controller-->
         <scene sceneID="s8M-hs-W84">
             <objects>
-                <viewController storyboardIdentifier="taskVC" id="OdL-Yf-9ve" customClass="TakeTaskViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OdL-Yf-9ve" customClass="TakeTaskViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ui7-Bb-uoW"/>
                         <viewControllerLayoutGuide type="bottom" id="hJZ-9O-dQj"/>
@@ -422,7 +422,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="20" width="162" height="22"/>
+                                    <rect key="frame" x="113" y="171" width="162" height="21"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjc-6U-uLU">
@@ -431,7 +431,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="50" width="145" height="62"/>
+                                    <rect key="frame" x="130" y="200" width="145" height="62"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ud-lx-7HI">
@@ -440,16 +440,26 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="200" width="200" height="21"/>
+                                    <rect key="frame" x="113" y="315" width="200" height="21"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="take task"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="163" y="496" width="62" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="takeTaskButton:" destination="OdL-Yf-9ve" eventType="touchUpInside" id="c3W-nN-A07"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="photo required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUB-6n-p6D">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="140" width="210" height="21"/>
+                                    <rect key="frame" x="47" y="268" width="210" height="21"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0A-om-SM2">
@@ -458,19 +468,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="245" width="185" height="21"/>
+                                    <rect key="frame" x="72" y="378" width="185" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="take task"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="290" width="62" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="takeTaskButton:" destination="OdL-Yf-9ve" eventType="touchUpInside" id="c3W-nN-A07"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -478,9 +478,9 @@
                                 <exclude reference="ECH-m9-9Q0"/>
                                 <exclude reference="jjc-6U-uLU"/>
                                 <exclude reference="9Ud-lx-7HI"/>
+                                <exclude reference="6nR-Q9-4dB"/>
                                 <exclude reference="aUB-6n-p6D"/>
                                 <exclude reference="a0A-om-SM2"/>
-                                <exclude reference="6nR-Q9-4dB"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -488,9 +488,9 @@
                                 <include reference="ECH-m9-9Q0"/>
                                 <include reference="jjc-6U-uLU"/>
                                 <include reference="9Ud-lx-7HI"/>
+                                <include reference="6nR-Q9-4dB"/>
                                 <include reference="aUB-6n-p6D"/>
                                 <include reference="a0A-om-SM2"/>
-                                <include reference="6nR-Q9-4dB"/>
                             </mask>
                         </variation>
                     </view>
@@ -732,9 +732,6 @@
                                     <constraint firstAttribute="width" constant="326" id="s41-8P-jdx"/>
                                 </constraints>
                                 <state key="normal" title="✅ Job's done! Give me my *incentive*"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="37" y="424" width="326" height="30"/>
-                                </variation>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xcx-95-avs">
                                 <rect key="frame" x="137" y="214.5" width="326" height="171"/>
@@ -909,6 +906,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="OdL-Yf-9ve" kind="presentation" identifier="takeTaskSegue" id="PWR-ZJ-SCV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="default">
@@ -1107,9 +1107,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="166" y="133" width="169.5" height="30"/>
-                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="5tU-rL-jQg" id="aCr-uw-QC8"/>
                                 </connections>
@@ -1474,7 +1471,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9at-BR-WIk">
                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="317" y="541" width="51" height="31"/>
+                                    <rect key="frame" x="316" y="541" width="51" height="31"/>
                                 </variation>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUP-J3-Aao">
@@ -1715,7 +1712,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="994.5" y="-1328"/>
+            <point key="canvasLocation" x="991.5" y="-1752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -2068,8 +2065,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6dW-wp-01z"/>
+        <segue reference="7Kh-Yt-WH9"/>
         <segue reference="kyT-jB-3iZ"/>
-        <segue reference="IGB-Fy-jWx"/>
+        <segue reference="Dzb-Q2-GxJ"/>
     </inferredMetricsTieBreakers>
 </document>
