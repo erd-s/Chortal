@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate{
     //MARK: Properties
     var taskArray = [CKRecord]()
     var currentOrganization: CKRecord?
@@ -96,6 +96,52 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let selIndexPath = tableView.indexPathForSelectedRow {
+            
+            let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
+            let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
+            
+            var popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
+            popOver.task = taskArray[indexPath.row]
+            popOver.organization = currentOrganization
+            
+            
+            
+            popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
+            
+            popOver.popoverPresentationController?.delegate = self
+            popOver.popoverPresentationController?.sourceView = selectedCellSourceView
+            popOver.popoverPresentationController?.sourceRect = selectedCellSourceRect
+            
+            popOver.popoverPresentationController?.permittedArrowDirections = .Any
+            
+            popOver.preferredContentSize = CGSizeMake(320, 320)
+            self.presentViewController(popOver, animated: true, completion: nil)
+            
+            
+            
+            //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //
+            //        let taskVC = storyboard.instantiateViewControllerWithIdentifier("taskVC")
+            //        let controller = taskVC.popoverPresentationController
+            //        controller?.delegate = self
+            //
+            //        taskVC.modalPresentationStyle = UIModalPresentationStyle.Popover
+            //
+            //        taskVC.popoverPresentationController?.sourceView = tableView.cellForRowAtIndexPath(indexPath)
+            //        presentViewController(taskVC, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
