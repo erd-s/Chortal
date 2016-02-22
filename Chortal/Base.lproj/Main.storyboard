@@ -2025,7 +2025,9 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXD-Ht-0WW">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="tP3-BC-GOM"/>
+                                    <constraint firstAttribute="height" constant="44" id="tP3-BC-GOM">
+                                        <variation key="widthClass=compact" constant="54"/>
+                                    </constraint>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Settings" id="top-Eg-eM2">
@@ -2394,7 +2396,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7e-IA-2eH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="WCD-Ar-8bs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2437.5" y="-2181"/>
+            <point key="canvasLocation" x="2275.5" y="-2198"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
