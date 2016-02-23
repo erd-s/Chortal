@@ -42,11 +42,11 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-     //   tabBar.selectedItem?.tag = 0
+        //   tabBar.selectedItem?.tag = 0
     }
     
     override func viewDidAppear(animated: Bool) {
-         tabBar.selectedItem = tabBar.items?.first
+        tabBar.selectedItem = tabBar.items?.first
     }
     
     
@@ -103,7 +103,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 } else {
                     self.taskArray = self.completedArray!
                 }
-
+                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.taskTableView.reloadData()
                 })
@@ -116,12 +116,29 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         for memberRef in currentOrganization!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
+                    
                     currentUser = memberRecord
+                    self.fetchTask()
+                    
                     print("current user is set")
                     self.dismissViewControllerAnimated(true, completion: nil)
                     //add spinner stuff & error handling
                 }
             })
+        }
+    }
+    func fetchTask() {
+        func fetchRecord () {
+            let taskRef = currentUser?.valueForKey("current_task") as! CKReference
+            publicDatabase.fetchRecordWithID(taskRef.recordID) { (fetchedRecord, error) -> Void in
+                if error != nil {
+                    print("Error: \(error?.description)")
+                } else {
+                    if fetchedRecord != nil {
+                        currentTask = fetchedRecord
+                    }
+                }
+            }
         }
     }
     
@@ -180,7 +197,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             popOver.delegate = self
             popOver.task = taskArray[indexPath.row]
             popOver.organization = currentOrganization
-                 
+            
             popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
             popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
             

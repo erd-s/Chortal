@@ -18,3 +18,4 @@ let orgID = userDefaults.stringForKey("currentOrgUID")
 let memberName = userDefaults.stringForKey("currentUserName")
 var currentUser: CKRecord?
 var currentOrg: CKRecord?
+var currentTask: CKRecord?

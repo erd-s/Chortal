@@ -107,6 +107,7 @@ class TakeTaskViewController: UIViewController {
             } else {
                 print("saved records successfully")
                 //start timer
+                currentTask = self.task
                 dispatch_async(dispatch_get_main_queue()) {
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         self.setDelegate()

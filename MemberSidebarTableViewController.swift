@@ -22,6 +22,10 @@ class MemberSidebarTableViewController: UITableViewController {
         memberNameLabel?.text = "\(userDefaults.valueForKey("currentUserName")!) Overview"
         organizationLabel?.text = "\(userDefaults.valueForKey("currentOrgName")!)"
     }
+    
+    @IBAction func unwindFromTaskView(segue: UIStoryboardSegue) {
+        
+    }
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
