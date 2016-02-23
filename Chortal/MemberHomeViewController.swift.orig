@@ -16,15 +16,12 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     var inProgressArray: [CKRecord]?
     var pendingArray: [CKRecord]?
     var taskArray = [CKRecord]()
-<<<<<<< f2cd656628f0ba2d6c5153c143fad5d9b2c6e7d5
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
     
-=======
->>>>>>> successfully set subscription
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -102,22 +99,11 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 } else {
                     if task!.valueForKey("status") as? String == "inProgress" {
                         self.inProgressArray?.append(task!)
-<<<<<<< f2cd656628f0ba2d6c5153c143fad5d9b2c6e7d5
                     } else if task!.valueForKey("status") as? String == "pending" {
                         self.pendingArray?.append(task!)
                     } else {
                         self.unclaimedArray?.append(task!)
                     }
-=======
-                    } else {
-                        if task!.valueForKey("completed") as? String == "true" {
-                            self.completedArray?.append(task!)
-                        } else {
-                            self.unclaimedArray?.append(task!)
-                        }
-                    }
-                    
->>>>>>> successfully set subscription
                 }
                 print("got tasks")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -129,37 +115,39 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getCurrentMember() {
-<<<<<<< f2cd656628f0ba2d6c5153c143fad5d9b2c6e7d5
         loadingAlert("Loading tasks...", viewController: self)
         for memberRef in currentOrg!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
+<<<<<<< d2693e2ce6ad5686bfd9582376aba29d5c1f7604
                     currentMember = memberRecord
                     self.getCurrentTaskForMember()
                     print("current user is set")
 =======
-        loadingAlert("Loading \(userDefaults.valueForKey("currentUserName")!)", viewController: self)
-        for memberRef in currentOrg!["members"] as! [CKReference] {
-            publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
-                if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
                     
                     currentUser = memberRecord
                     self.fetchTask()
-                    pushNotificationTaskApprovedSet()
->>>>>>> successfully set subscription
+>>>>>>> added comments and logic for push notification for task approved
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             })
         }
     }
+<<<<<<< d2693e2ce6ad5686bfd9582376aba29d5c1f7604
     
     func getCurrentTaskForMember() {
         //        need to sort by metadata: modification date
         if (currentMember!["current_tasks"] as! [CKReference]).count > 0 {
             let taskRef = currentMember?["current_tasks"] as! [CKReference]
+=======
+    func fetchTask() {
+        pushNotificationTaskApprovedSet()
+        func fetchRecord () {
+            let taskRef = currentUser?.valueForKey("current_tasks") as! [CKReference]
+>>>>>>> added comments and logic for push notification for task approved
             publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
                 if error != nil {
-                    print("Error: \(error?.description)")
+                    print("Error fetching tasks: \(error?.description)")
                 } else {
                     if fetchedRecord != nil {
                         currentTask = fetchedRecord
@@ -218,7 +206,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-<<<<<<< f2cd656628f0ba2d6c5153c143fad5d9b2c6e7d5
         let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
         let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
         
@@ -235,31 +222,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         popOver.popoverPresentationController?.sourceRect = selectedCellSourceRect
         
         popOver.popoverPresentationController?.permittedArrowDirections = .Any
-=======
-        if let selIndexPath = tableView.indexPathForSelectedRow {
-            
-            let selectedCellSourceView = tableView.cellForRowAtIndexPath(selIndexPath)
-            let selectedCellSourceRect = tableView.cellForRowAtIndexPath(selIndexPath)!.bounds
-            
-            let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
-            popOver.delegate = self
-            popOver.task = taskArray[indexPath.row]
-            popOver.organization = currentOrg!
-            
-            popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
-            
-            popOver.popoverPresentationController?.delegate = self
-            popOver.popoverPresentationController?.sourceView = selectedCellSourceView
-            popOver.popoverPresentationController?.sourceRect = selectedCellSourceRect
-            
-            popOver.popoverPresentationController?.permittedArrowDirections = .Any
-            
-            popOver.preferredContentSize = CGSizeMake(320, 320)
-            self.presentViewController(popOver, animated: true, completion: nil)
-            
-        }
->>>>>>> successfully set subscription
         
         popOver.preferredContentSize = CGSizeMake(320, 320)
         self.presentViewController(popOver, animated: true, completion: nil)
