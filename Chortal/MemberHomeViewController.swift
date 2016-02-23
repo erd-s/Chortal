@@ -14,9 +14,16 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     var unclaimedArray: [CKRecord]?
     var inProgressArray: [CKRecord]?
     var completedArray: [CKRecord]?
-    
+  //  var refreshControl: UIRefreshControl?
     var taskArray = [CKRecord]()
     var currentOrganization: CKRecord?
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
+   
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -39,18 +46,47 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        taskTableView.addSubview(refreshControl)
+        
+//        refreshControl = UIRefreshControl()
+//        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        refreshControl?.addTarget(taskTableView, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        
+
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         //   tabBar.selectedItem?.tag = 0
+        if currentTask != nil {
+            if currentTask!.valueForKey("inProgress") as! String == "false" && currentTask?.valueForKey("completed") as! String == "false" {
+                if inProgressArray != nil {
+                    for task in inProgressArray! {
+                        if task == currentTask {
+                            let index = inProgressArray?.indexOf(task)
+                            inProgressArray?.removeAtIndex(index!)
+                            unclaimedArray?.append(task)
+                            currentTask = nil
+                            taskTableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         tabBar.selectedItem = tabBar.items?.first
     }
     
-    
     //MARK: Custom Functions
+    
+    func refresh (sender: AnyObject?) {
+        taskTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     func getOrganization() {
         let predicate = NSPredicate(format: "uid == %@", orgID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
@@ -225,6 +261,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func claimTaskPressed(claimedTask: CKRecord?) {
         let index = unclaimedArray?.indexOf(claimedTask!)
+        let taskArrayIndex = taskArray.indexOf(claimedTask!)
+        taskArray.removeAtIndex(taskArrayIndex!)
         unclaimedArray?.removeAtIndex(index!)
         inProgressArray?.append(claimedTask!)
     }
