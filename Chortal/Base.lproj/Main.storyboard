@@ -938,7 +938,7 @@
                         <outlet property="descriptionTextView" destination="zVJ-WS-sCH" id="N5i-nz-zM3"/>
                         <outlet property="taskNameLabel" destination="mD5-87-juK" id="BYE-aA-Xhj"/>
                         <outlet property="timerLabel" destination="U4D-eM-Hly" id="Zws-gX-0lk"/>
-                        <segue destination="9Q1-4F-eST" kind="unwind" identifier="unwindFromTaskView" unwindAction="unwindFromTaskView:" id="cG9-6W-RAC"/>
+                        <segue destination="9Q1-4F-eST" kind="unwind" identifier="unwindFromTaskView" unwindAction="unwindToSidebar:" id="FtH-O2-cLm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1659,7 +1659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="291" y="-1302"/>
+            <point key="canvasLocation" x="318" y="-1142"/>
         </scene>
         <!--Member Select View Controller-->
         <scene sceneID="3ea-CF-1KO">
@@ -1800,7 +1800,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="994.5" y="-1328"/>
+            <point key="canvasLocation" x="973.5" y="-1142"/>
         </scene>
         <!--Member Settings-->
         <scene sceneID="602-Pc-aDd">
