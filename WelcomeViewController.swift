@@ -51,6 +51,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         memArray = [] as NSMutableArray
+        userSwitch.selected = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -167,7 +168,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             if userSwitch == true {
                 userDefaults.setBool(false, forKey: "multipleUsers")
             } else {
-                userDefaults.setValue("Multiple Users", forKey: "currentUserName")
                 userDefaults.setBool(true, forKey: "multipleUsers")
                 
             }
