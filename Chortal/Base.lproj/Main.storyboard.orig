@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< e653c6057448d0c0957e54ba8ddcf3d90880db61
 <<<<<<< 86d0f5182918a13a2d12bff92103f4227f4590f5
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
 =======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vQL-Rb-PEq">
 >>>>>>> new branch
+=======
+<<<<<<< Updated upstream
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vQL-Rb-PEq">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+>>>>>>> Stashed changes
+>>>>>>> made some changes
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -1064,6 +1072,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGs-Ef-nlo">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="33b-nO-bJ2"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem tag="1" title="Untaken" id="AGU-g3-Jdp"/>
+                                    <tabBarItem tag="2" title="In Progress" id="yeH-7l-X7j"/>
+                                    <tabBarItem tag="3" title="Complete" id="5Vf-jx-TCf"/>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="33b-nO-bJ2"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="33b-nO-bJ2"/>
+                                    </mask>
+                                </variation>
+                            </tabBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-RI-JO2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1120,28 +1150,6 @@
                                     <outlet property="delegate" destination="WqG-jG-oPD" id="mi7-F4-1jn"/>
                                 </connections>
                             </tableView>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGs-Ef-nlo">
-                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="33b-nO-bJ2"/>
-                                </constraints>
-                                <items>
-                                    <tabBarItem tag="1" title="Untaken" id="AGU-g3-Jdp"/>
-                                    <tabBarItem tag="2" title="In Progress" id="yeH-7l-X7j"/>
-                                    <tabBarItem tag="3" title="Complete" id="5Vf-jx-TCf"/>
-                                </items>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="33b-nO-bJ2"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="33b-nO-bJ2"/>
-                                    </mask>
-                                </variation>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2642,7 +2650,11 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
+<<<<<<< e653c6057448d0c0957e54ba8ddcf3d90880db61
                                     <rect key="frame" x="197" y="224" width="205" height="21"/>
+=======
+                                    <rect key="frame" x="197.5" y="224" width="205" height="21"/>
+>>>>>>> made some changes
                                     <mask key="constraints">
                                         <include reference="2L3-B8-vJ7"/>
                                         <exclude reference="AO8-yY-dIt"/>
@@ -2666,7 +2678,11 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
+<<<<<<< e653c6057448d0c0957e54ba8ddcf3d90880db61
                                     <rect key="frame" x="350" y="289" width="22" height="22"/>
+=======
+                                    <rect key="frame" x="350.5" y="289" width="22" height="22"/>
+>>>>>>> made some changes
                                     <mask key="constraints">
                                         <include reference="3b2-uO-X8T"/>
                                         <exclude reference="Z4M-1r-33W"/>
@@ -2694,7 +2710,11 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
+<<<<<<< e653c6057448d0c0957e54ba8ddcf3d90880db61
                                     <rect key="frame" x="259" y="289" width="83.5" height="21"/>
+=======
+                                    <rect key="frame" x="259" y="289.5" width="83.5" height="21"/>
+>>>>>>> made some changes
                                     <mask key="constraints">
                                         <exclude reference="fm2-F2-LXb"/>
                                         <include reference="tMT-NS-KAi"/>
@@ -3726,6 +3746,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+<<<<<<< e653c6057448d0c0957e54ba8ddcf3d90880db61
 <<<<<<< 86d0f5182918a13a2d12bff92103f4227f4590f5
         <segue reference="QNz-fF-lyI"/>
         <segue reference="kyT-jB-3iZ"/>
@@ -3736,5 +3757,11 @@
         <segue reference="kyT-jB-3iZ"/>
         <segue reference="6dW-wp-01z"/>
 >>>>>>> new branch
+=======
+        <segue reference="Dj6-lr-shE"/>
+        <segue reference="7Kh-Yt-WH9"/>
+        <segue reference="kyT-jB-3iZ"/>
+        <segue reference="6dW-wp-01z"/>
+>>>>>>> made some changes
     </inferredMetricsTieBreakers>
 </document>
