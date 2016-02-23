@@ -11,7 +11,6 @@ import CloudKit
 
 class TaskViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Properties
-    var currentTask: CKRecord?
     
     //MARK: Outlets
     
@@ -55,7 +54,14 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {
-        currentUser?.valueForKey("current_tasks")
+        loadingAlert("Abandoning task...", viewController: self)
+        var taskArray = currentUser?.valueForKey("current_tasks") as! [CKRecord]
+        let index = taskArray.indexOf(currentTask!)
+        taskArray.removeAtIndex(index!)
+        
+        currentUser?.setValue(taskArray, forKey: "current_tasks")
+        
+        
         
     }
     
