@@ -10,66 +10,21 @@ import Foundation
 import CloudKit
 
 
-func pushTaskApproved(enabled: Bool) {
-    if enabled {
+func pushNotificationTaskApprovedSet() {
+//    if userDefaults.boolForKey("push_TaskApproved") {
+        print("starting predicating")
+//        let approvedPredicate = NSPredicate(format: "status == approved")
+        let myTaskPredicate = NSPredicate(format: "member == %@", currentUser!)
+        let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
+        let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myTaskPredicate, myOrgPredicate])
         
-    } else {
-        //remove subscription
-    }
-}
-
-func pushTaskRejected(enabled: Bool) {
-    if enabled {
-        
-    } else {
-        //remove subscription
-    }
-}
-func pushTimeRunningOut(enabled: Bool) {
-    if enabled {
-        
-    } else {
-        //remove subscription
-    }
-}
-
-func pushTaskAssigned(enabled: Bool) {
-    if enabled {
-        
-    } else {
-        //remove subscription
-    }
-}
-
-func pushTaskCompleted(enabled: Bool) {
-    if enabled {
-        
-    } else {
-        //remove subscription
-    }
-}
-
-func pushTaskTaken(enabled: Bool) {
-    if enabled {
-        
-    } else {
-        //remove subscription
-    }
-}
-
-func pushMemberJoined(enabled: Bool) {
-    if enabled {
-        
-    } else {
-        //remove subscription
-    }
-}
-
-
-func pushTaskResubmitted(enabled: Bool) {
-    if enabled {
-        
-    } else {
-        //remove subscription
-    }
+        let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
+        publicDatabase.saveSubscription(subscription, completionHandler: { (subscription, error) -> Void in
+            if error != nil {
+                print("error saving subscription: \(error)")
+            } else {
+                print("subscription: \(subscription) successfully set")
+            }
+        })
+//    }
 }

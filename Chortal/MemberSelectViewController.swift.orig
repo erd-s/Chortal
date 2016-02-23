@@ -1,0 +1,133 @@
+//
+//  MemberSelectViewController.swift
+//  Chortal
+//
+//  Created by Jonathan Jones on 2/18/16.
+//  Copyright © 2016 JonerDos. All rights reserved.
+//
+
+import UIKit
+import CloudKit
+
+class MemberSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    //MARK: Properties
+    var selectedIndexPath: NSIndexPath?
+    var memberArray = [CKRecord]()
+    var orgRecord: CKRecord?
+    
+    //MARK: Outlets
+    @IBOutlet weak var memberTableView: UITableView!
+    @IBOutlet weak var welcomeLabel: UILabel!
+    
+    //MARK: View Loading
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        welcomeLabel.text = userDefaults.valueForKey("currentOrgName") as? String
+        
+        
+        getCurrentOrganization()
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        loadingAlert("Loading members...", viewController: self)
+    }
+    
+    //MARK: Custom Functions
+    func getCurrentOrganization() {
+        let currentOrgUID = userDefaults.objectForKey("currentOrgUID") as! String
+        let predicate = NSPredicate(format: "uid == %@", currentOrgUID)
+        let query = CKQuery(recordType: "Organization", predicate: predicate)
+        
+        publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
+            if error != nil {
+                print("Error: \(error?.description)")
+            } else {
+                if results != nil {
+<<<<<<< f2cd656628f0ba2d6c5153c143fad5d9b2c6e7d5
+                    self.orgRecord = results![0]
+                    self.fetchMembers(self.orgRecord!)
+=======
+                    print(results)
+                    let record = results![0]
+                    self.orgRecord = record
+                    self.fetchRecords(self.orgRecord!)
+                    
+>>>>>>> successfully set subscription
+                } else {
+                    
+                    print("Looks like there is no Org with that UID. Uh-oh!")
+                }
+            }
+        }
+    }
+    
+    func fetchMembers(currentOrganizationRecord: CKRecord) {
+        let memRefArray = currentOrganizationRecord.valueForKey("members") as! NSMutableArray
+        for reference in memRefArray {
+            publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (record, error) -> Void in
+                if error != nil {
+                    print("error fetching record for member reference \(error)")
+                }
+                self.memberArray.append(record!)
+<<<<<<< f2cd656628f0ba2d6c5153c143fad5d9b2c6e7d5
+=======
+                
+>>>>>>> successfully set subscription
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.memberTableView.reloadData()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
+        }
+    }
+    
+    //MARK: IBActions
+    
+    @IBAction func addMemberButtonTapped(sender: UIButton) {
+        performSegueWithIdentifier("joinOrgSegue", sender: self)
+    }
+    
+    //MARK: Delegate Functions
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("memberID")
+        
+        let cellRecord = memberArray[indexPath.row]
+        cell?.textLabel!.text = cellRecord.valueForKey("name") as? String
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedIndexPath = indexPath
+        let selectedMember = memberArray[indexPath.row]
+<<<<<<< f2cd656628f0ba2d6c5153c143fad5d9b2c6e7d5
+        let selelectedName = selectedMember.valueForKey("name")
+        userDefaults.setValue(selelectedName, forKey: "currentUserName")
+=======
+        let selName = selectedMember.valueForKey("name")
+        userDefaults.setValue(selName, forKey: "currentUserName")
+        currentUser = selectedMember
+>>>>>>> successfully set subscription
+        
+        performSegueWithIdentifier("memSelectSegue", sender: self)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return memberArray.count
+    }
+    
+    //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "joinOrgSegue" {
+            let dvc = segue.destinationViewController as! WelcomeViewController
+            dvc.seguedFromMemberSelect = true
+            dvc.orgRecord = orgRecord
+            
+        } else if segue.identifier == "memSelectSegue" {
+            
+            
+        }
+    }
+    
+    
+}
