@@ -33,6 +33,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+
     }
     
     //MARK: Custom Functions

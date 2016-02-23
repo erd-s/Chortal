@@ -32,7 +32,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     //MARK: Custom Functions
- 
+    
     
     
     
@@ -55,15 +55,43 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {
         loadingAlert("Abandoning task...", viewController: self)
-        var taskArray = currentUser?.valueForKey("current_tasks") as! [CKRecord]
-        let index = taskArray.indexOf(currentTask!)
-        taskArray.removeAtIndex(index!)
-        
-        currentUser?.setValue(taskArray, forKey: "current_tasks")
-        
+        var taskRefArray = currentUser!.valueForKey("current_tasks") as! [CKReference]
+        for reference in taskRefArray {
+            if reference.recordID == currentTask?.recordID {
+                let refIndex = taskRefArray.indexOf(reference)
+                taskRefArray.removeAtIndex(refIndex!)
+            }
+        }
+        currentTask?.setValue(nil, forKey: "member")
+        print(currentTask?.valueForKey("member"))
+        currentTask?.setValue("false", forKey: "inProgress")
+        currentUser?.setValue(taskRefArray, forKey: "current_tasks")
+        modifyRecords([currentUser!, currentTask!])
         
         
     }
+    func modifyRecords (records: [CKRecord]) {
+        print("Modify records function called")
+        let modOpp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        modOpp.savePolicy = .ChangedKeys
+        modOpp.atomic = true
+        
+        publicDatabase.addOperation(modOpp)
+        
+        modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
+            if error != nil {
+                print(error!.description)
+            }else {
+                print("Successfully saved")
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.performSegueWithIdentifier("unwindFromTaskView", sender: self)
+                })
+            }
+        }
+    }
+    
     
     //MARK: Delegate Functions
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,11 +112,18 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         picker.dismissViewControllerAnimated(true, completion: nil)
         collectionView.reloadData()
         
+        
     }
     
+    //MARK: Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindFromTaskView" {
+            
+        }
+    }
 }
 
 
-//MARK: Segues
+
 
 
