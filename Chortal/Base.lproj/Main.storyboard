@@ -1654,7 +1654,7 @@
                         <outlet property="nameTextField" destination="7HF-WC-7M8" id="u6a-t0-Rzr"/>
                         <outlet property="userSwitch" destination="9at-BR-WIk" id="r6L-Sb-dQi"/>
                         <outlet property="welcomeLabel" destination="AgP-Z4-hs7" id="Uhg-qi-J4B"/>
-                        <segue destination="yq2-bm-1H0" kind="show" identifier="logInSegue" id="ksP-3C-TmO"/>
+                        <segue destination="Zag-Vo-TJP" kind="show" identifier="logInSegue" id="QNz-fF-lyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2536,7 +2536,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="197.5" y="224" width="205" height="21"/>
+                                    <rect key="frame" x="197" y="224" width="205" height="21"/>
                                     <mask key="constraints">
                                         <include reference="2L3-B8-vJ7"/>
                                         <exclude reference="AO8-yY-dIt"/>
@@ -2560,7 +2560,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="350.5" y="289" width="22" height="22"/>
+                                    <rect key="frame" x="350" y="289" width="22" height="22"/>
                                     <mask key="constraints">
                                         <include reference="3b2-uO-X8T"/>
                                         <exclude reference="Z4M-1r-33W"/>
@@ -2609,7 +2609,8 @@
                                         <exclude reference="wvG-uY-gcy"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="380.5" y="285" width="36" height="30"/>
                                     <mask key="constraints">
                                         <include reference="OA1-7u-T39"/>
                                         <include reference="wvG-uY-gcy"/>
@@ -3619,9 +3620,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Dj6-lr-shE"/>
-        <segue reference="6dW-wp-01z"/>
-        <segue reference="i07-nw-ycZ"/>
+        <segue reference="QNz-fF-lyI"/>
         <segue reference="kyT-jB-3iZ"/>
+        <segue reference="Dj6-lr-shE"/>
     </inferredMetricsTieBreakers>
 </document>

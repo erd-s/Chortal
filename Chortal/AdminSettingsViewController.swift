@@ -98,7 +98,7 @@ class AdminSettingsViewController: UIViewController {
 
     @IBAction func copyInviteCode(sender: AnyObject) {
         let pasteboard = UIPasteboard.generalPasteboard()
-        pasteboard.string = "You have been invited to join \(userDefaults.valueForKey("currentOrgName")!). Your invite code is \(inviteCodeLabel!.text!)."
+        pasteboard.string = "\(orgID!)."
         inviteCodeLabel.text = "Copied!"
     }
     

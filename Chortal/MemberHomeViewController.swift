@@ -227,7 +227,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let index = unclaimedArray?.indexOf(claimedTask!)
         unclaimedArray?.removeAtIndex(index!)
         inProgressArray?.append(claimedTask!)
-        
     }
     
     
