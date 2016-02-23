@@ -25,40 +25,15 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchRecord()
         collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/3, collectionView.frame.width/3)
         
+        taskNameLabel.text = currentTask?.valueForKey("name") as? String
+        descriptionTextView.text = currentTask?.valueForKey("description") as? String
         
     }
     
     //MARK: Custom Functions
-    func fetchRecord () {
-        let taskRef = currentUser?.valueForKey("current_task") as! CKReference
-        publicDatabase.fetchRecordWithID(taskRef.recordID) { (fetchedRecord, error) -> Void in
-            if error != nil {
-                print("Error: \(error?.description)")
-            } else {
-                if fetchedRecord != nil {
-                    self.currentTask = fetchedRecord
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.taskNameLabel.text = self.currentTask?.valueForKey("name") as? String
-                        self.descriptionTextView.text = self.currentTask?.valueForKey("description") as? String
-                    })
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                
-                
-            }
-            
-        }
-        
-    }
+ 
     
     
     
@@ -80,7 +55,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {
-        
+        currentUser?.valueForKey("current_tasks")
         
     }
     

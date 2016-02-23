@@ -129,8 +129,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     func fetchTask() {
         func fetchRecord () {
-            let taskRef = currentUser?.valueForKey("current_task") as! CKReference
-            publicDatabase.fetchRecordWithID(taskRef.recordID) { (fetchedRecord, error) -> Void in
+            let taskRef = currentUser?.valueForKey("current_tasks") as! [CKReference]
+            publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
                 if error != nil {
                     print("Error: \(error?.description)")
                 } else {
