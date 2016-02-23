@@ -10,16 +10,15 @@ import Foundation
 import CloudKit
 
 
-let cka = CloudKitAccess()
 let userDefaults = NSUserDefaults.standardUserDefaults()
 let container = CKContainer.defaultContainer()
 let publicDatabase = container.publicCloudDatabase
-let orgID = userDefaults.stringForKey("currentOrgUID")
+let orgUID = userDefaults.stringForKey("currentOrgUID")
 let memberName = userDefaults.stringForKey("currentUserName")
-var currentUser: CKRecord?
+var currentMember: CKRecord?
 var currentOrg: CKRecord?
-<<<<<<< 86d0f5182918a13a2d12bff92103f4227f4590f5
 var currentTask: CKRecord?
+<<<<<<< 814d47ce7dc0f7db91d41c446e266948511a83ff
+var currentAdmin: CKRecord?
 =======
-var members: CKRecord? 
->>>>>>> new branch
+>>>>>>> added request in appdelegate and created PushNotifications to create functions to turn on and off specific push notifications

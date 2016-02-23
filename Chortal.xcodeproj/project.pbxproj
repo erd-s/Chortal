@@ -20,6 +20,7 @@
 		9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */; };
 		9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */; };
 		9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */; };
+		9B3EB2461C7D0DD300F7AC14 /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3EB2451C7D0DD300F7AC14 /* PushNotifications.swift */; };
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignUIDViewController.swift; sourceTree = "<group>"; };
 		9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCamCollectionViewCell.swift; path = ../CustomCamCollectionViewCell.swift; sourceTree = "<group>"; };
+		9B3EB2451C7D0DD300F7AC14 /* PushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B5FC26D1C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */,
 				9BFD82BC1C77825B005A3967 /* Constants.swift */,
+				9B3EB2451C7D0DD300F7AC14 /* PushNotifications.swift */,
 				9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */,
 				9BF5DC341C74D257006C82AC /* playground.playground */,
 			);
@@ -236,6 +239,7 @@
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
 				A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */,
 				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
+				9B3EB2461C7D0DD300F7AC14 /* PushNotifications.swift in Sources */,
 				9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */,
 				9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */,
 				9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */,

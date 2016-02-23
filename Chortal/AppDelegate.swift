@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -49,10 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                 }
             }
-            
+          let settings = UIUserNotificationSettings.init(forTypes: .Alert, categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
         }
-
         return true
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("failed to register for push notifications with error: \(error)")
     }
 
     func applicationWillResignActive(application: UIApplication) {
