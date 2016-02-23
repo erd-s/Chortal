@@ -11,50 +11,45 @@ import CloudKit
 
 class OrganizationOverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var organization : String?
-    var allMembers : [CKRecord]?
+    var allMembers = [CKRecord]()
     
+    @IBOutlet weak var navTitle: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
-    }
+   navTitle.title = userDefaults.valueForKey("currentOrgName") as? String
     
-    func getMembers() {
-        let predicate = NSPredicate(format: "organization == %@", currentOrg!.recordID)
-        let query = CKQuery(recordType: "Member", predicate: predicate)
-        
-        publicDatabase.performQuery(query, inZoneWithID: nil) { (memberArray, error) -> Void in
-            if error != nil {
-                print(error?.description)
-                
-            }else {
-                if memberArray?.count > 0 {
-                    self.allMembers = memberArray as [CKRecord]!
-                    
-                }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                })
+        getMembers()
+    
+          }
 
-            }
-            
-        }
+    func getMembers() {
         
+        for memberRef in currentOrg!["members"] as! [CKReference] {
+            publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (member , error) -> Void in
+                if error != nil {
+                    print(error?.description)
+                }else {
+                    self.allMembers.append(member!)
+                }
+                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+        
+            })
     }
-    
+    }
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellID")
-       let members = self.allMembers![indexPath.row]
+       let members = allMembers[indexPath.row]
         cell?.textLabel?.text = members.valueForKey("name") as? String 
         return cell!
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.allMembers!.count
+        return allMembers.count
     }
     
     

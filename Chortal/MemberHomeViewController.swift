@@ -14,9 +14,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     var unclaimedArray: [CKRecord]?
     var inProgressArray: [CKRecord]?
     var completedArray: [CKRecord]?
-    
     var taskArray = [CKRecord]()
-    var currentOrganization: CKRecord?
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -57,7 +55,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         print("query: \(query)")
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             print("performing query, organizations: \(organizations![0]["name"])")
-            self.currentOrganization = organizations![0] as CKRecord
+            currentOrg = organizations![0] as CKRecord
             self.getTasks()
             self.getCurrentMember()
         }
@@ -68,7 +66,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         completedArray = [CKRecord]()
         unclaimedArray = [CKRecord]()
         
-        let taskReferenceArray = currentOrganization!.mutableArrayValueForKey("tasks")
+        let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
@@ -113,7 +111,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func getCurrentMember() {
         loadingAlert("Loading \(userDefaults.valueForKey("currentUserName")!)", viewController: self)
-        for memberRef in currentOrganization!["members"] as! [CKReference] {
+        for memberRef in currentOrg!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
                     
@@ -196,7 +194,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
             popOver.delegate = self
             popOver.task = taskArray[indexPath.row]
-            popOver.organization = currentOrganization
+            popOver.organization = currentOrg
             
             popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
             popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
@@ -239,7 +237,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
             print("seguing task: \(dvc.task) over")
-            dvc.organization = self.currentOrganization
+            dvc.organization = currentOrg
         }
     }
     
