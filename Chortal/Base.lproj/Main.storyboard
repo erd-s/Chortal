@@ -2970,11 +2970,13 @@
                         <outlet property="taskDescriptionLabel" destination="JM8-MX-7fm" id="IcA-uv-dX4"/>
                         <outlet property="taskNameLabel" destination="TRG-E6-Mj2" id="6Xi-rB-VsX"/>
                         <outlet property="timeTakenLabel" destination="7Zr-kX-0ix" id="tKh-mx-Njw"/>
+                        <segue destination="EpW-GN-kxw" kind="unwind" identifier="unwindToSidebar" unwindAction="unwindToSidebar:" id="MIy-oY-Jaq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryb-2T-Jvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="EpW-GN-kxw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2527.5" y="308"/>
+            <point key="canvasLocation" x="2638.5" y="239"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">

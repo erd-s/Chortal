@@ -28,6 +28,12 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        fetchCompletedRecords()
+        loadingAlert("Loading tasks...", viewController: self)
+    }
+    
     //MARK: Custom Functions
     func fetchCompletedRecords() {
         for ref in currentOrg!["tasks"] as! [CKReference] {
@@ -37,27 +43,36 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                 } else {
                     if taskRecord!["inProgress"] as? String == "true" && taskRecord!["completed"] as? String == "true" {
                         self.completedTaskArray.append(taskRecord!)
+                        
                     }
                 }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.layOutDataForCompletedRecord(self.currentIndex)
+                    })
+                })
             })
         }
     }
     
     func layOutDataForCompletedRecord(index: Int) {
-        currentCompletedTask = completedTaskArray[index]
-        taskNameLabel.text = currentCompletedTask["name"] as? String
-        incentiveLabel.text = currentCompletedTask["incentive"] as? String
-        memberNameLabel.text = currentCompletedTask["member_name"] as? String
-        taskDescriptionLabel.text = currentCompletedTask["description"] as? String
-        var x = 0
-        
-        for photoAsset in (currentCompletedTask["photos"] as? [CKAsset])! {
-            let photo = UIImage(data: NSData(contentsOfURL: photoAsset.fileURL)!)
-            addPhotoToScrollView(photo!, position: x)
-            x = x + 1
+        if completedTaskArray.count != 0 {
+            currentCompletedTask = completedTaskArray[index]
+            taskNameLabel.text = currentCompletedTask["name"] as? String
+            incentiveLabel.text = currentCompletedTask["incentive"] as? String
+            memberNameLabel.text = currentCompletedTask?["member_name"] as? String
+            taskDescriptionLabel.text = currentCompletedTask["description"] as? String
+            var x = 0
+            
+            for photoAsset in (currentCompletedTask["photos"] as? [CKAsset])! {
+                let photo = UIImage(data: NSData(contentsOfURL: photoAsset.fileURL)!)
+                addPhotoToScrollView(photo!, position: x)
+                x = x + 1
+            }
+            currentIndex = currentIndex + 1
+        } else {
+            presentNoCompletedTasksAlertController()
         }
-        
-        currentIndex = currentIndex + 1
     }
     
     func addPhotoToScrollView(photo: UIImage, position: Int) {
@@ -67,18 +82,24 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(imageView)
     }
     
+    func presentNoCompletedTasksAlertController() {
+        let noTasksAlertController = UIAlertController(title: "Sorry, no completed tasks.", message: nil, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) -> Void in
+            self.performSegueWithIdentifier("unwindToSidebar", sender: self)
+        }
+        noTasksAlertController.addAction(okAction)
+        presentViewController(noTasksAlertController, animated: true, completion: nil)
+    }
+    
     func presentRejectionAlertController() {
         let rejectionAlertController = UIAlertController(title: "Reject task?", message: "Please add a message.", preferredStyle: .Alert)
         rejectionAlertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            textField.placeholder = "Reason why task is rejected."
+            textField.placeholder = "Add a reason why the task was rejected."
         }
         
         let textField = rejectionAlertController.textFields?.first
         
         let rejectAction = UIAlertAction(title: "Reject Task", style: .Destructive) { (action) -> Void in
-            while textField!.text == "" {
-                action.enabled = false
-            }
             self.currentCompletedTask!.setValue("false", forKey: "completed")
             self.currentCompletedTask!.setValue("true", forKey: "inProgress")
             self.currentCompletedTask.setValue(textField?.text, forKey: "rejection_message")
