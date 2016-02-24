@@ -728,6 +728,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="WBR-7t-nax" kind="show" id="Qjq-Nj-RWV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="default">
@@ -806,6 +809,121 @@
                 <exit id="xEF-IM-Cun" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3759" y="-1640"/>
+        </scene>
+        <!--Member Detail View Controller-->
+        <scene sceneID="GbH-HO-kBd">
+            <objects>
+                <viewController id="WBR-7t-nax" customClass="MemberDetailViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gS2-Vq-dfL"/>
+                        <viewControllerLayoutGuide type="bottom" id="8FA-EG-8YB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JsI-1j-7Aq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZLY-vK-8Z7">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="86" width="240" height="271"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKr-k7-lrz">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="396" width="240" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIZ-c3-GRb">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="441" width="240" height="21"/>
+                                </variation>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LI6-Xg-rRv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="zj0-is-bEd"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="0x9-IS-X7y">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="m2z-MI-daC">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="WBR-7t-nax" id="yUB-QI-bFe"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="zj0-is-bEd"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="zj0-is-bEd"/>
+                                    </mask>
+                                </variation>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jod-Sg-4Gr">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="488" width="240" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LI6-Xg-rRv" firstAttribute="leading" secondItem="JsI-1j-7Aq" secondAttribute="leadingMargin" constant="-20" id="IFS-Mr-ee7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LI6-Xg-rRv" secondAttribute="trailing" constant="-20" id="mCD-R2-TO1"/>
+                            <constraint firstItem="LI6-Xg-rRv" firstAttribute="top" secondItem="JsI-1j-7Aq" secondAttribute="topMargin" id="mNj-08-FaP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ZLY-vK-8Z7"/>
+                                <exclude reference="CKr-k7-lrz"/>
+                                <exclude reference="tIZ-c3-GRb"/>
+                                <exclude reference="LI6-Xg-rRv"/>
+                                <exclude reference="Jod-Sg-4Gr"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="IFS-Mr-ee7"/>
+                                <exclude reference="mCD-R2-TO1"/>
+                                <exclude reference="mNj-08-FaP"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="ZLY-vK-8Z7"/>
+                                <include reference="CKr-k7-lrz"/>
+                                <include reference="tIZ-c3-GRb"/>
+                                <include reference="LI6-Xg-rRv"/>
+                                <include reference="Jod-Sg-4Gr"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="IFS-Mr-ee7"/>
+                                <include reference="mCD-R2-TO1"/>
+                                <include reference="mNj-08-FaP"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="finishedTaskLabel" destination="CKr-k7-lrz" id="AiX-WY-7a6"/>
+                        <outlet property="imageView" destination="ZLY-vK-8Z7" id="gVx-ya-K2S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvE-dN-EhV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4567.5" y="-1640"/>
         </scene>
         <!--My Task-->
         <scene sceneID="2Yc-82-opS">
