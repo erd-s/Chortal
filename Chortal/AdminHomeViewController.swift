@@ -37,12 +37,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: Custom Functions
-    func setAdminPushNotifications() {
-        pushNotificationTaskCompleted()
-        pushNotificationMemberJoined()
-        pushNotifcationTaskTaken()
-    }
-    
     func getOrganization() {
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
@@ -64,9 +58,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 print("error getting admin: \(error)")
             } else {
                 currentAdmin = adminRecord
-                if pushNotificationsSet == false {
-                    self.setAdminPushNotifications()
-                }
             }
         }
     }

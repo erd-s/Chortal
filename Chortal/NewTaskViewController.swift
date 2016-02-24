@@ -28,6 +28,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        if pushNotificationsSet == false {
+            setAdminPushNotifications()
+        }
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)

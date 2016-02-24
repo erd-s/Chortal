@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		135F92041C737EEC005CBD24 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135F92031C737EEC005CBD24 /* CloudKit.framework */; };
 		135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */; };
 		9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */; };
 		9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */; };
@@ -30,13 +29,13 @@
 		9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */; };
 		9BBBC7351C7D5AAB006347C0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */; };
 		9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */; };
+		9BE4C09D1C7E1DBE00381EBC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE4C09C1C7E1DBE00381EBC /* CloudKit.framework */; };
 		9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD82BC1C77825B005A3967 /* Constants.swift */; };
 		A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		135F92021C737EE8005CBD24 /* Chortal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Chortal.entitlements; sourceTree = "<group>"; };
-		135F92031C737EEC005CBD24 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectViewController.swift; sourceTree = "<group>"; };
 		9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingsViewController.swift; sourceTree = "<group>"; };
 		9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminSidebarTableViewController.swift; path = ../AdminSidebarTableViewController.swift; sourceTree = "<group>"; };
 		9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeTaskViewController.swift; sourceTree = "<group>"; };
+		9BE4C09C1C7E1DBE00381EBC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 		9BFD82BC1C77825B005A3967 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationOverViewController.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				135F92041C737EEC005CBD24 /* CloudKit.framework in Frameworks */,
+				9BE4C09D1C7E1DBE00381EBC /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +117,7 @@
 		9B5FC25C1C737B8B005976FB = {
 			isa = PBXGroup;
 			children = (
-				135F92031C737EEC005CBD24 /* CloudKit.framework */,
+				9BE4C09C1C7E1DBE00381EBC /* CloudKit.framework */,
 				9B5FC2671C737B8B005976FB /* Chortal */,
 				9B5FC2661C737B8B005976FB /* Products */,
 			);
@@ -191,6 +191,9 @@
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = D95EZ83BDJ;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};

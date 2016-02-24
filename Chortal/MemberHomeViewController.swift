@@ -70,15 +70,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //MARK: Custom Functions
-    func setMemberPushNotifications() {
-        pushNotificationNewTaskAdded()
-        pushNotificationTaskRejected()
-        pushNotificationTaskAssignedToUser()
-        pushNotificationTaskApproved()
-    }
-    
-    
-    func refresh (sender: AnyObject?) {
+        func refresh (sender: AnyObject?) {
         getTasks()
         refreshControl.endRefreshing()
     }
@@ -130,7 +122,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.getCurrentTaskForMember()
                     print("current user is set")
                     if pushNotificationsSet == false {
-                    self.setMemberPushNotifications()
+                        setMemberPushNotifications()
                     }
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
