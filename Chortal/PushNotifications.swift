@@ -14,7 +14,7 @@ import CloudKit
 //  They may not need to be based on userDefaults if they are called and then deleted when
 //  a user unsubscribes.
 
-func pushNotificationTaskApprovedSet() {
+func pushNotificationTaskApproved() {
     let myTaskPredicate = NSPredicate(format: "member == %@", currentMember!)
     let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
     let myFinishedTaskPredicate = NSPredicate(format: "status == approved")
@@ -30,7 +30,7 @@ func pushNotificationTaskApprovedSet() {
     })
 }
 
-func pushNotificationsTaskRejected() {
+func pushNotificationTaskRejected() {
     let myTaskPredicate = NSPredicate(format: "member == %@", currentMember!)
     let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
     let myFinishedTaskPredicate = NSPredicate(format: "status == rejected")
@@ -46,7 +46,7 @@ func pushNotificationsTaskRejected() {
     })
 }
 
-func pushNotificationsNewTaskAdded() {
+func pushNotificationNewTaskAdded() {
     let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
     let taskStatusPredicate = NSPredicate(format: "status == unassigned")
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskStatusPredicate])
