@@ -23,6 +23,14 @@ func setAdminPushNotifications() {
     pushNotifcationTaskTaken()
     
     let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: adminSubscriptionsArray, subscriptionIDsToDelete: nil)
+    modifySubscriptionsOperation.modifySubscriptionsCompletionBlock = { saved, deleted, error in
+        if error != nil {
+            print(error)
+        } else {
+            print("saved push notification subcriptions for admin")
+        }
+    }
+    
     publicDatabase.addOperation(modifySubscriptionsOperation)
 }
 
@@ -33,6 +41,14 @@ func setMemberPushNotifications() {
     pushNotificationTaskApproved()
     
     let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: memberSubscriptionsArray, subscriptionIDsToDelete: nil)
+    modifySubscriptionsOperation.modifySubscriptionsCompletionBlock = { saved, deleted, error in
+        if error != nil {
+            print(error)
+        } else {
+            print("saved push notification subcriptions for member")
+        }
+    }
+    
     publicDatabase.addOperation(modifySubscriptionsOperation)
 }
 
@@ -46,7 +62,7 @@ func pushNotificationTaskApproved(){
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
     
     let notification = CKNotificationInfo()
-    notification.shouldSendContentAvailable = true
+
     notification.alertBody = "Your task has been approved."
     subscription.notificationInfo = notification
     
@@ -62,7 +78,7 @@ func pushNotificationTaskRejected() {
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
     
     let notification = CKNotificationInfo()
-    notification.shouldSendContentAvailable = true
+
     notification.alertBody = "Your task has been rejected. See comments."
     subscription.notificationInfo = notification
     
@@ -77,7 +93,7 @@ func pushNotificationNewTaskAdded() {
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
     
     let notification = CKNotificationInfo()
-    notification.shouldSendContentAvailable = true
+
     notification.alertBody = "A task has been added to your organization."
     subscription.notificationInfo = notification
     
@@ -95,11 +111,11 @@ func pushNotificationTaskAssignedToUser() {
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
     
     let notification = CKNotificationInfo()
-    notification.shouldSendContentAvailable = true
+
     notification.alertBody = "You have been assigned a task."
     subscription.notificationInfo = notification
     
-
+    
     memberSubscriptionsArray.append(subscription)
 }
 
@@ -108,7 +124,7 @@ func pushNotificationMemberJoined() {
     let subscription = CKSubscription(recordType: "Member", predicate: myOrgPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
     
     let notification = CKNotificationInfo()
-    notification.shouldSendContentAvailable = true
+
     notification.alertBody = "A member has joined your organization."
     subscription.notificationInfo = notification
     
@@ -124,10 +140,10 @@ func pushNotifcationTaskTaken() {
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
     
     let notification = CKNotificationInfo()
-    notification.shouldSendContentAvailable = true
+
     notification.alertBody = "A task you requested has been taken."
     subscription.notificationInfo = notification
-
+    
     adminSubscriptionsArray.append(subscription)
 }
 
@@ -139,7 +155,7 @@ func pushNotificationTaskCompleted() {
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
     
     let notification = CKNotificationInfo()
-    notification.shouldSendContentAvailable = true
+
     notification.alertBody = "A task has been sent to you for approval."
     subscription.notificationInfo = notification
     

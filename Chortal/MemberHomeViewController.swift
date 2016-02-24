@@ -122,6 +122,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     print("current user is set")
                     if pushNotificationsSet == false {
                         setMemberPushNotifications()
+                        userDefaults.setBool(true, forKey: "pushNotificationsSet")
                     }
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
