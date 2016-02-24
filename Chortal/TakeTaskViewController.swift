@@ -45,7 +45,7 @@ class TakeTaskViewController: UIViewController {
         taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
         dueLabel.text = String(dueDate!)
-        self.taskMemberLabel.text = "Claimed By:"
+        taskMemberLabel.text = "Claimed By:"
         if task!["member"] != nil {
             takeTaskButton.enabled = false
             getTaskOwner()
@@ -61,10 +61,7 @@ class TakeTaskViewController: UIViewController {
         publicDatabase.fetchRecordWithID(ownerReference.recordID, completionHandler: { (task, error) -> Void in
             if error != nil {
                 print(error)
-            } else {
-                
             }
-            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.taskMemberLabel.text = "Claimed By: \(task!["name"]!)"
             })
@@ -90,7 +87,6 @@ class TakeTaskViewController: UIViewController {
             let currentTasks = currentMember?.valueForKey("current_tasks")
             currentTasks?.insertObject(taskRef, atIndex: 0)
             currentMember?.setValue(currentTasks, forKey: "current_tasks")
-            
         } else {
             let currentTasks = [taskRef]
             currentMember?.setValue(currentTasks, forKey: "current_tasks")
@@ -98,7 +94,7 @@ class TakeTaskViewController: UIViewController {
         
         let memberRef = CKReference(record: currentMember!, action: .None)
         task?.setValue(memberRef, forKey: "member")
-        task?.setValue("true", forKey: "inProgress")
+        task?.setValue("inProgress", forKey: "status")
         saveTaskAndMember([task!, currentMember!])
     }
     
@@ -108,10 +104,9 @@ class TakeTaskViewController: UIViewController {
         saveOperation.atomic = true
         saveOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
             if error != nil {
-                print(error)
+                print("save task and member failed: \(error)")
             } else {
                 print("saved records successfully")
-                //start timer
                 currentTask = self.task
                 dispatch_async(dispatch_get_main_queue()) {
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in

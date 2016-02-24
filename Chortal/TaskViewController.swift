@@ -13,7 +13,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: Properties
     
     //MARK: Outlets
-    
     @IBOutlet weak var collectionViewFlow: UICollectionViewFlowLayout!
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
@@ -28,34 +27,27 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
         descriptionTextView.text = currentTask?.valueForKey("description") as? String
-        
     }
     
     //MARK: Custom Functions
     
     
-    
-    
     //MARK: IBActions
     @IBAction func onCameraButtonTapped(sender: AnyObject) {
-        
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true;
         picker.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(picker, animated: true, completion: nil)
-        
-        
     }
     
     @IBAction func backButtonTapped(sender: UIButton) {
         performSegueWithIdentifier("unwindFromTaskView", sender: self)
-        
     }
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {
         loadingAlert("Abandoning task...", viewController: self)
-        var taskRefArray = currentUser!.valueForKey("current_tasks") as! [CKReference]
+        var taskRefArray = currentMember!.valueForKey("current_tasks") as! [CKReference]
         for reference in taskRefArray {
             if reference.recordID == currentTask?.recordID {
                 let refIndex = taskRefArray.indexOf(reference)
@@ -63,22 +55,18 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         }
         currentTask?.setValue(nil, forKey: "member")
-        print(currentTask?.valueForKey("member"))
-        currentTask?.setValue("false", forKey: "inProgress")
-        currentUser?.setValue(taskRefArray, forKey: "current_tasks")
-        modifyRecords([currentUser!, currentTask!])
-        
-        
+        currentTask?.setValue("unassigned", forKey: "status")
+        currentMember?.setValue(taskRefArray, forKey: "current_tasks")
+        modifyRecords([currentMember!, currentTask!])
     }
+    
     func modifyRecords (records: [CKRecord]) {
         print("Modify records function called")
-        let modOpp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
-        modOpp.savePolicy = .ChangedKeys
-        modOpp.atomic = true
+        let saveRecordsOperation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         
-        publicDatabase.addOperation(modOpp)
+        publicDatabase.addOperation(saveRecordsOperation)
         
-        modOpp.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
+        saveRecordsOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 print(error!.description)
             }else {
@@ -92,7 +80,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    
     //MARK: Delegate Functions
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.count
@@ -105,20 +92,16 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
         images.append(chosenImage)
         picker.dismissViewControllerAnimated(true, completion: nil)
         collectionView.reloadData()
-        
-        
     }
     
     //MARK: Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "unwindFromTaskView" {
-            
         }
     }
 }
