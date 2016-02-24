@@ -51,8 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
           let settings = UIUserNotificationSettings.init(forTypes: .Alert, categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
+            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
         }
         return true
     }
