@@ -72,7 +72,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 memberArray =
                     orgRecord!.mutableArrayValueForKey("members")
                 memberArray.addObject(memberRef!)
-                orgRecord?.setObject(memberArray, forKey: "members")
+//                orgRecord?.setObject(memberArray, forKey: "members")
                 modifyRecords([orgRecord!, newMember!])
             }
     }

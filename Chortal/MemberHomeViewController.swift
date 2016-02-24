@@ -130,14 +130,16 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func getCurrentTaskForMember() {
         //        need to sort by metadata: modification date
-        if (currentMember!["current_tasks"] as! [CKReference]).count > 0 {
-            let taskRef = currentMember?["current_tasks"] as! [CKReference]
-            publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
-                if error != nil {
-                    print("Error: \(error?.description)")
-                } else {
-                    if fetchedRecord != nil {
-                        currentTask = fetchedRecord
+        if currentMember?["current_tasks"] != nil {
+            if (currentMember?["current_tasks"] as! [CKReference]).count > 0 {
+                let taskRef = currentMember?["current_tasks"] as! [CKReference]
+                publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
+                    if error != nil {
+                        print("Error: \(error?.description)")
+                    } else {
+                        if fetchedRecord != nil {
+                            currentTask = fetchedRecord
+                        }
                     }
                 }
             }
