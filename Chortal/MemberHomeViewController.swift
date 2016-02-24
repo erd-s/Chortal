@@ -43,7 +43,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
         taskTableView.addSubview(refreshControl)
     }
     
@@ -70,8 +69,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //MARK: Custom Functions
-    
-    func refresh (sender: AnyObject?) {
+        func refresh (sender: AnyObject?) {
         getTasks()
         refreshControl.endRefreshing()
     }
@@ -122,6 +120,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     currentMember = memberRecord
                     self.getCurrentTaskForMember()
                     print("current user is set")
+                    if pushNotificationsSet == false {
+                        setMemberPushNotifications()
+                    }
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             })

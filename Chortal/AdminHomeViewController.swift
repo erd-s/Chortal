@@ -22,7 +22,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         title = userDefaults.valueForKey("currentOrgName") as? String
-
+        
         getOrganization()
         
         if self.revealViewController() != nil {
@@ -34,7 +34,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
-
     }
     
     //MARK: Custom Functions
@@ -45,9 +44,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             if error != nil {
                 print("error getting current organization: \(error)")
             } else {
-            currentOrg = organizations![0] as CKRecord
-            self.getTasks()
-            self.getAdmin()
+                currentOrg = organizations![0] as CKRecord
+                self.getTasks()
+                self.getAdmin()
             }
         }
     }
@@ -59,6 +58,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 print("error getting admin: \(error)")
             } else {
                 currentAdmin = adminRecord
+                if pushNotificationsSet == false {
+                    setAdminPushNotifications()
+                }
             }
         }
     }

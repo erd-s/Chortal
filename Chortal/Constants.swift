@@ -15,6 +15,7 @@ let container = CKContainer.defaultContainer()
 let publicDatabase = container.publicCloudDatabase
 let orgUID = userDefaults.stringForKey("currentOrgUID")
 let memberName = userDefaults.stringForKey("currentUserName")
+let pushNotificationsSet = userDefaults.boolForKey("pushNotificationsSet")
 var currentMember: CKRecord?
 var currentOrg: CKRecord?
 var currentTask: CKRecord?

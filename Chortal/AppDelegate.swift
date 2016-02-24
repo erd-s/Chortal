@@ -61,6 +61,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("failed to register for push notifications with error: \(error)")
     }
 
+
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        let cloudKitNotification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String : NSObject])
+        if cloudKitNotification.notificationType == .Query {
+            let queryNotification = cloudKitNotification as! CKQueryNotification
+            if queryNotification.queryNotificationReason == .RecordDeleted {
+                // If the record has been deleted in CloudKit then delete the local copy here
+            } else {
+                // If the record has been created or changed, we fetch the data from CloudKit
+                let database: CKDatabase
+                if queryNotification.isPublicDatabase {
+                    database = CKContainer.defaultContainer().publicCloudDatabase
+                } else {
+                    database = CKContainer.defaultContainer().privateCloudDatabase
+                }
+                database.fetchRecordWithID(queryNotification.recordID!, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+                    guard error == nil else {
+                        // Handle the error here
+                        return
+                    }
+                    
+                    if queryNotification.queryNotificationReason == .RecordUpdated {
+                        // Use the information in the record object to modify your local data
+                    } else {
+                        // Use the information in the record object to create a new local object
+                    }
+                })
+            }
+        }
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
