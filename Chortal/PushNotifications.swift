@@ -11,10 +11,9 @@ import CloudKit
 
 
 func pushNotificationTaskApprovedSet() {
-//    print(userDefaults.boolForKey("push_TaskApproved"))
-//    if userDefaults.boolForKey("push_TaskApproved") {
+    if userDefaults.boolForKey("push_taskApproved") {
         print("starting predicating")
-        let myTaskPredicate = NSPredicate(format: "member == %@", currentUser!)
+        let myTaskPredicate = NSPredicate(format: "member == %@", currentMember!)
         let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
         let myFinishedTaskPredicate = NSPredicate(format: "status == approved")
         let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myTaskPredicate, myOrgPredicate, myFinishedTaskPredicate])
@@ -28,7 +27,7 @@ func pushNotificationTaskApprovedSet() {
             }
         })
     }
-//}
+}
 
 
 //  Find the best time to subscribe to these push notifications (one time only, then update)
