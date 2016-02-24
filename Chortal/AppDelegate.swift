@@ -63,10 +63,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        let castedUserInfo = userInfo as! [String: NSObject]
-        let notification = CKNotification(fromRemoteNotificationDictionary: castedUserInfo)
-        if notification.notificationType == .Query {
-            NSNotificationCenter.defaultCenter().postNotificationName("SubscriptionNotificaiton" , object: nil, userInfo: ["subscriptionID": notification.subscriptionID!])
+        let cloudKitNotification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String : NSObject])
+        if cloudKitNotification.notificationType == .Query {
+            let queryNotification = cloudKitNotification as! CKQueryNotification
+            if queryNotification.queryNotificationReason == .RecordDeleted {
+                // If the record has been deleted in CloudKit then delete the local copy here
+            } else {
+                // If the record has been created or changed, we fetch the data from CloudKit
+                let database: CKDatabase
+                if queryNotification.isPublicDatabase {
+                    database = CKContainer.defaultContainer().publicCloudDatabase
+                } else {
+                    database = CKContainer.defaultContainer().privateCloudDatabase
+                }
+                database.fetchRecordWithID(queryNotification.recordID!, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+                    guard error == nil else {
+                        // Handle the error here
+                        return
+                    }
+                    
+                    if queryNotification.queryNotificationReason == .RecordUpdated {
+                        // Use the information in the record object to modify your local data
+                    } else {
+                        // Use the information in the record object to create a new local object
+                    }
+                })
+            }
         }
     }
     

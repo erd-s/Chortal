@@ -43,7 +43,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
         taskTableView.addSubview(refreshControl)
     }
     

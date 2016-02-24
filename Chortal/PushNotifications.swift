@@ -8,7 +8,10 @@
 
 import Foundation
 import CloudKit
+import UIKit
 
+var adminSubscriptionsArray = [CKSubscription]()
+var memberSubscriptionsArray = [CKSubscription]()
 
 //  Find the best time to subscribe to these push notifications (one time only, then update)
 //  They may not need to be based on userDefaults if they are called and then deleted when
@@ -18,6 +21,10 @@ func setAdminPushNotifications() {
     pushNotificationTaskCompleted()
     pushNotificationMemberJoined()
     pushNotifcationTaskTaken()
+    
+    
+    let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: adminSubscriptionsArray, subscriptionIDsToDelete: nil)
+    publicDatabase.addOperation(modifySubscriptionsOperation)
 }
 
 func setMemberPushNotifications() {
@@ -25,23 +32,20 @@ func setMemberPushNotifications() {
     pushNotificationTaskRejected()
     pushNotificationTaskAssignedToUser()
     pushNotificationTaskApproved()
+    
+    let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: memberSubscriptionsArray, subscriptionIDsToDelete: nil)
+    publicDatabase.addOperation(modifySubscriptionsOperation)
 }
 
-func pushNotificationTaskApproved() {
+
+func pushNotificationTaskApproved(){
     let myTaskPredicate = NSPredicate(format: "member == %@", currentMember!)
     let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
     let myFinishedTaskPredicate = NSPredicate(format:  "%K == %@", "status", "approved")
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myTaskPredicate, myOrgPredicate, myFinishedTaskPredicate])
     
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
-    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
-        if error != nil {
-            print("error saving task approved subscription: \(error?.userInfo)")
-
-        } else {
-            print("m-subscription for task approved  successfully set")
-        }
-    })
+    memberSubscriptionsArray.append(subscription)
 }
 
 func pushNotificationTaskRejected() {
@@ -51,14 +55,7 @@ func pushNotificationTaskRejected() {
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myTaskPredicate, myOrgPredicate, myFinishedTaskPredicate])
     
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
-    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
-        if error != nil {
-            print("error saving task rejected subscription: \(error!)")
-
-        } else {
-            print("m-subscription for task rejected successfully set")
-        }
-    })
+    memberSubscriptionsArray.append(subscription)
 }
 
 func pushNotificationNewTaskAdded() {
@@ -67,15 +64,7 @@ func pushNotificationNewTaskAdded() {
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskStatusPredicate])
     
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
-    
-    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
-        if error != nil {
-            print("error saving new task subscription: \(error)")
-
-        } else {
-            print("m-subscription for new task successfully set")
-        }
-    })
+    memberSubscriptionsArray.append(subscription)
 }
 
 func pushNotificationTaskAssignedToUser() {
@@ -87,25 +76,13 @@ func pushNotificationTaskAssignedToUser() {
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskAssignedPredicate, adminAssignedPredicate, taskStatusPredicate])
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
-    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
-        if error != nil {
-            print("error saving new task subscription: \(error)")
-        } else {
-            print("m-subscription for new task successfully set")
-        }
-    })
+    memberSubscriptionsArray.append(subscription)
 }
 
 func pushNotificationMemberJoined() {
     let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
     let subscription = CKSubscription(recordType: "Member", predicate: myOrgPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
-    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
-        if error != nil {
-            print("error saving new member subscription: \(error)")
-        } else {
-            print("admin-subscription for new member successfully set")
-        }
-    })
+    adminSubscriptionsArray.append(subscription)
 }
 
 func pushNotifcationTaskTaken() {
@@ -115,14 +92,7 @@ func pushNotifcationTaskTaken() {
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskStatusPredicate, memberAssignedPredicate])
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
-    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
-        if error != nil {
-            print("error saving task taken subscription: \(error)")
-
-        } else {
-            print("admin-subscription for task taken successfully set")
-        }
-    })
+    adminSubscriptionsArray.append(subscription)
 }
 
 func pushNotificationTaskCompleted() {
@@ -131,14 +101,7 @@ func pushNotificationTaskCompleted() {
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskStatusPredicate])
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
-    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
-        if error != nil {
-            print("error saving task completed subscription: \(error)")
-        } else {
-            print("admin-subscription for task completed successfully set")
-        }
-    })
-
+    adminSubscriptionsArray.append(subscription)
 }
 
 

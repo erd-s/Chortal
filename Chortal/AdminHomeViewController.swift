@@ -58,6 +58,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 print("error getting admin: \(error)")
             } else {
                 currentAdmin = adminRecord
+                if pushNotificationsSet == false {
+                    setAdminPushNotifications()
+                }
             }
         }
     }
