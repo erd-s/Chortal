@@ -98,7 +98,7 @@ class AdminSettingsViewController: UIViewController {
 
     @IBAction func copyInviteCode(sender: AnyObject) {
         let pasteboard = UIPasteboard.generalPasteboard()
-        pasteboard.string = "\(orgUID!)."
+        pasteboard.string = "\(orgUID!)"
         inviteCodeLabel.text = "Copied!"
     }
     
