@@ -103,14 +103,8 @@ class TakeTaskViewController: UIViewController {
         
         let memberRef = CKReference(record: currentMember!, action: .None)
         task?.setValue(memberRef, forKey: "member")
-<<<<<<< 64f285a52557eb70cab71c2f7620a68d2eef25f7
         task?.setValue("inProgress", forKey: "status")
         saveTaskAndMember([task!, currentMember!])
-=======
-        task?.setValue(currentUser!["name"], forKey: "member_name")
-        task?.setValue("true", forKey: "inProgress")
-        saveTaskAndMember([task!, currentUser!])
->>>>>>> added logic to populate data, including photos, and reject a completed task
     }
     
     func saveTaskAndMember(recordsToSave: [CKRecord]) {

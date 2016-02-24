@@ -9,28 +9,6 @@
 import UIKit
 import CloudKit
 
-<<<<<<< b979519bf3caf6a4d1bedccbab02d1edba1da561
-=======
-extension UIViewController {
-    
-    func loadingAlert (loadMessage: String, viewController: UIViewController){
-        let alert = UIAlertController(title: nil, message: loadMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.view.tintColor = UIColor.blackColor()
-        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(10,5,50,50)) as UIActivityIndicatorView
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        loadingIndicator.startAnimating()
-        
-        alert.view.addSubview(loadingIndicator)
-        
-        viewController.presentViewController(alert, animated: true, completion: nil)
-
-    }
-    
-}
-
->>>>>>> fixed some bugs. It segues you out to home if there are no completed tasks.
 class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
@@ -176,6 +154,5 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")
             userDefaults.setValue(orgRecord?.valueForKey("name"), forKey: "currentOrgName")
         }
-    }
-    
+}
 }
