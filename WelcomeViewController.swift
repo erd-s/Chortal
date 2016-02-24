@@ -49,6 +49,33 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         userDefaults.setBool(true, forKey: "push_taskAssigned")
     }
     
+    func uniqueMemberNameCheck() {
+        if orgRecord?.mutableArrayValueForKey("members").count == 0 {
+            createMember()
+        } else {
+            for memberReference in (orgRecord?.mutableArrayValueForKey("members"))! {
+                publicDatabase.fetchRecordWithID(memberReference.recordID, completionHandler: { (resultRecord, error) -> Void in
+                    
+                    if error != nil {
+                        print("Error Fetching Names for Uniequness Test: \(error?.description)")
+                    } else {
+                        
+                        if resultRecord!["name"] as? String == self.nameTextField.text {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                    self.errorAlert("Error", message: "A member of \(self.orgRecord!["name"]!) already has that name. Please choose another.")
+                                })
+                            }
+                        } else {
+                            self.createMember()
+                        }
+                    }
+                })
+            }
+        }
+        
+    }
+    
     func createMember() {
         if newMember == nil {
             newMember = CKRecord(recordType: "Member")
@@ -64,17 +91,17 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setReferencesForOrg() {
-            if orgRecord!.mutableArrayValueForKey("members").count == 0 {
-                memberArray = [memberRef!]
-                orgRecord?.setObject(memberArray, forKey: "members")
-                modifyRecords([orgRecord!, newMember!])
-            } else {
-                memberArray =
-                    orgRecord!.mutableArrayValueForKey("members")
-                memberArray.addObject(memberRef!)
-//                orgRecord?.setObject(memberArray, forKey: "members")
-                modifyRecords([orgRecord!, newMember!])
-            }
+        if orgRecord!.mutableArrayValueForKey("members").count == 0 {
+            memberArray = [memberRef!]
+            orgRecord?.setObject(memberArray, forKey: "members")
+            modifyRecords([orgRecord!, newMember!])
+        } else {
+            memberArray =
+                orgRecord!.mutableArrayValueForKey("members")
+            memberArray.addObject(memberRef!)
+            //                orgRecord?.setObject(memberArray, forKey: "members")
+            modifyRecords([orgRecord!, newMember!])
+        }
     }
     
     func modifyRecords (records: [CKRecord]) {
@@ -101,8 +128,8 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func logInButtonTapped(sender: UIButton) {
         if nameTextField.text?.characters.count > 0 {
             loadingAlert("Loading...", viewController: self)
-            
-            createMember()
+            uniqueMemberNameCheck()
+            //            createMember()
         }
     }
     

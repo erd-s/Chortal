@@ -70,23 +70,33 @@ class TakeTaskViewController: UIViewController {
     
     
     func presentAlertController() {
-        let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(String(dueDate!)). Photos \(photoRequiredYesOrNo). The timer will start when you click \"Accept\".", preferredStyle: .Alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        let take = UIAlertAction(title: "Accept", style: .Default) { (UIAlertAction) -> Void in
-            self.setReferences()
+        if currentMember!["current_tasks"] != nil {
+            if (currentMember!["current_tasks"] as! [CKReference]).count  > 0 {
+                errorAlert("You already have a task!", message: "Either complete or abandon your current task before taking another.")
+            }
+            
+        } else {
+            
+            let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(String(dueDate!)). Photos \(photoRequiredYesOrNo). The timer will start when you click \"Accept\".", preferredStyle: .Alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let take = UIAlertAction(title: "Accept", style: .Default) { (UIAlertAction) -> Void in
+                self.setReferences()
+            }
+            alert.addAction(cancel)
+            alert.addAction(take)
+            presentViewController(alert, animated: true, completion: nil)
         }
-        alert.addAction(cancel)
-        alert.addAction(take)
-        presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     func setReferences() {
         let taskRef = CKReference(record: task!, action: .None)
-        
-        if (currentMember?.valueForKey("current_tasks") as! [CKReference]).count > 0 {
-            let currentTasks = currentMember?.valueForKey("current_tasks")
-            currentTasks?.insertObject(taskRef, atIndex: 0)
-            currentMember?.setValue(currentTasks, forKey: "current_tasks")
+        if currentMember?.valueForKey("current_tasks") != nil {
+            if (currentMember?.valueForKey("current_tasks") as! [CKReference]).count > 0 {
+                let currentTasks = currentMember?.valueForKey("current_tasks")
+                currentTasks?.insertObject(taskRef, atIndex: 0)
+                currentMember?.setValue(currentTasks, forKey: "current_tasks")
+            }
         } else {
             let currentTasks = [taskRef]
             currentMember?.setValue(currentTasks, forKey: "current_tasks")

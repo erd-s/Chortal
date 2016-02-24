@@ -25,11 +25,10 @@ extension UIViewController {
     }
     
     func errorAlert(title: String, message: String) {
-        func presentInvalidCodeController(){
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            let okay = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-            alert.addAction(okay)
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let okay = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(okay)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
 }

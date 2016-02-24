@@ -54,7 +54,7 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                self.errorAlert("Error", message: "Invite code invalid, please try again.")
+                                self.errorAlert("Oops!", message: "That invite code doesn't exist. Please try again.")
                             })
                         }
                     }
