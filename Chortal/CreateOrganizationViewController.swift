@@ -33,19 +33,6 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         self.setEditing(false, animated: true)
     }
     
-    func setUserDefaults() {
-        // if pushnotifs enabled ->
-        userDefaults.setBool(true, forKey: "push_taskCompleted")
-        userDefaults.setBool(true, forKey: "push_taskTaken")
-        userDefaults.setBool(true, forKey: "push_timeRunningOut")
-        userDefaults.setBool(true, forKey: "push_memberJoined")
-        userDefaults.setBool(true, forKey: "push_taskResubmitted")
-        userDefaults.setValue(uid, forKey: "currentOrgUID")
-        userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
-        userDefaults.setBool(true, forKey: "isAdmin")
-        userDefaults.setValue(adminNameTextField.text, forKey: "adminName")
-    }
-    
     func setUID(organization: CKRecord, admin: CKRecord) {
         let timestamp = String(NSDate.timeIntervalSinceReferenceDate())
         let timestampParts = timestamp.componentsSeparatedByString(".")
@@ -53,6 +40,18 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         uid.appendContentsOf(timestampParts[1])
         organization.setObject(uid, forKey: "uid")
         admin.setObject(uid, forKey: "uid")
+    }
+    
+    func setUserDefaults() {
+        userDefaults.setBool(true, forKey: "push_taskCompleted")
+        userDefaults.setBool(true, forKey: "push_taskTaken")
+        userDefaults.setBool(true, forKey: "push_timeRunningOut")
+        userDefaults.setBool(true, forKey: "push_memberJoined")
+        userDefaults.setBool(true, forKey: "push_taskResubmitted")
+        userDefaults.setBool(true, forKey: "isAdmin")
+        userDefaults.setValue(uid, forKey: "currentOrgUID")
+        userDefaults.setValue(organizationNameTextField!.text, forKey: "currentOrgName")
+        userDefaults.setValue(adminNameTextField.text, forKey: "adminName")
     }
     
     func saveRecords(recordsToSave: [CKRecord]) {
@@ -78,10 +77,11 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         let newOrg = CKRecord(recordType: "Organization")
         let newAdmin = CKRecord(recordType: "Admin")
         
-        let adminOrgRef = CKReference.init(recordID: newOrg.recordID, action: .None)
-        newAdmin.setObject(adminOrgRef, forKey: "organization")
-        let orgAdminRef = CKReference.init(recordID: newAdmin.recordID, action: .None)
-        newOrg.setObject(orgAdminRef, forKey: "admin")
+        let orgRef = CKReference.init(recordID: newOrg.recordID, action: .None)
+        newAdmin.setObject(orgRef, forKey: "organization")
+        
+        let adminRef = CKReference.init(recordID: newAdmin.recordID, action: .None)
+        newOrg.setObject(adminRef, forKey: "admin")
         
         newOrg.setObject(organizationTypeTextField.text, forKey: "type")
         newOrg.setObject(organizationNameTextField.text, forKey: "name")
@@ -89,8 +89,6 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         newAdmin.setObject(adminNameTextField.text, forKey: "name")
         
         setUID(newOrg, admin: newAdmin)
-        
-
         setUserDefaults()
         saveRecords([newOrg, newAdmin])
     }

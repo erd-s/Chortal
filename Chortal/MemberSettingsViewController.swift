@@ -49,7 +49,7 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate {
         
         nameTextField.text = userDefaults.valueForKey("currentUserName") as? String
         
-        defaultPhotoImageView.image = currentUser?["photo"] as? UIImage
+        defaultPhotoImageView.image = currentMember?["photo"] as? UIImage
     }
     
     //MARK: Custom Functions
@@ -78,10 +78,10 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate {
         if taskAssignedSwitch.on     { userDefaults.setBool(true, forKey: "push_taskAssigned") }
                                 else { userDefaults.setBool(false, forKey: "push_taskAssigned") }
         
-        if nameTextField.text != userDefaults.valueForKey("currentUserName") as? String {
+        if nameTextField.text != memberName {
             userDefaults.setValue(nameTextField.text, forKey: "currentUserName")
-            currentUser?.setValue(nameTextField.text, forKey: "name")
-            publicDatabase.saveRecord(currentUser!, completionHandler: { (currentUser, error) -> Void in
+            currentMember?.setValue(nameTextField.text, forKey: "name")
+            publicDatabase.saveRecord(currentMember!, completionHandler: { (memberSaved, error) -> Void in
                 if error != nil {
                     print("name not saved, error:\(error)")
                 } else {
@@ -94,10 +94,8 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         } else {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.performSegueWithIdentifier("saveSettingsSegue", sender: self)
-                })
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.performSegueWithIdentifier("saveSettingsSegue", sender: self)
             })
         }
     }
@@ -108,25 +106,5 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Segues
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

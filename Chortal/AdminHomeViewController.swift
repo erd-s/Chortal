@@ -39,15 +39,26 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     //MARK: Custom Functions
     func getOrganization() {
-        let predicate = NSPredicate(format: "uid == %@", orgID!)
+        let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
-                print(error)
+                print("error getting current organization: \(error)")
             } else {
-            print("performing query, organizations: \(organizations![0]["name"])")
             currentOrg = organizations![0] as CKRecord
             self.getTasks()
+            self.getAdmin()
+            }
+        }
+    }
+    
+    func getAdmin() {
+        let adminRef = currentOrg!["admin"] as! CKReference
+        publicDatabase.fetchRecordWithID(adminRef.recordID) { (adminRecord, error) -> Void in
+            if error != nil {
+                print("error getting admin: \(error)")
+            } else {
+                currentAdmin = adminRecord
             }
         }
     }
@@ -60,8 +71,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     print(error)
                 } else {
                     if task != nil {
+//--------------------->create arrays by status for the different tabs
                         self.taskArray.append(task!)
-                        print("appended task: \(task)")
                     }
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -72,11 +83,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: IBActions
-    @IBAction func menuButtonTap(sender: AnyObject) {
-    }
-    
-    @IBAction func createTaskButtonTap(sender: AnyObject) {
-    }
     
     //MARK: Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -94,8 +100,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     //MARK: Segues
     @IBAction func unwindFromTaskCreate (segue: UIStoryboardSegue) {
-        
-        
     }
     
 }

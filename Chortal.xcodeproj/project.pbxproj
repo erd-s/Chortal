@@ -11,7 +11,6 @@
 		135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */; };
 		9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */; };
 		9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */; };
-		9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413A1C73817E007A16D3 /* LoginViewController.swift */; };
 		9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */; };
 		9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */; };
 		9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */; };
@@ -20,7 +19,6 @@
 		9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */; };
 		9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */; };
 		9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */; };
-		9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */; };
 		9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */; };
 		9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5FC2681C737B8B005976FB /* AppDelegate.swift */; };
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
@@ -29,6 +27,7 @@
 		9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */; };
 		9BA89FD51C7A76D500721A3D /* MemberSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */; };
 		9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */; };
+		9BBBC7351C7D5AAB006347C0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */; };
 		9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */; };
 		9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD82BC1C77825B005A3967 /* Constants.swift */; };
 		A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */; };
@@ -40,7 +39,6 @@
 		135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectViewController.swift; sourceTree = "<group>"; };
 		9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingsViewController.swift; sourceTree = "<group>"; };
 		9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewController.swift; sourceTree = "<group>"; };
-		9B3E413A1C73817E007A16D3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHomeViewController.swift; sourceTree = "<group>"; };
 		9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOrganizationViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +47,6 @@
 		9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueIDViewController.swift; sourceTree = "<group>"; };
 		9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignUIDViewController.swift; sourceTree = "<group>"; };
-		9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudKitAccess.swift; path = ../CloudKitAccess.swift; sourceTree = "<group>"; };
 		9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCamCollectionViewCell.swift; path = ../CustomCamCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B5FC2651C737B8B005976FB /* Chortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5FC2681C737B8B005976FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +59,7 @@
 		9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberSidebarTableViewController.swift; path = ../MemberSidebarTableViewController.swift; sourceTree = "<group>"; };
 		9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminSidebarTableViewController.swift; path = ../AdminSidebarTableViewController.swift; sourceTree = "<group>"; };
+		9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeTaskViewController.swift; sourceTree = "<group>"; };
 		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 		9BFD82BC1C77825B005A3967 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */,
 				9B3E414D1C73A073007A16D3 /* AssignUIDViewController.swift */,
 				9B3E41411C738295007A16D3 /* CreateOrganizationViewController.swift */,
-				9B3E413A1C73817E007A16D3 /* LoginViewController.swift */,
 				9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */,
 				135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */,
 				9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */,
@@ -106,9 +103,9 @@
 		9B3E41551C73EA96007A16D3 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */,
 				9BFD82BC1C77825B005A3967 /* Constants.swift */,
 				9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */,
-				9B3E41511C73C673007A16D3 /* CloudKitAccess.swift */,
 				9BF5DC341C74D257006C82AC /* playground.playground */,
 			);
 			name = "Custom Classes";
@@ -235,7 +232,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */,
-				9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
 				A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */,
@@ -245,7 +241,6 @@
 				9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */,
 				9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
-				9B3E41521C73C673007A16D3 /* CloudKitAccess.swift in Sources */,
 				9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */,
 				9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
@@ -253,6 +248,7 @@
 				9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
 				9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */,
+				9BBBC7351C7D5AAB006347C0 /* UIViewController+Extension.swift in Sources */,
 				9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */,
 				9B3E41461C7391D3007A16D3 /* WelcomeViewController.swift in Sources */,
 			);

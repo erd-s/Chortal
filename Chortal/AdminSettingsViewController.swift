@@ -36,7 +36,7 @@ class AdminSettingsViewController: UIViewController {
         
         nameTextField.text = userDefaults.stringForKey("adminName")!
         organizationNameTextField.text = currentOrg!["name"] as? String
-        inviteCodeLabel.text = orgID
+        inviteCodeLabel.text = orgUID
         
         if userDefaults.boolForKey("push_taskCompleted")    { taskCompletedSwitch.on = true
                                                      } else { taskCompletedSwitch.on = false }
@@ -80,8 +80,8 @@ class AdminSettingsViewController: UIViewController {
             publicDatabase.saveRecord(currentOrg!, completionHandler: { (currentOrg, error) -> Void in
                 if error != nil {
                     print("error saving organization name: \(error)")
+//----------------->sometimes has an error saving the organization
                 } else {
-                    
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             self.performSegueWithIdentifier("saveAdminSettingsSegue", sender: self)
@@ -98,7 +98,7 @@ class AdminSettingsViewController: UIViewController {
 
     @IBAction func copyInviteCode(sender: AnyObject) {
         let pasteboard = UIPasteboard.generalPasteboard()
-        pasteboard.string = "\(orgID!)."
+        pasteboard.string = "\(orgUID!)."
         inviteCodeLabel.text = "Copied!"
     }
     

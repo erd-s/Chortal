@@ -10,12 +10,12 @@ import Foundation
 import CloudKit
 
 
-let cka = CloudKitAccess()
 let userDefaults = NSUserDefaults.standardUserDefaults()
 let container = CKContainer.defaultContainer()
 let publicDatabase = container.publicCloudDatabase
-let orgID = userDefaults.stringForKey("currentOrgUID")
+let orgUID = userDefaults.stringForKey("currentOrgUID")
 let memberName = userDefaults.stringForKey("currentUserName")
-var currentUser: CKRecord?
+var currentMember: CKRecord?
 var currentOrg: CKRecord?
 var currentTask: CKRecord?
+var currentAdmin: CKRecord?

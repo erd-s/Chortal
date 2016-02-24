@@ -11,10 +11,9 @@ import CloudKit
 
 class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
-    var record: CKRecord?
+    var orgRecordToJoin: CKRecord?
     
     //MARK: Outlets
-    
     @IBOutlet weak var uidTextField: UITextField!
     
     
@@ -39,32 +38,23 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         loadingAlert("Joining Group...", viewController: self)
         
-        let cka = CloudKitAccess.init()
-        cka.publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
+        publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
             if error != nil {
-                print("Error: \(error?.description)")
-                
+                print("error getting organization: \(error)")
             } else {
                 if results != nil {
                     if (results!.count > 0) {
-                        let record = results![0]
-                        print(record.valueForKey("name"))
-                        self.record = record
-                        print(record.valueForKey("uid"))
+                        self.orgRecordToJoin = results![0]
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             self.dismissViewControllerAnimated(true, completion: { () -> Void in
                                 self.performSegueWithIdentifier("enterNameSegue", sender: self)
                             })
                         }
-                        
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                let alert = UIAlertController(title: "Error", message: "Invalid invite code - please try again.", preferredStyle: .Alert)
-                                let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
-                                alert.addAction(okay)
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                self.errorAlert("Error", message: "Invite code invalid, please try again.")
                             })
                         }
                     }
@@ -82,7 +72,7 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "enterNameSegue" {
             let dvc = segue.destinationViewController as! WelcomeViewController
-            dvc.orgRecord = record
+            dvc.orgRecord = orgRecordToJoin
         }
     }
 }

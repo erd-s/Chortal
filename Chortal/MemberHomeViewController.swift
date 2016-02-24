@@ -10,10 +10,11 @@ import UIKit
 import CloudKit
 
 class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, UITabBarDelegate, ClaimTaskDelegate{
+    
     //MARK: Properties
     var unclaimedArray: [CKRecord]?
     var inProgressArray: [CKRecord]?
-    var completedArray: [CKRecord]?
+    var pendingArray: [CKRecord]?
     var taskArray = [CKRecord]()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -21,7 +22,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
-   
+    
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -35,7 +36,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items!.first! as UITabBarItem
-        print("VDL TabBarItem: \(tabBar.selectedItem!.tag)")
         title = userDefaults.valueForKey("currentOrgName") as? String
         getOrganization()
         
@@ -46,19 +46,11 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         taskTableView.addSubview(refreshControl)
-        
-//        refreshControl = UIRefreshControl()
-//        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-//        refreshControl?.addTarget(taskTableView, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-        
-
-        
     }
     
     override func viewWillAppear(animated: Bool) {
-        //   tabBar.selectedItem?.tag = 0
         if currentTask != nil {
-            if currentTask!.valueForKey("inProgress") as! String == "false" && currentTask?.valueForKey("completed") as! String == "false" {
+            if currentTask!.valueForKey("status") as? String == "unclaimed" {
                 if inProgressArray != nil {
                     for task in inProgressArray! {
                         if task == currentTask {
@@ -86,11 +78,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getOrganization() {
-        let predicate = NSPredicate(format: "uid == %@", orgID!)
+        let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
-        print("query: \(query)")
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
-            print("performing query, organizations: \(organizations![0]["name"])")
             currentOrg = organizations![0] as CKRecord
             self.getTasks()
             self.getCurrentMember()
@@ -99,45 +89,24 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func getTasks() {
         inProgressArray = [CKRecord]()
-        completedArray = [CKRecord]()
+        pendingArray = [CKRecord]()
         unclaimedArray = [CKRecord]()
         
         let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
-                    print(error)
+                    print("error fetching tasks: \(error)")
                 } else {
-                    //self.taskArray.append(task!)
-                    if task!.valueForKey("inProgress") as? String == "true" {
+                    if task!.valueForKey("status") as? String == "inProgress" {
                         self.inProgressArray?.append(task!)
-                        print("claimed: \(task?.valueForKey("inProgress"))")
-                        print("claimed: \(task?.valueForKey("completed"))")
+                    } else if task!.valueForKey("status") as? String == "pending" {
+                        self.pendingArray?.append(task!)
                     } else {
-                        if task!.valueForKey("completed") as? String == "true" {
-                            self.completedArray?.append(task!)
-                            print("completed: \(task?.valueForKey("inProgress"))")
-                            print("completed: \(task?.valueForKey("completed"))")
-                        } else {
-                            self.unclaimedArray?.append(task!)
-                            print("unclaimed: \(task?.valueForKey("inProgress"))")
-                            print("unclaimed: \(task?.valueForKey("completed"))")
-                            print("uncliamed: \(self.unclaimedArray?.count)")
-                        }
+                        self.unclaimedArray?.append(task!)
                     }
-                    
-                    
-                    print("got tasks")
                 }
-                
-                if self.tabBar.selectedItem!.tag == 1 {
-                    self.taskArray = self.unclaimedArray!
-                } else if self.tabBar.selectedItem!.tag == 2 {
-                    self.taskArray = self.inProgressArray!
-                } else {
-                    self.taskArray = self.completedArray!
-                }
-                
+                print("got tasks")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.taskTableView.reloadData()
                 })
@@ -146,54 +115,39 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getCurrentMember() {
-        loadingAlert("Loading \(userDefaults.valueForKey("currentUserName")!)", viewController: self)
+        loadingAlert("Loading tasks...", viewController: self)
         for memberRef in currentOrg!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
-                    
-                    currentUser = memberRecord
-                    self.fetchTask()
-                    
+                    currentMember = memberRecord
+                    self.getCurrentTaskForMember()
                     print("current user is set")
                     self.dismissViewControllerAnimated(true, completion: nil)
-                    //add spinner stuff & error handling
                 }
             })
         }
     }
-    func fetchTask() {
-        func fetchRecord () {
-            let taskRef = currentUser?.valueForKey("current_tasks") as! [CKReference]
-            publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
-                if error != nil {
-                    print("Error: \(error?.description)")
-                } else {
-                    if fetchedRecord != nil {
-                        currentTask = fetchedRecord
-                    }
+    
+    func getCurrentTaskForMember() {
+//        need to sort by metadata: modification date
+        
+        let taskRef = currentMember?.valueForKey("current_tasks") as! [CKReference]
+        publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
+            if error != nil {
+                print("Error: \(error?.description)")
+            } else {
+                if fetchedRecord != nil {
+                    currentTask = fetchedRecord
                 }
             }
         }
     }
-    
     
     //MARK: IBActions
     @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
     }
     
     //MARK: Delegate Functions
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
-        if tabBar.selectedItem  == tabBar.items!.first! as UITabBarItem {
-            taskArray = unclaimedArray!
-        }
-        let task = taskArray[indexPath.row]
-        cell.textLabel?.text = task.valueForKey("name") as? String
-        cell.detailTextLabel?.text = task.valueForKey("description") as? String
-        
-        return cell
-    }
-    
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         switch item.tag {
             
@@ -208,7 +162,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             break
             
         case 3:
-            taskArray = completedArray!
+            taskArray = pendingArray!
             taskTableView.reloadData()
             break
             
@@ -219,13 +173,23 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return taskArray.count
+    }
     
-    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
+
+        let task = taskArray[indexPath.row]
+        cell.textLabel?.text = task.valueForKey("name") as? String
+        cell.detailTextLabel?.text = task.valueForKey("description") as? String
+        
+        return cell
+    }
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let selIndexPath = tableView.indexPathForSelectedRow {
-            
-            let selectedCellSourceView = tableView.cellForRowAtIndexPath(selIndexPath)
-            let selectedCellSourceRect = tableView.cellForRowAtIndexPath(selIndexPath)!.bounds
+            let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
+            let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
             
             let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
             popOver.delegate = self
@@ -243,18 +207,10 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             
             popOver.preferredContentSize = CGSizeMake(320, 320)
             self.presentViewController(popOver, animated: true, completion: nil)
-            
-        }
-        
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
-    }
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskArray.count
     }
     
     func claimTaskPressed(claimedTask: CKRecord?) {
@@ -264,9 +220,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         unclaimedArray?.removeAtIndex(index!)
         inProgressArray?.append(claimedTask!)
     }
-    
-    
-    
     
     //MARK: Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -280,6 +233,5 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
-        
     }
 }

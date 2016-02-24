@@ -11,10 +11,7 @@ import CloudKit
 
 protocol ClaimTaskDelegate {
     func claimTaskPressed (claimedTask: CKRecord?)
-    
-    
 }
-
 
 class TakeTaskViewController: UIViewController {
     //MARK: Properties
@@ -38,7 +35,7 @@ class TakeTaskViewController: UIViewController {
         
         dueDate = task?["due"] as? NSDate
         
-        if task?["photo_required"] as? String == "yes" {
+        if task?["photo_required"] as? String == "true" {
             photoRequiredYesOrNo = "are required."
         } else {
             photoRequiredYesOrNo = "are not required"
@@ -52,7 +49,6 @@ class TakeTaskViewController: UIViewController {
         if task!["member"] != nil {
             takeTaskButton.enabled = false
             getTaskOwner()
-            //taskMemberLabel.text = "\(task!["member"] as! CKReference)"
         } else {
             self.taskMemberLabel.text = "Claimed By: No One!"
         }
@@ -90,20 +86,20 @@ class TakeTaskViewController: UIViewController {
     func setReferences() {
         let taskRef = CKReference(record: task!, action: .None)
         
-        if currentUser?.valueForKey("current_tasks") != nil {
-            let currentTasks = currentUser?.valueForKey("current_tasks")
+        if currentMember?.valueForKey("current_tasks") != nil {
+            let currentTasks = currentMember?.valueForKey("current_tasks")
             currentTasks?.insertObject(taskRef, atIndex: 0)
-            currentUser?.setValue(currentTasks, forKey: "current_tasks")
+            currentMember?.setValue(currentTasks, forKey: "current_tasks")
             
         } else {
             let currentTasks = [taskRef]
-            currentUser?.setValue(currentTasks, forKey: "current_tasks")
+            currentMember?.setValue(currentTasks, forKey: "current_tasks")
         }
         
-        let memberRef = CKReference(record: currentUser!, action: .None)
+        let memberRef = CKReference(record: currentMember!, action: .None)
         task?.setValue(memberRef, forKey: "member")
         task?.setValue("true", forKey: "inProgress")
-        saveTaskAndMember([task!, currentUser!])
+        saveTaskAndMember([task!, currentMember!])
     }
     
     func saveTaskAndMember(recordsToSave: [CKRecord]) {

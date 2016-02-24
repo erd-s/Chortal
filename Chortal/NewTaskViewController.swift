@@ -16,7 +16,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     var newTask: CKRecord!
     var taskToOrgRef: CKReference!
     var orgToTaskRef: CKReference!
-    var currentOrganization: CKRecord!
     
     //MARK: Outlets
     @IBOutlet weak var taskNameTextField: UITextField!
@@ -42,65 +41,32 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     func createNewTask() {
         newTask = CKRecord(recordType: "Task")
         newTask.setObject(datePicker.date, forKey: "due")
-        if requirePhotoSwitch.selected {
-            newTask.setObject(String("yes"), forKey: "photo_required")
-        }
         newTask.setObject(taskDescriptionTextField.text, forKey: "description")
         newTask.setObject(taskNameTextField.text, forKey: "name")
         newTask.setObject(incentiveTextField.text, forKey: "incentive")
-        if (requirePhotoSwitch != nil) {
+        if requirePhotoSwitch.on {
             newTask.setObject("true", forKey: "photo_required")
         } else {
             newTask.setObject("false", forKey: "photo_required")
         }
     }
-    
-    func fetchRecordID() {
-        container.fetchUserRecordIDWithCompletionHandler { (record, error) -> Void in
-            if error != nil {
-                print(error)
-            } else {
-                self.adminRecordID = record
-                let adminRef = CKReference.init(recordID: self.adminRecordID, action: .None)
-                self.queryDatabaseForOrganization(adminRef)
-            }
-        }
-    }
-    
-    func queryDatabaseForOrganization(adminRef: CKReference) {
-        let predicate = NSPredicate(format: "uid == %@", orgID!)
-        let query = CKQuery(recordType: "Organization", predicate: predicate)
-        publicDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records: [CKRecord]?, error) -> Void in
-            if error != nil {
-                print(error)
-            } else {
-                self.currentOrganization = records![0]
-                self.orgToTaskRef = CKReference.init(recordID: self.currentOrganization.recordID, action: .None)
-                self.taskToOrgRef = CKReference(recordID: self.newTask.recordID, action: .None)
-                self.assignReferences()
-            }
-        })
-    }
-    
     func assignReferences() {
+        orgToTaskRef = CKReference.init(recordID: currentOrg!.recordID, action: .None)
+        taskToOrgRef = CKReference(recordID: newTask.recordID, action: .None)
+
         let arrayOfTaskRefs = NSMutableArray(object: taskToOrgRef)
-        print("arrayoftaskrefs initializes with object: \(taskToOrgRef)")
         
-        if currentOrganization.valueForKey("tasks") != nil {
-            arrayOfTaskRefs.addObjectsFromArray(currentOrganization.valueForKey("tasks") as! [AnyObject])
-            currentOrganization.setObject(arrayOfTaskRefs, forKey: "tasks")
-            print("current tasks= \(arrayOfTaskRefs) including: \(taskToOrgRef)")
+        if currentOrg!.valueForKey("tasks") != nil {
+            arrayOfTaskRefs.addObjectsFromArray(currentOrg!.valueForKey("tasks") as! [AnyObject])
+            currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
         } else {
-            currentOrganization.setObject(arrayOfTaskRefs, forKey: "tasks")
-            print("only added new task: \(taskToOrgRef)")
+            currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
         }
+        
         newTask.setObject(orgToTaskRef, forKey: "organization")
-        newTask.setValue("false", forKey: "inProgress")
-        newTask.setValue("false", forKey: "completed")
-        print(newTask.valueForKey("inProgress"))
-        print(newTask.valueForKey("completed"))
-            
-        saveTaskAndOrganization([newTask, currentOrganization])
+        newTask.setValue("unassigned", forKey: "status")
+        
+        saveTaskAndOrganization([newTask, currentOrg!])
     }
     func saveTaskAndOrganization(records: [CKRecord]) {
         let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
@@ -108,11 +74,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 print(error)
             } else {
-                print("saved records")
-                
+                print("saved task")
                 dispatch_async(dispatch_get_main_queue()) {
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        //   self.performSegueWithIdentifier("createdTaskSegue", sender: self)
                         self.performSegueWithIdentifier("unwindFromTaskCreate", sender: self)
                     })
                 }
@@ -126,7 +90,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         if taskNameTextField.text?.characters.count > 0 {
             loadingAlert("Saving task...", viewController: self)
             createNewTask()
-            fetchRecordID() //on completetion --> queries db --> assigns refs --> save records --> segue
         } else {
             let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
             let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
