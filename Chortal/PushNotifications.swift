@@ -22,7 +22,6 @@ func setAdminPushNotifications() {
     pushNotificationMemberJoined()
     pushNotifcationTaskTaken()
     
-    
     let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: adminSubscriptionsArray, subscriptionIDsToDelete: nil)
     publicDatabase.addOperation(modifySubscriptionsOperation)
 }
@@ -45,6 +44,12 @@ func pushNotificationTaskApproved(){
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myTaskPredicate, myOrgPredicate, myFinishedTaskPredicate])
     
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
+    
+    let notification = CKNotificationInfo()
+    notification.shouldSendContentAvailable = true
+    notification.alertBody = "Your task has been approved."
+    subscription.notificationInfo = notification
+    
     memberSubscriptionsArray.append(subscription)
 }
 
@@ -55,6 +60,12 @@ func pushNotificationTaskRejected() {
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myTaskPredicate, myOrgPredicate, myFinishedTaskPredicate])
     
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
+    
+    let notification = CKNotificationInfo()
+    notification.shouldSendContentAvailable = true
+    notification.alertBody = "Your task has been rejected. See comments."
+    subscription.notificationInfo = notification
+    
     memberSubscriptionsArray.append(subscription)
 }
 
@@ -64,6 +75,12 @@ func pushNotificationNewTaskAdded() {
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskStatusPredicate])
     
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
+    
+    let notification = CKNotificationInfo()
+    notification.shouldSendContentAvailable = true
+    notification.alertBody = "A task has been added to your organization."
+    subscription.notificationInfo = notification
+    
     memberSubscriptionsArray.append(subscription)
 }
 
@@ -76,12 +93,25 @@ func pushNotificationTaskAssignedToUser() {
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskAssignedPredicate, adminAssignedPredicate, taskStatusPredicate])
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
+    
+    let notification = CKNotificationInfo()
+    notification.shouldSendContentAvailable = true
+    notification.alertBody = "You have been assigned a task."
+    subscription.notificationInfo = notification
+    
+
     memberSubscriptionsArray.append(subscription)
 }
 
 func pushNotificationMemberJoined() {
     let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
     let subscription = CKSubscription(recordType: "Member", predicate: myOrgPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
+    
+    let notification = CKNotificationInfo()
+    notification.shouldSendContentAvailable = true
+    notification.alertBody = "A member has joined your organization."
+    subscription.notificationInfo = notification
+    
     adminSubscriptionsArray.append(subscription)
 }
 
@@ -92,6 +122,12 @@ func pushNotifcationTaskTaken() {
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskStatusPredicate, memberAssignedPredicate])
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
+    
+    let notification = CKNotificationInfo()
+    notification.shouldSendContentAvailable = true
+    notification.alertBody = "A task you requested has been taken."
+    subscription.notificationInfo = notification
+
     adminSubscriptionsArray.append(subscription)
 }
 
@@ -101,6 +137,12 @@ func pushNotificationTaskCompleted() {
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskStatusPredicate])
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
+    
+    let notification = CKNotificationInfo()
+    notification.shouldSendContentAvailable = true
+    notification.alertBody = "A task has been sent to you for approval."
+    subscription.notificationInfo = notification
+    
     adminSubscriptionsArray.append(subscription)
 }
 
