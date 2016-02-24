@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class WelcomeViewController: UIViewController, UITextFieldDelegate {
+class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: Properties
     var orgRecord: CKRecord?
@@ -25,6 +25,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var multipleUsersSwitch: UISwitch!
     @IBOutlet weak var multiUserTextView: UITextView!
     
+    @IBOutlet weak var imageView: UIImageView!
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,5 +129,24 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             userDefaults.setValue(orgRecord?.valueForKey("name"), forKey: "currentOrgName")
         }
     }
+    
+    @IBAction func addButtonTapped(sender: AnyObject) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceType.Camera
+        self.presentViewController(picker, animated: true, completion: nil)
+
+    }
+    
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+//        let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
+//        images.append(chosenImage)
+//        picker.dismissViewControllerAnimated(true, completion: nil)
+//        collectionView.reloadData()
+//    }
+
+    
+    
     
 }
