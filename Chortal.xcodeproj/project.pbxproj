@@ -31,6 +31,7 @@
 		9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */; };
 		9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */; };
 		9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD82BC1C77825B005A3967 /* Constants.swift */; };
+		A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeTaskViewController.swift; sourceTree = "<group>"; };
 		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 		9BFD82BC1C77825B005A3967 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationOverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */,
 				9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */,
 				9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */,
+				A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */,
 				9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */,
 				9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
@@ -235,6 +238,7 @@
 				9B3E413B1C73817E007A16D3 /* LoginViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
+				A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */,
 				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
 				9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */,
 				9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */,

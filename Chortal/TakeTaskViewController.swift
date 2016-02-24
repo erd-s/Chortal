@@ -20,9 +20,9 @@ class TakeTaskViewController: UIViewController {
     //MARK: Properties
     var task: CKRecord?
     var photoRequiredYesOrNo: String?
-    var organization: CKRecord?
     var dueDate: NSDate?
     var delegate: ClaimTaskDelegate?
+    var organization: CKRecord?
     
     //MARK: Outlets
     @IBOutlet weak var dueLabel: UILabel!
