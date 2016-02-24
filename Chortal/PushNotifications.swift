@@ -11,7 +11,7 @@ import CloudKit
 
 
 //  Find the best time to subscribe to these push notifications (one time only, then update)
-//  They may not need to be based on userDefaults if they are called and then deleted when 
+//  They may not need to be based on userDefaults if they are called and then deleted when
 //  a user unsubscribes.
 
 func pushNotificationTaskApprovedSet() {
@@ -84,7 +84,19 @@ func pushNotificationTaskAssignedToUser() {
             print("subscription for new task successfully set")
         }
     })
-    }
+}
+
+func pushNotificationMemberJoined() {
+    let myOrgPredicate = NSPredicate(format: "organization == %@", currentOrg!)
+    let subscription = CKSubscription(recordType: "Member", predicate: myOrgPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
+    publicDatabase.saveSubscription(subscription, completionHandler: { (newSubscription, error) -> Void in
+        if error != nil {
+            print("error saving new member subscription: \(error)")
+        } else {
+            print("subscription for new task successfully set")
+        }
+    })
+}
 
 
 
