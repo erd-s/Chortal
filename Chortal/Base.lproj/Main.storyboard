@@ -1094,7 +1094,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="551" id="4eg-vp-BgR"/>
+                                    <constraint firstAttribute="height" constant="551" id="4eg-vp-BgR">
+                                        <variation key="widthClass=compact" constant="487"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" constant="400" id="Ht1-YD-VWK"/>
                                 </constraints>
                                 <prototypes>
@@ -1150,9 +1152,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LGs-Ef-nlo" firstAttribute="leading" secondItem="oQ8-uF-Jox" secondAttribute="leadingMargin" constant="-20" id="0tL-KC-hkW"/>
-                            <constraint firstItem="NsM-RI-JO2" firstAttribute="top" secondItem="oQ8-uF-Jox" secondAttribute="top" id="3p7-6d-LZp"/>
+                            <constraint firstItem="NsM-RI-JO2" firstAttribute="top" secondItem="oQ8-uF-Jox" secondAttribute="top" id="3p7-6d-LZp">
+                                <variation key="widthClass=compact" constant="64"/>
+                            </constraint>
                             <constraint firstItem="NsM-RI-JO2" firstAttribute="centerY" secondItem="oQ8-uF-Jox" secondAttribute="centerY" id="4NT-0d-xL8">
-                                <variation key="widthClass=compact" constant="-24.5"/>
+                                <variation key="widthClass=compact" constant="7.5"/>
                             </constraint>
                             <constraint firstItem="LGs-Ef-nlo" firstAttribute="top" secondItem="NsM-RI-JO2" secondAttribute="bottom" id="5kb-RW-s7j"/>
                             <constraint firstAttribute="trailing" secondItem="LGs-Ef-nlo" secondAttribute="trailing" id="8HX-gy-bUu"/>
@@ -1224,13 +1228,23 @@
                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBa-oZ-ng2">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="0fg-8u-1Rj"/>
+                                </constraints>
                                 <items>
                                     <tabBarItem title="Untaken" id="GXa-uD-FAf"/>
                                     <tabBarItem title="In Progress" id="ZnQ-Oj-vra"/>
                                     <tabBarItem title="Complete" id="VIn-Na-bNJ"/>
                                 </items>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0fg-8u-1Rj"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="0fg-8u-1Rj"/>
+                                    </mask>
                                 </variation>
                             </tabBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ne4-M0-AOE">
@@ -1253,6 +1267,37 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ne4-M0-AOE" firstAttribute="leading" secondItem="lX5-8P-r7O" secondAttribute="leadingMargin" constant="-20" id="A8F-Nk-Jjr"/>
+                            <constraint firstItem="kGn-4d-bE8" firstAttribute="top" secondItem="yBa-oZ-ng2" secondAttribute="bottom" id="BjO-ti-fjb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ne4-M0-AOE" secondAttribute="trailing" constant="-20" id="d67-JO-Pm1"/>
+                            <constraint firstItem="Ne4-M0-AOE" firstAttribute="top" secondItem="UJR-2D-c5r" secondAttribute="bottom" id="eLY-ZK-PF2"/>
+                            <constraint firstItem="yBa-oZ-ng2" firstAttribute="leading" secondItem="lX5-8P-r7O" secondAttribute="leadingMargin" constant="-20" id="geh-fn-AOy"/>
+                            <constraint firstItem="yBa-oZ-ng2" firstAttribute="top" secondItem="Ne4-M0-AOE" secondAttribute="bottom" id="k4y-CT-PN4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yBa-oZ-ng2" secondAttribute="trailing" constant="-20" id="ydv-Gc-Eip"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="A8F-Nk-Jjr"/>
+                                <exclude reference="d67-JO-Pm1"/>
+                                <exclude reference="eLY-ZK-PF2"/>
+                                <exclude reference="geh-fn-AOy"/>
+                                <exclude reference="k4y-CT-PN4"/>
+                                <exclude reference="ydv-Gc-Eip"/>
+                                <exclude reference="BjO-ti-fjb"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="A8F-Nk-Jjr"/>
+                                <include reference="d67-JO-Pm1"/>
+                                <include reference="eLY-ZK-PF2"/>
+                                <include reference="geh-fn-AOy"/>
+                                <include reference="k4y-CT-PN4"/>
+                                <include reference="ydv-Gc-Eip"/>
+                                <include reference="BjO-ti-fjb"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="yBy-dX-FCQ">
                         <barButtonItem key="leftBarButtonItem" title="☰" style="done" id="0Mo-9i-LVg"/>
@@ -3726,7 +3771,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ZLP-fD-WgM"/>
-        <segue reference="QNz-fF-lyI"/>
+        <segue reference="7Kh-Yt-WH9"/>
         <segue reference="kyT-jB-3iZ"/>
     </inferredMetricsTieBreakers>
 </document>

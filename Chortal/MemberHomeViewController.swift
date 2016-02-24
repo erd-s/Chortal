@@ -16,7 +16,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     var inProgressArray: [CKRecord]?
     var pendingArray: [CKRecord]?
     var taskArray = [CKRecord]()
-    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -50,7 +49,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(animated: Bool) {
         if currentTask != nil {
-            if currentTask!.valueForKey("status") as? String == "unclaimed" {
+            if currentTask!.valueForKey("status") as? String == "unassigned" {
                 if inProgressArray != nil {
                     for task in inProgressArray! {
                         if task == currentTask {
@@ -73,7 +72,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: Custom Functions
     
     func refresh (sender: AnyObject?) {
-        taskTableView.reloadData()
+        getTasks()
         refreshControl.endRefreshing()
     }
     
@@ -108,6 +107,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
                 print("got tasks")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tabBarItemSwitch()
                     self.taskTableView.reloadData()
                 })
             })
@@ -129,27 +129,23 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getCurrentTaskForMember() {
-//        need to sort by metadata: modification date
-        
-        let taskRef = currentMember?.valueForKey("current_tasks") as! [CKReference]
-        publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
-            if error != nil {
-                print("Error: \(error?.description)")
-            } else {
-                if fetchedRecord != nil {
-                    currentTask = fetchedRecord
+        //        need to sort by metadata: modification date
+        if (currentMember!["current_tasks"] as! [CKReference]).count > 0 {
+            let taskRef = currentMember?["current_tasks"] as! [CKReference]
+            publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
+                if error != nil {
+                    print("Error: \(error?.description)")
+                } else {
+                    if fetchedRecord != nil {
+                        currentTask = fetchedRecord
+                    }
                 }
             }
         }
     }
     
-    //MARK: IBActions
-    @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
-    }
-    
-    //MARK: Delegate Functions
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        switch item.tag {
+    func tabBarItemSwitch(){
+        switch tabBar.selectedItem!.tag {
             
         case 1:
             taskArray = unclaimedArray!
@@ -173,40 +169,49 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    //MARK: IBActions
+    @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
+    }
+    
+    //MARK: Delegate Functions
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        tabBarItemSwitch()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
-
+        
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.valueForKey("name") as? String
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
         
         return cell
     }
-
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
-            let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
-            
-            let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
-            popOver.delegate = self
-            popOver.task = taskArray[indexPath.row]
-            popOver.organization = currentOrg
-            
-            popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
-            
-            popOver.popoverPresentationController?.delegate = self
-            popOver.popoverPresentationController?.sourceView = selectedCellSourceView
-            popOver.popoverPresentationController?.sourceRect = selectedCellSourceRect
-            
-            popOver.popoverPresentationController?.permittedArrowDirections = .Any
-            
-            popOver.preferredContentSize = CGSizeMake(320, 320)
-            self.presentViewController(popOver, animated: true, completion: nil)
+        let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
+        let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
+        
+        let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
+        popOver.delegate = self
+        popOver.task = taskArray[indexPath.row]
+        popOver.organization = currentOrg
+        
+        popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
+        popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
+        
+        popOver.popoverPresentationController?.delegate = self
+        popOver.popoverPresentationController?.sourceView = selectedCellSourceView
+        popOver.popoverPresentationController?.sourceRect = selectedCellSourceRect
+        
+        popOver.popoverPresentationController?.permittedArrowDirections = .Any
+        
+        popOver.preferredContentSize = CGSizeMake(320, 320)
+        self.presentViewController(popOver, animated: true, completion: nil)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -219,6 +224,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         taskArray.removeAtIndex(taskArrayIndex!)
         unclaimedArray?.removeAtIndex(index!)
         inProgressArray?.append(claimedTask!)
+        taskTableView.reloadData()
     }
     
     //MARK: Segues

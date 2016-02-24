@@ -39,7 +39,7 @@ class AssignUIDViewController: UIViewController {
     
     @IBAction func onCopyButtonTap(sender: UIButton) {
         let pasteboard = UIPasteboard.generalPasteboard()
-        pasteboard.string = "\(uidLabel!.text!)."
+        pasteboard.string = "\(uidLabel!.text!)"
         uidLabel.text = "Copied!"
         uidLabel.textColor = .grayColor()
     }

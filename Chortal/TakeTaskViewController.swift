@@ -83,7 +83,7 @@ class TakeTaskViewController: UIViewController {
     func setReferences() {
         let taskRef = CKReference(record: task!, action: .None)
         
-        if currentMember?.valueForKey("current_tasks") != nil {
+        if (currentMember?.valueForKey("current_tasks") as! [CKReference]).count > 0 {
             let currentTasks = currentMember?.valueForKey("current_tasks")
             currentTasks?.insertObject(taskRef, atIndex: 0)
             currentMember?.setValue(currentTasks, forKey: "current_tasks")

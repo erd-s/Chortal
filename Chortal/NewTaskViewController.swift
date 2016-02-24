@@ -49,6 +49,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             newTask.setObject("false", forKey: "photo_required")
         }
+        assignReferences()
     }
     func assignReferences() {
         orgToTaskRef = CKReference.init(recordID: currentOrg!.recordID, action: .None)
@@ -62,12 +63,12 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
         }
-        
         newTask.setObject(orgToTaskRef, forKey: "organization")
         newTask.setValue("unassigned", forKey: "status")
         
         saveTaskAndOrganization([newTask, currentOrg!])
     }
+    
     func saveTaskAndOrganization(records: [CKRecord]) {
         let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         saveRecordsOp.modifyRecordsCompletionBlock = { saved, deleted, error in
