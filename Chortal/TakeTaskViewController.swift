@@ -70,10 +70,9 @@ class TakeTaskViewController: UIViewController {
     
     
     func presentAlertController() {
-        if currentMember!["current_tasks"] != nil {
-            if (currentMember!["current_tasks"] as! [CKReference]).count  > 0 {
+        if currentMember!["current_tasks"] != nil && (currentMember!["current_tasks"] as! [CKReference]).count  > 0 {
                 errorAlert("You already have a task!", message: "Either complete or abandon your current task before taking another.")
-            }
+            
             
         } else {
             
