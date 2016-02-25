@@ -48,8 +48,14 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                                 self.layOutDataForCompletedRecord()
                             })
                         })
-                        
                     }
+                }
+                if ref == (currentOrg!["tasks"] as! [CKReference]).last {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            self.presentNoCompletedTasksAlertController("No completed tasks.")
+                        })
+                    })
                 }
             })
         }
@@ -109,8 +115,19 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
             self.currentCompletedTask!.setValue("rejected", forKey: "status")
             self.currentCompletedTask.setValue(textField?.text, forKey: "rejection_message")
             
-            //--> send push notification
-            self.layOutDataForCompletedRecord()
+            self.loadingAlert("Task complete...", viewController: self)
+            publicDatabase.saveRecord(self.currentCompletedTask) { (currentTask, error) -> Void in
+                if error != nil {
+                    print("error marking task as completed: \(error))")
+                } else {
+                    print("sucesssfully saved task")
+                    self.layOutDataForCompletedRecord()
+                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }
+            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
@@ -126,14 +143,26 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func acceptActionTap(sender: UIButton) {
-        //--> do some stuff
-        
-        layOutDataForCompletedRecord()
+        currentCompletedTask.setValue("completed", forKey: "status")
+        loadingAlert("Task complete...", viewController: self)
+        publicDatabase.saveRecord(currentCompletedTask) { (currentTask, error) -> Void in
+            if error != nil {
+                print("error marking task as completed: \(error))")
+            } else {
+                print("sucesssfully saved task")
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.layOutDataForCompletedRecord()
+                })
+            })
+        }
     }
     
     @IBAction func skipActionTap(sender: UIButton) {
         layOutDataForCompletedRecord()
     }
+    
     //MARK: Delegate Functions
     
     //MARK: Segues
