@@ -220,6 +220,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         return .None
     }
     
+
+    
     func claimTaskPressed(claimedTask: CKRecord?) {
         let index = unclaimedArray?.indexOf(claimedTask!)
         let taskArrayIndex = taskArray.indexOf(claimedTask!)
