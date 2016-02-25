@@ -18,6 +18,9 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     var orgRef: CKReference?
     var memberArray = [] as NSMutableArray
     var seguedFromMemberSelect: Bool?
+    var imageAsset: CKAsset?
+    
+    
     
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -57,6 +60,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             
             orgRef = CKReference(recordID: orgRecord!.recordID, action: .None)
             newMember!.setValue(orgRef, forKey: "organization")
+            newMember!.setObject(imageAsset, forKey: "profile_picture")
             
             memberRef = CKReference(recordID: newMember!.recordID, action: .None)
             
@@ -65,17 +69,17 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     
     func setReferencesForOrg() {
-            if orgRecord!.mutableArrayValueForKey("members").count == 0 {
-                memberArray = [memberRef!]
-                orgRecord?.setObject(memberArray, forKey: "members")
-                modifyRecords([orgRecord!, newMember!])
-            } else {
-                memberArray =
-                    orgRecord!.mutableArrayValueForKey("members")
-                memberArray.addObject(memberRef!)
-//                orgRecord?.setObject(memberArray, forKey: "members")
-                modifyRecords([orgRecord!, newMember!])
-            }
+        if orgRecord!.mutableArrayValueForKey("members").count == 0 {
+            memberArray = [memberRef!]
+            orgRecord?.setObject(memberArray, forKey: "members")
+            modifyRecords([orgRecord!, newMember!])
+        } else {
+            memberArray =
+                orgRecord!.mutableArrayValueForKey("members")
+            memberArray.addObject(memberRef!)
+            //                orgRecord?.setObject(memberArray, forKey: "members")
+            modifyRecords([orgRecord!, newMember!])
+        }
     }
     
     func modifyRecords (records: [CKRecord]) {
@@ -136,17 +140,54 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         picker.allowsEditing = true;
         picker.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(picker, animated: true, completion: nil)
-
+        
     }
     
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//        let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
-//        images.append(chosenImage)
-//        picker.dismissViewControllerAnimated(true, completion: nil)
-//        collectionView.reloadData()
-//    }
-
+    @IBAction func getPhotoFromLibrary(sender: AnyObject) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(picker, animated: true, completion: nil)
+        
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        saveImageLocaly()
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func saveImageLocaly () {
+        let data = UIImagePNGRepresentation(imageView.image!)
+        let filename = getDocumentsDirectory().stringByAppendingPathComponent("profile_picture.png")
+        data!.writeToFile(filename, atomically: true)
+        self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
+        
+    }
     
     
     
 }
+
+
+
+
+
+
+
+    
+
