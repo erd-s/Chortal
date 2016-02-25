@@ -38,8 +38,7 @@ class MemberSidebarTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "OrgCellID" {
-//            let dvc = segue.destinationViewController as! OrganizationOverViewController
-//            dvc.navTitle.title = currentOrg
+
         }
         
     }

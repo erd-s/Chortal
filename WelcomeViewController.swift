@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class WelcomeViewController: UIViewController, UITextFieldDelegate {
+class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: Properties
     var orgRecord: CKRecord?
@@ -18,6 +18,9 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     var orgRef: CKReference?
     var memberArray = [] as NSMutableArray
     var seguedFromMemberSelect: Bool?
+    var imageAsset: CKAsset?
+    
+    
     
     //MARK: Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -25,6 +28,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var multipleUsersSwitch: UISwitch!
     @IBOutlet weak var multiUserTextView: UITextView!
     
+    @IBOutlet weak var imageView: UIImageView!
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +87,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             
             orgRef = CKReference(recordID: orgRecord!.recordID, action: .None)
             newMember!.setValue(orgRef, forKey: "organization")
+            newMember!.setObject(imageAsset, forKey: "profile_picture")
             
             memberRef = CKReference(recordID: newMember!.recordID, action: .None)
             
@@ -156,4 +161,60 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func addButtonTapped(sender: AnyObject) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceType.Camera
+        self.presentViewController(picker, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func getPhotoFromLibrary(sender: AnyObject) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(picker, animated: true, completion: nil)
+        
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        saveImageLocaly()
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func saveImageLocaly () {
+        let data = UIImagePNGRepresentation(imageView.image!)
+        let filename = getDocumentsDirectory().stringByAppendingPathComponent("profile_picture.png")
+        data!.writeToFile(filename, atomically: true)
+        self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
+        
+    }
+    
+    
+    
 }
+
+
+
+
+
+
+
+    
+
