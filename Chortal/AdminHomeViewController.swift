@@ -30,7 +30,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        loadingAlert("Loading Tasks...", viewController: self)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,13 +70,14 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getTasks() {
         let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
+        loadingAlert("Loading Tasks...", viewController: self)
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
                     print(error)
                 } else {
                     if task != nil {
-                        //--------------------->create arrays by status for the different tabs
+//--------------------->create arrays by status for the different tabs
                         self.taskArray.append(task!)
                     }
                 }
@@ -88,6 +88,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                 })
             })
+        }
+        if taskReferenceArray.count == 0 {
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
