@@ -691,8 +691,14 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="memberNameCell" destination="dtH-0L-7P7" id="21r-Ys-iXj"/>
                         <outlet property="memberNameLabel" destination="eXI-yZ-Pho" id="WOZ-Kw-ibD"/>
+                        <outlet property="myTaskCell" destination="d25-Vc-GDB" id="4iA-Lh-ZyV"/>
                         <outlet property="organizationLabel" destination="K3f-ml-ahl" id="hgI-5R-VcS"/>
+                        <outlet property="organizationOverviewCell" destination="xqM-vb-mjr" id="1r1-sk-YAF"/>
+                        <outlet property="settingsCell" destination="nGd-UA-SnH" id="MKZ-kb-nyo"/>
+                        <outlet property="weeklySummaryCell" destination="h5F-sT-gJ3" id="XrH-WD-X9b"/>
+                        <outlet property="welcomeCell" destination="f1S-88-Cqd" id="Z37-Gf-wTc"/>
                         <outlet property="welcomeMemberLabel" destination="J1s-xA-GMG" id="OE0-tV-Wk4"/>
                     </connections>
                 </tableViewController>

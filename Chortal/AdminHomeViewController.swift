@@ -30,11 +30,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        loadingAlert("Loading Tasks...", viewController: self)
     }
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
+
+        
     }
     
     //MARK: Custom Functions
@@ -69,6 +70,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getTasks() {
         let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
+        loadingAlert("Loading Tasks...", viewController: self)
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
@@ -87,6 +89,14 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 })
             })
         }
+        if taskReferenceArray.count == 0 {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
+    func modifyRecordsOperation(record: CKRecord) {
+        
+        
     }
     
     //MARK: IBActions
@@ -103,6 +113,33 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
+    }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            loadingAlert("Deleting record...", viewController: self)
+            let deleteRecordID = [taskArray[indexPath.row].recordID] as [CKRecordID]
+            
+            taskArray.removeAtIndex(indexPath.row)
+            
+            let deleteOperation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: deleteRecordID)
+            publicDatabase.addOperation(deleteOperation)
+            deleteOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
+                if error != nil {
+                    print("Error deleting record: \(error?.description)")
+                } else {
+                    print("Successfully deleted record")
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
+                        })
+                    })
+                }
+                
+                
+            }
+        }
     }
     
     //MARK: Segues
