@@ -165,7 +165,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                     let timeTaken = elapsedTime - takenDate
                     print("Time Taken to complete task:\(timeTaken)")
                     
-                    currentTask?.setValue(timeTaken, forKey: "taskCompleted")
+                    currentTask?.setValue(timeTaken, forKey: "taskCompletedTime")
                     
                     if images.count > 0 {
                         for image in images {
