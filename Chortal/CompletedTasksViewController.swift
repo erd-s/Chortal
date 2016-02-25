@@ -144,6 +144,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     //MARK: Actions
     @IBAction func rejectActionTap(sender: UIButton) {
         presentRejectionAlertController()
+        currentIndex = currentIndex + 1
     }
     
     @IBAction func acceptActionTap(sender: UIButton) {
@@ -165,6 +166,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func skipActionTap(sender: UIButton) {
         layOutDataForCompletedRecord()
+        currentIndex = currentIndex + 1
     }
     
     //MARK: Delegate Functions
