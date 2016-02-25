@@ -159,6 +159,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")
             userDefaults.setValue(orgRecord?.valueForKey("name"), forKey: "currentOrgName")
         }
+
     }
     
     @IBAction func addButtonTapped(sender: AnyObject) {
@@ -208,6 +209,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     
     
+
 }
 
 

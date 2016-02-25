@@ -49,6 +49,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             newTask.setObject("false", forKey: "photo_required")
         }
+        
+        
         assignReferences()
     }
     func assignReferences() {
