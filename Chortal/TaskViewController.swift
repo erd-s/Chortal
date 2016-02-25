@@ -157,6 +157,16 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                     currentMember?.setValue(memberPendingArray, forKey: "pending_tasks")
                     currentTask?.setValue("pending", forKey: "status")
                     
+                    let takenDate = currentTask?.valueForKey("taskTaken") as! Double
+                    
+                    let elapsedTime = NSDate.timeIntervalSinceReferenceDate()
+                    
+                    
+                    let timeTaken = elapsedTime - takenDate
+                    print("Time Taken to complete task:\(timeTaken)")
+                    
+                    currentTask?.setValue(timeTaken, forKey: "taskCompleted")
+                    
                     if images.count > 0 {
                         for image in images {
                             print(" image: \(image.description)")

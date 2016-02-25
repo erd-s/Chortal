@@ -154,6 +154,8 @@ class TakeTaskViewController: UIViewController {
         let memberRef = CKReference(record: currentMember!, action: .None)
         task?.setValue(memberRef, forKey: "member")
         task?.setValue("inProgress", forKey: "status")
+        task?.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
+        print(task?.valueForKey("taskTaken"))
         saveTaskAndMember([task!, currentMember!])
     }
     
