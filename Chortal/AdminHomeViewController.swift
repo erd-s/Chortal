@@ -30,6 +30,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        loadingAlert("Loading Tasks...", viewController: self)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,6 +83,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
+                    if taskRef as? CKReference == taskReferenceArray.lastObject as? CKReference {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 })
             })
         }

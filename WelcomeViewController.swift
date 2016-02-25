@@ -154,6 +154,5 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")
             userDefaults.setValue(orgRecord?.valueForKey("name"), forKey: "currentOrgName")
         }
-    }
-    
+}
 }
