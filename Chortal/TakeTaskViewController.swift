@@ -33,7 +33,7 @@ class TakeTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dueDate = task?["due"] as? NSDate
+        
         
         if task?["photo_required"] as? String == "true" {
             photoRequiredYesOrNo = "are required."
@@ -44,7 +44,57 @@ class TakeTaskViewController: UIViewController {
         photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo!)."
         taskDescriptionLabel.text = task!["description"] as? String
         taskNameLabel.text = task!["name"] as? String
-        dueLabel.text = String(dueDate!)
+        
+        dueDate = task?["due"] as? NSDate
+        let timeInterval = (dueDate?.timeIntervalSinceNow)! as NSTimeInterval
+        
+        if timeInterval < 0 {
+            dueLabel.textColor = UIColor.redColor()
+            dueLabel.text = "Past due!"
+            
+        } else if timeInterval < 3600 {
+            let minutesRemaining = timeInterval / 60
+            
+            if Int(minutesRemaining) == 1 {
+                dueLabel.text = "Due in \(Int(minutesRemaining)) minute!"
+            } else {
+                dueLabel.text = "Due in \(Int(minutesRemaining)) minutes!"
+            }
+            dueLabel.textColor = UIColor.orangeColor()
+            
+        } else if timeInterval < 86400 {
+            let hoursRemaining = timeInterval / 3600
+            
+            if Int(hoursRemaining) == 1 {
+                dueLabel.text = "Due in \(Int(hoursRemaining)) hour"
+            } else {
+                dueLabel.text = "Due in \(Int(hoursRemaining)) hours"
+            }
+            
+        } else if timeInterval < 1209600 {
+            let daysRemaining = timeInterval / 86400
+            
+            if Int(daysRemaining) == 1 {
+                dueLabel.text = "Due in \(Int(daysRemaining)) day"
+            } else {
+                dueLabel.text = "Due in \(Int(daysRemaining)) days"
+            }
+            
+        } else {
+            let weeksRemaining = timeInterval / 604800
+            
+            if Int(weeksRemaining) == 1 {
+                dueLabel.text = "Due in \(Int(weeksRemaining)) week"
+            } else {
+                dueLabel.text = "Due in \(Int(weeksRemaining)) weeks"
+            }
+            
+        }
+        
+        
+        
+        print("time interval: \(timeInterval) seconds")
+        
         taskMemberLabel.text = "Claimed By:"
         if task!["member"] != nil {
             takeTaskButton.enabled = false
@@ -71,7 +121,7 @@ class TakeTaskViewController: UIViewController {
     
     func presentAlertController() {
         if currentMember!["current_tasks"] != nil && (currentMember!["current_tasks"] as! [CKReference]).count  > 0 {
-                errorAlert("You already have a task!", message: "Either complete or abandon your current task before taking another.")
+            errorAlert("You already have a task!", message: "Either complete or abandon your current task before taking another.")
             
             
         } else {

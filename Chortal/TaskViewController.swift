@@ -14,6 +14,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     var images = [UIImage]()
     var memberPendingArray: [CKReference]?
     var imageAssetArray: [CKAsset]?
+    var dueDate: NSDate?
     var x: Int?
     
     //MARK: Outlets
@@ -32,6 +33,52 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
         descriptionTextView.text = currentTask?.valueForKey("description") as? String
         
+        dueDate = currentTask?["due"] as? NSDate
+        let timeInterval = (dueDate?.timeIntervalSinceNow)! as NSTimeInterval
+        
+        if timeInterval < 0 {
+            timerLabel.textColor = UIColor.redColor()
+            timerLabel.text = "Past due!"
+            
+        } else if timeInterval < 3600 {
+            let minutesRemaining = timeInterval / 60
+            
+            if Int(minutesRemaining) == 1 {
+                timerLabel.text = "Due in \(Int(minutesRemaining)) minute!"
+            } else {
+                timerLabel.text = "Due in \(Int(minutesRemaining)) minutes!"
+            }
+            timerLabel.textColor = UIColor.orangeColor()
+            
+        } else if timeInterval < 86400 {
+            let hoursRemaining = timeInterval / 3600
+            
+            if Int(hoursRemaining) == 1 {
+                timerLabel.text = "Due in \(Int(hoursRemaining)) hour"
+            } else {
+                timerLabel.text = "Due in \(Int(hoursRemaining)) hours"
+            }
+            
+        } else if timeInterval < 1209600 {
+            let daysRemaining = timeInterval / 86400
+            
+            if Int(daysRemaining) == 1 {
+                timerLabel.text = "Due in \(Int(daysRemaining)) day"
+            } else {
+                timerLabel.text = "Due in \(Int(daysRemaining)) days"
+            }
+            
+        } else {
+            let weeksRemaining = timeInterval / 604800
+            
+            if Int(weeksRemaining) == 1 {
+                timerLabel.text = "Due in \(Int(weeksRemaining)) week"
+            } else {
+                timerLabel.text = "Due in \(Int(weeksRemaining)) weeks"
+            }
+            
+        }
+
         x = 0
     }
     

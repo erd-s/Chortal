@@ -538,7 +538,6 @@
         <!--Member Sidebar-->
         <scene sceneID="Rw1-rp-cRL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="vQL-Rb-PEq" userLabel="Member Sidebar" customClass="MemberSidebarTableViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="5" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EQE-Lg-BRc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -703,6 +702,7 @@
                         <outlet property="welcomeMemberLabel" destination="J1s-xA-GMG" id="OE0-tV-Wk4"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2731.5" y="-1302"/>
         </scene>
