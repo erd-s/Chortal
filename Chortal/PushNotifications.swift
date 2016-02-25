@@ -24,7 +24,6 @@ func setAdminPushNotifications() {
     pushNotificationTaskCompleted()
     pushNotificationMemberJoined()
     pushNotificationTaskTaken()
-    pushNotificationDummyNotif()
     
     let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: adminSubscriptionsArray, subscriptionIDsToDelete: nil)
     modifySubscriptionsOperation.modifySubscriptionsCompletionBlock = { saved, deleted, error in
@@ -161,17 +160,6 @@ func pushNotificationTaskCompleted() {
     let notification = CKNotificationInfo()
 
     notification.alertBody = "A task has been sent to you for approval."
-    subscription.notificationInfo = notification
-    
-    adminSubscriptionsArray.append(subscription)
-}
-
-func pushNotificationDummyNotif() {
-    let predicate = NSPredicate(format: "%K == %@", "recordID", currentOrganizationReference)
-    let subscription = CKSubscription(recordType: "Organization", predicate: predicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
-    
-    let notification = CKNotificationInfo()
-    notification.alertBody = "You get a push notification"
     subscription.notificationInfo = notification
     
     adminSubscriptionsArray.append(subscription)

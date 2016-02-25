@@ -48,14 +48,17 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                                 self.layOutDataForCompletedRecord()
                             })
                         })
+                    } else {
+                        if ref == (currentOrg!["tasks"] as! [CKReference]).last {
+                            if taskRecord!["status"] as? String != "pending" {
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                        self.presentNoCompletedTasksAlertController("No completed tasks.")
+                                    })
+                                })
+                            }
+                        }
                     }
-                }
-                if ref == (currentOrg!["tasks"] as! [CKReference]).last {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            self.presentNoCompletedTasksAlertController("No completed tasks.")
-                        })
-                    })
                 }
             })
         }
@@ -121,10 +124,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                     print("error marking task as completed: \(error))")
                 } else {
                     print("sucesssfully saved task")
-                    self.layOutDataForCompletedRecord()
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.layOutDataForCompletedRecord()
+                    })
                 })
             }
             
