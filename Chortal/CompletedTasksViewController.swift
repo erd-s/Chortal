@@ -14,11 +14,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     var completedTaskArray = [CKRecord]()
     var currentIndex = 0
     var currentCompletedTask: CKRecord!
+    var layoutTriggeredAtLeastOnce = false
     
     //MARK: Outlets
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var incentiveLabel: UILabel!
-    @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var taskDescriptionLabel: UILabel!
     @IBOutlet weak var timeTakenLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -41,49 +41,55 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                 if error != nil {
                     print("there was an error retrieving completed tasks. \(error)")
                 } else {
-                    if taskRecord!["inProgress"] as? String == "true" && taskRecord!["completed"] as? String == "true" {
+                    if taskRecord!["status"] as? String == "pending" {
                         self.completedTaskArray.append(taskRecord!)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                self.layOutDataForCompletedRecord()
+                            })
+                        })
                         
                     }
                 }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        self.layOutDataForCompletedRecord(self.currentIndex)
-                    })
-                })
             })
         }
     }
     
-    func layOutDataForCompletedRecord(index: Int) {
-        if completedTaskArray.count != 0 {
-            currentCompletedTask = completedTaskArray[index]
+    func layOutDataForCompletedRecord() {
+        if completedTaskArray.count > currentIndex {
+            currentCompletedTask = completedTaskArray[currentIndex]
             taskNameLabel.text = currentCompletedTask["name"] as? String
             incentiveLabel.text = currentCompletedTask["incentive"] as? String
-            memberNameLabel.text = currentCompletedTask?["member_name"] as? String
             taskDescriptionLabel.text = currentCompletedTask["description"] as? String
             var x = 0
             
             for photoAsset in (currentCompletedTask["photos"] as? [CKAsset])! {
                 let photo = UIImage(data: NSData(contentsOfURL: photoAsset.fileURL)!)
-                addPhotoToScrollView(photo!, position: x)
+                addPhotoToScrollView(photo!, position: CGFloat(x))
                 x = x + 1
             }
+            layoutTriggeredAtLeastOnce = true
             currentIndex = currentIndex + 1
         } else {
-            presentNoCompletedTasksAlertController()
+            if layoutTriggeredAtLeastOnce == true {
+                presentNoCompletedTasksAlertController("No more completed tasks.")
+            }
+            presentNoCompletedTasksAlertController("No completed tasks.")
         }
     }
     
-    func addPhotoToScrollView(photo: UIImage, position: Int) {
-        let x = Int(scrollView.frame.origin.x) + (position * Int(scrollView.frame.origin.x))
-        let imageView = UIImageView(frame: CGRect(x: CGFloat(x), y: scrollView.frame.origin.y, width: scrollView.frame.width, height: scrollView.frame.height))
+    func addPhotoToScrollView(photo: UIImage, position: CGFloat) {
+        let x = scrollView.contentOffset.x + (position * scrollView.frame.width)
+        let imageView = UIImageView(frame: CGRect(x: x, y: scrollView.contentOffset.y, width: scrollView.frame.width, height: scrollView.frame.height))
         imageView.image = photo
+        imageView.layer.borderWidth = 1
+        imageView.layer.cornerRadius = 1
+        scrollView.contentSize.width = (scrollView.frame.width + (position * scrollView.frame.width))
         scrollView.addSubview(imageView)
     }
     
-    func presentNoCompletedTasksAlertController() {
-        let noTasksAlertController = UIAlertController(title: "Sorry, no completed tasks.", message: nil, preferredStyle: .Alert)
+    func presentNoCompletedTasksAlertController(title: String) {
+        let noTasksAlertController = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
         let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) -> Void in
             self.performSegueWithIdentifier("unwindToSidebar", sender: self)
         }
@@ -100,12 +106,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
         let textField = rejectionAlertController.textFields?.first
         
         let rejectAction = UIAlertAction(title: "Reject Task", style: .Destructive) { (action) -> Void in
-            self.currentCompletedTask!.setValue("false", forKey: "completed")
-            self.currentCompletedTask!.setValue("true", forKey: "inProgress")
+            self.currentCompletedTask!.setValue("rejected", forKey: "status")
             self.currentCompletedTask.setValue(textField?.text, forKey: "rejection_message")
             
             //--> send push notification
-            self.layOutDataForCompletedRecord(self.currentIndex)
+            self.layOutDataForCompletedRecord()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
@@ -123,11 +128,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func acceptActionTap(sender: UIButton) {
         //--> do some stuff
         
-        layOutDataForCompletedRecord(currentIndex)
+        layOutDataForCompletedRecord()
     }
     
     @IBAction func skipActionTap(sender: UIButton) {
-        layOutDataForCompletedRecord(currentIndex)
+        layOutDataForCompletedRecord()
     }
     //MARK: Delegate Functions
     
