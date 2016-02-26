@@ -16,6 +16,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     var inProgressArray: [CKRecord]?
     var pendingArray: [CKRecord]?
     var taskArray = [CKRecord]()
+    var taskReferenceArray: NSMutableArray?
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -36,7 +37,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items!.first! as UITabBarItem
         title = userDefaults.valueForKey("currentOrgName") as? String
-        getOrganization()
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
@@ -44,6 +44,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         taskTableView.addSubview(refreshControl)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,14 +65,18 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    
+    
     override func viewDidAppear(animated: Bool) {
         tabBar.selectedItem = tabBar.items?.first
+        getOrganization()
     }
     
     //MARK: Custom Functions
-        func refresh (sender: AnyObject?) {
-        getTasks()
-        refreshControl.endRefreshing()
+    func refresh (sender: AnyObject?) {
+        
+        getTasks(false)
+        refreshControl.enabled = false
     }
     
     func getOrganization() {
@@ -79,41 +84,63 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             currentOrg = organizations![0] as CKRecord
-            self.getTasks()
+            self.loadingAlert("Loading tasks...", viewController: self)
+            
+            self.getTasks(true)
             self.getCurrentMember()
         }
     }
     
-    func getTasks() {
+    func getTasks(shouldShowAlertController: Bool) {
         inProgressArray = [CKRecord]()
         pendingArray = [CKRecord]()
         unclaimedArray = [CKRecord]()
         
-        let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
-        for taskRef in taskReferenceArray {
-            publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
-                if error != nil {
-                    print("error fetching tasks: \(error)")
-                } else {
-                    if task!.valueForKey("status") as? String == "inProgress" {
-                        self.inProgressArray?.append(task!)
-                    } else if task!.valueForKey("status") as? String == "pending" {
-                        self.pendingArray?.append(task!)
-                    } else {
-                        self.unclaimedArray?.append(task!)
-                    }
-                }
-                print("got tasks")
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tabBarItemSwitch()
-                    self.taskTableView.reloadData()
-                })
-            })
+        taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
+        if taskReferenceArray!.count > 0 {
+            fetchTaskRecord(taskReferenceArray!.firstObject as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: 0)
         }
     }
     
+    func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
+        publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in
+            if error != nil {
+                print("error fetching tasks: \(error)")
+            } else {
+                if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
+                    self.inProgressArray?.append(task!)
+                } else if task!.valueForKey("status") as? String == "pending"  {
+                    self.pendingArray?.append(task!)
+                } else if task?["status"] as? String == "unassigned" {
+                    self.unclaimedArray?.append(task!)
+                }
+            }
+            
+            if reference.isEqual(self.taskReferenceArray!.lastObject) {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    if shouldShowAlertController == true {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        self.refreshControl.endRefreshing()
+                        self.refreshControl.enabled = true
+                    }
+                    self.tabBarItemSwitch()
+                    print(self.unclaimedArray!.count)
+                    return
+                })
+            }
+            if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
+                
+                self.fetchTaskRecord(self.taskReferenceArray![indexNumber+1] as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: indexNumber + 1)
+                
+            } else {
+                return
+            }
+        })
+    }
+    
     func getCurrentMember() {
-        loadingAlert("Loading tasks...", viewController: self)
         for memberRef in currentOrg!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
@@ -124,7 +151,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                         setMemberPushNotifications()
                         userDefaults.setBool(true, forKey: "pushNotificationsSet")
                     }
-                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
             })
         }
@@ -177,6 +203,14 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func menuButtonTapped(sender: UIBarButtonItem) {
     }
     
+    @IBAction func refreshButtonTapped(sender: UIBarButtonItem) {
+        loadingAlert("Loading tasks...", viewController: self)
+        getTasks(true)
+        
+    }
+    
+    
+    
     //MARK: Delegate Functions
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         tabBarItemSwitch()
@@ -222,7 +256,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         return .None
     }
     
-
+    
     
     func claimTaskPressed(claimedTask: CKRecord?) {
         let index = unclaimedArray?.indexOf(claimedTask!)

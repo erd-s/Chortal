@@ -1165,6 +1165,11 @@
                                 <action selector="menuButtonTapped:" destination="WqG-jG-oPD" id="yAr-pq-W3m"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="69t-sR-UMq">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="WqG-jG-oPD" id="a5u-d2-k1i"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <attributedString key="userComments">
                         <fragment content="no constraints">
