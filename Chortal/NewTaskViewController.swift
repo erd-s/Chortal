@@ -31,6 +31,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        loadingAlert("Creating task...", viewController: self)
+        fetchMembers()
     }
     
     //MARK: Custom Functions
@@ -89,20 +91,32 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     func fetchMembers(){
-        for member in currentOrg!["members"] as! [CKReference] {
+        var memberCount = 0
+        
+        if currentOrg?["members"] != nil {
+        for member in currentOrg?["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if error != nil {
                     print("error fetching members: \(error)")
                 }
                 else {
                     self.memberArray.append(memberRecord!)
-                    
+                    memberCount++
+                    if memberCount == (currentOrg!["members"] as! [CKReference]).count {
+                        self.addMembersToSegmentedControl()
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
             })
         }
+        }
+        else {
+            dismissViewControllerAnimated(true, completion: nil)
+            memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 0)
+        }
     }
     
-    func addMemberToSegmentedControl(memberRecord: CKRecord) {
+    func addMembersToSegmentedControl() {
        var x = 0
         for member in memberArray {
         memberSegmentedControl.insertSegmentWithTitle(member["name"] as? String, atIndex: x, animated: true)
