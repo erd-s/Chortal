@@ -11,11 +11,12 @@ import CloudKit
 
 class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
-    var memberArray = [AnyObject]()
+    var memberArray = [CKRecord]()
     var adminRecordID: CKRecordID!
     var newTask: CKRecord!
-    var taskToOrgRef: CKReference!
-    var orgToTaskRef: CKReference!
+    var taskReference: CKReference!
+    var organizationReference: CKReference!
+    var selectedMember: CKRecord!
     
     //MARK: Outlets
     @IBOutlet weak var taskNameTextField: UITextField!
@@ -31,6 +32,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        loadingAlert("Creating task...", viewController: self)
+        fetchMembers()
     }
     
     //MARK: Custom Functions
@@ -49,15 +52,14 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             newTask.setObject("false", forKey: "photo_required")
         }
-        
-        
         assignReferences()
     }
+    
     func assignReferences() {
-        orgToTaskRef = CKReference.init(recordID: currentOrg!.recordID, action: .None)
-        taskToOrgRef = CKReference(recordID: newTask.recordID, action: .None)
-
-        let arrayOfTaskRefs = NSMutableArray(object: taskToOrgRef)
+        organizationReference = CKReference.init(recordID: currentOrg!.recordID, action: .None)
+        taskReference = CKReference(recordID: newTask.recordID, action: .None)
+        
+        let arrayOfTaskRefs = NSMutableArray(object: taskReference)
         
         if currentOrg!.valueForKey("tasks") != nil {
             arrayOfTaskRefs.addObjectsFromArray(currentOrg!.valueForKey("tasks") as! [AnyObject])
@@ -65,10 +67,25 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
         }
-        newTask.setObject(orgToTaskRef, forKey: "organization")
-        newTask.setValue("unassigned", forKey: "status")
         
-        saveTaskAndOrganization([newTask, currentOrg!])
+        if memberSegmentedControl.selected == true {
+            let memberReference = CKReference(record: selectedMember, action: .None)
+            let newCurrentTaskRef = NSMutableArray()
+            newCurrentTaskRef.addObject(taskReference)
+            if (selectedMember["current_tasks"] as! [CKReference]).count == 0 {
+            newCurrentTaskRef.addObjectsFromArray(selectedMember["current_tasks"] as! [CKReference])
+            }
+            
+            newTask.setObject(memberReference, forKey: "member")
+            newTask.setValue("inProgress", forKey: "status")
+            selectedMember.setValue(newCurrentTaskRef, forKey: "current_tasks")
+        } else {
+            newTask.setValue("unassigned", forKey: "status")
+        }
+        
+        newTask.setObject(organizationReference, forKey: "organization")
+        
+        saveTaskAndOrganization([newTask, currentOrg!, selectedMember])
     }
     
     func saveTaskAndOrganization(records: [CKRecord]) {
@@ -88,6 +105,43 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         publicDatabase.addOperation(saveRecordsOp)
     }
     
+    func fetchMembers(){
+        var memberCount = 0
+        
+        if currentOrg?["members"] != nil {
+            for member in currentOrg?["members"] as! [CKReference] {
+                publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
+                    if (error != nil) {
+                        print("error fetching members: \(error)")
+                    }
+                    else {
+                        self.memberArray.append(memberRecord!)
+                        memberCount++
+                        if memberCount == (currentOrg!["members"] as! [CKReference]).count {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.addMembersToSegmentedControl()
+                            })
+                        }
+                    }
+                })
+            }
+        }
+        else {
+            dismissViewControllerAnimated(true, completion: nil)
+            memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 0)
+            memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 1)
+        }
+    }
+    
+    func addMembersToSegmentedControl() {
+        var x = 0
+        for member in memberArray {
+            memberSegmentedControl.removeAllSegments()
+            memberSegmentedControl.insertSegmentWithTitle(member["name"] as? String, atIndex: x, animated: true)
+            x++
+        }
+    }
+    
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
         if taskNameTextField.text?.characters.count > 0 {
@@ -103,6 +157,13 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
         memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+        memberSegmentedControl.selected = false
+    }
+    
+    @IBAction func onSegmentedControlSelected(sender: AnyObject) {
+        let segmentIndex = memberSegmentedControl.selectedSegmentIndex
+        selectedMember = memberArray[segmentIndex]
+        memberSegmentedControl.selected = true
     }
     
     //MARK: Delegate Functions
