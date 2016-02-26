@@ -14,8 +14,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     var memberArray = [CKRecord]()
     var adminRecordID: CKRecordID!
     var newTask: CKRecord!
-    var taskToOrgRef: CKReference!
-    var orgToTaskRef: CKReference!
+    var taskReference: CKReference!
+    var organizationReference: CKReference!
+    var selectedMember: CKRecord!
     
     //MARK: Outlets
     @IBOutlet weak var taskNameTextField: UITextField!
@@ -51,15 +52,14 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             newTask.setObject("false", forKey: "photo_required")
         }
-        
         assignReferences()
     }
     
     func assignReferences() {
-        orgToTaskRef = CKReference.init(recordID: currentOrg!.recordID, action: .None)
-        taskToOrgRef = CKReference(recordID: newTask.recordID, action: .None)
+        organizationReference = CKReference.init(recordID: currentOrg!.recordID, action: .None)
+        taskReference = CKReference(recordID: newTask.recordID, action: .None)
         
-        let arrayOfTaskRefs = NSMutableArray(object: taskToOrgRef)
+        let arrayOfTaskRefs = NSMutableArray(object: taskReference)
         
         if currentOrg!.valueForKey("tasks") != nil {
             arrayOfTaskRefs.addObjectsFromArray(currentOrg!.valueForKey("tasks") as! [AnyObject])
@@ -67,10 +67,25 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         } else {
             currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
         }
-        newTask.setObject(orgToTaskRef, forKey: "organization")
-        newTask.setValue("unassigned", forKey: "status")
         
-        saveTaskAndOrganization([newTask, currentOrg!])
+        if memberSegmentedControl.selected == true {
+            let memberReference = CKReference(record: selectedMember, action: .None)
+            let newCurrentTaskRef = NSMutableArray()
+            newCurrentTaskRef.addObject(taskReference)
+            if (selectedMember["current_tasks"] as! [CKReference]).count == 0 {
+            newCurrentTaskRef.addObjectsFromArray(selectedMember["current_tasks"] as! [CKReference])
+            }
+            
+            newTask.setObject(memberReference, forKey: "member")
+            newTask.setValue("inProgress", forKey: "status")
+            selectedMember.setValue(newCurrentTaskRef, forKey: "current_tasks")
+        } else {
+            newTask.setValue("unassigned", forKey: "status")
+        }
+        
+        newTask.setObject(organizationReference, forKey: "organization")
+        
+        saveTaskAndOrganization([newTask, currentOrg!, selectedMember])
     }
     
     func saveTaskAndOrganization(records: [CKRecord]) {
@@ -94,21 +109,22 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         var memberCount = 0
         
         if currentOrg?["members"] != nil {
-        for member in currentOrg?["members"] as! [CKReference] {
-            publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
-                if error != nil {
-                    print("error fetching members: \(error)")
-                }
-                else {
-                    self.memberArray.append(memberRecord!)
-                    memberCount++
-                    if memberCount == (currentOrg!["members"] as! [CKReference]).count {
-                        self.addMembersToSegmentedControl()
-                        self.dismissViewControllerAnimated(true, completion: nil)
+            for member in currentOrg?["members"] as! [CKReference] {
+                publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
+                    if (error != nil) {
+                        print("error fetching members: \(error)")
                     }
-                }
-            })
-        }
+                    else {
+                        self.memberArray.append(memberRecord!)
+                        memberCount++
+                        if memberCount == (currentOrg!["members"] as! [CKReference]).count {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.addMembersToSegmentedControl()
+                            })
+                        }
+                    }
+                })
+            }
         }
         else {
             dismissViewControllerAnimated(true, completion: nil)
@@ -118,51 +134,49 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addMembersToSegmentedControl() {
-       var x = 0
+        var x = 0
         for member in memberArray {
-        memberSegmentedControl.insertSegmentWithTitle(member["name"] as? String, atIndex: x, animated: true)
+            memberSegmentedControl.removeAllSegments()
+            memberSegmentedControl.insertSegmentWithTitle(member["name"] as? String, atIndex: x, animated: true)
             x++
         }
     }
     
-    func assignReferenceBasedOnSelectedMember() {
-        if memberSegmentedControl.selected {
-        let segmentIndex = memberSegmentedControl.selectedSegmentIndex
-        let memberReference = CKReference(record: memberArray[segmentIndex], action: .None)
-        
-        newTask.setObject(memberReference, forKey: "current_member")
-        newTask.setValue("inProgress", forKey: "status")
+    //MARK: IBActions
+    @IBAction func createTaskButtonTap(sender: AnyObject) {
+        if taskNameTextField.text?.characters.count > 0 {
+            loadingAlert("Saving task...", viewController: self)
+            createNewTask()
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
+            let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+            alert.addAction(okay)
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
     
-        //MARK: IBActions
-        @IBAction func createTaskButtonTap(sender: AnyObject) {
-            if taskNameTextField.text?.characters.count > 0 {
-                loadingAlert("Saving task...", viewController: self)
-                createNewTask()
-            } else {
-                let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
-                let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
-                alert.addAction(okay)
-                presentViewController(alert, animated: true, completion: nil)
-            }
+    @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
+        memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+        memberSegmentedControl.selected = false
+    }
+    
+    @IBAction func onSegmentedControlSelected(sender: AnyObject) {
+        let segmentIndex = memberSegmentedControl.selectedSegmentIndex
+        selectedMember = memberArray[segmentIndex]
+        memberSegmentedControl.selected = true
+    }
+    
+    //MARK: Delegate Functions
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
+    //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindFromTaskCreate" {
+            let vc = segue.destinationViewController as! AdminHomeViewController
+            vc.taskArray.append(newTask)
         }
-        
-        @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
-            memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
-        }
-        
-        //MARK: Delegate Functions
-        func textFieldShouldReturn(textField: UITextField) -> Bool {
-            return textField.resignFirstResponder()
-        }
-        
-        //MARK: Segue
-        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-            if segue.identifier == "unwindFromTaskCreate" {
-                let vc = segue.destinationViewController as! AdminHomeViewController
-                vc.taskArray.append(newTask)
-            }
-        }
-        
+    }
+    
 }

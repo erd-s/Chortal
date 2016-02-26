@@ -1515,6 +1515,9 @@
                                         <exclude reference="Ttd-0h-3cP"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="onSegmentedControlSelected:" destination="5tU-rL-jQg" eventType="valueChanged" id="Dxc-GL-72a"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="incentive:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCg-um-IEV">
                                 <rect key="frame" x="20" y="196" width="73" height="30"/>
