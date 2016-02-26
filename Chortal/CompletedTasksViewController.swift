@@ -36,6 +36,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: Custom Functions
     func fetchCompletedRecords() {
+        if currentOrg!["tasks"] != nil {
         for ref in currentOrg!["tasks"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(ref.recordID, completionHandler: { (taskRecord, error) -> Void in
                 if error != nil {
@@ -53,7 +54,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                             if taskRecord!["status"] as? String != "pending" {
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                        self.presentNoCompletedTasksAlertController("No completed tasks.")
+                                        self.presentNoCompletedTasksAlertController("No more completed tasks.")
                                     })
                                 })
                             }
@@ -61,6 +62,13 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             })
+        }
+        } else {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.presentNoCompletedTasksAlertController("Please assign a task first.")
+            })
+        })
         }
     }
     

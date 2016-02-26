@@ -113,6 +113,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         else {
             dismissViewControllerAnimated(true, completion: nil)
             memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 0)
+            memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 1)
         }
     }
     

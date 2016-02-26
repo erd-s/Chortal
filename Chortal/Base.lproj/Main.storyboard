@@ -1477,7 +1477,9 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FH3-xQ-E3z">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="kxM-od-LBQ"/>
+                                    <constraint firstAttribute="height" constant="44" id="kxM-od-LBQ">
+                                        <variation key="widthClass=compact" constant="54"/>
+                                    </constraint>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Create Task" id="a7e-2j-Uog">
@@ -1540,27 +1542,29 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTc-NE-xKL">
                                 <rect key="frame" x="259" y="476" width="82" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="2Ue-3M-2vb"/>
                                     <constraint firstAttribute="height" constant="30" id="BVi-de-RBM"/>
                                     <constraint firstAttribute="height" constant="30" id="FE6-YP-GM4"/>
                                     <constraint firstAttribute="height" constant="30" id="KFM-Wc-OmC"/>
                                     <constraint firstAttribute="width" constant="82" id="S2V-Kc-hP9"/>
-                                    <constraint firstAttribute="width" constant="82" id="TIW-Mh-OU5"/>
+                                    <constraint firstAttribute="height" constant="30" id="axL-ZJ-n0s"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Create Task"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="2Ue-3M-2vb"/>
                                         <exclude reference="BVi-de-RBM"/>
                                         <exclude reference="KFM-Wc-OmC"/>
-                                        <exclude reference="TIW-Mh-OU5"/>
+                                        <exclude reference="axL-ZJ-n0s"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="159" y="501" width="82" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
+                                        <include reference="2Ue-3M-2vb"/>
                                         <exclude reference="FE6-YP-GM4"/>
                                         <exclude reference="S2V-Kc-hP9"/>
-                                        <include reference="TIW-Mh-OU5"/>
+                                        <include reference="axL-ZJ-n0s"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -1644,12 +1648,16 @@
                         <constraints>
                             <constraint firstItem="8qN-lA-Aso" firstAttribute="top" secondItem="22I-OT-ZvU" secondAttribute="bottom" constant="30" id="10Z-l3-oG9"/>
                             <constraint firstItem="kCw-wu-9Sq" firstAttribute="trailing" secondItem="QFD-qv-yN3" secondAttribute="trailingMargin" id="3YQ-Y9-zBk"/>
-                            <constraint firstItem="kCw-wu-9Sq" firstAttribute="top" secondItem="rCg-um-IEV" secondAttribute="bottom" constant="62" id="3rG-ic-k5V"/>
+                            <constraint firstItem="kCw-wu-9Sq" firstAttribute="top" secondItem="rCg-um-IEV" secondAttribute="bottom" constant="62" id="3rG-ic-k5V">
+                                <variation key="widthClass=compact" constant="60"/>
+                            </constraint>
                             <constraint firstItem="8qN-lA-Aso" firstAttribute="centerX" secondItem="QFD-qv-yN3" secondAttribute="centerX" constant="58.5" id="40f-DE-qiW"/>
                             <constraint firstItem="22I-OT-ZvU" firstAttribute="leading" secondItem="0yc-af-GMI" secondAttribute="trailing" constant="8" id="4ia-Eh-1hL"/>
                             <constraint firstItem="kCw-wu-9Sq" firstAttribute="leading" secondItem="s5w-Wz-nIF" secondAttribute="trailing" constant="11" id="5FY-9V-Zay"/>
                             <constraint firstItem="rCg-um-IEV" firstAttribute="top" secondItem="YaR-rw-0xt" secondAttribute="bottom" constant="15" id="6IR-Mu-zj8"/>
-                            <constraint firstItem="s5w-Wz-nIF" firstAttribute="top" secondItem="oCK-7t-ixH" secondAttribute="bottom" constant="29" id="6KG-Xs-2mI"/>
+                            <constraint firstItem="s5w-Wz-nIF" firstAttribute="top" secondItem="oCK-7t-ixH" secondAttribute="bottom" constant="29" id="6KG-Xs-2mI">
+                                <variation key="widthClass=compact" constant="30"/>
+                            </constraint>
                             <constraint firstItem="jqA-GO-spD" firstAttribute="top" secondItem="0yc-af-GMI" secondAttribute="bottom" constant="158" id="6PW-SF-G9n"/>
                             <constraint firstItem="22I-OT-ZvU" firstAttribute="leading" secondItem="0yc-af-GMI" secondAttribute="trailing" constant="8" id="6Yv-yT-TN6"/>
                             <constraint firstItem="LVV-g0-Sua" firstAttribute="top" secondItem="kCw-wu-9Sq" secondAttribute="bottom" constant="15" id="7tW-fb-5Ru"/>
@@ -1685,6 +1693,7 @@
                             <constraint firstItem="vmJ-If-47o" firstAttribute="leading" secondItem="Wgc-Gz-kTa" secondAttribute="trailing" constant="8" symbolic="YES" id="PZb-Lf-kBU"/>
                             <constraint firstItem="22I-OT-ZvU" firstAttribute="top" secondItem="kCw-wu-9Sq" secondAttribute="bottom" constant="11" id="PvC-VT-etv"/>
                             <constraint firstItem="FH3-xQ-E3z" firstAttribute="leading" secondItem="QFD-qv-yN3" secondAttribute="leading" id="Q4I-Eq-MGt"/>
+                            <constraint firstItem="vTc-NE-xKL" firstAttribute="centerX" secondItem="QFD-qv-yN3" secondAttribute="centerX" id="Qs3-RH-DzV"/>
                             <constraint firstItem="vTc-NE-xKL" firstAttribute="top" secondItem="8qN-lA-Aso" secondAttribute="bottom" constant="30" id="QsX-eX-RYd"/>
                             <constraint firstItem="FH3-xQ-E3z" firstAttribute="leading" secondItem="QFD-qv-yN3" secondAttribute="leadingMargin" constant="-20" id="Rpl-nF-qgO"/>
                             <constraint firstItem="rCg-um-IEV" firstAttribute="leading" secondItem="QFD-qv-yN3" secondAttribute="leadingMargin" id="TEg-YX-YaG"/>
@@ -1701,7 +1710,9 @@
                             <constraint firstItem="22I-OT-ZvU" firstAttribute="top" secondItem="kCw-wu-9Sq" secondAttribute="bottom" constant="15" id="dQG-JE-8wV"/>
                             <constraint firstItem="s5w-Wz-nIF" firstAttribute="leading" secondItem="QFD-qv-yN3" secondAttribute="leadingMargin" id="ddZ-AG-e5u"/>
                             <constraint firstItem="Wgc-Gz-kTa" firstAttribute="leading" secondItem="QFD-qv-yN3" secondAttribute="leadingMargin" constant="27" id="dfS-4N-S3G"/>
-                            <constraint firstItem="kCw-wu-9Sq" firstAttribute="top" secondItem="s5w-Wz-nIF" secondAttribute="bottom" constant="8" symbolic="YES" id="f2G-vb-Gtw"/>
+                            <constraint firstItem="kCw-wu-9Sq" firstAttribute="top" secondItem="s5w-Wz-nIF" secondAttribute="bottom" constant="8" symbolic="YES" id="f2G-vb-Gtw">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="LVV-g0-Sua" firstAttribute="trailing" secondItem="kCw-wu-9Sq" secondAttribute="trailing" id="fwe-q1-31f"/>
                             <constraint firstItem="oCK-7t-ixH" firstAttribute="top" secondItem="FbM-di-1Az" secondAttribute="bottom" constant="15" id="guP-Y3-hTp"/>
                             <constraint firstItem="oCK-7t-ixH" firstAttribute="leading" secondItem="rCg-um-IEV" secondAttribute="trailing" constant="8" symbolic="YES" id="h00-FB-DLE"/>
@@ -1713,8 +1724,8 @@
                             <constraint firstItem="FbM-di-1Az" firstAttribute="trailing" secondItem="oCK-7t-ixH" secondAttribute="trailing" id="jUX-4g-9a2"/>
                             <constraint firstItem="jqA-GO-spD" firstAttribute="top" secondItem="0yc-af-GMI" secondAttribute="bottom" constant="185" id="joD-Bq-Aas"/>
                             <constraint firstItem="vmJ-If-47o" firstAttribute="leading" secondItem="Wgc-Gz-kTa" secondAttribute="trailing" constant="8" id="kzp-F1-raz"/>
+                            <constraint firstItem="jqA-GO-spD" firstAttribute="top" secondItem="vTc-NE-xKL" secondAttribute="bottom" constant="69" id="lnE-HJ-sIG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="s5w-Wz-nIF" secondAttribute="trailing" constant="243" id="mwn-ju-Cq1"/>
-                            <constraint firstItem="jqA-GO-spD" firstAttribute="top" secondItem="vTc-NE-xKL" secondAttribute="bottom" constant="69" id="nAY-6S-h5V"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vmJ-If-47o" secondAttribute="trailing" id="ndy-fi-k3t"/>
                             <constraint firstItem="kCw-wu-9Sq" firstAttribute="centerX" secondItem="s5w-Wz-nIF" secondAttribute="centerX" id="os7-q8-Huh"/>
                             <constraint firstItem="Wgc-Gz-kTa" firstAttribute="leading" secondItem="QFD-qv-yN3" secondAttribute="leadingMargin" id="oyG-gx-KZ1"/>
@@ -1789,10 +1800,11 @@
                                 <exclude reference="rah-sl-OUq"/>
                                 <exclude reference="uvG-9i-emW"/>
                                 <exclude reference="zn6-Zy-zqQ"/>
+                                <exclude reference="Qs3-RH-DzV"/>
                                 <exclude reference="c6l-0D-Xvf"/>
                                 <exclude reference="6PW-SF-G9n"/>
                                 <exclude reference="joD-Bq-Aas"/>
-                                <exclude reference="nAY-6S-h5V"/>
+                                <exclude reference="lnE-HJ-sIG"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1873,10 +1885,11 @@
                                 <include reference="uvG-9i-emW"/>
                                 <exclude reference="yx0-J9-AKY"/>
                                 <include reference="zn6-Zy-zqQ"/>
+                                <include reference="Qs3-RH-DzV"/>
                                 <exclude reference="QsX-eX-RYd"/>
                                 <exclude reference="byt-iX-htC"/>
                                 <include reference="joD-Bq-Aas"/>
-                                <include reference="nAY-6S-h5V"/>
+                                <include reference="lnE-HJ-sIG"/>
                             </mask>
                         </variation>
                     </view>

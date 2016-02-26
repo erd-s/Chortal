@@ -34,12 +34,11 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
-
-        
     }
     
     //MARK: Custom Functions
     func getOrganization() {
+        loadingAlert("Loading Tasks...", viewController: self)
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
@@ -70,7 +69,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getTasks() {
         let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
-        loadingAlert("Loading Tasks...", viewController: self)
         for taskRef in taskReferenceArray {
             publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
                 if error != nil {
@@ -90,7 +88,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             })
         }
         if taskReferenceArray.count == 0 {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         }
     }
     
