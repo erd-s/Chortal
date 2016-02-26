@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import QuartzCore
 
 class MemberSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //MARK: Properties
@@ -23,12 +24,19 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         welcomeLabel.text = userDefaults.valueForKey("currentOrgName") as? String
+        memberTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        
+//        let inset = UIEdgeInsetsMake(10, 10, 10, 10)
+//        memberTableView.contentInset = inset
         
         
         getCurrentOrganization()
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+
         loadingAlert("Loading members...", viewController: self)
     }
     
@@ -77,12 +85,28 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     
     //MARK: Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("memberID")
+        let cell = tableView.dequeueReusableCellWithIdentifier("memberID") as! MemberSelectTableViewCell
         
         let cellRecord = memberArray[indexPath.row]
-        cell?.textLabel!.text = cellRecord.valueForKey("name") as? String
+        let imageAsset = cellRecord["profile_picture"] as? CKAsset
+        let image = UIImage(data: NSData(contentsOfURL: (imageAsset?.fileURL)!)!)
+        cell.profileImageView?.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, 80, 80)
+        cell.profileImageView.image = image
+        //cell.imageView!.contentMode = UIViewContentMode.ScaleToFill
+        cell.profileImageView!.layer.cornerRadius = (cell.profileImageView!.frame.height)/2
+        cell.profileImageView?.layer.masksToBounds = true
+        cell.profileImageView?.clipsToBounds = true
+
+        cell.memberNameLabel!.text = cellRecord.valueForKey("name") as? String
+        cell.layer.cornerRadius = 5.0
+        cell.layer.borderColor = UIColor.grayColor().CGColor
+        cell.layer.borderWidth = 3.0
+        cell.contentView.frame = cell.frame
         
-        return cell!
+        
+        
+
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

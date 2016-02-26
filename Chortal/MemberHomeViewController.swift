@@ -116,9 +116,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
             
-            if reference.isEqual(self.taskReferenceArray!.lastObject) {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } else {
@@ -127,18 +127,15 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                     self.tabBarItemSwitch()
                     print(self.unclaimedArray!.count)
-                    return
-                })
-            }
-            if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
-                
-                self.fetchTaskRecord(self.taskReferenceArray![indexNumber+1] as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: indexNumber + 1)
-                
-            } else {
-                return
-            }
+                    
+                } else if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
+                    
+                    self.fetchTaskRecord(self.taskReferenceArray![indexNumber+1] as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: indexNumber + 1)
+                }
+            })
         })
     }
+    
     
     func getCurrentMember() {
         for memberRef in currentOrg!["members"] as! [CKReference] {
