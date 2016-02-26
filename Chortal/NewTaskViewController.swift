@@ -11,7 +11,7 @@ import CloudKit
 
 class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
-    var memberArray = [AnyObject]()
+    var memberArray = [CKRecord]()
     var adminRecordID: CKRecordID!
     var newTask: CKRecord!
     var taskToOrgRef: CKReference!
@@ -50,13 +50,13 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             newTask.setObject("false", forKey: "photo_required")
         }
         
-        
         assignReferences()
     }
+    
     func assignReferences() {
         orgToTaskRef = CKReference.init(recordID: currentOrg!.recordID, action: .None)
         taskToOrgRef = CKReference(recordID: newTask.recordID, action: .None)
-
+        
         let arrayOfTaskRefs = NSMutableArray(object: taskToOrgRef)
         
         if currentOrg!.valueForKey("tasks") != nil {
@@ -88,34 +88,66 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         publicDatabase.addOperation(saveRecordsOp)
     }
     
-    //MARK: IBActions
-    @IBAction func createTaskButtonTap(sender: AnyObject) {
-        if taskNameTextField.text?.characters.count > 0 {
-            loadingAlert("Saving task...", viewController: self)
-            createNewTask()
-        } else {
-            let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
-            let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
-            alert.addAction(okay)
-            presentViewController(alert, animated: true, completion: nil)
+    func fetchMembers(){
+        for member in currentOrg!["members"] as! [CKReference] {
+            publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
+                if error != nil {
+                    print("error fetching members: \(error)")
+                }
+                else {
+                    self.memberArray.append(memberRecord!)
+                    
+                }
+            })
         }
     }
     
-    @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
-        memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
-    }
-    
-    //MARK: Delegate Functions
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        return textField.resignFirstResponder()
-    }
-    
-    //MARK: Segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "unwindFromTaskCreate" {
-            let vc = segue.destinationViewController as! AdminHomeViewController
-            vc.taskArray.append(newTask)
+    func addMemberToSegmentedControl(memberRecord: CKRecord) {
+       var x = 0
+        for member in memberArray {
+        memberSegmentedControl.insertSegmentWithTitle(member["name"] as? String, atIndex: x, animated: true)
+            x++
         }
     }
     
+    func assignReferenceBasedOnSelectedMember() {
+        if memberSegmentedControl.selected {
+        let segmentIndex = memberSegmentedControl.selectedSegmentIndex
+        let memberReference = CKReference(record: memberArray[segmentIndex], action: .None)
+        
+        newTask.setObject(memberReference, forKey: "current_member")
+        newTask.setValue("inProgress", forKey: "status")
+        }
+    }
+    
+        //MARK: IBActions
+        @IBAction func createTaskButtonTap(sender: AnyObject) {
+            if taskNameTextField.text?.characters.count > 0 {
+                loadingAlert("Saving task...", viewController: self)
+                createNewTask()
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
+                let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+                alert.addAction(okay)
+                presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+        
+        @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
+            memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+        }
+        
+        //MARK: Delegate Functions
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+            return textField.resignFirstResponder()
+        }
+        
+        //MARK: Segue
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            if segue.identifier == "unwindFromTaskCreate" {
+                let vc = segue.destinationViewController as! AdminHomeViewController
+                vc.taskArray.append(newTask)
+            }
+        }
+        
 }
