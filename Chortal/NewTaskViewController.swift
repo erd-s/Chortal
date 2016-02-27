@@ -33,6 +33,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         loadingAlert("Creating task...", viewController: self)
+        
+        datePicker.minimumDate = NSDate()
+        
         fetchMembers()
     }
     
