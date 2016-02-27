@@ -10,7 +10,7 @@
         <!--Login View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="firstScreen" id="BYZ-38-t0r" userLabel="Login View" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstScreen" id="BYZ-38-t0r" userLabel="Login View" customClass="CreateOrJoinViewController" customModule="Chortal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -19,30 +19,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-HH-zp9">
-                                <rect key="frame" x="240" y="354" width="120" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-HH-zp9" customClass="CHNBootstrapButton">
+                                <rect key="frame" x="175.5" y="360.5" width="250" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="5Sf-Pm-tQM"/>
-                                    <constraint firstAttribute="height" constant="30" id="bfM-xv-p9b"/>
+                                    <constraint firstAttribute="width" constant="250" id="5Sf-Pm-tQM"/>
+                                    <constraint firstAttribute="height" constant="45" id="bfM-xv-p9b"/>
                                 </constraints>
-                                <state key="normal" title="Join Organization"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Join Group"/>
                                 <connections>
                                     <segue destination="vs4-mI-qZK" kind="show" id="b3d-Pl-qCO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iea-w0-jcs">
-                                <rect key="frame" x="232" y="253" width="137" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iea-w0-jcs" customClass="CHNBootstrapButton">
+                                <rect key="frame" x="175" y="245.5" width="250" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="137" id="3lL-t4-70n"/>
-                                    <constraint firstAttribute="height" constant="30" id="DyN-0G-1Nv"/>
+                                    <constraint firstAttribute="width" constant="250" id="3lL-t4-70n"/>
+                                    <constraint firstAttribute="height" constant="45" id="DyN-0G-1Nv"/>
                                 </constraints>
-                                <state key="normal" title="Create Organization"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Create Group"/>
                                 <connections>
                                     <segue destination="jP6-LE-g8W" kind="show" id="91i-ee-wIH"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4S-6x-l9J">
-                                <rect key="frame" x="20" y="150" width="560" height="34"/>
+                                <rect key="frame" x="20" y="131.5" width="560" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="560" id="eJu-LS-iiy">
                                         <variation key="widthClass=compact" constant="302"/>
@@ -52,8 +54,8 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Chore.tl">
                                         <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="28" name="AmericanTypewriter"/>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="48" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -61,13 +63,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="b4S-6x-l9J" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bwd-c7-Azq"/>
                             <constraint firstItem="iea-w0-jcs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-32" id="Mmj-Fk-2hi"/>
                             <constraint firstItem="iea-w0-jcs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N5u-Pk-NtY"/>
-                            <constraint firstItem="VPI-HH-zp9" firstAttribute="top" secondItem="iea-w0-jcs" secondAttribute="bottom" constant="71" id="lfq-gm-ghQ"/>
-                            <constraint firstItem="iea-w0-jcs" firstAttribute="top" secondItem="b4S-6x-l9J" secondAttribute="bottom" constant="69" id="pda-1T-iNe">
+                            <constraint firstItem="VPI-HH-zp9" firstAttribute="top" secondItem="iea-w0-jcs" secondAttribute="bottom" constant="70" id="lfq-gm-ghQ"/>
+                            <constraint firstItem="iea-w0-jcs" firstAttribute="top" secondItem="b4S-6x-l9J" secondAttribute="bottom" constant="80" id="pda-1T-iNe">
                                 <variation key="widthClass=compact" constant="66"/>
                             </constraint>
                             <constraint firstItem="VPI-HH-zp9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="x6A-o2-DVv"/>
@@ -81,10 +83,14 @@
                             </attributes>
                         </fragment>
                     </attributedString>
+                    <connections>
+                        <outlet property="createGroupButton" destination="iea-w0-jcs" id="2G4-Oe-dsY"/>
+                        <outlet property="joinGroupButton" destination="VPI-HH-zp9" id="H6d-UI-CxP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1342.5" y="-930"/>
+            <point key="canvasLocation" x="-1343" y="-930"/>
         </scene>
         <!--UniqueID View Controller-->
         <scene sceneID="IvQ-UQ-2BQ">
@@ -585,7 +591,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="rBf-t2-lC7" style="IBUITableViewCellStyleDefault" id="nGd-UA-SnH">
-                                        <rect key="frame" x="0.0" y="220" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nGd-UA-SnH" id="2al-47-eCA">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
