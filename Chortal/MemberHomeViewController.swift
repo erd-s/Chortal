@@ -99,14 +99,17 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
         if taskReferenceArray!.count > 0 {
             fetchTaskRecord(taskReferenceArray!.firstObject as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: 0)
+        }else {
+            dismissViewControllerAnimated(true, completion: nil)
         }
-    }
+        }
     
     func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
         publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in
             if error != nil {
                 print("error fetching tasks: \(error)")
             } else {
+                
                 if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
                     self.inProgressArray?.append(task!)
                 } else if task!.valueForKey("status") as? String == "pending"  {
@@ -115,7 +118,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.unclaimedArray?.append(task!)
                 }
             }
-            
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
@@ -252,8 +254,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
-    
-    
     
     func claimTaskPressed(claimedTask: CKRecord?) {
         let index = unclaimedArray?.indexOf(claimedTask!)
