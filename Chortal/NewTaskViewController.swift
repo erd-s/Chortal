@@ -35,8 +35,11 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         loadingAlert("Creating task...", viewController: self)
         
         datePicker.minimumDate = NSDate()
-        
         fetchMembers()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        datePicker.setDate(NSDate(timeIntervalSinceNow: 10800), animated: true)
     }
     
     //MARK: Custom Functions
