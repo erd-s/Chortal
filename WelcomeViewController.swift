@@ -132,9 +132,16 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     //MARK: IBActions
     @IBAction func logInButtonTapped(sender: UIButton) {
         if nameTextField.text?.characters.count > 0 {
-            loadingAlert("Loading...", viewController: self)
-            uniqueMemberNameCheck()
+            if imageAsset != nil {
+                loadingAlert("Loading...", viewController: self)
+                uniqueMemberNameCheck()
+            } else {
+                errorAlert("Error", message: "Please enter your name and add a picture.")
+            }
             //            createMember()
+        } else {
+            errorAlert("Error", message: "Please enter your name and add a picture.")
+            
         }
     }
     
@@ -159,7 +166,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             userDefaults.setValue(currentOrgUID, forKey: "currentOrgUID")
             userDefaults.setValue(orgRecord?.valueForKey("name"), forKey: "currentOrgName")
         }
-
+        
     }
     
     @IBAction func addButtonTapped(sender: AnyObject) {
@@ -209,7 +216,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     
     
-
+    
 }
 
 
@@ -218,5 +225,5 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
 
 
 
-    
+
 

@@ -61,11 +61,14 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 print(error)
             } else {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        self.performSegueWithIdentifier("continueToUIDSegue", sender: self)
+                if saved != nil {
+                    print("Saved Record: \(saved)")
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            self.performSegueWithIdentifier("continueToUIDSegue", sender: self)
+                        })
                     })
-                })
+                }
             }
         }
         publicDatabase.addOperation(saveOperation)
@@ -101,8 +104,8 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "continueToUIDSegue" {
-        let dvc = segue.destinationViewController as! AssignUIDViewController
-        dvc.orgUID = uid
+            let dvc = segue.destinationViewController as! AssignUIDViewController
+            dvc.orgUID = uid
         }
     }
     

@@ -99,6 +99,14 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
         if taskReferenceArray!.count > 0 {
             fetchTaskRecord(taskReferenceArray!.firstObject as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: 0)
+        } else {
+            if refreshControl.enabled == false {
+                refreshControl.enabled = true
+                refreshControl.endRefreshing()
+            } else {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
         }
     }
     
