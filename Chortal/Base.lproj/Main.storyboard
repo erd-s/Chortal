@@ -186,7 +186,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="18" y="209" width="364" height="30"/>
                                 </variation>
                                 <connections>
@@ -202,9 +202,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.55032327589999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="189" width="80" height="21"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30N-7Z-GOP">
                                 <rect key="frame" x="230" y="425" width="140" height="23"/>
@@ -252,7 +249,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.55032327589999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="58" y="355" width="89" height="21"/>
                                 </variation>
                             </label>
@@ -263,7 +260,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="18" y="279" width="240" height="30"/>
                                 </variation>
                                 <connections>
@@ -285,9 +282,6 @@
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="-80" y="117" width="560" height="43"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2846,7 +2840,7 @@
                                     <navigationItem title="Settings" id="top-Eg-eM2">
                                         <barButtonItem key="leftBarButtonItem" title="Undo" id="u53-AH-uyS">
                                             <connections>
-                                                <segue destination="WCD-Ar-8bs" kind="unwind" unwindAction="unwindToSidebar:" id="wLb-pF-Pln"/>
+                                                <segue destination="WCD-Ar-8bs" kind="unwind" unwindAction="unwindFromTaskCreate:" id="1XL-fn-5bX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -4390,7 +4384,7 @@
                                     <navigationItem title="Settings" id="hDl-z4-bBm">
                                         <barButtonItem key="leftBarButtonItem" title="Undo" id="qMN-Et-PWW">
                                             <connections>
-                                                <segue destination="QWZ-hC-es2" kind="unwind" unwindAction="unwindToSidebar:" id="jjo-Il-cJT"/>
+                                                <segue destination="QWZ-hC-es2" kind="unwind" unwindAction="unwindFromTaskView:" id="0S2-90-jPT"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -4823,7 +4817,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ZLP-fD-WgM"/>
-        <segue reference="QNz-fF-lyI"/>
+        <segue reference="i07-nw-ycZ"/>
         <segue reference="kyT-jB-3iZ"/>
     </inferredMetricsTieBreakers>
 </document>

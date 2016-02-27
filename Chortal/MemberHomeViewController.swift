@@ -106,7 +106,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             } else {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
-            
         }
     }
     
@@ -115,6 +114,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             if error != nil {
                 print("error fetching tasks: \(error)")
             } else {
+                
                 if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
                     self.inProgressArray?.append(task!)
                 } else if task!.valueForKey("status") as? String == "pending"  {
@@ -123,7 +123,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.unclaimedArray?.append(task!)
                 }
             }
-            
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
@@ -260,8 +259,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
-    
-    
     
     func claimTaskPressed(claimedTask: CKRecord?) {
         let index = unclaimedArray?.indexOf(claimedTask!)
