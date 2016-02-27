@@ -17,8 +17,6 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Outlets
     @IBOutlet weak var organizationNameTextField: UITextField!
     @IBOutlet weak var adminNameTextField: UITextField!
-    @IBOutlet weak var adminPasswordTextField: UITextField!
-    @IBOutlet weak var organizationTypeTextField: UITextField!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -76,7 +74,10 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: IBActions
     @IBAction func createOrganizationTap(sender: UIButton) {
-        loadingAlert("Creating Organization...", viewController: self)
+        if organizationNameTextField.text == "" || adminNameTextField.text == "" {
+            errorAlert("Error", message: "Please. Both fields are required.")
+        } else {
+        loadingAlert("Creating Group...", viewController: self)
         let newOrg = CKRecord(recordType: "Organization")
         let newAdmin = CKRecord(recordType: "Admin")
         
@@ -86,7 +87,6 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         let adminRef = CKReference.init(recordID: newAdmin.recordID, action: .None)
         newOrg.setObject(adminRef, forKey: "admin")
         
-        newOrg.setObject(organizationTypeTextField.text, forKey: "type")
         newOrg.setObject(organizationNameTextField.text, forKey: "name")
         newOrg.setObject(adminNameTextField.text, forKey: "admin_name")
         newAdmin.setObject(adminNameTextField.text, forKey: "name")
@@ -94,6 +94,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         setUID(newOrg, admin: newAdmin)
         setUserDefaults()
         saveRecords([newOrg, newAdmin])
+        }
     }
     
     //MARK: Delegate Functions
