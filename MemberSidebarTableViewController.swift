@@ -106,8 +106,11 @@ class MemberSidebarTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "OrgCellID" {
-
+        if segue.identifier == "takeTaskSegue" {
+            if currentTask == nil {
+                errorAlert("Oops!", message: "You don't have a task.")
+            }
+            
         }
         
     }
