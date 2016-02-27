@@ -37,38 +37,38 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     //MARK: Custom Functions
     func fetchCompletedRecords() {
         if currentOrg!["tasks"] != nil {
-        for ref in currentOrg!["tasks"] as! [CKReference] {
-            publicDatabase.fetchRecordWithID(ref.recordID, completionHandler: { (taskRecord, error) -> Void in
-                if error != nil {
-                    print("there was an error retrieving completed tasks. \(error)")
-                } else {
-                    if taskRecord!["status"] as? String == "pending" {
-                        self.completedTaskArray.append(taskRecord!)
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                self.layOutDataForCompletedRecord()
-                            })
-                        })
+            for ref in currentOrg!["tasks"] as! [CKReference] {
+                publicDatabase.fetchRecordWithID(ref.recordID, completionHandler: { (taskRecord, error) -> Void in
+                    if error != nil {
+                        print("there was an error retrieving completed tasks. \(error)")
                     } else {
-                        if ref == (currentOrg!["tasks"] as! [CKReference]).last {
-                            if taskRecord!["status"] as? String != "pending" {
-                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                        self.presentNoCompletedTasksAlertController("No more completed tasks.")
-                                    })
+                        if taskRecord!["status"] as? String == "pending" {
+                            self.completedTaskArray.append(taskRecord!)
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                    self.layOutDataForCompletedRecord()
                                 })
+                            })
+                        } else {
+                            if ref == (currentOrg!["tasks"] as! [CKReference]).last {
+                                if taskRecord!["status"] as? String != "pending" {
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                            self.presentNoCompletedTasksAlertController("No completed tasks.")
+                                        })
+                                    })
+                                }
                             }
                         }
                     }
-                }
-            })
-        }
+                })
+            }
         } else {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.presentNoCompletedTasksAlertController("Please assign a task first.")
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.presentNoCompletedTasksAlertController("Please assign a task first.")
+                })
             })
-        })
         }
     }
     
@@ -78,6 +78,22 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
             taskNameLabel.text = currentCompletedTask["name"] as? String
             incentiveLabel.text = currentCompletedTask["incentive"] as? String
             taskDescriptionLabel.text = currentCompletedTask["description"] as? String
+            let timeTakenInSeconds = currentCompletedTask["taskCompletedTime"] as? Double
+            
+            
+            if timeTakenInSeconds < 60 {
+                timeTakenLabel.text = "Time Taken: \(Int(timeTakenInSeconds!))"
+            } else if timeTakenInSeconds < 3600 {
+                let timeTakenInMinutes = Int(timeTakenInSeconds! / 60)
+                timeTakenLabel.text = "Time Taken: \(timeTakenInMinutes))"
+            } else if timeTakenInSeconds < 86400 {
+                let timeTakenInHours = Int(timeTakenInSeconds! / 3600)
+                timeTakenLabel.text = "Time Taken: \(timeTakenInHours))"
+            } else {
+                let timeTakenInDays = Int(timeTakenInSeconds! / 86400)
+                timeTakenLabel.text = "Time Taken: \(timeTakenInDays))"
+            }
+            
             var x = 0
             
             for photoAsset in (currentCompletedTask["photos"] as? [CKAsset])! {
