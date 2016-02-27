@@ -491,7 +491,7 @@
                         <sections>
                             <tableViewSection id="wrJ-wA-W8b">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="J1s-xA-GMG" style="IBUITableViewCellStyleDefault" id="f1S-88-Cqd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="J1s-xA-GMG" style="IBUITableViewCellStyleDefault" id="f1S-88-Cqd">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f1S-88-Cqd" id="VEb-GJ-HQd">
@@ -518,7 +518,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="eXI-yZ-Pho" style="IBUITableViewCellStyleDefault" id="dtH-0L-7P7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="eXI-yZ-Pho" style="IBUITableViewCellStyleDefault" id="dtH-0L-7P7">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dtH-0L-7P7" id="xZr-V0-vMo">
@@ -538,14 +538,14 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="FhH-Iy-9Mu" style="IBUITableViewCellStyleDefault" id="d25-Vc-GDB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="FhH-Iy-9Mu" style="IBUITableViewCellStyleDefault" id="d25-Vc-GDB">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d25-Vc-GDB" id="yh8-Ff-JvE">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FhH-Iy-9Mu">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Current Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FhH-Iy-9Mu">
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -561,7 +561,7 @@
                                             <segue destination="jop-HQ-7R7" kind="show" identifier="takeTaskSegue" id="ztg-fO-cEM"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="K3f-ml-ahl" style="IBUITableViewCellStyleDefault" id="xqM-vb-mjr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="K3f-ml-ahl" style="IBUITableViewCellStyleDefault" id="xqM-vb-mjr">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xqM-vb-mjr" id="iMd-er-nJN">
@@ -584,27 +584,7 @@
                                             <segue destination="94W-o5-8Te" kind="show" identifier="OrgCellID" id="56a-wj-aQV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="T4t-Hb-jrm" style="IBUITableViewCellStyleDefault" id="h5F-sT-gJ3">
-                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h5F-sT-gJ3" id="J1x-ro-mc9">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Weekly Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T4t-Hb-jrm">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="rBf-t2-lC7" style="IBUITableViewCellStyleDefault" id="nGd-UA-SnH">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="rBf-t2-lC7" style="IBUITableViewCellStyleDefault" id="nGd-UA-SnH">
                                         <rect key="frame" x="0.0" y="220" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nGd-UA-SnH" id="2al-47-eCA">
@@ -642,7 +622,6 @@
                         <outlet property="organizationLabel" destination="K3f-ml-ahl" id="hgI-5R-VcS"/>
                         <outlet property="organizationOverviewCell" destination="xqM-vb-mjr" id="1r1-sk-YAF"/>
                         <outlet property="settingsCell" destination="nGd-UA-SnH" id="MKZ-kb-nyo"/>
-                        <outlet property="weeklySummaryCell" destination="h5F-sT-gJ3" id="XrH-WD-X9b"/>
                         <outlet property="welcomeCell" destination="f1S-88-Cqd" id="Z37-Gf-wTc"/>
                         <outlet property="welcomeMemberLabel" destination="J1s-xA-GMG" id="OE0-tV-Wk4"/>
                     </connections>
@@ -2346,7 +2325,8 @@
                                                             <exclude reference="cA5-cK-RkQ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="115" y="27" width="117" height="46"/>
                                                         <mask key="constraints">
                                                             <include reference="cA5-cK-RkQ"/>
                                                         </mask>
@@ -2546,7 +2526,8 @@
                                         <exclude reference="MHA-MA-t74"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="30" y="242" width="493" height="31"/>
                                     <mask key="constraints">
                                         <include reference="MHA-MA-t74"/>
                                     </mask>
@@ -2565,7 +2546,8 @@
                                         <exclude reference="NL2-P9-MGu"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="30" y="281" width="493" height="31"/>
                                     <mask key="constraints">
                                         <include reference="NL2-P9-MGu"/>
                                     </mask>
@@ -2584,7 +2566,8 @@
                                         <exclude reference="dbi-kl-9ir"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="30" y="320" width="493" height="31"/>
                                     <mask key="constraints">
                                         <include reference="dbi-kl-9ir"/>
                                     </mask>
@@ -2605,7 +2588,8 @@
                                         <exclude reference="WsC-LV-TpO"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="213" width="560" height="21"/>
                                     <mask key="constraints">
                                         <exclude reference="TJ4-Hb-Rc0"/>
                                         <include reference="WsC-LV-TpO"/>
@@ -2625,7 +2609,8 @@
                                         <exclude reference="nAB-Ed-qRC"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="30" y="359" width="493" height="31"/>
                                     <mask key="constraints">
                                         <include reference="nAB-Ed-qRC"/>
                                     </mask>
@@ -2644,7 +2629,8 @@
                                         <exclude reference="CkP-jt-BWY"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="30" y="398" width="493" height="31"/>
                                     <mask key="constraints">
                                         <include reference="CkP-jt-BWY"/>
                                     </mask>
@@ -2662,7 +2648,8 @@
                                         <exclude reference="ebb-1y-lqB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="495" y="104" width="85" height="85"/>
                                     <mask key="constraints">
                                         <include reference="Ibm-ph-waC"/>
                                         <include reference="ebb-1y-lqB"/>
@@ -2693,7 +2680,8 @@
                                         <exclude reference="n0U-Qr-tcb"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="495" y="103" width="85" height="85"/>
                                     <mask key="constraints">
                                         <include reference="gMF-jT-6V4"/>
                                         <include reference="n0U-Qr-tcb"/>
@@ -2725,7 +2713,8 @@
                                         <exclude reference="V8d-Tf-3oL"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="81" y="106" width="406" height="30"/>
                                     <mask key="constraints">
                                         <include reference="V8d-Tf-3oL"/>
                                     </mask>
@@ -2765,7 +2754,8 @@
                                         <exclude reference="suV-Gh-reQ"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="531" y="242" width="51" height="31"/>
                                     <mask key="constraints">
                                         <include reference="3Fu-UG-uwY"/>
                                         <include reference="suV-Gh-reQ"/>
@@ -2784,7 +2774,8 @@
                                         <exclude reference="tzt-Td-unE"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="531" y="281" width="51" height="31"/>
                                     <mask key="constraints">
                                         <include reference="XRB-Vu-mhn"/>
                                         <include reference="tzt-Td-unE"/>
@@ -2803,7 +2794,8 @@
                                         <exclude reference="zL4-39-ZBQ"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="531" y="320" width="51" height="31"/>
                                     <mask key="constraints">
                                         <include reference="fPq-lL-Nf6"/>
                                         <include reference="zL4-39-ZBQ"/>
@@ -2822,7 +2814,8 @@
                                         <exclude reference="rs3-5D-Id9"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="531" y="359" width="51" height="31"/>
                                     <mask key="constraints">
                                         <include reference="FGX-zh-7ow"/>
                                         <include reference="rs3-5D-Id9"/>
@@ -2840,7 +2833,7 @@
                                     <navigationItem title="Settings" id="top-Eg-eM2">
                                         <barButtonItem key="leftBarButtonItem" title="Undo" id="u53-AH-uyS">
                                             <connections>
-                                                <segue destination="WCD-Ar-8bs" kind="unwind" unwindAction="unwindFromTaskCreate:" id="1XL-fn-5bX"/>
+                                                <segue destination="WCD-Ar-8bs" kind="unwind" unwindAction="unwindToSidebar:" id="vQr-LI-Ep4"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2850,7 +2843,8 @@
                                         <exclude reference="tP3-BC-GOM"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
                                     <mask key="constraints">
                                         <include reference="tP3-BC-GOM"/>
                                     </mask>
@@ -2873,7 +2867,8 @@
                                         <exclude reference="wtV-XW-zDr"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="77" width="560" height="21"/>
                                     <mask key="constraints">
                                         <exclude reference="B1h-Sq-r20"/>
                                         <include reference="VhI-NS-fnv"/>
@@ -2896,7 +2891,8 @@
                                         <exclude reference="zK0-m4-cdk"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="30" y="151" width="400" height="31"/>
                                     <mask key="constraints">
                                         <include reference="zK0-m4-cdk"/>
                                     </mask>
@@ -2914,7 +2910,8 @@
                                         <exclude reference="Hxp-M3-5jZ"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="531" y="398" width="51" height="31"/>
                                     <mask key="constraints">
                                         <include reference="H3P-6o-ejD"/>
                                         <include reference="Hxp-M3-5jZ"/>
@@ -2941,7 +2938,8 @@
                                         <exclude reference="fTj-Bk-E1y"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="438" y="151" width="51" height="31"/>
                                     <mask key="constraints">
                                         <include reference="Awb-3f-88H"/>
                                         <include reference="FYe-ll-bSJ"/>
@@ -3994,7 +3992,7 @@
                         <sections>
                             <tableViewSection id="wE4-xT-AEO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ejp-rl-7V6" style="IBUITableViewCellStyleDefault" id="W2s-YR-tgZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ejp-rl-7V6" style="IBUITableViewCellStyleDefault" id="W2s-YR-tgZ">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W2s-YR-tgZ" id="gKS-gm-zYh">
@@ -4022,7 +4020,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="2jZ-A5-sSC" style="IBUITableViewCellStyleDefault" id="C9N-s7-3Qs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="2jZ-A5-sSC" style="IBUITableViewCellStyleDefault" id="C9N-s7-3Qs">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C9N-s7-3Qs" id="cIn-ex-2Se">
@@ -4045,7 +4043,7 @@
                                             <segue destination="haO-d7-fXS" kind="show" id="1d1-Ck-6rH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ypE-DU-QbE" style="IBUITableViewCellStyleDefault" id="XnG-RH-DA3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ypE-DU-QbE" style="IBUITableViewCellStyleDefault" id="XnG-RH-DA3">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XnG-RH-DA3" id="we2-0A-yhz">
@@ -4065,7 +4063,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="NHZ-52-mD7" style="IBUITableViewCellStyleDefault" id="GAY-Od-kUk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="NHZ-52-mD7" style="IBUITableViewCellStyleDefault" id="GAY-Od-kUk">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GAY-Od-kUk" id="Ga1-o5-sWS">
@@ -4085,7 +4083,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yis-lM-d59" style="IBUITableViewCellStyleDefault" id="Cdt-fE-XCF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yis-lM-d59" style="IBUITableViewCellStyleDefault" id="Cdt-fE-XCF">
                                         <rect key="frame" x="0.0" y="176" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cdt-fE-XCF" id="KYD-z6-vRj">

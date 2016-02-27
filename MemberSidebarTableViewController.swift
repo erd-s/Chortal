@@ -18,7 +18,6 @@ class MemberSidebarTableViewController: UITableViewController {
     @IBOutlet weak var memberNameCell: UITableViewCell!
     @IBOutlet weak var myTaskCell: UITableViewCell!
     @IBOutlet weak var organizationOverviewCell: UITableViewCell!
-    @IBOutlet weak var weeklySummaryCell: UITableViewCell!
     @IBOutlet weak var settingsCell: UITableViewCell!
     
     override func viewDidLoad() {
@@ -67,19 +66,17 @@ class MemberSidebarTableViewController: UITableViewController {
         memberNameCell.backgroundView = middleCellView
         myTaskCell.backgroundView = middleCellView2
         organizationOverviewCell.backgroundView = middleCellView3
-        weeklySummaryCell.backgroundView = middleCellView4
         settingsCell.backgroundView = bottomCellView
         
         welcomeCell.backgroundColor = UIColor.clearColor()
         memberNameCell.backgroundColor = UIColor.clearColor()
         myTaskCell.backgroundColor = UIColor.clearColor()
         organizationOverviewCell.backgroundColor = UIColor.clearColor()
-        weeklySummaryCell.backgroundColor = UIColor.clearColor()
         settingsCell.backgroundColor = UIColor.clearColor()
         
         welcomeMemberLabel?.text = "Welcome \(userDefaults.valueForKey("currentUserName")!)"
         memberNameLabel?.text = "\(userDefaults.valueForKey("currentUserName")!) Overview"
-        organizationLabel?.text = "\(userDefaults.valueForKey("currentOrgName")!)"
+        organizationLabel?.text = "\(userDefaults.valueForKey("currentOrgName")!) Details"
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
@@ -102,7 +99,7 @@ class MemberSidebarTableViewController: UITableViewController {
     
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
