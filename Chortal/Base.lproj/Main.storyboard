@@ -4069,28 +4069,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="NHZ-52-mD7" style="IBUITableViewCellStyleDefault" id="GAY-Od-kUk">
-                                        <rect key="frame" x="0.0" y="132" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GAY-Od-kUk" id="Ga1-o5-sWS">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Weekly Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NHZ-52-mD7">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yis-lM-d59" style="IBUITableViewCellStyleDefault" id="Cdt-fE-XCF">
-                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cdt-fE-XCF" id="KYD-z6-vRj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -4121,7 +4101,11 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="completedTask" destination="C9N-s7-3Qs" id="ILN-Mb-gXM"/>
+                        <outlet property="organizationOverview" destination="XnG-RH-DA3" id="dBw-TF-tTs"/>
                         <outlet property="organizationOverviewLabel" destination="ypE-DU-QbE" id="Biz-Hh-drM"/>
+                        <outlet property="settingsCell" destination="Cdt-fE-XCF" id="t8Y-da-TpL"/>
+                        <outlet property="welcomeAdmin" destination="W2s-YR-tgZ" id="DgI-01-5lU"/>
                         <outlet property="welcomeAdminLabel" destination="ejp-rl-7V6" id="h3h-0o-vem"/>
                     </connections>
                 </tableViewController>

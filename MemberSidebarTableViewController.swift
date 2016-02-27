@@ -84,6 +84,12 @@ class MemberSidebarTableViewController: UITableViewController {
         let inset = UIEdgeInsetsMake(30, 0, 0, 0)
         tableView.contentInset = inset
         
+        let imageView = UIImageView()
+        imageView.frame = self.view.frame
+        imageView.image = UIImage(named: "common_bg")
+        
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundView = imageView
 
     }
     
