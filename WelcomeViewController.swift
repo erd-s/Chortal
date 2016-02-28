@@ -26,8 +26,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var multipleUsersSwitch: UISwitch!
-    @IBOutlet weak var multiUserTextView: UITextView!
-    
+    @IBOutlet weak var multipleUsersLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     //MARK: View Loading
     override func viewDidLoad() {
@@ -39,7 +38,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         welcomeLabel.text = "Welcome to \(orgRecord!.valueForKey("name")!)"
         
         if seguedFromMemberSelect == true {
-            multiUserTextView.hidden = true
+            multipleUsersLabel.hidden = true
             multipleUsersSwitch.hidden = true
         }
     }
