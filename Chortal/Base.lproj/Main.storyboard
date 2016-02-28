@@ -216,7 +216,7 @@
                                     <constraint firstAttribute="height" constant="23" id="y4l-Dd-fmf"/>
                                 </constraints>
                                 <state key="normal" title="Create Organization">
-                                    <color key="titleColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.90716594829999997" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.011764705882352941" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="createOrganizationTap:" destination="jP6-LE-g8W" eventType="touchUpInside" id="iTv-OW-WtV"/>

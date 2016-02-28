@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */; };
 		138B2B7E1C80DB01009180C9 /* MemberSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */; };
+		138B2BA41C8370A4009180C9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */; };
 		9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */; };
 		9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */; };
 		9B2D6C511C823FB1001CDEFD /* CHNBootstrapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D6C501C823FB1001CDEFD /* CHNBootstrapButton.m */; };
@@ -42,6 +43,7 @@
 		135F92021C737EE8005CBD24 /* Chortal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Chortal.entitlements; sourceTree = "<group>"; };
 		135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectViewController.swift; sourceTree = "<group>"; };
 		138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectTableViewCell.swift; sourceTree = "<group>"; };
+		138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingsViewController.swift; sourceTree = "<group>"; };
 		9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewController.swift; sourceTree = "<group>"; };
 		9B2D6C4F1C823FB1001CDEFD /* CHNBootstrapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHNBootstrapButton.h; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		9B3E41551C73EA96007A16D3 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */,
 				9B2D6C4F1C823FB1001CDEFD /* CHNBootstrapButton.h */,
 				9B2D6C501C823FB1001CDEFD /* CHNBootstrapButton.m */,
 				9B87FCD01C7A591000BB77DA /* SWRevealViewController.h */,
@@ -267,6 +270,7 @@
 				9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */,
 				9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */,
 				9B3E414A1C73942D007A16D3 /* UniqueIDViewController.swift in Sources */,
+				138B2BA41C8370A4009180C9 /* UIImage+Extension.swift in Sources */,
 				9B3EB2421C7CB9D400F7AC14 /* CompletedTasksViewController.swift in Sources */,
 				9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */,
 				9B3E414C1C739522007A16D3 /* NewTaskViewController.swift in Sources */,
