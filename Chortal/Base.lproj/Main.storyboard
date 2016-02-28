@@ -339,7 +339,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HGZ-6e-BTY" firstAttribute="leading" secondItem="s04-H3-UPv" secondAttribute="leadingMargin" constant="178" id="0Mj-RI-DUO"/>
                             <constraint firstItem="30N-7Z-GOP" firstAttribute="centerX" secondItem="s04-H3-UPv" secondAttribute="centerX" id="1ry-00-yUR"/>
@@ -4586,9 +4586,9 @@
         <image name="defaultphoto" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QNz-fF-lyI"/>
-        <segue reference="IeD-g1-6Nb"/>
-        <segue reference="EvV-MJ-BvJ"/>
         <segue reference="Dj6-lr-shE"/>
+        <segue reference="91i-ee-wIH"/>
+        <segue reference="IeD-g1-6Nb"/>
+        <segue reference="QNz-fF-lyI"/>
     </inferredMetricsTieBreakers>
 </document>
