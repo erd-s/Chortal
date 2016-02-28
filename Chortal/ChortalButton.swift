@@ -16,13 +16,13 @@ class ChortalButton: UIButton {
         
         self.layer.cornerRadius = 8.0;
         self.layer.borderColor = chortalGreen.CGColor
-        self.layer.borderWidth = 1.5
-        self.backgroundColor = chortalGray
+        self.layer.borderWidth = 0.75
         self.titleLabel?.textColor = chortalGreen
         self.tintColor = chortalGreen
         
         self.setBackgroundImage(UIImage.imageWithColor(chortalGreen), forState: .Highlighted)
-        self.setBackgroundImage(UIImage.imageWithColor(chortalGray), forState: .Normal)
+        self.setBackgroundImage(UIImage.imageWithColor(.clearColor()), forState: .Normal)
+        self.setTitleColor(.grayColor(), forState: .Disabled)
         self.setTitleColor(chortalGreen, forState: .Normal)
         self.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         
