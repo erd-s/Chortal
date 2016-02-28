@@ -17,6 +17,8 @@ let orgUID = userDefaults.stringForKey("currentOrgUID")
 let memberName = userDefaults.stringForKey("currentUserName")
 let pushNotificationsSet = userDefaults.boolForKey("pushNotificationsSet")
 let chortalGreen = UIColor(red: 3 / 255, green: 117 / 255, blue: 60 / 255, alpha: 0.9)
+let chortalGray = UIColor(red: 239 / 255, green: 239 / 255, blue: 244 / 255, alpha: 1.0)
+
 var currentMember: CKRecord?
 var currentOrg: CKRecord?
 var currentTask: CKRecord?
