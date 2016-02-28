@@ -100,7 +100,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         cell.memberNameLabel!.text = cellRecord.valueForKey("name") as? String
         cell.layer.cornerRadius = 5.0
         cell.layer.borderColor = UIColor.lightGrayColor().CGColor
-        cell.layer.borderWidth = 1.0
+        cell.layer.borderWidth = 0.5
         cell.contentView.frame = cell.frame
         
         
