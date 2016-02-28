@@ -10,20 +10,13 @@ import UIKit
 
 class CreateOrJoinViewController: UIViewController {
     
-    @IBOutlet weak var createGroupButton: CHNBootstrapButton!
-    @IBOutlet weak var joinGroupButton: CHNBootstrapButton!
-    
+//    @IBOutlet weak var createGroupButton: ChortalButton!
+//    
+//    @IBOutlet weak var joinGroupButton: ChortalButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        createGroupButton.chnButtonStyle = .Success
-        joinGroupButton.chnButtonStyle = .Success
-        createGroupButton.setTitleColor(.whiteColor(), forState: .Normal)
-        joinGroupButton.setTitleColor(.whiteColor(), forState: .Normal)
-        
-        
-        
-        
+ //       ChortalButton.init()
+     
     }
 }

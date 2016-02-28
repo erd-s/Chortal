@@ -19,26 +19,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-HH-zp9" customClass="CHNBootstrapButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-HH-zp9" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
                                 <rect key="frame" x="175.5" y="360.5" width="250" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="5Sf-Pm-tQM"/>
                                     <constraint firstAttribute="height" constant="45" id="bfM-xv-p9b"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Join Group"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <state key="normal" title="Join Group">
+                                    <color key="titleColor" red="0.011764705882352941" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="vs4-mI-qZK" kind="show" id="b3d-Pl-qCO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iea-w0-jcs" customClass="CHNBootstrapButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iea-w0-jcs" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
                                 <rect key="frame" x="175" y="245.5" width="250" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="3lL-t4-70n"/>
                                     <constraint firstAttribute="height" constant="45" id="DyN-0G-1Nv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Create Group"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <state key="normal" title="Create Group">
+                                    <color key="titleColor" red="0.01176470588" green="0.45882352939999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="jP6-LE-g8W" kind="show" id="91i-ee-wIH"/>
                                 </connections>
@@ -54,7 +64,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Chore.tl">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.011764705882352941" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="48" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -63,7 +73,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="b4S-6x-l9J" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bwd-c7-Azq"/>
                             <constraint firstItem="iea-w0-jcs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-32" id="Mmj-Fk-2hi"/>
@@ -83,10 +93,6 @@
                             </attributes>
                         </fragment>
                     </attributedString>
-                    <connections>
-                        <outlet property="createGroupButton" destination="iea-w0-jcs" id="2G4-Oe-dsY"/>
-                        <outlet property="joinGroupButton" destination="VPI-HH-zp9" id="H6d-UI-CxP"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

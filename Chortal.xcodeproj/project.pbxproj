@@ -10,9 +10,9 @@
 		135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */; };
 		138B2B7E1C80DB01009180C9 /* MemberSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */; };
 		138B2BA41C8370A4009180C9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */; };
+		138B2BA81C837BD3009180C9 /* ChortalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2BA71C837BD3009180C9 /* ChortalButton.swift */; };
 		9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */; };
 		9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */; };
-		9B2D6C511C823FB1001CDEFD /* CHNBootstrapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D6C501C823FB1001CDEFD /* CHNBootstrapButton.m */; };
 		9B2D6C531C824029001CDEFD /* CreateOrJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D6C521C824029001CDEFD /* CreateOrJoinViewController.swift */; };
 		9B3E413E1C738247007A16D3 /* MemberHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */; };
 		9B3E41401C738253007A16D3 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */; };
@@ -44,10 +44,9 @@
 		135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectViewController.swift; sourceTree = "<group>"; };
 		138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectTableViewCell.swift; sourceTree = "<group>"; };
 		138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		138B2BA71C837BD3009180C9 /* ChortalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChortalButton.swift; sourceTree = "<group>"; };
 		9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingsViewController.swift; sourceTree = "<group>"; };
 		9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewController.swift; sourceTree = "<group>"; };
-		9B2D6C4F1C823FB1001CDEFD /* CHNBootstrapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHNBootstrapButton.h; sourceTree = "<group>"; };
-		9B2D6C501C823FB1001CDEFD /* CHNBootstrapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHNBootstrapButton.m; sourceTree = "<group>"; };
 		9B2D6C521C824029001CDEFD /* CreateOrJoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOrJoinViewController.swift; sourceTree = "<group>"; };
 		9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberHomeViewController.swift; sourceTree = "<group>"; };
 		9B3E413F1C738253007A16D3 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +108,7 @@
 				9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
 				9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */,
+				9B2D6C521C824029001CDEFD /* CreateOrJoinViewController.swift */,
 				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
 			);
 			name = ViewControllers;
@@ -118,11 +118,10 @@
 			isa = PBXGroup;
 			children = (
 				138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */,
-				9B2D6C4F1C823FB1001CDEFD /* CHNBootstrapButton.h */,
-				9B2D6C501C823FB1001CDEFD /* CHNBootstrapButton.m */,
 				9B87FCD01C7A591000BB77DA /* SWRevealViewController.h */,
 				9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */,
 				9B87FCCF1C7A591000BB77DA /* Chortal-Bridging-Header.h */,
+				138B2BA71C837BD3009180C9 /* ChortalButton.swift */,
 				138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */,
 				9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */,
 				9BFD82BC1C77825B005A3967 /* Constants.swift */,
@@ -159,7 +158,6 @@
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
 				9B5FC26C1C737B8B005976FB /* Main.storyboard */,
-				9B2D6C521C824029001CDEFD /* CreateOrJoinViewController.swift */,
 				9B5FC26F1C737B8B005976FB /* Assets.xcassets */,
 				9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */,
 				9B5FC2741C737B8B005976FB /* Info.plist */,
@@ -259,8 +257,8 @@
 			files = (
 				135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
-				9B2D6C511C823FB1001CDEFD /* CHNBootstrapButton.m in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
+				138B2BA81C837BD3009180C9 /* ChortalButton.swift in Sources */,
 				138B2B7E1C80DB01009180C9 /* MemberSelectTableViewCell.swift in Sources */,
 				A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */,
 				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
