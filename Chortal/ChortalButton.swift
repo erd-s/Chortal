@@ -23,6 +23,8 @@ class ChortalButton: UIButton {
         
         self.setBackgroundImage(UIImage.imageWithColor(chortalGreen), forState: .Highlighted)
         self.setBackgroundImage(UIImage.imageWithColor(chortalGray), forState: .Normal)
+        self.setTitleColor(chortalGreen, forState: .Normal)
+        self.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         
         self.clipsToBounds = true
 
