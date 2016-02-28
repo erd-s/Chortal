@@ -11,6 +11,7 @@
 		138B2B7E1C80DB01009180C9 /* MemberSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */; };
 		138B2BA41C8370A4009180C9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */; };
 		138B2BA81C837BD3009180C9 /* ChortalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2BA71C837BD3009180C9 /* ChortalButton.swift */; };
+		138B2BAA1C83A12D009180C9 /* OrganizationOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B2BA91C83A12D009180C9 /* OrganizationOverViewController.swift */; };
 		9B22CDBB1C7B7874005EE6ED /* MemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */; };
 		9B22CDBD1C7B9EC3005EE6ED /* AdminSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */; };
 		9B2D6C531C824029001CDEFD /* CreateOrJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D6C521C824029001CDEFD /* CreateOrJoinViewController.swift */; };
@@ -36,7 +37,6 @@
 		9BD43F451C78CC4800D65902 /* TakeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */; };
 		9BE4C09D1C7E1DBE00381EBC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE4C09C1C7E1DBE00381EBC /* CloudKit.framework */; };
 		9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD82BC1C77825B005A3967 /* Constants.swift */; };
-		A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +45,7 @@
 		138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectTableViewCell.swift; sourceTree = "<group>"; };
 		138B2BA31C8370A4009180C9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		138B2BA71C837BD3009180C9 /* ChortalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChortalButton.swift; sourceTree = "<group>"; };
+		138B2BA91C83A12D009180C9 /* OrganizationOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationOverViewController.swift; sourceTree = "<group>"; };
 		9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingsViewController.swift; sourceTree = "<group>"; };
 		9B22CDBC1C7B9EC3005EE6ED /* AdminSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewController.swift; sourceTree = "<group>"; };
 		9B2D6C521C824029001CDEFD /* CreateOrJoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOrJoinViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		9BE4C09C1C7E1DBE00381EBC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9BF5DC341C74D257006C82AC /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; };
 		9BFD82BC1C77825B005A3967 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationOverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +102,8 @@
 				9B3E413D1C738247007A16D3 /* MemberHomeViewController.swift */,
 				135F922F1C766D83005CBD24 /* MemberSelectViewController.swift */,
 				9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */,
+				138B2BA91C83A12D009180C9 /* OrganizationOverViewController.swift */,
 				9B22CDBA1C7B7874005EE6ED /* MemberSettingsViewController.swift */,
-				A8FDA1D41C7BD27000CF2063 /* OrganizationOverViewController.swift */,
 				9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */,
 				9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */,
 				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
@@ -258,9 +258,9 @@
 				135F92301C766D84005CBD24 /* MemberSelectViewController.swift in Sources */,
 				9B3E41441C7382AE007A16D3 /* TaskViewController.swift in Sources */,
 				9B3E414E1C73A073007A16D3 /* AssignUIDViewController.swift in Sources */,
+				138B2BAA1C83A12D009180C9 /* OrganizationOverViewController.swift in Sources */,
 				138B2BA81C837BD3009180C9 /* ChortalButton.swift in Sources */,
 				138B2B7E1C80DB01009180C9 /* MemberSelectTableViewCell.swift in Sources */,
-				A8FDA1D51C7BD27000CF2063 /* OrganizationOverViewController.swift in Sources */,
 				9B3E41541C73EA81007A16D3 /* CustomCamCollectionViewCell.swift in Sources */,
 				9B2D6C531C824029001CDEFD /* CreateOrJoinViewController.swift in Sources */,
 				9B3EB2461C7D0DD300F7AC14 /* PushNotifications.swift in Sources */,
