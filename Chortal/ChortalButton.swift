@@ -22,6 +22,7 @@ class ChortalButton: UIButton {
         
         self.setBackgroundImage(UIImage.imageWithColor(chortalGreen), forState: .Highlighted)
         self.setBackgroundImage(UIImage.imageWithColor(.clearColor()), forState: .Normal)
+        self.setTitleColor(.grayColor(), forState: .Disabled)
         self.setTitleColor(chortalGreen, forState: .Normal)
         self.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         
