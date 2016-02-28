@@ -470,7 +470,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
-                                <rect key="frame" x="20" y="562" width="290" height="30"/>
+                                <rect key="frame" x="155" y="562" width="290" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Mdm-ZS-6NQ"/>
                                     <constraint firstAttribute="width" constant="290" id="j3a-YM-587"/>
@@ -487,7 +487,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="photo required" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="aUB-6n-p6D">
-                                <rect key="frame" x="20" y="533" width="290" height="21"/>
+                                <rect key="frame" x="155" y="533" width="290" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="2ox-Mp-BdD"/>
                                     <constraint firstAttribute="width" constant="290" id="IWd-pG-K7w"/>
@@ -567,6 +567,7 @@
                             <constraint firstItem="hJZ-9O-dQj" firstAttribute="top" secondItem="6nR-Q9-4dB" secondAttribute="bottom" constant="8" id="5xu-GH-gvs"/>
                             <constraint firstItem="9Ud-lx-7HI" firstAttribute="top" secondItem="jjc-6U-uLU" secondAttribute="bottom" constant="8" id="6M7-yd-BqB"/>
                             <constraint firstItem="Squ-mX-agb" firstAttribute="leading" secondItem="cFZ-YJ-p39" secondAttribute="trailing" constant="8" id="8IL-zP-ryh"/>
+                            <constraint firstItem="6nR-Q9-4dB" firstAttribute="centerX" secondItem="yrc-xh-S0f" secondAttribute="centerX" id="BjH-Qo-2ie"/>
                             <constraint firstItem="aUB-6n-p6D" firstAttribute="leading" secondItem="yrc-xh-S0f" secondAttribute="leadingMargin" id="DOW-q7-tJz"/>
                             <constraint firstItem="Squ-mX-agb" firstAttribute="top" secondItem="9Ud-lx-7HI" secondAttribute="bottom" constant="8" id="HKv-2p-vuX"/>
                             <constraint firstItem="wIp-bC-X9L" firstAttribute="leading" secondItem="yrc-xh-S0f" secondAttribute="leadingMargin" id="Kh2-Kx-qvL"/>
@@ -581,6 +582,7 @@
                             <constraint firstItem="6nR-Q9-4dB" firstAttribute="top" secondItem="aUB-6n-p6D" secondAttribute="bottom" constant="8" id="ZIw-Fp-xIi"/>
                             <constraint firstItem="jjc-6U-uLU" firstAttribute="leading" secondItem="BMO-C6-wwt" secondAttribute="trailing" constant="8" id="bJ7-Xu-1LY"/>
                             <constraint firstItem="aUB-6n-p6D" firstAttribute="top" secondItem="a0A-om-SM2" secondAttribute="bottom" constant="70" id="fB1-9c-Tio"/>
+                            <constraint firstItem="aUB-6n-p6D" firstAttribute="centerX" secondItem="yrc-xh-S0f" secondAttribute="centerX" id="mGp-MC-FiC"/>
                             <constraint firstItem="S5a-co-qQ6" firstAttribute="leading" secondItem="yrc-xh-S0f" secondAttribute="leadingMargin" id="oWo-4x-tbb"/>
                             <constraint firstItem="wIp-bC-X9L" firstAttribute="top" secondItem="cFZ-YJ-p39" secondAttribute="bottom" constant="8" id="ptw-fJ-Ecj"/>
                             <constraint firstItem="9Ud-lx-7HI" firstAttribute="leading" secondItem="S5a-co-qQ6" secondAttribute="trailing" constant="8" id="qfh-WE-amX"/>
@@ -595,7 +597,9 @@
                             <mask key="constraints">
                                 <exclude reference="UmV-g7-Y4e"/>
                                 <exclude reference="rhD-V5-oOi"/>
+                                <exclude reference="DOW-q7-tJz"/>
                                 <exclude reference="fB1-9c-Tio"/>
+                                <exclude reference="xeJ-JM-JDO"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
