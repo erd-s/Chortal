@@ -2339,7 +2339,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8Ik-qq-crz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2358,43 +2358,25 @@
                                     <segue destination="WDK-DS-eTY" kind="show" identifier="joinOrgSegue" id="kyT-jB-3iZ"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-EM-mdf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-EM-mdf">
                                 <rect key="frame" x="20" y="94" width="560" height="476"/>
                                 <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="0.0" right="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memberID" rowHeight="100" id="8kW-Gk-It5" customClass="MemberSelectTableViewCell" customModule="Chortal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memberID" rowHeight="60" id="8kW-Gk-It5" customClass="MemberSelectTableViewCell" customModule="Chortal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8kW-Gk-It5" id="GMT-I3-4Br">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="pie-Zf-S9q">
-                                                    <rect key="frame" x="0.0" y="-21" width="245" height="45"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gbV-it-K6t">
+                                                    <rect key="frame" x="10" y="10" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="46" id="cA5-cK-RkQ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="cA5-cK-RkQ"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="115" y="27" width="397" height="46"/>
-                                                        <mask key="constraints">
-                                                            <include reference="cA5-cK-RkQ"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gbV-it-K6t">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="bSW-Wt-YQl"/>
                                                         <constraint firstAttribute="height" constant="80" id="dfe-gd-gkp"/>
+                                                        <constraint firstAttribute="height" constant="40" id="mGH-Y1-Ds2"/>
                                                         <constraint firstAttribute="width" constant="80" id="mYS-K3-sXR"/>
                                                     </constraints>
                                                     <variation key="default">
@@ -2410,12 +2392,38 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="pie-Zf-S9q">
+                                                    <rect key="frame" x="70" y="15" width="470" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="NQl-v0-x5u"/>
+                                                        <constraint firstAttribute="height" constant="46" id="cA5-cK-RkQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="cA5-cK-RkQ"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="115" y="27" width="397" height="46"/>
+                                                        <mask key="constraints">
+                                                            <include reference="cA5-cK-RkQ"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="pie-Zf-S9q" firstAttribute="centerY" secondItem="GMT-I3-4Br" secondAttribute="centerY" id="AxT-qH-NoC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pie-Zf-S9q" secondAttribute="trailing" constant="8" id="FDm-eI-ONv"/>
+                                                <constraint firstItem="pie-Zf-S9q" firstAttribute="centerY" secondItem="GMT-I3-4Br" secondAttribute="centerY" id="IW5-NO-KLb"/>
                                                 <constraint firstItem="gbV-it-K6t" firstAttribute="top" secondItem="GMT-I3-4Br" secondAttribute="topMargin" constant="10" id="KoS-24-Luf"/>
+                                                <constraint firstItem="gbV-it-K6t" firstAttribute="centerY" secondItem="GMT-I3-4Br" secondAttribute="centerY" id="MJX-ee-3IR"/>
+                                                <constraint firstItem="gbV-it-K6t" firstAttribute="leading" secondItem="GMT-I3-4Br" secondAttribute="leadingMargin" constant="10" id="ZhP-ye-l4E"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pie-Zf-S9q" secondAttribute="trailing" constant="20" id="f2b-gZ-KPx"/>
+                                                <constraint firstItem="pie-Zf-S9q" firstAttribute="leading" secondItem="gbV-it-K6t" secondAttribute="trailing" constant="20" id="ieg-XP-I8E"/>
                                                 <constraint firstItem="pie-Zf-S9q" firstAttribute="leading" secondItem="gbV-it-K6t" secondAttribute="trailing" constant="25" id="mHB-3S-ZXS"/>
                                                 <constraint firstItem="gbV-it-K6t" firstAttribute="leading" secondItem="GMT-I3-4Br" secondAttribute="leadingMargin" constant="10" id="vL1-iL-nXN"/>
                                             </constraints>
@@ -2431,8 +2439,8 @@
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
-                                                    <include reference="pie-Zf-S9q"/>
                                                     <include reference="gbV-it-K6t"/>
+                                                    <include reference="pie-Zf-S9q"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="KoS-24-Luf"/>
