@@ -1017,7 +1017,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Gu-eJ-qhB">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Gu-eJ-qhB">
                                                     <rect key="frame" x="8" y="8" width="271" height="157"/>
                                                     <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>

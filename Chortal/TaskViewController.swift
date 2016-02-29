@@ -28,7 +28,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/3, collectionView.frame.width/3)
+        collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/2, collectionView.frame.width/2)
         
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
         descriptionLabel.text = currentTask?.valueForKey("description") as? String
@@ -196,7 +196,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                             
                             print(imageAsset)
                             imageAssetArray?.append(imageAsset)
-                            noPhotosLabel.hidden = true
                         }
                         
                         currentTask?.setObject(imageAssetArray, forKey: "photos")
@@ -237,6 +236,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
         images.append(chosenImage)
         picker.dismissViewControllerAnimated(true, completion: nil)
+        noPhotosLabel.hidden = true
         collectionView.reloadData()
     }
     
