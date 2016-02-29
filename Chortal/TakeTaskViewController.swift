@@ -98,7 +98,12 @@ class TakeTaskViewController: UIViewController {
         
         if task!["member"] != nil {
             takeTaskButton.enabled = false
-            takeTaskButton.setTitle("THIS TASK HAS BEEN TAKEN.", forState: .Disabled)
+            if (task!["status"] as? String == "inProgress")
+                || (task!["status"] as? String == "pending") {
+                    takeTaskButton.setTitle("THIS TASK HAS BEEN TAKEN.", forState: .Disabled)
+            } else if (task!["status"] as? String == "pending") {
+                takeTaskButton.setTitle("TASK PENDING ACCEPTANCE.", forState: .Disabled)
+            }
             getTaskOwner()
         } else {
             self.taskMemberLabel.text = "No one!"
