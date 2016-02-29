@@ -87,5 +87,13 @@ class AdminSidebarTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "adminSideBarToOrgOverview" {
+            if currentOrg!["members"] == nil {
+                errorAlert("Oops!", message: "There are no members in your group.")
+            }
+        }
+    }
 
   }

@@ -28,6 +28,7 @@ class TakeTaskViewController: UIViewController {
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var takeTaskButton: UIButton!
     @IBOutlet weak var taskMemberLabel: UILabel!
+    @IBOutlet weak var incentiveLabel: UILabel!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -36,15 +37,17 @@ class TakeTaskViewController: UIViewController {
         
         
         if task?["photo_required"] as? String == "true" {
-            photoRequiredYesOrNo = "are required."
+            photoRequiredYesOrNo = "are required"
         } else {
             photoRequiredYesOrNo = "are not required"
         }
         
         photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo!)."
         taskDescriptionLabel.text = task!["description"] as? String
+        taskDescriptionLabel.sizeToFit()
+        taskDescriptionLabel.numberOfLines = 0
         taskNameLabel.text = task!["name"] as? String
-        
+        incentiveLabel.text = task!["incentive"] as? String
         dueDate = task?["due"] as? NSDate
         let timeInterval = (dueDate?.timeIntervalSinceNow)! as NSTimeInterval
         
@@ -91,16 +94,14 @@ class TakeTaskViewController: UIViewController {
             
         }
         
-        
-        
         print("time interval: \(timeInterval) seconds")
         
-        taskMemberLabel.text = "Claimed By:"
         if task!["member"] != nil {
             takeTaskButton.enabled = false
+            takeTaskButton.setTitle("THIS TASK HAS BEEN TAKEN.", forState: .Disabled)
             getTaskOwner()
         } else {
-            self.taskMemberLabel.text = "Claimed By: No One!"
+            self.taskMemberLabel.text = "No one!"
         }
     }
     
@@ -108,12 +109,12 @@ class TakeTaskViewController: UIViewController {
     
     func getTaskOwner() {
         let ownerReference = task!["member"] as! CKReference
-        publicDatabase.fetchRecordWithID(ownerReference.recordID, completionHandler: { (task, error) -> Void in
+        publicDatabase.fetchRecordWithID(ownerReference.recordID, completionHandler: { (owner, error) -> Void in
             if error != nil {
                 print(error)
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.taskMemberLabel.text = "Claimed By: \(task!["name"]!)"
+                self.taskMemberLabel.text = "\(owner!["name"]!)"
             })
         })
     }
