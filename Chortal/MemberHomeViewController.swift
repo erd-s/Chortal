@@ -44,6 +44,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         taskTableView.addSubview(refreshControl)
+        taskTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
         
     }
     
@@ -233,7 +235,19 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.valueForKey("name") as? String
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.textColor = UIColor.whiteColor()
         
+        let view = UIView()
+        view.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + 2, self.view.frame.width - 15, cell.layer.frame.height - 8)
+        view.layer.borderColor = chortalGreen.CGColor
+        view.layer.borderWidth = 1.0
+        view.layer.cornerRadius = 5.0
+        view.backgroundColor = chortalGreen
+        view.clipsToBounds = true
+        cell.addSubview(view)
+        cell.sendSubviewToBack(view)
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
     
