@@ -136,7 +136,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     func presentRejectionAlertController() {
         let rejectionAlertController = UIAlertController(title: "Reject task?", message: "Please add a message.", preferredStyle: .Alert)
         rejectionAlertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            textField.placeholder = "Add a reason why the task was rejected."
+            textField.placeholder = "e.g. Not clean enough."
         }
         
         let textField = rejectionAlertController.textFields?.first

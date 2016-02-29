@@ -3102,8 +3102,8 @@
                                     <rect key="frame" x="107" y="91" width="473" height="21"/>
                                 </variation>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-AJ-wXX">
-                                <rect key="frame" x="20" y="209" width="560" height="278.5"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-AJ-wXX">
+                                <rect key="frame" x="20" y="189.5" width="560" height="318.5"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="8" y="149" width="584" height="377"/>
                                 </variation>
@@ -3214,7 +3214,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-Um-HY8">
                                 <rect key="frame" x="20" y="528" width="560" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-bc-frc" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-bc-frc" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="REJECT">
@@ -3224,7 +3224,7 @@
                                             <action selector="rejectActionTap:" destination="haO-d7-fXS" eventType="touchUpInside" id="uFy-UR-2Yi"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRb-RE-vOl" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRb-RE-vOl" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
                                         <rect key="frame" x="284" y="0.0" width="276" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="ACCEPT">
@@ -3251,8 +3251,8 @@
                             <constraint firstItem="z0i-W1-k5V" firstAttribute="leading" secondItem="KVY-OH-krg" secondAttribute="leadingMargin" id="Af6-Ve-Egd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JM8-MX-7fm" secondAttribute="trailing" id="ClO-sa-jnj"/>
                             <constraint firstItem="GoI-wI-8dV" firstAttribute="top" secondItem="zUy-0r-dhz" secondAttribute="bottom" constant="20" id="E6s-jq-h9o"/>
-                            <constraint firstItem="fYX-Um-HY8" firstAttribute="top" secondItem="hs9-AJ-wXX" secondAttribute="bottom" constant="40" id="EtV-1g-4Vg"/>
-                            <constraint firstItem="hs9-AJ-wXX" firstAttribute="top" secondItem="UOf-ry-Sjv" secondAttribute="bottom" constant="40" id="FEy-UW-Ebu"/>
+                            <constraint firstItem="fYX-Um-HY8" firstAttribute="top" secondItem="hs9-AJ-wXX" secondAttribute="bottom" constant="20" id="EtV-1g-4Vg"/>
+                            <constraint firstItem="hs9-AJ-wXX" firstAttribute="top" secondItem="UOf-ry-Sjv" secondAttribute="bottom" constant="20" id="FEy-UW-Ebu"/>
                             <constraint firstItem="7Zr-kX-0ix" firstAttribute="top" secondItem="zUy-0r-dhz" secondAttribute="bottom" constant="20" id="GYK-gD-9YN"/>
                             <constraint firstItem="UOf-ry-Sjv" firstAttribute="trailing" secondItem="KVY-OH-krg" secondAttribute="trailingMargin" id="YrS-HJ-h7h"/>
                             <constraint firstItem="JM8-MX-7fm" firstAttribute="top" secondItem="TRG-E6-Mj2" secondAttribute="bottom" constant="8" id="b6d-og-1OO"/>
