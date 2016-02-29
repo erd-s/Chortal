@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPI-HH-zp9" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
-                                <rect key="frame" x="175.5" y="358" width="250" height="40"/>
+                                <rect key="frame" x="175" y="358" width="250" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="5Sf-Pm-tQM"/>
                                     <constraint firstAttribute="height" constant="40" id="bfM-xv-p9b"/>
@@ -60,7 +60,7 @@
                                     <constraint firstAttribute="height" constant="34" id="xIS-7M-viG"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Chore.tl">
+                                    <fragment content="Chortal">
                                         <attributes>
                                             <color key="NSColor" red="0.011764705882352941" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="48" name="AmericanTypewriter"/>
@@ -4318,9 +4318,9 @@
         <image name="defaultphoto" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i07-nw-ycZ"/>
-        <segue reference="EvV-MJ-BvJ"/>
+        <segue reference="QNz-fF-lyI"/>
         <segue reference="IeD-g1-6Nb"/>
+        <segue reference="91i-ee-wIH"/>
         <segue reference="ZLP-fD-WgM"/>
         <segue reference="BT5-Bv-qGz"/>
     </inferredMetricsTieBreakers>
