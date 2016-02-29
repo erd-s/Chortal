@@ -3302,7 +3302,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecY-tc-Zqu" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
-                                <rect key="frame" x="212" y="459" width="175" height="30"/>
+                                <rect key="frame" x="212" y="399" width="175" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4im-qp-9jW"/>
                                     <constraint firstAttribute="width" constant="175" id="RlO-Kn-uzc"/>
@@ -3319,7 +3319,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send the invite code to members of your organization so that they can add themselves to the group." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tp5-I8-qYT">
-                                <rect key="frame" x="150" y="343" width="300" height="56"/>
+                                <rect key="frame" x="150" y="283" width="300" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="oJZ-mK-2nF"/>
                                     <constraint firstAttribute="height" constant="56" id="xwQ-UR-ABu"/>
@@ -3332,7 +3332,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your invite code is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSW-vb-A66">
-                                <rect key="frame" x="175" y="236" width="250" height="21"/>
+                                <rect key="frame" x="175" y="176" width="250" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="UDM-31-Pwe"/>
                                     <constraint firstAttribute="width" constant="250" id="znR-cU-vM0"/>
@@ -3345,10 +3345,10 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fM9-8z-joR">
-                                <rect key="frame" x="246" y="289" width="110" height="22"/>
+                                <rect key="frame" x="245.5" y="229" width="109.5" height="22"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="invite code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOH-K9-e1i">
-                                        <rect key="frame" x="0.0" y="0.0" width="84" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="83.5" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="175" id="bxf-Oh-vWp"/>
                                             <constraint firstAttribute="height" constant="22" id="uME-88-iH1"/>
@@ -3363,7 +3363,7 @@
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsZ-pf-fJU" userLabel="Copy">
-                                        <rect key="frame" x="92" y="0.0" width="18" height="22"/>
+                                        <rect key="frame" x="91.5" y="0.0" width="18" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="Qyd-9B-ei4"/>
                                             <constraint firstAttribute="width" constant="18" id="eh5-Ay-zhe"/>
@@ -3385,7 +3385,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fM9-8z-joR" firstAttribute="centerY" secondItem="mJB-DZ-mUO" secondAttribute="centerY" id="9N7-s5-yqk"/>
+                            <constraint firstItem="fM9-8z-joR" firstAttribute="centerY" secondItem="mJB-DZ-mUO" secondAttribute="centerY" constant="-60" id="9N7-s5-yqk"/>
                             <constraint firstItem="fM9-8z-joR" firstAttribute="top" secondItem="QSW-vb-A66" secondAttribute="bottom" constant="32" id="G9q-Qp-sHh"/>
                             <constraint firstItem="ecY-tc-Zqu" firstAttribute="centerX" secondItem="mJB-DZ-mUO" secondAttribute="centerX" id="U2w-RA-d36"/>
                             <constraint firstItem="tp5-I8-qYT" firstAttribute="top" secondItem="fM9-8z-joR" secondAttribute="bottom" constant="32" id="WdQ-Tm-5Mx"/>
