@@ -68,12 +68,10 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     
 func isICloudContainerAvailable()->Bool {
 if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
-     print("True")
     return true
         } else {
     self.errorAlert("Oops!" , message: "Please set your iCloud account in your settings first.")
-    print("False")
-    return false
+       return false
     
         }
 
