@@ -18,12 +18,12 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     var x: Int?
     
     //MARK: Outlets
+    @IBOutlet weak var noPhotosLabel: UILabel!
     @IBOutlet weak var collectionViewFlow: UICollectionViewFlowLayout!
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -31,7 +31,9 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/3, collectionView.frame.width/3)
         
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
-        descriptionTextView.text = currentTask?.valueForKey("description") as? String
+        descriptionLabel.text = currentTask?.valueForKey("description") as? String
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.sizeToFit()
         
         dueDate = currentTask?["due"] as? NSDate
         let timeInterval = (dueDate?.timeIntervalSinceNow)! as NSTimeInterval
@@ -194,6 +196,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                             
                             print(imageAsset)
                             imageAssetArray?.append(imageAsset)
+                            noPhotosLabel.hidden = true
                         }
                         
                         currentTask?.setObject(imageAssetArray, forKey: "photos")
