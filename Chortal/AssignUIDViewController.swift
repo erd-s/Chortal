@@ -21,7 +21,6 @@ class AssignUIDViewController: UIViewController {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionLabel.hidden = true
         uidLabel.text = orgUID
         uidLabel.sizeToFit()
     }
@@ -29,19 +28,12 @@ class AssignUIDViewController: UIViewController {
     //MARK: Custom Functions
     
     //MARK: IBActions
-    @IBAction func onInfoButtonTap(sender: UIButton) {
-        if descriptionLabel.hidden {
-            descriptionLabel.hidden = false
-        } else {
-            descriptionLabel.hidden = true
-        }
-    }
-    
     @IBAction func onCopyButtonTap(sender: UIButton) {
         let pasteboard = UIPasteboard.generalPasteboard()
         pasteboard.string = "\(uidLabel!.text!)"
         uidLabel.text = "Copied!"
         uidLabel.textColor = .grayColor()
+        uidLabel.sizeToFit()
     }
     
     //MARK: Delegate Functions
