@@ -32,6 +32,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidAppear(true)
         fetchCompletedRecords()
         loadingAlert("Loading tasks...", viewController: self)
+        
     }
     
     //MARK: Custom Functions
@@ -78,20 +79,22 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
             taskNameLabel.text = currentCompletedTask["name"] as? String
             incentiveLabel.text = currentCompletedTask["incentive"] as? String
             taskDescriptionLabel.text = currentCompletedTask["description"] as? String
+            taskDescriptionLabel.numberOfLines = 0
+            taskDescriptionLabel.sizeToFit()
             let timeTakenInSeconds = currentCompletedTask["taskCompletedTime"] as? Double
             
             
             if timeTakenInSeconds < 60 {
-                timeTakenLabel.text = "Time Taken: \(Int(timeTakenInSeconds!))"
+                timeTakenLabel.text = "\(Int(timeTakenInSeconds!))s"
             } else if timeTakenInSeconds < 3600 {
                 let timeTakenInMinutes = Int(timeTakenInSeconds! / 60)
-                timeTakenLabel.text = "Time Taken: \(timeTakenInMinutes))"
+                timeTakenLabel.text = "\(timeTakenInMinutes))m"
             } else if timeTakenInSeconds < 86400 {
                 let timeTakenInHours = Int(timeTakenInSeconds! / 3600)
-                timeTakenLabel.text = "Time Taken: \(timeTakenInHours))"
+                timeTakenLabel.text = "\(timeTakenInHours))h"
             } else {
                 let timeTakenInDays = Int(timeTakenInSeconds! / 86400)
-                timeTakenLabel.text = "Time Taken: \(timeTakenInDays))"
+                timeTakenLabel.text = "\(timeTakenInDays))d"
             }
             
             var x = 0
@@ -133,7 +136,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     func presentRejectionAlertController() {
         let rejectionAlertController = UIAlertController(title: "Reject task?", message: "Please add a message.", preferredStyle: .Alert)
         rejectionAlertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            textField.placeholder = "Add a reason why the task was rejected."
+            textField.placeholder = "e.g. Not clean enough."
         }
         
         let textField = rejectionAlertController.textFields?.first
@@ -186,11 +189,6 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                 })
             })
         }
-    }
-    
-    @IBAction func skipActionTap(sender: UIButton) {
-        layOutDataForCompletedRecord()
-        currentIndex = currentIndex + 1
     }
     
     //MARK: Delegate Functions
