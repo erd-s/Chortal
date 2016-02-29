@@ -52,7 +52,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         if isMember == true {
             performSegueWithIdentifier("OrgOverviewToMemberSidebar", sender: self)
         } else {
-           performSegueWithIdentifier("OrgOverviewToAdminHome", sender: self)
+           performSegueWithIdentifier("unwindFromOrgOverviewToAdmin", sender: self)
         }
         
         if backButton.enabled == true {

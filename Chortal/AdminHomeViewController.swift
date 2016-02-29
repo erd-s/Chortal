@@ -9,9 +9,20 @@
 import UIKit
 import CloudKit
 
-class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, UIPopoverPresentationControllerDelegate {
     //MARK: Properties
     var taskArray = [CKRecord]()
+    var unclaimedArray: [CKRecord]?
+    var inProgressArray: [CKRecord]?
+    var pendingArray: [CKRecord]?
+    var taskReferenceArray: NSMutableArray?
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
+
     
     //MARK: Outlets
     @IBOutlet weak var tabBar: UITabBar!
@@ -21,6 +32,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.delegate = self
+        tabBar.selectedItem = tabBar.items!.first! as UITabBarItem
+
         title = userDefaults.valueForKey("currentOrgName") as? String
         
         //   getOrganization()
@@ -43,17 +57,17 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     //MARK: Custom Functions
     func getOrganization() {
-        loadingAlert("Loading Tasks...", viewController: self)
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
                 print("error getting current organization: \(error)")
-            } else {
-                currentOrg = organizations![0] as CKRecord
-                self.getTasks()
-                self.getAdmin()
             }
+            currentOrg = organizations![0] as CKRecord
+            self.loadingAlert("Loading tasks...", viewController: self)
+            
+            self.getTasks(true)
+            self.getAdmin()
         }
     }
     
@@ -71,39 +85,116 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
-    
-    func getTasks() {
-        let taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
-        for taskRef in taskReferenceArray {
-            publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
-                if error != nil {
-                    print(error)
-                } else {
-                    if task != nil {
-                        //--------------------->create arrays by status for the different tabs
-                        if self.taskArray.indexOf(task!) != nil {
-                            self.taskArray.append(task!)
-                        } 
-                    }
-                }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                    if taskRef as? CKReference == taskReferenceArray.lastObject as? CKReference {
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                })
-            })
-        }
-        if taskReferenceArray.count == 0 {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    func getTasks(shouldShowAlertController: Bool) {
+        inProgressArray = [CKRecord]()
+        pendingArray = [CKRecord]()
+        unclaimedArray = [CKRecord]()
+        
+        taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
+        if taskReferenceArray!.count > 0 {
+            fetchTaskRecord(taskReferenceArray!.firstObject as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: 0)
+        } else {
+            if refreshControl.enabled == false {
+                refreshControl.enabled = true
+                refreshControl.endRefreshing()
+            } else {
                 self.dismissViewControllerAnimated(true, completion: nil)
-            })
+            }
         }
     }
+    
+    func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
+        publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in
+            if error != nil {
+                print("error fetching tasks: \(error)")
+            } else {
+                
+                if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
+                    self.inProgressArray?.append(task!)
+                } else if task!.valueForKey("status") as? String == "pending"  {
+                    self.pendingArray?.append(task!)
+                } else if task?["status"] as? String == "unassigned" {
+                    self.unclaimedArray?.append(task!)
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if reference.isEqual(self.taskReferenceArray!.lastObject) {
+                    if shouldShowAlertController == true {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        self.refreshControl.endRefreshing()
+                        self.refreshControl.enabled = true
+                    }
+                    self.tabBarItemSwitch()
+                    print(self.unclaimedArray!.count)
+                    
+                } else if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
+                    
+                    self.fetchTaskRecord(self.taskReferenceArray![indexNumber+1] as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: indexNumber + 1)
+                }
+            })
+        })
+    }
+
+    
+//    func getTasks() {
+//        taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
+//        for taskRef in taskReferenceArray! {
+//            publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
+//                if error != nil {
+//                    print(error)
+//                } else {
+//                    if task != nil {
+//                        //--------------------->create arrays by status for the different tabs
+//                        if self.taskArray.indexOf(task!) != nil {
+//                            self.taskArray.append(task!)
+//                        } 
+//                    }
+//                }
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    self.tableView.reloadData()
+//                    if taskRef as? CKReference == self.taskReferenceArray!.lastObject as? CKReference {
+//                        self.dismissViewControllerAnimated(true, completion: nil)
+//                    }
+//                })
+//            })
+//        }
+//        if taskReferenceArray!.count == 0 {
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                self.dismissViewControllerAnimated(true, completion: nil)
+//            })
+//        }
+//    }
     
     func modifyRecordsOperation(record: CKRecord) {
         
         
+    }
+    
+    func tabBarItemSwitch(){
+        switch tabBar.selectedItem!.tag {
+            
+        case 1:
+            taskArray = unclaimedArray!
+            tableView.reloadData()
+            break
+            
+        case 2:
+            taskArray = inProgressArray!
+            tableView.reloadData()
+            break
+            
+        case 3:
+            taskArray = pendingArray!
+            tableView.reloadData()
+            break
+            
+        default:
+            taskArray = unclaimedArray!
+            tableView.reloadData()
+            break
+        }
     }
     
     //MARK: IBActions
@@ -120,6 +211,36 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
+        let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
+        
+        let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
+        
+        popOver.task = taskArray[indexPath.row]
+        popOver.organization = currentOrg
+        
+        popOver.modalPresentationStyle = UIModalPresentationStyle.Popover
+        popOver.popoverPresentationController?.backgroundColor = UIColor(red:0.93, green: 0.98, blue: 0.93, alpha:  1.00)
+        
+        popOver.popoverPresentationController?.delegate = self
+        popOver.popoverPresentationController?.sourceView = selectedCellSourceView
+        popOver.popoverPresentationController?.sourceRect = selectedCellSourceRect
+        
+        popOver.popoverPresentationController?.permittedArrowDirections = .Any
+        
+        popOver.preferredContentSize = CGSizeMake(320, 260)
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.presentViewController(popOver, animated: true, completion: nil)
+            popOver.takeTaskButton.hidden = true
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
     }
     
     

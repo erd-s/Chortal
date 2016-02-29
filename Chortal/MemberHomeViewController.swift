@@ -83,6 +83,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
+            if error != nil {
+                print("error getting current organization: \(error)")
+            }
             currentOrg = organizations![0] as CKRecord
             self.loadingAlert("Loading tasks...", viewController: self)
             
@@ -253,7 +256,10 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         popOver.popoverPresentationController?.permittedArrowDirections = .Any
         
         popOver.preferredContentSize = CGSizeMake(320, 320)
-        self.presentViewController(popOver, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.presentViewController(popOver, animated: true, completion: nil)
+
+        }
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
