@@ -818,14 +818,14 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="l90-a0-2mA"/>
                                                             <exclude reference="1e4-9s-hQ0"/>
+                                                            <exclude reference="l90-a0-2mA"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="constraints">
-                                                            <exclude reference="l90-a0-2mA"/>
                                                             <exclude reference="1e4-9s-hQ0"/>
+                                                            <exclude reference="l90-a0-2mA"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -866,11 +866,11 @@
                                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="hJJ-5u-fMR"/>
                                                     <exclude reference="RS6-AR-O3x"/>
+                                                    <exclude reference="hJJ-5u-fMR"/>
                                                     <exclude reference="UB1-wJ-WYC"/>
-                                                    <exclude reference="eWg-Dc-sR7"/>
                                                     <exclude reference="eWU-Ql-Yn5"/>
+                                                    <exclude reference="eWg-Dc-sR7"/>
                                                     <exclude reference="wkA-CC-Rfu"/>
                                                 </mask>
                                             </variation>
@@ -880,8 +880,8 @@
                                                     <include reference="4ej-pA-XIN"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="hJJ-5u-fMR"/>
                                                     <include reference="RS6-AR-O3x"/>
+                                                    <include reference="hJJ-5u-fMR"/>
                                                     <include reference="UB1-wJ-WYC"/>
                                                     <include reference="eWg-Dc-sR7"/>
                                                     <exclude reference="wkA-CC-Rfu"/>
@@ -1426,7 +1426,7 @@
                                     </mask>
                                 </variation>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ne4-M0-AOE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ne4-M0-AOE">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="scrollIndicatorInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
