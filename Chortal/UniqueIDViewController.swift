@@ -36,7 +36,9 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
         
         let predicate = NSPredicate(format: "uid == %@", uidTextField.text!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
+        isICloudContainerAvailable()
         loadingAlert("Joining Group...", viewController: self)
+        
         
         publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
             if error != nil {
@@ -61,6 +63,20 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+    }
+    
+    
+func isICloudContainerAvailable()->Bool {
+if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
+     print("True")
+    return true
+        } else {
+    self.errorAlert("Oops!" , message: "Please set your iCloud account in your settings first.")
+    print("False")
+    return false
+    
+        }
+
     }
     
     //MARK: Delegate Functions
