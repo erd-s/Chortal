@@ -102,9 +102,6 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         cell.layer.borderColor = chortalGreen.CGColor
         cell.layer.borderWidth = 0.5
         cell.contentView.frame = cell.frame
-        
-        
-        
 
         return cell
     }
