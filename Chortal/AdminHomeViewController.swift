@@ -37,7 +37,11 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
 
         title = userDefaults.valueForKey("currentOrgName") as? String
         
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         //   getOrganization()
+//         self.automaticallyAdjustsScrollViewInsets = false
+//        let inset = UIEdgeInsetsMake(0, 20, 0, 0)
+//        tableView.contentInset = inset
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
@@ -137,36 +141,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
 
-    
-//    func getTasks() {
-//        taskReferenceArray = currentOrg!.mutableArrayValueForKey("tasks")
-//        for taskRef in taskReferenceArray! {
-//            publicDatabase.fetchRecordWithID(taskRef.recordID, completionHandler: { (task, error) -> Void in
-//                if error != nil {
-//                    print(error)
-//                } else {
-//                    if task != nil {
-//                        //--------------------->create arrays by status for the different tabs
-//                        if self.taskArray.indexOf(task!) != nil {
-//                            self.taskArray.append(task!)
-//                        } 
-//                    }
-//                }
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    self.tableView.reloadData()
-//                    if taskRef as? CKReference == self.taskReferenceArray!.lastObject as? CKReference {
-//                        self.dismissViewControllerAnimated(true, completion: nil)
-//                    }
-//                })
-//            })
-//        }
-//        if taskReferenceArray!.count == 0 {
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                self.dismissViewControllerAnimated(true, completion: nil)
-//            })
-//        }
-//    }
-    
     func modifyRecordsOperation(record: CKRecord) {
         
         
@@ -205,6 +179,24 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.valueForKey("name") as? String
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
+        
+        let view = UIView()
+        view.frame = CGRectMake(cell.layer.frame.minX, cell.layer.frame.minY + 4, self.view.frame.width - 15, cell.layer.frame.height - 7)
+        view.layer.borderColor = chortalGreen.CGColor
+        view.layer.borderWidth = 1.0
+        view.layer.cornerRadius = 5.0
+        view.backgroundColor = chortalGreen
+        view.clipsToBounds = true
+        cell.addSubview(view)
+        cell.sendSubviewToBack(view)
+        
+        cell.textLabel?.textColor = UIColor.whiteColor()
+//        
+//        cell.contentView.layer.borderColor = chortalGreen.CGColor
+//        cell.contentView.layer.borderWidth = 1.0
+//        cell.contentView.layer.cornerRadius = 5.0
+        cell.backgroundColor = UIColor.clearColor()
+        
         
         return cell
     }
