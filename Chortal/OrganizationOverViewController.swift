@@ -12,16 +12,22 @@ import CloudKit
 class OrganizationOverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var organization : String?
     var allMembers = [CKRecord]()
+    var isMember: Bool?
     
     @IBOutlet weak var navTitle: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIBarButtonItem!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navTitle.title = userDefaults.valueForKey("currentOrgName") as? String
         
-        getMembers()
+        if currentOrg!["members"] != nil {
+            getMembers()
+        } else {
+            errorAlert("Oops!" , message: "There are no members in your group.")
+        }
         
     }
     
@@ -43,8 +49,14 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
+        if isMember == true {
+            performSegueWithIdentifier("OrgOverviewToMemberSidebar", sender: self)
+        } else {
+           performSegueWithIdentifier("OrgOverviewToAdminHome", sender: self)
+        }
+        
         if backButton.enabled == true {
-            self.dismissViewControllerAnimated(true, completion: nil)
+        //    self.dismissViewControllerAnimated(true, completion: nil)
             backButton.enabled = false
         }
         

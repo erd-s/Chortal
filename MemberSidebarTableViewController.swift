@@ -96,6 +96,11 @@ class MemberSidebarTableViewController: UITableViewController {
     @IBAction func unwindFromTaskView(segue: UIStoryboardSegue) {
         
     }
+    
+    @IBAction func unwindFromOrgOverviewToMemberSidebar(segue: UIStoryboardSegue) {
+        
+        
+    }
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -115,6 +120,7 @@ class MemberSidebarTableViewController: UITableViewController {
             }
             
         }
-        
     }
+    
+    
 }

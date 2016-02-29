@@ -89,11 +89,14 @@ class AdminSidebarTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "adminSideBarToOrgOverview" {
-            if currentOrg!["members"] == nil {
-                errorAlert("Oops!", message: "There are no members in your group.")
-            }
+        if segue.identifier == "adminSidebarToOrgOverview" {
+            let dvc = segue.destinationViewController as! OrganizationOverViewController
+            dvc.isMember = false
         }
+    }
+    
+    @IBAction func unwindFromOrgOverviewToAdmin (segue: UIStoryboardSegue){
+        
     }
 
   }

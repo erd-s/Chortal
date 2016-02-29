@@ -23,7 +23,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         title = userDefaults.valueForKey("currentOrgName") as? String
         
-        getOrganization()
+        //   getOrganization()
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
@@ -34,6 +34,11 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
+        //      getOrganization()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        getOrganization()
     }
     
     //MARK: Custom Functions
@@ -75,14 +80,16 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     print(error)
                 } else {
                     if task != nil {
-//--------------------->create arrays by status for the different tabs
-                        self.taskArray.append(task!)
+                        //--------------------->create arrays by status for the different tabs
+                        if self.taskArray.indexOf(task!) != nil {
+                            self.taskArray.append(task!)
+                        } 
                     }
                 }
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                     if taskRef as? CKReference == taskReferenceArray.lastObject as? CKReference {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 })
             })

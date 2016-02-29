@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -421,9 +421,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="179" y="289" width="42" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="jjc-6U-uLU">
                                 <rect key="frame" x="101" y="69" width="200" height="18"/>
@@ -439,9 +436,6 @@
                                         <exclude reference="0xs-EY-KXe"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="179" y="289" width="42" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="9Ud-lx-7HI">
                                 <rect key="frame" x="101" y="95" width="209" height="21"/>
@@ -452,9 +446,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="179" y="289" width="42" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="a0A-om-SM2">
                                 <rect key="frame" x="101" y="153" width="209" height="21"/>
@@ -465,9 +456,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="179" y="289" width="42" height="21"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-Q9-4dB" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
                                 <rect key="frame" x="155" y="562" width="290" height="30"/>
@@ -479,9 +467,6 @@
                                 <state key="normal" title="TAKE TASK">
                                     <color key="titleColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="177" y="285" width="46" height="30"/>
-                                </variation>
                                 <connections>
                                     <action selector="takeTaskButton:" destination="OdL-Yf-9ve" eventType="touchUpInside" id="c3W-nN-A07"/>
                                 </connections>
@@ -495,9 +480,6 @@
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="179" y="289" width="42" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="incentive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Squ-mX-agb">
                                 <rect key="frame" x="101" y="124" width="209" height="21"/>
@@ -838,14 +820,14 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="oIH-kD-yx0"/>
                                                             <exclude reference="9KW-bd-CeS"/>
+                                                            <exclude reference="oIH-kD-yx0"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="constraints">
-                                                            <include reference="oIH-kD-yx0"/>
                                                             <include reference="9KW-bd-CeS"/>
+                                                            <include reference="oIH-kD-yx0"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -884,11 +866,11 @@
                                                     <exclude reference="3Wc-Jp-5cR"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="elc-Qu-No3"/>
                                                     <exclude reference="6fe-Kb-zO7"/>
                                                     <exclude reference="8hM-iG-Mhu"/>
-                                                    <exclude reference="f0W-46-V9c"/>
+                                                    <exclude reference="elc-Qu-No3"/>
                                                     <exclude reference="EJw-KH-WfR"/>
+                                                    <exclude reference="f0W-46-V9c"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -897,11 +879,11 @@
                                                     <include reference="3Wc-Jp-5cR"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="elc-Qu-No3"/>
                                                     <include reference="6fe-Kb-zO7"/>
                                                     <include reference="8hM-iG-Mhu"/>
-                                                    <include reference="f0W-46-V9c"/>
+                                                    <include reference="elc-Qu-No3"/>
                                                     <include reference="EJw-KH-WfR"/>
+                                                    <include reference="f0W-46-V9c"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -983,11 +965,13 @@
                         <outlet property="backButton" destination="WBZ-Dc-oze" id="7a0-W6-FDi"/>
                         <outlet property="navTitle" destination="06M-js-8fm" id="pUJ-31-iWn"/>
                         <outlet property="tableView" destination="Bwe-DW-Bo4" id="0nu-iG-wfr"/>
+                        <segue destination="rPN-8c-HDB" kind="unwind" identifier="OrgOverviewToAdminHome" unwindAction="unwindFromOrgOverviewToAdmin:" id="cAy-nx-vD3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mk-BD-FWu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rPN-8c-HDB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3759" y="-1640"/>
+            <point key="canvasLocation" x="3966" y="-1302"/>
         </scene>
         <!--My Task-->
         <scene sceneID="2Yc-82-opS">
@@ -1201,7 +1185,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9Q1-4F-eST" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3537" y="-791"/>
+            <point key="canvasLocation" x="4422" y="-495"/>
         </scene>
         <!--Member home-->
         <scene sceneID="nhW-I9-ZqO">
@@ -1481,7 +1465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Nn-tI-ICv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1453.5" y="1246"/>
+            <point key="canvasLocation" x="1198.5" y="1950"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="50l-w7-Uff">
@@ -2068,7 +2052,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="e5T-GF-FMf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3285" y="239"/>
+            <point key="canvasLocation" x="3372" y="373"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
@@ -3570,7 +3554,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryb-2T-Jvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EpW-GN-kxw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2638.5" y="239"/>
+            <point key="canvasLocation" x="2731.5" y="406"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -3681,7 +3665,8 @@
                                         <exclude reference="wvG-uY-gcy"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="380" y="285" width="36" height="30"/>
                                     <mask key="constraints">
                                         <include reference="OA1-7u-T39"/>
                                         <include reference="wvG-uY-gcy"/>
@@ -3912,6 +3897,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="94W-o5-8Te" kind="presentation" identifier="adminSidebarToOrgOverview" id="BT5-Bv-qGz"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yis-lM-d59" style="IBUITableViewCellStyleDefault" id="Cdt-fE-XCF">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
@@ -4719,16 +4707,17 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LkJ-dU-ZDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QWZ-hC-es2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2818.5" y="1060"/>
+            <point key="canvasLocation" x="1573.5" y="1152"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultphoto" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ZLP-fD-WgM"/>
+        <segue reference="BT5-Bv-qGz"/>
         <segue reference="7Kh-Yt-WH9"/>
         <segue reference="kyT-jB-3iZ"/>
         <segue reference="EvV-MJ-BvJ"/>
-        <segue reference="Dj6-lr-shE"/>
     </inferredMetricsTieBreakers>
 </document>
