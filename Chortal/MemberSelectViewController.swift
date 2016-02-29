@@ -90,7 +90,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         let cellRecord = memberArray[indexPath.row]
         let imageAsset = cellRecord["profile_picture"] as? CKAsset
         let image = UIImage(data: NSData(contentsOfURL: (imageAsset?.fileURL)!)!)
-        cell.profileImageView?.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, 80, 80)
+        cell.profileImageView?.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 40, 40)
         cell.profileImageView.image = image
         //cell.imageView!.contentMode = UIViewContentMode.ScaleToFill
         cell.profileImageView!.layer.cornerRadius = (cell.profileImageView!.frame.height)/2
@@ -99,7 +99,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
 
         cell.memberNameLabel!.text = cellRecord.valueForKey("name") as? String
         cell.layer.cornerRadius = 5.0
-        cell.layer.borderColor = UIColor.lightGrayColor().CGColor
+        cell.layer.borderColor = chortalGreen.CGColor
         cell.layer.borderWidth = 0.5
         cell.contentView.frame = cell.frame
         
