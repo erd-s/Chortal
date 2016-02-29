@@ -3102,8 +3102,8 @@
                                     <rect key="frame" x="107" y="91" width="473" height="21"/>
                                 </variation>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-AJ-wXX">
-                                <rect key="frame" x="20" y="209" width="560" height="312.5"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-AJ-wXX">
+                                <rect key="frame" x="20" y="209" width="560" height="278.5"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="8" y="149" width="584" height="377"/>
                                 </variation>
@@ -3111,19 +3111,6 @@
                                     <outlet property="delegate" destination="haO-d7-fXS" id="Ifs-Kj-3HL"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-bc-frc" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
-                                <rect key="frame" x="115" y="530" width="120" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="REJECT">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="162" y="534" width="43" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="rejectActionTap:" destination="haO-d7-fXS" eventType="touchUpInside" id="uFy-UR-2Yi"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoI-wI-8dV">
                                 <rect key="frame" x="20" y="74" width="73" height="30"/>
                                 <constraints>
@@ -3224,22 +3211,38 @@
                                     <rect key="frame" x="107" y="62" width="386" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRb-RE-vOl" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
-                                <rect key="frame" x="265" y="530" width="190" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="ACCEPT">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="275" y="534" width="49" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="acceptActionTap:" destination="haO-d7-fXS" eventType="touchUpInside" id="9s7-VL-Ors"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-Um-HY8">
+                                <rect key="frame" x="20" y="528" width="560" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-bc-frc" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="276" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="REJECT">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rejectActionTap:" destination="haO-d7-fXS" eventType="touchUpInside" id="uFy-UR-2Yi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRb-RE-vOl" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
+                                        <rect key="frame" x="284" y="0.0" width="276" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="ACCEPT">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="acceptActionTap:" destination="haO-d7-fXS" eventType="touchUpInside" id="9s7-VL-Ors"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="f78-w2-Cwb"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="fYX-Um-HY8" secondAttribute="trailing" id="2op-8M-peO"/>
                             <constraint firstItem="JM8-MX-7fm" firstAttribute="bottom" secondItem="zDd-JH-rIc" secondAttribute="bottom" id="4rA-k1-Qej"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zUy-0r-dhz" secondAttribute="trailing" constant="-20" id="83S-g1-TzM"/>
                             <constraint firstItem="hs9-AJ-wXX" firstAttribute="leading" secondItem="KVY-OH-krg" secondAttribute="leadingMargin" id="8lT-Vi-dbN"/>
@@ -3248,16 +3251,19 @@
                             <constraint firstItem="z0i-W1-k5V" firstAttribute="leading" secondItem="KVY-OH-krg" secondAttribute="leadingMargin" id="Af6-Ve-Egd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JM8-MX-7fm" secondAttribute="trailing" id="ClO-sa-jnj"/>
                             <constraint firstItem="GoI-wI-8dV" firstAttribute="top" secondItem="zUy-0r-dhz" secondAttribute="bottom" constant="20" id="E6s-jq-h9o"/>
+                            <constraint firstItem="fYX-Um-HY8" firstAttribute="top" secondItem="hs9-AJ-wXX" secondAttribute="bottom" constant="40" id="EtV-1g-4Vg"/>
                             <constraint firstItem="hs9-AJ-wXX" firstAttribute="top" secondItem="UOf-ry-Sjv" secondAttribute="bottom" constant="40" id="FEy-UW-Ebu"/>
                             <constraint firstItem="7Zr-kX-0ix" firstAttribute="top" secondItem="zUy-0r-dhz" secondAttribute="bottom" constant="20" id="GYK-gD-9YN"/>
                             <constraint firstItem="UOf-ry-Sjv" firstAttribute="trailing" secondItem="KVY-OH-krg" secondAttribute="trailingMargin" id="YrS-HJ-h7h"/>
                             <constraint firstItem="JM8-MX-7fm" firstAttribute="top" secondItem="TRG-E6-Mj2" secondAttribute="bottom" constant="8" id="b6d-og-1OO"/>
                             <constraint firstItem="hs9-AJ-wXX" firstAttribute="trailing" secondItem="KVY-OH-krg" secondAttribute="trailingMargin" id="btk-pH-SHb"/>
+                            <constraint firstItem="fAa-kC-Iwu" firstAttribute="top" secondItem="fYX-Um-HY8" secondAttribute="bottom" constant="42" id="c1S-6s-62F"/>
                             <constraint firstItem="TRG-E6-Mj2" firstAttribute="leading" secondItem="GoI-wI-8dV" secondAttribute="trailing" constant="8" id="dF2-LL-GCy"/>
                             <constraint firstItem="7Zr-kX-0ix" firstAttribute="leading" secondItem="TRG-E6-Mj2" secondAttribute="trailing" constant="8" id="eqJ-2t-Eje"/>
                             <constraint firstItem="UOf-ry-Sjv" firstAttribute="top" secondItem="z0i-W1-k5V" secondAttribute="top" id="fPJ-6C-k3e"/>
                             <constraint firstItem="zDd-JH-rIc" firstAttribute="top" secondItem="GoI-wI-8dV" secondAttribute="bottom" constant="8" id="kLK-vt-gLM"/>
                             <constraint firstItem="zDd-JH-rIc" firstAttribute="top" secondItem="GoI-wI-8dV" secondAttribute="bottom" constant="8" id="mHK-ET-rHF"/>
+                            <constraint firstItem="fYX-Um-HY8" firstAttribute="leading" secondItem="KVY-OH-krg" secondAttribute="leadingMargin" id="mvI-ut-iNk"/>
                             <constraint firstItem="JM8-MX-7fm" firstAttribute="leading" secondItem="zDd-JH-rIc" secondAttribute="trailing" constant="8" id="o4B-mj-w4s"/>
                             <constraint firstItem="zUy-0r-dhz" firstAttribute="top" secondItem="KVY-OH-krg" secondAttribute="topMargin" id="pyk-7n-gVC"/>
                             <constraint firstItem="JM8-MX-7fm" firstAttribute="top" secondItem="zDd-JH-rIc" secondAttribute="top" id="sY4-3T-W0H"/>
@@ -3280,7 +3286,6 @@
                             <mask key="subviews">
                                 <include reference="JM8-MX-7fm"/>
                                 <include reference="hs9-AJ-wXX"/>
-                                <include reference="bh7-bc-frc"/>
                                 <include reference="GoI-wI-8dV"/>
                                 <include reference="zDd-JH-rIc"/>
                                 <include reference="z0i-W1-k5V"/>
@@ -3288,7 +3293,6 @@
                                 <include reference="7Zr-kX-0ix"/>
                                 <include reference="UOf-ry-Sjv"/>
                                 <include reference="TRG-E6-Mj2"/>
-                                <include reference="wRb-RE-vOl"/>
                             </mask>
                         </variation>
                     </view>
