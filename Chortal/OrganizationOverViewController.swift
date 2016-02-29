@@ -69,9 +69,8 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         let cellRecord = allMembers[indexPath.row]
         let imageAsset = cellRecord["profile_picture"] as? CKAsset
         let image = UIImage(data: NSData(contentsOfURL: (imageAsset?.fileURL)!)!)
-        cell.profileImageView?.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, 80, 80)
+        cell.profileImageView?.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + 10, 40, 40)
         cell.profileImageView.image = image
-        //cell.imageView!.contentMode = UIViewContentMode.ScaleToFill
         cell.profileImageView!.layer.cornerRadius = (cell.profileImageView!.frame.height)/2
         cell.profileImageView?.layer.masksToBounds = true
         cell.profileImageView?.clipsToBounds = true
