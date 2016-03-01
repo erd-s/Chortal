@@ -191,10 +191,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         cell.sendSubviewToBack(view)
         
         cell.textLabel?.textColor = UIColor.whiteColor()
-//        
-//        cell.contentView.layer.borderColor = chortalGreen.CGColor
-//        cell.contentView.layer.borderWidth = 1.0
-//        cell.contentView.layer.cornerRadius = 5.0
         cell.backgroundColor = UIColor.clearColor()
         
         
