@@ -34,6 +34,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         loadingAlert("Creating task...", viewController: self)
         
+        memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 0)
+        memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 1)
         datePicker.minimumDate = NSDate()
         fetchMembers()
     }
@@ -94,105 +96,103 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
                     //do some good stuff
                 }
             })
-    } else {
-    newTask.setValue("unassigned", forKey: "status")
+        } else {
+            newTask.setValue("unassigned", forKey: "status")
+        }
+        
+        newTask.setObject(organizationReference, forKey: "organization")
+        
+        
+        saveTaskAndOrganization([newTask, currentOrg!])
     }
     
-    newTask.setObject(organizationReference, forKey: "organization")
+    func saveTaskAndOrganization(records: [CKRecord]) {
+        let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        saveRecordsOp.modifyRecordsCompletionBlock = { saved, deleted, error in
+            if error != nil {
+                print(error)
+            } else {
+                print("saved task")
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.performSegueWithIdentifier("unwindFromTaskCreate", sender: self)
+                    })
+                }
+            }
+        }
+        publicDatabase.addOperation(saveRecordsOp)
+    }
     
-    
-    saveTaskAndOrganization([newTask, currentOrg!])
-}
-
-func saveTaskAndOrganization(records: [CKRecord]) {
-    let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
-    saveRecordsOp.modifyRecordsCompletionBlock = { saved, deleted, error in
-        if error != nil {
-            print(error)
-        } else {
-            print("saved task")
-            dispatch_async(dispatch_get_main_queue()) {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.performSegueWithIdentifier("unwindFromTaskCreate", sender: self)
+    func fetchMembers(){
+        var memberCount = 0
+        
+        if currentOrg?["members"] != nil {
+            for member in currentOrg?["members"] as! [CKReference] {
+                publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
+                    if (error != nil) {
+                        print("error fetching members: \(error)")
+                    }
+                    else {
+                        self.memberArray.append(memberRecord!)
+                        memberCount++
+                        if memberCount == (currentOrg!["members"] as! [CKReference]).count {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.addMembersToSegmentedControl()
+                            })
+                        }
+                    }
                 })
             }
         }
-    }
-    publicDatabase.addOperation(saveRecordsOp)
-}
-
-func fetchMembers(){
-    var memberCount = 0
-    
-    if currentOrg?["members"] != nil {
-        for member in currentOrg?["members"] as! [CKReference] {
-            publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
-                if (error != nil) {
-                    print("error fetching members: \(error)")
-                }
-                else {
-                    self.memberArray.append(memberRecord!)
-                    memberCount++
-                    if memberCount == (currentOrg!["members"] as! [CKReference]).count {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.addMembersToSegmentedControl()
-                        })
-                    }
-                }
-            })
+        else {
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    else {
-        dismissViewControllerAnimated(true, completion: nil)
-        memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 0)
-        memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 1)
-    }
-}
-
-func addMembersToSegmentedControl() {
-    var x = 0
-    for member in memberArray {
+    
+    func addMembersToSegmentedControl() {
+        var x = 0
         memberSegmentedControl.removeAllSegments()
-        memberSegmentedControl.insertSegmentWithTitle(member["name"] as? String, atIndex: x, animated: true)
-        x++
+        for member in memberArray {
+            memberSegmentedControl.insertSegmentWithTitle(member["name"] as? String, atIndex: x, animated: true)
+            x++
+        }
     }
-}
-
-//MARK: IBActions
-@IBAction func createTaskButtonTap(sender: AnyObject) {
-    if taskNameTextField.text?.characters.count > 0 {
-        loadingAlert("Saving task...", viewController: self)
-        createNewTask()
-    } else {
-        let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
-        let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
-        alert.addAction(okay)
-        presentViewController(alert, animated: true, completion: nil)
+    
+    //MARK: IBActions
+    @IBAction func createTaskButtonTap(sender: AnyObject) {
+        if taskNameTextField.text?.characters.count > 0 {
+            loadingAlert("Saving task...", viewController: self)
+            createNewTask()
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)
+            let okay = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+            alert.addAction(okay)
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
-}
-
-@IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
-    memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
-    memberSegmentedControl.selected = false
-}
-
-@IBAction func onSegmentedControlSelected(sender: AnyObject) {
-    let segmentIndex = memberSegmentedControl.selectedSegmentIndex
-    selectedMember = memberArray[segmentIndex]
-    memberSegmentedControl.selected = true
-}
-
-//MARK: Delegate Functions
-func textFieldShouldReturn(textField: UITextField) -> Bool {
-    return textField.resignFirstResponder()
-}
-
-//MARK: Segue
-override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "unwindFromTaskCreate" {
-        let vc = segue.destinationViewController as! AdminHomeViewController
-        vc.taskArray.append(newTask)
+    
+    @IBAction func clearSegmentedControlButtonTap(sender: UIButton) {
+        memberSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment
+        memberSegmentedControl.selected = false
     }
-}
-
+    
+    @IBAction func onSegmentedControlSelected(sender: AnyObject) {
+        let segmentIndex = memberSegmentedControl.selectedSegmentIndex
+        selectedMember = memberArray[segmentIndex]
+        memberSegmentedControl.selected = true
+    }
+    
+    //MARK: Delegate Functions
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
+    //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindFromTaskCreate" {
+            let vc = segue.destinationViewController as! AdminHomeViewController
+            vc.taskArray.append(newTask)
+        }
+    }
+    
 }

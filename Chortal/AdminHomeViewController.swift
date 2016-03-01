@@ -23,8 +23,10 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         return refreshControl
     }()
 
-    
     //MARK: Outlets
+
+    @IBOutlet weak var menuBarButton: UIBarButtonItem!
+    @IBOutlet weak var newTaskBarButton: UIBarButtonItem!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -38,10 +40,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         title = userDefaults.valueForKey("currentOrgName") as? String
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        //   getOrganization()
-//         self.automaticallyAdjustsScrollViewInsets = false
-//        let inset = UIEdgeInsetsMake(0, 20, 0, 0)
-//        tableView.contentInset = inset
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
@@ -51,8 +49,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
+        menuBarButton.enabled = false
+        newTaskBarButton.enabled = false
         tableView.reloadData()
-        //      getOrganization()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -125,10 +124,14 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            self.menuBarButton.enabled = true
+                            self.newTaskBarButton.enabled = true
+                        })
                     } else {
                         self.refreshControl.endRefreshing()
                         self.refreshControl.enabled = true
+                        
                     }
                     self.tabBarItemSwitch()
                     print(self.unclaimedArray!.count)
