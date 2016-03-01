@@ -130,12 +130,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         scrollView.addSubview(imageView)
     }
     
-    func longPressHandler(presser: UIGestureRecognizer) {
-        let state = presser.state
+    func longPressHandler(longPress: UIGestureRecognizer) {
+        let state = longPress.state
 
         let rejectPhotoAlert = UIAlertController(title: "Would you like to hide photo?", message: nil, preferredStyle: .ActionSheet)
         let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
-            
             var index = 0
             for subview in self.scrollView.subviews {
                 if subview.frame.contains(self.pressLocation!) {
@@ -150,7 +149,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         rejectPhotoAlert.addAction(cancel)
         
         if state == .Ended {
-            pressLocation = presser.locationInView(self.scrollView)
+            pressLocation = longPress.locationInView(self.scrollView)
             presentViewController(rejectPhotoAlert, animated: true, completion: nil)
         }
 
