@@ -97,7 +97,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func backButtonTapped(sender: UIButton) {
-        performSegueWithIdentifier("unwindFromTaskView", sender: self)
+        
     }
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {

@@ -9,7 +9,7 @@
 import UIKit
 
 class MemberSidebarTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var welcomeMemberLabel: UILabel!
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var organizationLabel: UILabel!
@@ -46,17 +46,17 @@ class MemberSidebarTableViewController: UITableViewController {
         middleCellView2.frame = welcomeCell.frame
         middleCellView2.image = middleImage
         middleCellView2.contentMode = UIViewContentMode.ScaleToFill
-
+        
         let middleCellView3 = UIImageView()
         middleCellView3.frame = welcomeCell.frame
         middleCellView3.image = middleImage
         middleCellView3.contentMode = UIViewContentMode.ScaleToFill
-
+        
         let middleCellView4 = UIImageView()
         middleCellView4.frame = welcomeCell.frame
         middleCellView4.image = middleImage
         middleCellView4.contentMode = UIViewContentMode.ScaleToFill
-
+        
         let bottomCellView = UIImageView()
         bottomCellView.frame = welcomeCell.frame
         bottomCellView.image = bottomImage
@@ -90,7 +90,7 @@ class MemberSidebarTableViewController: UITableViewController {
         
         tableView.backgroundColor = UIColor.clearColor()
         tableView.backgroundView = imageView
-
+        
     }
     
     @IBAction func unwindFromTaskView(segue: UIStoryboardSegue) {
@@ -101,23 +101,23 @@ class MemberSidebarTableViewController: UITableViewController {
         
         
     }
-
+    
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
     
-
+    
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "takeTaskSegue" {
-            if currentTask == nil {
-                errorAlert("Oops!", message: "You don't have a task.")
-            }
+//            if currentTask == nil {
+//                errorAlert("Oops!", message: "You don't have a task.")
+//            }
             
         }
     }
@@ -126,7 +126,11 @@ class MemberSidebarTableViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if cell?.reuseIdentifier == "currentTask" {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.performSegueWithIdentifier("takeTaskSegue", sender: self)
+                if currentTask == nil {
+                    self.errorAlert("Oops!", message: "You don't have a task.")
+                } else {
+                    self.performSegueWithIdentifier("takeTaskSegue", sender: self)
+                }
             })
             
         } else if cell?.reuseIdentifier == "settings" {

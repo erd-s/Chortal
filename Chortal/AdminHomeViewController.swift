@@ -181,7 +181,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
         
         let view = UIView()
-        view.frame = CGRectMake(cell.layer.frame.minX, cell.layer.frame.minY + 4, self.view.frame.width - 15, cell.layer.frame.height - 7)
+        view.frame = CGRectMake(cell.frame.origin.x + 5 , cell.frame.origin.y + 4, self.view.frame.width - 15, cell.layer.frame.height - 7)
         view.layer.borderColor = chortalGreen.CGColor
         view.layer.borderWidth = 1.0
         view.layer.cornerRadius = 5.0

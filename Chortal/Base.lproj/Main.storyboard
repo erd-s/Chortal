@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="haO-d7-fXS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -611,7 +611,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RNn-Os-KnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1726.5" y="-1328"/>
+            <point key="canvasLocation" x="1942" y="-1246"/>
         </scene>
         <!--Member Sidebar-->
         <scene sceneID="Rw1-rp-cRL">
@@ -916,12 +916,14 @@
                         <outlet property="backButton" destination="WBZ-Dc-oze" id="7a0-W6-FDi"/>
                         <outlet property="navTitle" destination="06M-js-8fm" id="pUJ-31-iWn"/>
                         <segue destination="rPN-8c-HDB" kind="unwind" identifier="unwindFromOrgOverviewToAdmin" unwindAction="unwindFromOrgOverviewToAdmin:" id="faV-DR-zZ4"/>
+                        <segue destination="nQn-5v-qES" kind="show" identifier="orgOverviewToAdmin" id="GO8-wU-rPS"/>
+                        <segue destination="Zag-Vo-TJP" kind="show" identifier="orgOverviewToMember" id="Fy4-9L-9AC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mk-BD-FWu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rPN-8c-HDB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3640" y="-1665"/>
+            <point key="canvasLocation" x="3620" y="-2169"/>
         </scene>
         <!--My Task-->
         <scene sceneID="2Yc-82-opS">
@@ -1049,8 +1051,12 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="backButtonTapped:" destination="jop-HQ-7R7" eventType="touchUpInside" id="Py5-Zs-xso"/>
+                                                    <segue destination="Zag-Vo-TJP" kind="show" id="xRc-Re-fXI"/>
                                                 </connections>
                                             </button>
+                                            <connections>
+                                                <segue destination="9Q1-4F-eST" kind="unwind" unwindAction="unwindToSidebar:" id="VMY-Jq-5H6"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1251,7 +1257,7 @@
                                 </items>
                                 <color key="tintColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-RI-JO2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-RI-JO2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1346,6 +1352,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="F3b-Nl-sNJ">
                         <barButtonItem key="leftBarButtonItem" title="☰" id="EwG-bk-wjh">
                             <connections>
@@ -2442,13 +2449,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qpZ-1P-2Uc">
                                 <rect key="frame" x="140" y="444" width="320" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Multiple users on this device?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-1d-rWK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiple users on this device?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-1d-rWK">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-kT-UyI">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-kT-UyI">
                                         <rect key="frame" x="271" y="0.0" width="51" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="onTintColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2495,7 +2502,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Undo" id="u53-AH-uyS">
                                             <color key="tintColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
-                                                <segue destination="WCD-Ar-8bs" kind="unwind" unwindAction="unwindToSidebar:" id="vQr-LI-Ep4"/>
+                                                <segue destination="Zag-Vo-TJP" kind="show" id="wNn-m6-vEc"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2666,7 +2673,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7e-IA-2eH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="WCD-Ar-8bs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2494" y="-2169"/>
         </scene>
@@ -3359,10 +3365,10 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i07-nw-ycZ"/>
+        <segue reference="wNn-m6-vEc"/>
         <segue reference="Pzb-0f-AmU"/>
+        <segue reference="GO8-wU-rPS"/>
         <segue reference="kyT-jB-3iZ"/>
         <segue reference="91i-ee-wIH"/>
-        <segue reference="ZLP-fD-WgM"/>
     </inferredMetricsTieBreakers>
 </document>

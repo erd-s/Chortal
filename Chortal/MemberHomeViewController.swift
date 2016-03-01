@@ -38,6 +38,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         tabBar.selectedItem = tabBar.items!.first! as UITabBarItem
         title = userDefaults.valueForKey("currentOrgName") as? String
         
+        taskTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
+        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = "revealToggle:"
@@ -229,10 +232,24 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
+        cell.backgroundColor = UIColor.clearColor()
         
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.valueForKey("name") as? String
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
+        cell.detailTextLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.textColor = UIColor.whiteColor()
+
+        let view = UIView()
+        view.frame = CGRectMake(cell.frame.origin.x + 10 , cell.frame.origin.y + 4, self.view.frame.width - 15, cell.layer.frame.height - 7)
+        view.layer.borderColor = chortalGreen.CGColor
+        view.layer.borderWidth = 1.0
+        view.layer.cornerRadius = 5.0
+        view.backgroundColor = chortalGreen
+        view.clipsToBounds = true
+        cell.addSubview(view)
+        cell.sendSubviewToBack(view)
+        
         
         return cell
     }
