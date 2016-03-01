@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CloudKit
 
-class MemberSettingsViewController: UIViewController, UITextFieldDelegate {
+class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Properties
+    var imageAsset:CKAsset?
     
     
     //MARK: Outlets
@@ -37,7 +39,8 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate {
         
         nameTextField.text = userDefaults.valueForKey("currentUserName") as? String
         
-        defaultPhotoImageView.image = currentMember?["photo"] as? UIImage
+        imageAsset = currentMember?["profile_picture"] as? CKAsset
+        defaultPhotoImageView.image = UIImage(data: NSData(contentsOfURL: (imageAsset?.fileURL)!)!)
     }
     
     //MARK: Custom Functions
@@ -48,15 +51,64 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Actions
     @IBAction func changePhotoButtonTap(sender: AnyObject) {
-        //open image picker
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceType.Camera
+        self.presentViewController(picker, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func addPhotoButtonTap(sender: AnyObject) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(picker, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
+        [String : AnyObject]) {
+            let imageToSave = info[UIImagePickerControllerEditedImage] as? UIImage
+            picker.dismissViewControllerAnimated(true) { () -> Void in
+                self.defaultPhotoImageView.image = imageToSave
+                self.defaultPhotoImageView.contentMode = UIViewContentMode.ScaleAspectFit
+                self.saveImageLocaly()
+            }
+            
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func saveImageLocaly () {
+        let data = UIImagePNGRepresentation(defaultPhotoImageView.image!)
+        let filename = getDocumentsDirectory().stringByAppendingPathComponent("profile_picture.png")
+        data!.writeToFile(filename, atomically: true)
+        self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
+        
+    }
+
+    
+    
     
     @IBAction func saveButtonTap(sender: AnyObject) {
         loadingAlert("Saving settings...", viewController: self)
+        currentMember!.setObject(imageAsset, forKey: "profile_picture")
+
         if multipleUsersSwitch.on    { userDefaults.setBool(true, forKey: "multipleUsers") }
         else { userDefaults.setBool(false, forKey: "multipleUsers") }
         
-        if nameTextField.text != memberName {
+        if (nameTextField.text != memberName) || (currentMember!["profile_photo"] as? CKAsset != imageAsset) {
+
             userDefaults.setValue(nameTextField.text, forKey: "currentUserName")
             currentMember?.setValue(nameTextField.text, forKey: "name")
             publicDatabase.saveRecord(currentMember!, completionHandler: { (memberSaved, error) -> Void in
