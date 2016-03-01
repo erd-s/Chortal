@@ -671,7 +671,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="FhH-Iy-9Mu" style="IBUITableViewCellStyleDefault" id="d25-Vc-GDB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="currentTask" textLabel="FhH-Iy-9Mu" style="IBUITableViewCellStyleDefault" id="d25-Vc-GDB">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d25-Vc-GDB" id="yh8-Ff-JvE">
@@ -690,11 +690,8 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="jop-HQ-7R7" kind="show" identifier="takeTaskSegue" id="ztg-fO-cEM"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="K3f-ml-ahl" style="IBUITableViewCellStyleDefault" id="xqM-vb-mjr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="orgOverview" textLabel="K3f-ml-ahl" style="IBUITableViewCellStyleDefault" id="xqM-vb-mjr">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xqM-vb-mjr" id="iMd-er-nJN">
@@ -713,11 +710,8 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="94W-o5-8Te" kind="show" identifier="OrgCellID" id="56a-wj-aQV"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="rBf-t2-lC7" style="IBUITableViewCellStyleDefault" id="nGd-UA-SnH">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settings" textLabel="rBf-t2-lC7" style="IBUITableViewCellStyleDefault" id="nGd-UA-SnH">
                                         <rect key="frame" x="0.0" y="176" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nGd-UA-SnH" id="2al-47-eCA">
@@ -736,9 +730,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="IX6-oG-d5E" kind="show" id="a1w-K2-3ZS"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -757,6 +748,9 @@
                         <outlet property="settingsCell" destination="nGd-UA-SnH" id="MKZ-kb-nyo"/>
                         <outlet property="welcomeCell" destination="f1S-88-Cqd" id="Z37-Gf-wTc"/>
                         <outlet property="welcomeMemberLabel" destination="J1s-xA-GMG" id="OE0-tV-Wk4"/>
+                        <segue destination="IX6-oG-d5E" kind="custom" identifier="settingsSegue" customClass="SWRevealViewControllerSeguePushController" id="3YA-ZD-6dD"/>
+                        <segue destination="jop-HQ-7R7" kind="custom" identifier="takeTaskSegue" customClass="SWRevealViewControllerSeguePushController" id="bL7-Yb-zPs"/>
+                        <segue destination="94W-o5-8Te" kind="custom" identifier="OrgCellID" customClass="SWRevealViewControllerSeguePushController" id="Pzb-0f-AmU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2448,13 +2442,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qpZ-1P-2Uc">
                                 <rect key="frame" x="140" y="444" width="320" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiple users on this device?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-1d-rWK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Multiple users on this device?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-1d-rWK">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-kT-UyI">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-kT-UyI">
                                         <rect key="frame" x="271" y="0.0" width="51" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="onTintColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3365,10 +3359,10 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kyT-jB-3iZ"/>
         <segue reference="i07-nw-ycZ"/>
-        <segue reference="ZLP-fD-WgM"/>
-        <segue reference="BT5-Bv-qGz"/>
+        <segue reference="Pzb-0f-AmU"/>
+        <segue reference="kyT-jB-3iZ"/>
         <segue reference="91i-ee-wIH"/>
+        <segue reference="ZLP-fD-WgM"/>
     </inferredMetricsTieBreakers>
 </document>
