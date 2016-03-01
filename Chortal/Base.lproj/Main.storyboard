@@ -2447,16 +2447,16 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qpZ-1P-2Uc">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qpZ-1P-2Uc">
                                 <rect key="frame" x="140" y="420" width="320" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiple users on this device?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-1d-rWK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Multiple users on this device?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-1d-rWK">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-kT-UyI">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-kT-UyI">
                                         <rect key="frame" x="271" y="0.0" width="51" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="onTintColor" red="0.098575122654438019" green="0.57021194696426392" blue="0.088041462004184723" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2514,16 +2514,16 @@
                                     </mask>
                                 </variation>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fSA-ms-P9H">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fSA-ms-P9H">
                                 <rect key="frame" x="140" y="374" width="320" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvB-2Z-jlf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvB-2Z-jlf">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g2y-D3-oUg">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g2y-D3-oUg">
                                         <rect key="frame" x="48" y="0.0" width="273" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2538,7 +2538,7 @@
                                     <constraint firstAttribute="height" constant="30" id="hNM-9I-fgu"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTq-MG-peT" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTq-MG-peT" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
                                 <rect key="frame" x="200" y="491" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="5Ih-rA-hwM"/>
@@ -2657,12 +2657,12 @@
                                 <exclude reference="ZxU-sj-yJh"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Qyf-y2-6Y3"/>
+                                <exclude reference="fmX-Ev-MUe"/>
                                 <exclude reference="5UV-J3-Z9X"/>
                                 <exclude reference="WyU-a0-sJc"/>
                                 <exclude reference="J67-aC-jcj"/>
                                 <exclude reference="JaO-A1-MPT"/>
-                                <exclude reference="Qyf-y2-6Y3"/>
-                                <exclude reference="fmX-Ev-MUe"/>
                                 <exclude reference="Pa3-tW-9od"/>
                                 <exclude reference="vml-r6-c49"/>
                                 <exclude reference="z4D-5N-7bT"/>
@@ -2679,13 +2679,13 @@
                                 <include reference="ZxU-sj-yJh"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Qyf-y2-6Y3"/>
+                                <include reference="fmX-Ev-MUe"/>
                                 <include reference="5UV-J3-Z9X"/>
                                 <include reference="WyU-a0-sJc"/>
                                 <exclude reference="Ihx-GK-jvF"/>
                                 <include reference="J67-aC-jcj"/>
                                 <include reference="JaO-A1-MPT"/>
-                                <include reference="Qyf-y2-6Y3"/>
-                                <include reference="fmX-Ev-MUe"/>
                                 <include reference="Pa3-tW-9od"/>
                                 <exclude reference="apj-we-Cec"/>
                                 <exclude reference="vml-r6-c49"/>
