@@ -25,7 +25,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
 
     //MARK: Outlets
 
-    @IBOutlet weak var menuBarButton: UIBarButtonItem!
     @IBOutlet weak var newTaskBarButton: UIBarButtonItem!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
@@ -49,7 +48,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
-        menuBarButton.enabled = false
+        menuButton.enabled = false
         newTaskBarButton.enabled = false
         tableView.reloadData()
     }
@@ -125,7 +124,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            self.menuBarButton.enabled = true
+                            self.menuButton.enabled = true
                             self.newTaskBarButton.enabled = true
                         })
                     } else {
@@ -184,7 +183,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
         
         let view = UIView()
-        view.frame = CGRectMake(cell.frame.origin.x + 5 , cell.frame.origin.y + 4, self.view.frame.width - 15, cell.layer.frame.height - 7)
+        view.frame = CGRectMake(cell.frame.origin.x + 1, cell.frame.origin.y + 4, self.view.frame.width - 16, cell.layer.frame.height - 7)
         view.layer.borderColor = chortalGreen.CGColor
         view.layer.borderWidth = 1.0
         view.layer.cornerRadius = 5.0

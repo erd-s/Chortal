@@ -94,6 +94,28 @@ class AdminSidebarTableViewController: UITableViewController {
             dvc.isMember = false
         }
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if cell?.reuseIdentifier == "completedTask" {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if currentTask == nil {
+                    self.errorAlert("Oops!", message: "You don't have a task.")
+                } else {
+                    self.performSegueWithIdentifier("completedTaskSegue", sender: self)
+                }
+            })
+            
+        } else if cell?.reuseIdentifier == "settings" {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.performSegueWithIdentifier("adminSettingsSegue", sender: self)
+            })
+            
+        } else if cell?.reuseIdentifier == "orgOverView" {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.performSegueWithIdentifier("adminSidebarToOrgOverview", sender: self)
+            })
+        }
+    }
     
     @IBAction func unwindFromOrgOverviewToAdmin (segue: UIStoryboardSegue){
         
