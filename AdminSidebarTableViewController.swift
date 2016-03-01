@@ -94,9 +94,5 @@ class AdminSidebarTableViewController: UITableViewController {
             dvc.isMember = false
         }
     }
-    
-    @IBAction func unwindFromOrgOverviewToAdmin (segue: UIStoryboardSegue){
-        
-    }
 
   }

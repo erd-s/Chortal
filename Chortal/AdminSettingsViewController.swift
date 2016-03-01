@@ -55,14 +55,14 @@ class AdminSettingsViewController: UIViewController {
                 } else {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            self.performSegueWithIdentifier("saveAdminSettingsSegue", sender: self)
+                            self.performSegueWithIdentifier("settingsToAdminSidebar", sender: self)
                         })
                     })
                 }
             })
         } else {
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.performSegueWithIdentifier("saveAdminSettingsSegue", sender: self)
+                self.performSegueWithIdentifier("settingsToAdminSidebar", sender: self)
             })
         }
     }
@@ -73,6 +73,9 @@ class AdminSettingsViewController: UIViewController {
         inviteCodeLabel.text = "Copied!"
     }
     
+    @IBAction func backButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("settingsToAdminSidebar", sender: self)
+    }
     
     //MARK: Delegate Functions
     func textFieldShouldReturn(textField: UITextField) -> Bool {

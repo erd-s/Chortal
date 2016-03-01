@@ -98,6 +98,9 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
     }
 
     
+    @IBAction func backButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("SettingsToMember", sender: self)
+    }
     
     
     @IBAction func saveButtonTap(sender: AnyObject) {
@@ -118,14 +121,14 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
                     print("saved new username successfully")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            self.performSegueWithIdentifier("saveSettingsSegue", sender: self)
+                            self.performSegueWithIdentifier("SettingsToMember", sender: self)
                         })
                     })
                 }
             })
         } else {
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.performSegueWithIdentifier("saveSettingsSegue", sender: self)
+                self.performSegueWithIdentifier("SettingsToMember", sender: self)
             })
         }
     }

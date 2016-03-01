@@ -1770,7 +1770,7 @@ const int FrontViewPositionNone = 0xff;
     [super encodeRestorableStateWithCoder:coder];
 }
 
-- (IBAction)unwindToSidebar:(UIStoryboardSegue *)segue {
+- (IBAction)unwindToMemberSidebar:(UIStoryboardSegue *)segue {
     
 }
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder

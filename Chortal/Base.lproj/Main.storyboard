@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jF0-k8-fKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354" y="-1251"/>
+            <point key="canvasLocation" x="-420" y="-866"/>
         </scene>
         <!--Create Organization-->
         <scene sceneID="Jea-3f-MMg">
@@ -309,9 +309,6 @@
                                 <state key="normal" title="Want to join a group instead?">
                                     <color key="titleColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="jP6-LE-g8W" kind="show" id="SUG-47-hDY"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
@@ -378,7 +375,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLu-Oo-c9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677" y="-207"/>
+            <point key="canvasLocation" x="-1113" y="-77"/>
         </scene>
         <!--Take Task View Controller-->
         <scene sceneID="s8M-hs-W84">
@@ -589,7 +586,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YZ-K0-gQj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7cD-xV-vOc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2917" y="-490"/>
+            <point key="canvasLocation" x="2922" y="-1204"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="ZdP-TJ-s3S">
@@ -611,7 +608,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RNn-Os-KnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1942" y="-1246"/>
+            <point key="canvasLocation" x="488" y="-93"/>
         </scene>
         <!--Member Sidebar-->
         <scene sceneID="Rw1-rp-cRL">
@@ -755,7 +752,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2731.5" y="-1302"/>
+            <point key="canvasLocation" x="1438" y="-93"/>
         </scene>
         <!--Organization Over View Controller-->
         <scene sceneID="JfD-VO-l1J">
@@ -915,15 +912,14 @@
                     <connections>
                         <outlet property="backButton" destination="WBZ-Dc-oze" id="7a0-W6-FDi"/>
                         <outlet property="navTitle" destination="06M-js-8fm" id="pUJ-31-iWn"/>
-                        <segue destination="rPN-8c-HDB" kind="unwind" identifier="unwindFromOrgOverviewToAdmin" unwindAction="unwindFromOrgOverviewToAdmin:" id="faV-DR-zZ4"/>
-                        <segue destination="nQn-5v-qES" kind="show" identifier="orgOverviewToAdmin" id="GO8-wU-rPS"/>
-                        <segue destination="Zag-Vo-TJP" kind="show" identifier="orgOverviewToMember" id="Fy4-9L-9AC"/>
+                        <segue destination="rPN-8c-HDB" kind="unwind" identifier="OrgOverviewToAdmin" unwindAction="unwindToMemberSidebar:" id="99p-5v-lfj"/>
+                        <segue destination="rPN-8c-HDB" kind="unwind" identifier="OrgOverviewToMember" unwindAction="unwindToMemberSidebar:" id="sK9-2F-0Z4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mk-BD-FWu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rPN-8c-HDB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3620" y="-2169"/>
+            <point key="canvasLocation" x="2190" y="634"/>
         </scene>
         <!--My Task-->
         <scene sceneID="2Yc-82-opS">
@@ -1051,12 +1047,8 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="backButtonTapped:" destination="jop-HQ-7R7" eventType="touchUpInside" id="Py5-Zs-xso"/>
-                                                    <segue destination="Zag-Vo-TJP" kind="show" id="xRc-Re-fXI"/>
                                                 </connections>
                                             </button>
-                                            <connections>
-                                                <segue destination="9Q1-4F-eST" kind="unwind" unwindAction="unwindToSidebar:" id="VMY-Jq-5H6"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1224,13 +1216,13 @@
                         <outlet property="noPhotosLabel" destination="5bH-dC-Qfs" id="IIy-RQ-n3d"/>
                         <outlet property="taskNameLabel" destination="mD5-87-juK" id="BYE-aA-Xhj"/>
                         <outlet property="timerLabel" destination="U4D-eM-Hly" id="Zws-gX-0lk"/>
-                        <segue destination="9Q1-4F-eST" kind="unwind" identifier="unwindFromTaskView" unwindAction="unwindToSidebar:" id="FtH-O2-cLm"/>
+                        <segue destination="9Q1-4F-eST" kind="unwind" identifier="MyTaskToMemberSidebar" unwindAction="unwindToMemberSidebar:" id="4eZ-0R-hIK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9Q1-4F-eST" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3594" y="-875"/>
+            <point key="canvasLocation" x="2922" y="-509"/>
         </scene>
         <!--Member home-->
         <scene sceneID="nhW-I9-ZqO">
@@ -1241,11 +1233,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ORp-3u-lz3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oQ8-uF-Jox">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGs-Ef-nlo">
-                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <rect key="frame" x="0.0" y="487" width="600" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="H6u-Rw-Dyf"/>
@@ -1257,7 +1249,7 @@
                                 </items>
                                 <color key="tintColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-RI-JO2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-RI-JO2">
                                 <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1271,7 +1263,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vWH-ii-Knf" id="Ci0-4d-7MC">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="anc-H6-sqN">
@@ -1381,7 +1373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ScF-pV-oId" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2254" y="-490"/>
+            <point key="canvasLocation" x="1942" y="-980"/>
         </scene>
         <!--Admin Home-->
         <scene sceneID="tOB-Nl-9Gy">
@@ -1510,7 +1502,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Nn-tI-ICv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1198" y="1950"/>
+            <point key="canvasLocation" x="566" y="2178"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="50l-w7-Uff">
@@ -2067,7 +2059,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irc-jv-88b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="e5T-GF-FMf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3241" y="137"/>
+            <point key="canvasLocation" x="1438" y="2178"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
@@ -2085,7 +2077,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJN-IO-RBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="544.5" y="1230"/>
+            <point key="canvasLocation" x="566" y="1394"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="buH-2w-740">
@@ -2243,7 +2235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqv-V1-WMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349" y="-1223"/>
+            <point key="canvasLocation" x="488" y="-901"/>
         </scene>
         <!--Member Select View Controller-->
         <scene sceneID="3ea-CF-1KO">
@@ -2417,7 +2409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syG-Xh-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="-1217"/>
+            <point key="canvasLocation" x="-332" y="-93"/>
         </scene>
         <!--Member Settings-->
         <scene sceneID="602-Pc-aDd">
@@ -2502,7 +2494,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Undo" id="u53-AH-uyS">
                                             <color key="tintColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
-                                                <segue destination="Zag-Vo-TJP" kind="show" id="wNn-m6-vEc"/>
+                                                <action selector="backButtonTapped:" destination="IX6-oG-d5E" id="CC9-Bv-JwZ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2669,12 +2661,13 @@
                         <outlet property="defaultPhotoImageView" destination="LNG-kR-qfj" id="EHy-jT-RQS"/>
                         <outlet property="multipleUsersSwitch" destination="qcQ-kT-UyI" id="1Oa-Tr-HqW"/>
                         <outlet property="nameTextField" destination="g2y-D3-oUg" id="huW-TM-Hbt"/>
-                        <segue destination="Zag-Vo-TJP" kind="show" identifier="saveSettingsSegue" id="i07-nw-ycZ"/>
+                        <segue destination="DYi-A4-CPt" kind="unwind" identifier="SettingsToMember" unwindAction="unwindToMemberSidebar:" id="edg-1r-vWI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7e-IA-2eH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DYi-A4-CPt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="-2169"/>
+            <point key="canvasLocation" x="2922" y="207"/>
         </scene>
         <!--Completed Tasks-->
         <scene sceneID="2R3-PG-ndG">
@@ -2878,13 +2871,13 @@
                         <outlet property="taskDescriptionLabel" destination="JM8-MX-7fm" id="IcA-uv-dX4"/>
                         <outlet property="taskNameLabel" destination="TRG-E6-Mj2" id="6Xi-rB-VsX"/>
                         <outlet property="timeTakenLabel" destination="7Zr-kX-0ix" id="tKh-mx-Njw"/>
-                        <segue destination="EpW-GN-kxw" kind="unwind" identifier="unwindToSidebar" unwindAction="unwindToSidebar:" id="MIy-oY-Jaq"/>
+                        <segue destination="EpW-GN-kxw" kind="unwind" identifier="unwindToSidebar" unwindAction="unwindToMemberSidebar:" id="MIy-oY-Jaq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryb-2T-Jvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EpW-GN-kxw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2536" y="263"/>
+            <point key="canvasLocation" x="2082" y="1394"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dIc-eq-Dz9">
@@ -2902,7 +2895,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUe-jN-2bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1479" y="-490"/>
+            <point key="canvasLocation" x="1250" y="-980"/>
         </scene>
         <!--AssignUID View Controller-->
         <scene sceneID="vHi-mh-3xK">
@@ -3010,10 +3003,10 @@
             </objects>
             <point key="canvasLocation" x="-191" y="634"/>
         </scene>
-        <!--Reveal View Controller-->
+        <!--Reveal View Controller Admin-->
         <scene sceneID="Nhn-gx-OPC">
             <objects>
-                <viewController storyboardIdentifier="adminHomeMenu" id="nQn-5v-qES" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="adminHomeMenu" id="nQn-5v-qES" customClass="SWRevealViewControllerAdmin" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0HJ-lS-K05"/>
                         <viewControllerLayoutGuide type="bottom" id="Boe-7f-li1"/>
@@ -3030,7 +3023,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yb1-Lw-Oxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.5" y="392"/>
+            <point key="canvasLocation" x="566" y="634"/>
         </scene>
         <!--Admin Sidebar-->
         <scene sceneID="tlH-Zh-9V5">
@@ -3159,7 +3152,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cvg-6p-bfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786.5" y="392"/>
+            <point key="canvasLocation" x="1438" y="634"/>
         </scene>
         <!--Admin Settings-->
         <scene sceneID="5re-Ki-A4E">
@@ -3214,7 +3207,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Undo" id="qMN-Et-PWW">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
-                                                <segue destination="QWZ-hC-es2" kind="unwind" unwindAction="unwindToSidebar:" id="W1S-ex-fBf"/>
+                                                <action selector="backButtonTapped:" destination="5qi-9D-F8z" id="GEG-ki-Ncz"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -3347,13 +3340,13 @@
                         <outlet property="inviteCodeLabel" destination="eOD-Jw-6t3" id="plo-oR-WRb"/>
                         <outlet property="nameTextField" destination="b7w-Jo-Wa1" id="cAh-o4-ytH"/>
                         <outlet property="organizationNameTextField" destination="WMQ-M8-dIJ" id="eZ0-6w-G5Y"/>
-                        <segue destination="nQn-5v-qES" kind="show" identifier="saveAdminSettingsSegue" id="ZLP-fD-WgM"/>
+                        <segue destination="QWZ-hC-es2" kind="unwind" identifier="settingsToAdminSidebar" unwindAction="unwindToMemberSidebar:" id="Psg-lV-ysu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LkJ-dU-ZDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QWZ-hC-es2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1573" y="1152"/>
+            <point key="canvasLocation" x="1438" y="1394"/>
         </scene>
     </scenes>
     <resources>
@@ -3365,10 +3358,9 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wNn-m6-vEc"/>
-        <segue reference="Pzb-0f-AmU"/>
-        <segue reference="GO8-wU-rPS"/>
+        <segue reference="QNz-fF-lyI"/>
         <segue reference="kyT-jB-3iZ"/>
-        <segue reference="91i-ee-wIH"/>
+        <segue reference="EvV-MJ-BvJ"/>
+        <segue reference="BT5-Bv-qGz"/>
     </inferredMetricsTieBreakers>
 </document>
