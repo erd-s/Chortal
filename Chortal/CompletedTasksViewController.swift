@@ -9,12 +9,13 @@
 import UIKit
 import CloudKit
 
-class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
+class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     //MARK: Properties
     var completedTaskArray = [CKRecord]()
     var currentIndex = 0
     var currentCompletedTask: CKRecord!
     var layoutTriggeredAtLeastOnce = false
+    var pressLocation: CGPoint?
     
     //MARK: Outlets
     @IBOutlet weak var taskNameLabel: UILabel!
@@ -120,8 +121,39 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
         imageView.image = photo
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 1
+        imageView.userInteractionEnabled = true
+        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler")
+        longPress.delegate = self
+        imageView.addGestureRecognizer(longPress)
+        
         scrollView.contentSize.width = (scrollView.frame.width + (position * scrollView.frame.width))
         scrollView.addSubview(imageView)
+    }
+    
+    func longPressHandler(presser: UIGestureRecognizer) {
+        let state = presser.state
+
+        let rejectPhotoAlert = UIAlertController(title: "Would you like to hide photo?", message: nil, preferredStyle: .ActionSheet)
+        let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
+            
+            var index = 0
+            for subview in self.scrollView.subviews {
+                if subview.frame.contains(self.pressLocation!) {
+                    self.scrollView.subviews[index].hidden = true
+                    index++
+                }
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        rejectPhotoAlert.addAction(reject)
+        rejectPhotoAlert.addAction(cancel)
+        
+        if state == .Ended {
+            pressLocation = presser.locationInView(self.scrollView)
+            presentViewController(rejectPhotoAlert, animated: true, completion: nil)
+        }
+
     }
     
     func presentNoCompletedTasksAlertController(title: String) {
