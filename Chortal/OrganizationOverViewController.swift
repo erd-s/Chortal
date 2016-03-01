@@ -93,7 +93,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         if segue.identifier == "segueToMemberDetail" {
             let dvc = segue.destinationViewController as! MemberDetailViewController
             let indexPath = tableView.indexPathForCell(sender as! MemberSelectTableViewCell)
-            dvc.currentMember = allMembers[indexPath!.row]
+            dvc.selectedMember = allMembers[indexPath!.row]
         }
     }
 }

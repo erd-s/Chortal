@@ -12,7 +12,8 @@ import CloudKit
 class MemberDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     var arrayOfCompletedTasks = [CKRecord]()
-    var currentMember: CKRecord?
+    var arrayOfCurrentTasks = [CKRecord]()
+    var selectedMember: CKRecord?
     
     //MARK: Outlets
     
@@ -22,18 +23,19 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var numberOfTasksCompletedLabel: UILabel!
     @IBOutlet weak var currentTasksLabel: UILabel!
     
-    
-    
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = selectedMember!["name"] as? String
+        nameLabel.text = selectedMember!["name"] as? String
         
+        let photoAsset = selectedMember!["profile_photo"] as? CKAsset
+        profileImageView.image = UIImage(data: NSData(contentsOfURL: photoAsset!.fileURL)!)
     }
-    
     
     //MARK: Custom Functions
     func getCompletedTasks() {
-        let arrayOfCompletedTasksReferences = currentMember!["finished_tasks"] as? [CKReference]
+        let arrayOfCompletedTasksReferences = selectedMember!["finished_tasks"] as? [CKReference]
         for task in arrayOfCompletedTasksReferences! {
             publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
                 if error != nil {
@@ -41,10 +43,27 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
                 } else {
                     self.arrayOfCompletedTasks.append(completedTask!)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.numberOfTasksCompletedLabel.text = String(self.arrayOfCompletedTasks.count)
                         self.tableView.reloadData()
                     })
                 }
                 
+            })
+        }
+    }
+    
+    func getCurrentTasks() {
+        let arrayOfCurrentTasksReferences = selectedMember!["current_tasks"] as? [CKReference]
+        for task in arrayOfCurrentTasksReferences! {
+            publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
+                if error != nil {
+                    print("error: \(error)")
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        let taskName = "\(completedTask!["name"]) \n"
+                        self.currentTasksLabel.text = self.currentTasksLabel.text?.stringByAppendingString(taskName)
+                    })
+                }
             })
         }
     }
