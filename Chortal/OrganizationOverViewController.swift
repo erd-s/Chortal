@@ -10,15 +10,17 @@ import UIKit
 import CloudKit
 
 class OrganizationOverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    //MARK: Properties
     var organization : String?
     var allMembers = [CKRecord]()
     var isMember: Bool?
     
+    //MARK: Outlets
     @IBOutlet weak var navTitle: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIBarButtonItem!
     
-    
+    //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         navTitle.title = userDefaults.valueForKey("currentOrgName") as? String
@@ -31,8 +33,8 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         
     }
     
+    //MARK: Custom Functions
     func getMembers() {
-        
         for memberRef in currentOrg!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (member , error) -> Void in
                 if error != nil {
@@ -47,6 +49,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     
+    //MARK: Actions
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         if isMember == true {
             performSegueWithIdentifier("orgOverviewToMember", sender: self)
@@ -55,13 +58,11 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         if backButton.enabled == true {
-            //    self.dismissViewControllerAnimated(true, completion: nil)
             backButton.enabled = false
         }
-        
     }
     
-    
+    //MARK: TableView Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("memberID") as! MemberSelectTableViewCell
         
@@ -87,5 +88,12 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         return allMembers.count
     }
     
-    
+    //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "segueToMemberDetail" {
+            let dvc = segue.destinationViewController as! MemberDetailViewController
+            let indexPath = tableView.indexPathForCell(sender as! MemberSelectTableViewCell)
+            dvc.currentMember = allMembers[indexPath!.row]
+        }
+    }
 }
