@@ -38,6 +38,9 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     
     //MARK: Custom Functions
     func fetchCompletedRecords() {
+        var nonPendingTasksCount = 0
+        var firstTaskSet = false
+        
         if currentOrg!["tasks"] != nil {
             for ref in currentOrg!["tasks"] as! [CKReference] {
                 publicDatabase.fetchRecordWithID(ref.recordID, completionHandler: { (taskRecord, error) -> Void in
@@ -46,26 +49,36 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                     } else {
                         if taskRecord!["status"] as? String == "pending" {
                             self.completedTaskArray.append(taskRecord!)
+                            if firstTaskSet == false {
+                                firstTaskSet = true
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
                                     self.layOutDataForCompletedRecord()
                                 })
                             })
+                            } else {
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.layOutDataForCompletedRecord()
+                            })
+                            }
+                            
                         } else {
-                            if ref == (currentOrg!["tasks"] as! [CKReference]).last {
-                                if taskRecord!["status"] as? String != "pending" {
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                            self.presentNoCompletedTasksAlertController("No completed tasks.")
+                            if taskRecord!["status"] as? String != "pending" {
+                            if nonPendingTasksCount == (currentOrg!["tasks"] as! [CKReference]).count {
+                                nonPendingTasksCount++
+                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                                self.presentNoCompletedTasksAlertController("No completed tasks.")
+                                            })
                                         })
-                                    })
                                 }
                             }
                         }
                     }
                 })
             }
-        } else {
+        }
+        else {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
                     self.presentNoCompletedTasksAlertController("Please assign a task first.")
@@ -86,16 +99,16 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
             
             
             if timeTakenInSeconds < 60 {
-                timeTakenLabel.text = "\(Int(timeTakenInSeconds!))s"
+                timeTakenLabel.text = "\(timeTakenInSeconds!)s"
             } else if timeTakenInSeconds < 3600 {
                 let timeTakenInMinutes = Int(timeTakenInSeconds! / 60)
-                timeTakenLabel.text = "\(timeTakenInMinutes))m"
+                timeTakenLabel.text = "\(timeTakenInMinutes)m"
             } else if timeTakenInSeconds < 86400 {
                 let timeTakenInHours = Int(timeTakenInSeconds! / 3600)
-                timeTakenLabel.text = "\(timeTakenInHours))h"
+                timeTakenLabel.text = "\(timeTakenInHours)h"
             } else {
                 let timeTakenInDays = Int(timeTakenInSeconds! / 86400)
-                timeTakenLabel.text = "\(timeTakenInDays))d"
+                timeTakenLabel.text = "\(timeTakenInDays)d"
             }
             
             var x = 0
@@ -122,7 +135,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 1
         imageView.userInteractionEnabled = true
-        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler")
+        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler:")
         longPress.delegate = self
         imageView.addGestureRecognizer(longPress)
         
@@ -132,11 +145,12 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     
     func longPressHandler(longPress: UIGestureRecognizer) {
         let state = longPress.state
-
+        
         let rejectPhotoAlert = UIAlertController(title: "Would you like to hide photo?", message: nil, preferredStyle: .ActionSheet)
         let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
             var index = 0
             for subview in self.scrollView.subviews {
+                print("subview: \(subview), pressLocation: \(self.pressLocation)")
                 if subview.frame.contains(self.pressLocation!) {
                     self.scrollView.subviews[index].hidden = true
                     index++
@@ -148,11 +162,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         rejectPhotoAlert.addAction(reject)
         rejectPhotoAlert.addAction(cancel)
         
-        if state == .Ended {
+        if state == .Began {
             pressLocation = longPress.locationInView(self.scrollView)
             presentViewController(rejectPhotoAlert, animated: true, completion: nil)
         }
-
+        
     }
     
     func presentNoCompletedTasksAlertController(title: String) {
