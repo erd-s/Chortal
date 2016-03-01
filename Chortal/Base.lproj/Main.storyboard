@@ -755,7 +755,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2731.5" y="-1302"/>
+            <point key="canvasLocation" x="2709" y="-1257"/>
         </scene>
         <!--Organization Over View Controller-->
         <scene sceneID="JfD-VO-l1J">
@@ -984,7 +984,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pizza" id="ya3-Xw-FMI" customClass="CustomCamCollectionViewCell" customModule="Chortal" customModuleProvider="target">
-                                        <rect key="frame" x="137" y="0.0" width="287" height="173"/>
+                                        <rect key="frame" x="136.5" y="0.0" width="287" height="173"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="173"/>
@@ -1053,7 +1053,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="backButtonTapped:" destination="jop-HQ-7R7" eventType="touchUpInside" id="Py5-Zs-xso"/>
-                                                    <segue destination="Zag-Vo-TJP" kind="show" id="xRc-Re-fXI"/>
                                                 </connections>
                                             </button>
                                             <connections>
@@ -1227,6 +1226,7 @@
                         <outlet property="taskNameLabel" destination="mD5-87-juK" id="BYE-aA-Xhj"/>
                         <outlet property="timerLabel" destination="U4D-eM-Hly" id="Zws-gX-0lk"/>
                         <segue destination="9Q1-4F-eST" kind="unwind" identifier="unwindFromTaskView" unwindAction="unwindToSidebar:" id="FtH-O2-cLm"/>
+                        <segue destination="Zag-Vo-TJP" kind="show" identifier="submitTaskToMemberSidebar" id="XZm-Gf-FbH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1428,7 +1428,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sDu-4m-Z26" id="RyM-uX-29Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </tableViewCellContentView>
@@ -2294,7 +2294,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8kW-Gk-It5" id="GMT-I3-4Br">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gbV-it-K6t">
@@ -3556,11 +3556,11 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fy4-9L-9AC"/>
-        <segue reference="zPk-oL-OAj"/>
         <segue reference="GO8-wU-rPS"/>
-        <segue reference="91i-ee-wIH"/>
+        <segue reference="Pzb-0f-AmU"/>
+        <segue reference="XZm-Gf-FbH"/>
         <segue reference="kyT-jB-3iZ"/>
+        <segue reference="91i-ee-wIH"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>

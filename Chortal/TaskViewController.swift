@@ -15,6 +15,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     var memberPendingArray: [CKReference]?
     var imageAssetArray: [CKAsset]?
     var dueDate: NSDate?
+    var progressTasks: [CKRecordID]?
     var x: Int?
     
     //MARK: Outlets
@@ -28,6 +29,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        progressTasks = []
         collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/2, collectionView.frame.width/2)
         
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
@@ -97,7 +99,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func backButtonTapped(sender: UIButton) {
-        
+        performSegueWithIdentifier("submitTaskToMemberSidebar", sender: self)
     }
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {
@@ -112,10 +114,10 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         currentTask?.setValue(nil, forKey: "member")
         currentTask?.setValue("unassigned", forKey: "status")
         currentMember?.setValue(taskRefArray, forKey: "current_tasks")
-        modifyRecords([currentMember!, currentTask!])
+        modifyRecords([currentMember!, currentTask!], sender: "Abandon")
     }
     
-    func modifyRecords (records: [CKRecord]) {
+    func modifyRecords (records: [CKRecord], sender: String) {
         print("Modify records function called")
         let saveRecordsOperation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         
@@ -126,14 +128,19 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                 print(error!.description)
             }else {
                 print("Successfully saved")
+                
+                currentTask = nil
+
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.performSegueWithIdentifier("unwindFromTaskView", sender: self)
+                    self.performSegueWithIdentifier("submitTaskToMemberSidebar", sender: self)
                 })
             }
         }
     }
+    
+    
     
     @IBAction func submitTaskTapped(sender: UIButton) {
         imageAssetArray = [CKAsset]()
@@ -177,24 +184,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                             x = x!+1
                             data!.writeToFile(filename, atomically: true)
                             let imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
-                            
-                            
-                            
-                            
-                            
-                            
-                            //
-                            //                                let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentationDirectory, .UserDomainMask, true)[0] as NSString
-                            //                                let imageFilePath = documentDirectory.stringByAppendingPathComponent("lastimage")
-                            //                                print(imageFilePath)
-                            //                                UIImagePNGRepresentation(image)?.writeToFile(imageFilePath, atomically: true)
-                            //                                let imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: imageFilePath))
-                            //
-                            //
-                            //
-                            //
-                            
-                            print(imageAsset)
+                            print("Image Asset Recognized")
                             imageAssetArray?.append(imageAsset)
                         }
                         
@@ -204,8 +194,10 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                         
                     }
                     
-                    
-                    modifyRecords([currentMember!, currentTask!])
+                    modifyRecords([currentMember!, currentTask!], sender: "Submit")
+                }
+                else {
+                    progressTasks?.append(reference.recordID)
                 }
             }
         }
