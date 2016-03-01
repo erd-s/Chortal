@@ -122,5 +122,22 @@ class MemberSidebarTableViewController: UITableViewController {
         }
     }
     
-    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if cell?.reuseIdentifier == "currentTask" {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.performSegueWithIdentifier("takeTaskSegue", sender: self)
+            })
+            
+        } else if cell?.reuseIdentifier == "settings" {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.performSegueWithIdentifier("settingsSegue", sender: self)
+            })
+            
+        } else if cell?.reuseIdentifier == "orgOverview" {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.performSegueWithIdentifier("OrgCellID", sender: self)
+            })
+        }
+    }
 }
