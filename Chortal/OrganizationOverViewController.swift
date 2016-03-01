@@ -27,16 +27,16 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     override func viewDidAppear(animated: Bool) {
-        loadingAlert("Loading Members...", viewController: self)
         if currentOrg!["members"] != nil {
             getMembers()
         } else {
-            errorAlert("Oops!" , message: "There are no members in your group.")
+            self.errorAlert("Oops!" , message: "There are no members in your group.")
         }
     }
     
     //MARK: Custom Functions
     func getMembers() {
+        loadingAlert("Loading Members...", viewController: self)
         for memberRef in currentOrg!["members"] as! [CKReference] {
             print("fetching member ref: \(memberRef)")
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (member , error) -> Void in

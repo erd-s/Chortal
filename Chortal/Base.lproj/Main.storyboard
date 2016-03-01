@@ -984,7 +984,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pizza" id="ya3-Xw-FMI" customClass="CustomCamCollectionViewCell" customModule="Chortal" customModuleProvider="target">
-                                        <rect key="frame" x="136.5" y="0.0" width="287" height="173"/>
+                                        <rect key="frame" x="137" y="0.0" width="287" height="173"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="173"/>
@@ -1428,7 +1428,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sDu-4m-Z26" id="RyM-uX-29Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </tableViewCellContentView>
@@ -2294,7 +2294,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8kW-Gk-It5" id="GMT-I3-4Br">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gbV-it-K6t">
@@ -3026,7 +3026,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dQ9-Yl-EOQ">
-                                <rect key="frame" x="0.0" y="203.5" width="600" height="396.5"/>
+                                <rect key="frame" x="0.0" y="204" width="600" height="396"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -3108,7 +3108,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="aOS-r3-pmO">
-                                <rect key="frame" x="247" y="160" width="333" height="19.5"/>
+                                <rect key="frame" x="247" y="160" width="333" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Edy-Ep-ZTr"/>
                                 </constraints>
@@ -3287,9 +3287,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="haO-d7-fXS" kind="show" identifier="completedTaskSegue" id="1d1-Ck-6rH"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="orgOverView" textLabel="ypE-DU-QbE" style="IBUITableViewCellStyleDefault" id="XnG-RH-DA3">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
@@ -3310,9 +3307,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="94W-o5-8Te" kind="presentation" identifier="adminSidebarToOrgOverview" id="BT5-Bv-qGz"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settings" textLabel="yis-lM-d59" style="IBUITableViewCellStyleDefault" id="Cdt-fE-XCF">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
@@ -3333,9 +3327,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="5qi-9D-F8z" kind="show" identifier="adminSettingsSegue" id="C4P-KP-bZY"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -3352,6 +3343,9 @@
                         <outlet property="settingsCell" destination="Cdt-fE-XCF" id="t8Y-da-TpL"/>
                         <outlet property="welcomeAdmin" destination="W2s-YR-tgZ" id="DgI-01-5lU"/>
                         <outlet property="welcomeAdminLabel" destination="ejp-rl-7V6" id="h3h-0o-vem"/>
+                        <segue destination="haO-d7-fXS" kind="show" identifier="completedTaskSegue" id="UmZ-3f-u9f"/>
+                        <segue destination="94W-o5-8Te" kind="show" identifier="adminSidebarToOrgOverview" id="zPk-oL-OAj"/>
+                        <segue destination="5qi-9D-F8z" kind="show" identifier="adminSettingsSegue" id="iwn-bG-drx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cvg-6p-bfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3562,11 +3556,11 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GO8-wU-rPS"/>
-        <segue reference="BT5-Bv-qGz"/>
         <segue reference="Fy4-9L-9AC"/>
-        <segue reference="kyT-jB-3iZ"/>
+        <segue reference="zPk-oL-OAj"/>
+        <segue reference="GO8-wU-rPS"/>
         <segue reference="91i-ee-wIH"/>
+        <segue reference="kyT-jB-3iZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>

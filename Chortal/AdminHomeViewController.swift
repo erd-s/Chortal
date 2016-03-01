@@ -45,6 +45,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,6 +59,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: Custom Functions
+    func refresh (sender: AnyObject?) {
+        
+        getTasks(false)
+        refreshControl.enabled = false
+    }
+    
     func getOrganization() {
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
@@ -100,7 +107,11 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 refreshControl.enabled = true
                 refreshControl.endRefreshing()
             } else {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.menuButton.enabled = true
+                    self.newTaskBarButton.enabled = true
+                })
+                
             }
         }
     }
@@ -176,6 +187,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: IBActions
     
     //MARK: Delegate Functions
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        tabBarItemSwitch()
+    }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
         let task = taskArray[indexPath.row]

@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CloudKit
 
 class AdminSidebarTableViewController: UITableViewController {
-
+    
     
     @IBOutlet weak var welcomeAdminLabel: UILabel!
     @IBOutlet weak var organizationOverviewLabel: UILabel!
@@ -65,11 +66,11 @@ class AdminSidebarTableViewController: UITableViewController {
         settingsCell.backgroundColor = UIColor.clearColor()
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-
+        
         self.automaticallyAdjustsScrollViewInsets = false
         let inset = UIEdgeInsetsMake(30, 0, 0, 0)
         tableView.contentInset = inset
-
+        
         let imageView = UIImageView()
         imageView.frame = self.view.frame
         imageView.image = UIImage(named: "common_bg")
@@ -83,7 +84,7 @@ class AdminSidebarTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -99,7 +100,7 @@ class AdminSidebarTableViewController: UITableViewController {
         if cell?.reuseIdentifier == "completedTask" {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if currentTask == nil {
-                    self.errorAlert("Oops!", message: "You don't have a task.")
+                    self.errorAlert("Oops!", message: "There are no completed tasks.")
                 } else {
                     self.performSegueWithIdentifier("completedTaskSegue", sender: self)
                 }
@@ -111,14 +112,20 @@ class AdminSidebarTableViewController: UITableViewController {
             })
             
         } else if cell?.reuseIdentifier == "orgOverView" {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.performSegueWithIdentifier("adminSidebarToOrgOverview", sender: self)
-            })
+            if currentOrg!["members"] != nil {
+                if (currentOrg!["members"] as! [CKReference]).count > 0 {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.performSegueWithIdentifier("adminSidebarToOrgOverview", sender: self)
+                    })
+                }
+            } else {
+                errorAlert("Oops!", message: "You have no members in your group.")
+            }
         }
     }
     
     @IBAction func unwindFromOrgOverviewToAdmin (segue: UIStoryboardSegue){
         
     }
-
-  }
+    
+}
