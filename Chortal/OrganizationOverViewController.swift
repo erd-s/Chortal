@@ -10,43 +10,53 @@ import UIKit
 import CloudKit
 
 class OrganizationOverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    //MARK: Properties
     var organization : String?
     var allMembers = [CKRecord]()
     var isMember: Bool?
     
+    //MARK: Outlets
     @IBOutlet weak var navTitle: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIBarButtonItem!
     
-    
+    //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         navTitle.title = userDefaults.valueForKey("currentOrgName") as? String
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        loadingAlert("Loading Members...", viewController: self)
         if currentOrg!["members"] != nil {
             getMembers()
         } else {
             errorAlert("Oops!" , message: "There are no members in your group.")
         }
-        
     }
     
+    //MARK: Custom Functions
     func getMembers() {
-        
         for memberRef in currentOrg!["members"] as! [CKReference] {
+            print("fetching member ref: \(memberRef)")
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (member , error) -> Void in
                 if error != nil {
                     print(error?.description)
                 }else {
                     self.allMembers.append(member!)
+                    print("all members array: \(self.allMembers)")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tableView.reloadData()
                     })
+                    if memberRef == (currentOrg!["members"] as! [CKReference]).last {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
             })
         }
     }
     
+    //MARK: Actions
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         if isMember == true {
             performSegueWithIdentifier("orgOverviewToMember", sender: self)
@@ -55,19 +65,18 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         if backButton.enabled == true {
-            //    self.dismissViewControllerAnimated(true, completion: nil)
             backButton.enabled = false
         }
-        
     }
     
-    
+    //MARK: TableView Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("memberID") as! MemberSelectTableViewCell
         
         let cellRecord = allMembers[indexPath.row]
         let imageAsset = cellRecord["profile_picture"] as? CKAsset
         let image = UIImage(data: NSData(contentsOfURL: (imageAsset?.fileURL)!)!)
+        
         cell.profileImageView?.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + 10, 40, 40)
         cell.profileImageView.image = image
         cell.profileImageView!.layer.cornerRadius = (cell.profileImageView!.frame.height)/2
@@ -87,5 +96,16 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         return allMembers.count
     }
     
+    //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "segueToMemberDetail" {
+            let dvc = segue.destinationViewController as! MemberDetailViewController
+            let indexPath = tableView.indexPathForCell(sender as! MemberSelectTableViewCell)
+            dvc.selectedMember = allMembers[indexPath!.row]
+        }
+    }
     
+    @IBAction func unwindToOrganizationOverview(segue: UIStoryboardSegue) {
+    
+    }
 }

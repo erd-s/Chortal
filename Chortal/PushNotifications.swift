@@ -96,8 +96,9 @@ func pushNotificationNewTaskAdded() {
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
     
     let notification = CKNotificationInfo()
-
-    notification.alertBody = "A task has been added to your organization."
+    
+    notification.alertLocalizationArgs = ["name"]
+    notification.alertLocalizationKey = "'%@' task has been requested."
     subscription.notificationInfo = notification
     
     memberSubscriptionsArray.append(subscription)
@@ -115,7 +116,8 @@ func pushNotificationTaskAssignedToUser() {
     
     let notification = CKNotificationInfo()
 
-    notification.alertBody = "You have been assigned a task."
+    notification.alertLocalizationArgs = ["name"]
+    notification.alertLocalizationKey = "You have been assigned the task '%@'."
     subscription.notificationInfo = notification
     
     
@@ -128,7 +130,8 @@ func pushNotificationMemberJoined() {
     
     let notification = CKNotificationInfo()
 
-    notification.alertBody = "A member has joined your organization."
+    notification.alertLocalizationArgs = ["name"]
+    notification.alertLocalizationKey = "%@ has joined your organization."
     subscription.notificationInfo = notification
     
     adminSubscriptionsArray.append(subscription)
@@ -144,7 +147,8 @@ func pushNotificationTaskTaken() {
     
     let notification = CKNotificationInfo()
 
-    notification.alertBody = "A task you requested has been taken."
+    notification.alertLocalizationArgs = ["name"]
+    notification.alertLocalizationKey = "Task: '%@' has been taken."
     subscription.notificationInfo = notification
     
     adminSubscriptionsArray.append(subscription)
@@ -159,7 +163,8 @@ func pushNotificationTaskCompleted() {
     
     let notification = CKNotificationInfo()
 
-    notification.alertBody = "A task has been sent to you for approval."
+    notification.alertLocalizationArgs = ["name"]
+    notification.alertLocalizationKey = "Task: '%@' has been sent to you for approval."
     subscription.notificationInfo = notification
     
     adminSubscriptionsArray.append(subscription)
