@@ -39,24 +39,23 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
                     print(error?.description)
                 }else {
                     self.allMembers.append(member!)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
                 }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                })
-                
             })
         }
     }
     
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         if isMember == true {
-            performSegueWithIdentifier("OrgOverviewToMemberSidebar", sender: self)
+            performSegueWithIdentifier("orgOverviewToMember", sender: self)
         } else {
-           performSegueWithIdentifier("unwindFromOrgOverviewToAdmin", sender: self)
+            performSegueWithIdentifier("orgOverviewToAdmin", sender: self)
         }
         
         if backButton.enabled == true {
-        //    self.dismissViewControllerAnimated(true, completion: nil)
+            //    self.dismissViewControllerAnimated(true, completion: nil)
             backButton.enabled = false
         }
         
