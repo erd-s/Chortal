@@ -220,6 +220,14 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     }
     
     @IBAction func acceptActionTap(sender: UIButton) {
+<<<<<<< HEAD
+        currentCompletedTask.setValue("completed", forKey: "status")
+        publicDatabase.saveRecord(currentCompletedTask) { (currentTask, error) -> Void in
+            if error != nil {
+                checkError(error!, view: self)
+            } else {
+                print("sucesssfully saved task")
+=======
         
         publicDatabase.fetchRecordWithID((currentCompletedTask["member"] as! CKReference).recordID) { (memberRecord, error) -> Void in
             var completedNamesArray = [String]()
@@ -277,6 +285,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                         print("Task, Member, and Admin Records Successfully saved")
                     }
                 }
+>>>>>>> deletingCompletedTasks
                 self.currentIndex++
                 self.setDisplayedTask(self.currentIndex)
             })

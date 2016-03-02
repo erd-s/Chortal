@@ -148,6 +148,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             loadingAlert("Submitting task...", viewController: self)
             var taskRefArray = currentMember!.valueForKey("current_tasks") as! [CKReference]
+            print(taskRefArray.count)
             
             if currentMember!["pending_tasks"] != nil {
                 memberPendingArray = currentMember!["pending_tasks"] as? [CKReference]

@@ -43,6 +43,30 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: Custom Functions
+<<<<<<< HEAD
+    func getCompletedTasks() {
+        if selectedMember!["finished_tasks"] != nil {
+            let arrayOfCompletedTasksReferences = selectedMember!["finished_tasks"] as? [CKReference]
+            for task in arrayOfCompletedTasksReferences! {
+                publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
+                    if error != nil {
+                        checkError(error!, view: self)
+                    } else {
+                        self.arrayOfCompletedTasks.append(completedTask!)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.numberOfTasksCompletedLabel.text = String(self.arrayOfCompletedTasks.count)
+                            self.tableView.reloadData()
+                        })
+                    }
+                    
+                })
+            }
+        }
+        else {
+            self.numberOfTasksCompletedLabel.text = "0"
+        }
+    }
+=======
 //    func getCompletedTasks() {
 //        if selectedMember!["CompletedTaskNames"] != nil {
 //            let arrayOfCompletedTaskNames = selectedMember!["CompletedTaskNames"] as? [String]
@@ -64,6 +88,7 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
 //            self.numberOfTasksCompletedLabel.text = "0"
 //        }
 //    }
+>>>>>>> deletingCompletedTasks
     
     func getCurrentTasks() {
         if selectedMember!["current_tasks"] != nil {
