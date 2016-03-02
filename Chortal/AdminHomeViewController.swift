@@ -52,10 +52,15 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         menuButton.enabled = false
         newTaskBarButton.enabled = false
         tableView.reloadData()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        isICloudContainerAvailable()
+
         getOrganization()
+        
     }
     
     //MARK: Custom Functions
@@ -66,21 +71,19 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func getOrganization() {
+
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
                 checkError(error!, view: self)
             }
-            else if organizations!.count == 0 {
-                self.errorAlert("Error", message: "Organization not found.")
-            } else if organizations?.count > 0 {
-                currentOrg = organizations![0] as CKRecord
-                self.loadingAlert("Loading tasks...", viewController: self)
-                
-                self.getTasks(true)
-                self.getAdmin()
-            }
+
+            currentOrg = organizations![0] as CKRecord
+            self.loadingAlert("Loading tasks...", viewController: self)
+            
+            self.getTasks(true)
+            self.getAdmin()
         }
     }
     
@@ -99,6 +102,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     func getTasks(shouldShowAlertController: Bool) {
+    if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
+            print("true")
         inProgressArray = [CKRecord]()
         pendingArray = [CKRecord]()
         unclaimedArray = [CKRecord]()
@@ -118,7 +123,11 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 
             }
         }
-    }
+        }
+        }
+
+        
+    
     
     func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
         publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in

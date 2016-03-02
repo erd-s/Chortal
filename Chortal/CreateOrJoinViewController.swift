@@ -17,6 +17,10 @@ class CreateOrJoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  //       ChortalButton.init()
-     
+        
     }
+    override func viewDidAppear(animated: Bool) {
+        isICloudContainerAvailable()
+    }
+    
 }
