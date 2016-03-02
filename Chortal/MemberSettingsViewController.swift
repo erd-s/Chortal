@@ -122,7 +122,7 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
             currentMember?.setValue(nameTextField.text, forKey: "name")
             publicDatabase.saveRecord(currentMember!, completionHandler: { (memberSaved, error) -> Void in
                 if error != nil {
-                    print("name not saved, error:\(error)")
+                    checkError(error!, view: self)
                 } else {
                     print("saved new username successfully")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in

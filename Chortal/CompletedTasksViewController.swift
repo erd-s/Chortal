@@ -49,7 +49,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                     
                     publicDatabase.fetchRecordWithID(taskReference.recordID, completionHandler: { (fetchedTask, error) -> Void in
                         if error != nil {
-                            print("error fetching tasks: \(error)")
+                            checkError(error!, view: self)
                         }
                         if fetchedTask!["status"] as? String == "pending" {
                             self.completedTaskArray.append(fetchedTask!)
@@ -165,7 +165,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
             self.loadingAlert("Updating task.", viewController: self)
             publicDatabase.saveRecord(self.currentCompletedTask) { (currentTask, error) -> Void in
                 if error != nil {
-                    print("error marking task as completed: \(error))")
+                    checkError(error!, view: self)
                 } else {
                     print("sucesssfully saved task")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -220,7 +220,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         currentCompletedTask.setValue("completed", forKey: "status")
         publicDatabase.saveRecord(currentCompletedTask) { (currentTask, error) -> Void in
             if error != nil {
-                print("error marking task as completed: \(error))")
+                checkError(error!, view: self)
             } else {
                 print("sucesssfully saved task")
                 self.currentIndex++

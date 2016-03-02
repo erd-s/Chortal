@@ -125,7 +125,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         saveRecordsOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
-                print(error!.description)
+                checkError(error!, view: self)
             }else {
                 print("Successfully saved")
                 

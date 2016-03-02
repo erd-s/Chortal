@@ -42,7 +42,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
             print("fetching member ref: \(memberRef)")
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (member , error) -> Void in
                 if error != nil {
-                    print(error?.description)
+                    checkError(error!, view: self)
                 }else {
                     self.allMembers.append(member!)
                     print("all members array: \(self.allMembers)")

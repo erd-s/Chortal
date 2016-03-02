@@ -9,6 +9,13 @@
 import Foundation
 import CloudKit
 
+
+func checkError(error: NSError, view: UIViewController){
+    let rawValue = error.code
+    let informationToPresent = HandleError(rawValue: rawValue)?.presentErrorMessage(view, error: error)
+    view.errorAlert(informationToPresent!.title, message:  informationToPresent!.message)
+}
+
 enum HandleError: Int {
     case InternalError
     case PartialFailure
@@ -57,12 +64,12 @@ enum HandleError: Int {
         .MissingEntitlement,
         .ChangeTokenExpired,
         .ZoneNotFound:
-            return (title: "Error", message: "Please restart the app. Error: \(error.userInfo.description).")
+            return (title: "Error", message: "Please restart the app. Error description: \(error.localizedDescription).")
             
         case
         .PartialFailure,
         .ResultsTruncated:
-            return (title: "Error", message: "Error saving all records. Please try again. Error description: \(error.code).")
+            return (title: "Error", message: "Error saving all records. Please try again. Error description: \(error.localizedDescription).")
             
         case
         .NetworkFailure,
@@ -77,7 +84,7 @@ enum HandleError: Int {
         .ServerRecordChanged,
         .BatchRequestFailed,
         .QuotaExceeded:
-            return (title: "Error", message: "Please try again in \(retryAfterString).")
+            return (title: "Error", message: "Please try again in \(retryAfterString) seconds.")
             
         case
         .NotAuthenticated,

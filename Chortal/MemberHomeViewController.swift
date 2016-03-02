@@ -87,7 +87,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
-                print("error getting current organization: \(error)")
+                checkError(error!, view: self)
             }
             currentOrg = organizations![0] as CKRecord
             self.loadingAlert("Loading tasks...", viewController: self)
@@ -118,7 +118,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
         publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in
             if error != nil {
-                print("error fetching tasks: \(error)")
+                checkError(error!, view: self)
             } else {
                 
                 if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
@@ -176,7 +176,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 let taskRef = currentMember?["current_tasks"] as! [CKReference]
                 publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
                     if error != nil {
-                        print("Error: \(error?.description)")
+                        checkError(error!, view: self)
                     } else {
                         if fetchedRecord != nil {
                             currentTask = fetchedRecord

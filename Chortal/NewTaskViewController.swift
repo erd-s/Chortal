@@ -91,7 +91,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             newTask.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
             publicDatabase.saveRecord(selectedMember, completionHandler: { (member, error) -> Void in
                 if error != nil {
-                    //do some error handling
+                    checkError(error!, view: self)
                 } else {
                     //do some good stuff
                 }
@@ -110,7 +110,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         saveRecordsOp.modifyRecordsCompletionBlock = { saved, deleted, error in
             if error != nil {
-                print(error)
+                checkError(error!, view: self)
             } else {
                 print("saved task")
                 dispatch_async(dispatch_get_main_queue()) {

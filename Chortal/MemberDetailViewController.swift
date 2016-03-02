@@ -44,7 +44,7 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
             for task in arrayOfCompletedTasksReferences! {
                 publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
                     if error != nil {
-                        print("error: \(error)")
+                        checkError(error!, view: self)
                     } else {
                         self.arrayOfCompletedTasks.append(completedTask!)
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -68,7 +68,7 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
                 for task in arrayOfCurrentTasksReferences {
                     publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
                         if error != nil {
-                            print("error: \(error)")
+                            checkError(error!, view: self)
                         } else {
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 let taskName = "\(completedTask!["name"]) \n"

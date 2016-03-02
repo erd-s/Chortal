@@ -16,15 +16,15 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     var inProgressArray: [CKRecord]?
     var pendingArray: [CKRecord]?
     var taskReferenceArray: NSMutableArray?
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
-
+    
     //MARK: Outlets
-
+    
     @IBOutlet weak var newTaskBarButton: UIBarButtonItem!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
@@ -35,7 +35,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items!.first! as UITabBarItem
-
+        
         title = userDefaults.valueForKey("currentOrgName") as? String
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -67,22 +67,20 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getOrganization() {
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
-        let query = CKQuery(recordType: "Organization", predicate: predicate)
+        let query = CKQuery(recordType: "asdfljka", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
-                if error?.userInfo[CKErrorDomain] as? String == error?.domain {
-                let rawValue = error?.code
-                    let informationToPresent = HandleError(rawValue: rawValue!)?.presentErrorMessage(self, error: error!)
-                    self.errorAlert(informationToPresent!.title, message:  informationToPresent!.message)
-                } else {
-                    self.errorAlert("Error", message: "\(error?.description)")
-                }
+                checkError(error!, view: self)
             }
-            currentOrg = organizations![0] as CKRecord
-            self.loadingAlert("Loading tasks...", viewController: self)
-            
-            self.getTasks(true)
-            self.getAdmin()
+            else if organizations!.count == 0 {
+                self.errorAlert("Error", message: "Organization not found.")
+            } else if organizations?.count > 0 {
+                currentOrg = organizations![0] as CKRecord
+                self.loadingAlert("Loading tasks...", viewController: self)
+                
+                self.getTasks(true)
+                self.getAdmin()
+            }
         }
     }
     
@@ -90,7 +88,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         let adminRef = currentOrg!["admin"] as! CKReference
         publicDatabase.fetchRecordWithID(adminRef.recordID) { (adminRecord, error) -> Void in
             if error != nil {
-                
+                checkError(error!, view: self)
             } else {
                 currentAdmin = adminRecord
                 if pushNotificationsSet == false {
@@ -125,9 +123,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
         publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in
             if error != nil {
-                print("error fetching tasks: \(error)")
+                checkError(error!, view: self)
             } else {
-                
                 if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
                     self.inProgressArray?.append(task!)
                 } else if task!.valueForKey("status") as? String == "pending"  {
@@ -159,7 +156,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             })
         })
     }
-
+    
     func modifyRecordsOperation(record: CKRecord) {
         
         
@@ -268,7 +265,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             publicDatabase.addOperation(deleteOperation)
             deleteOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
                 if error != nil {
-                    print("Error deleting record: \(error?.description)")
+                    checkError(error!, view: self)
                 } else {
                     print("Successfully deleted record")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in

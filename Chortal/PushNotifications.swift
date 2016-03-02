@@ -20,7 +20,7 @@ let currentMemberReference = CKReference(record: currentMember!, action: .None)
 //  They may not need to be based on userDefaults if they are called and then deleted when
 //  a user unsubscribes.
 
-func setAdminPushNotifications() {
+func setAdminPushNotifications(view: UIViewController) {
     pushNotificationTaskCompleted()
     pushNotificationMemberJoined()
     pushNotificationTaskTaken()

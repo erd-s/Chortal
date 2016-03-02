@@ -50,8 +50,7 @@ class AdminSettingsViewController: UIViewController {
             currentOrg?.setValue(organizationNameTextField.text, forKey: "name")
             publicDatabase.saveRecord(currentOrg!, completionHandler: { (currentOrg, error) -> Void in
                 if error != nil {
-                    print("error saving organization name: \(error)")
-//----------------->sometimes has an error saving the organization
+                    checkError(error!, view: self)
                 } else {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in

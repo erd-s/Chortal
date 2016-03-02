@@ -42,7 +42,7 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
         
         publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
             if error != nil {
-                print("error getting organization: \(error)")
+                checkError(error!, view: self)
             } else {
                 if results != nil {
                     if (results!.count > 0) {
