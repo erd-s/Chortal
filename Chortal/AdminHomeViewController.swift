@@ -70,7 +70,13 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
-                print("error getting current organization: \(error)")
+                if error?.userInfo[CKErrorDomain] as? String == error?.domain {
+                let rawValue = error?.code
+                    let informationToPresent = HandleError(rawValue: rawValue!)?.presentErrorMessage(self, error: error!)
+                    self.errorAlert(informationToPresent!.title, message:  informationToPresent!.message)
+                } else {
+                    self.errorAlert("Error", message: "\(error?.description)")
+                }
             }
             currentOrg = organizations![0] as CKRecord
             self.loadingAlert("Loading tasks...", viewController: self)
