@@ -199,17 +199,18 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
+//    func getDocumentsDirectory() -> NSString {
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//        let documentsDirectory = paths[0]
+//        return documentsDirectory
+//    }
     
     func saveImageLocaly () {
-        let data = UIImagePNGRepresentation(imageView.image!)
-        let filename = getDocumentsDirectory().stringByAppendingPathComponent("profile_picture.png")
-        data!.writeToFile(filename, atomically: true)
-        self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
+        let path = NSTemporaryDirectory().stringByAppendingString("profile_picture.tmp")
+        let data = UIImageJPEGRepresentation(imageView!.image!, 0.7)
+        data!.writeToFile(path, atomically: true)
+        
+        self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: path))
         
     }
     

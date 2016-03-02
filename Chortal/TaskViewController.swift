@@ -179,13 +179,22 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                     if images.count > 0 {
                         for image in images {
                             print(" image: \(image.description)")
-                            let data = UIImagePNGRepresentation(image)
-                            let filename = getDocumentsDirectory().stringByAppendingPathComponent("\(x).png")
-                            x = x!+1
-                            data!.writeToFile(filename, atomically: true)
-                            let imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
-                            print("Image Asset Recognized")
+                            
+                            let path = NSTemporaryDirectory().stringByAppendingString("\(x).tmp")
+                            let data = UIImageJPEGRepresentation(image, 0.7)
+                            data!.writeToFile(path, atomically: true)
+                            
+                            let imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: path))
                             imageAssetArray?.append(imageAsset)
+                            print(imageAssetArray!.count)
+
+                            x = x! + 1
+                            
+//                            let data = UIImagePNGRepresentation(image)
+//                            let filename = getDocumentsDirectory().stringByAppendingPathComponent("\(x).png")
+//                            data!.writeToFile(filename, atomically: true)
+//                            let imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
+                            print("Image Asset Recognized")
                         }
                         
                         currentTask?.setObject(imageAssetArray, forKey: "photos")
@@ -204,11 +213,11 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     
-    func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
+//    func getDocumentsDirectory() -> NSString {
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//        let documentsDirectory = paths[0]
+//        return documentsDirectory
+//    }
     
     
     //MARK: Delegate Functions

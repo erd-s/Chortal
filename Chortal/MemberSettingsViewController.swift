@@ -83,19 +83,25 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
+//    func getDocumentsDirectory() -> NSString {
+//        let path = NSTemporaryDirectory().stringByAppendingString("profile_picture.tmp")
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//        let documentsDirectory = paths[0]
+//        return path
+//    }
     
     func saveImageLocaly () {
-        let data = UIImagePNGRepresentation(defaultPhotoImageView.image!)
-        let filename = getDocumentsDirectory().stringByAppendingPathComponent("profile_picture.png")
-        data!.writeToFile(filename, atomically: true)
-        self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
+        let path = NSTemporaryDirectory().stringByAppendingString("profile_picture.tmp")
+        let data = UIImageJPEGRepresentation(defaultPhotoImageView!.image!, 0.7)
+        data!.writeToFile(path, atomically: true)
         
+        self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: path))
     }
+    
+//    path = [NSTemporaryDirectory() stringByAppendingString:@"toUploadThumb.tmp"];
+//    imageData = UIImageJPEGRepresentation(thumbImage,0.5);
+//    [imageData writeToFile:path atomically:YES];
+//    NSURL *thumbURL = [NSURL fileURLWithPath:path];
 
     
     @IBAction func undoButtonTapped(sender: UIBarButtonItem) {
