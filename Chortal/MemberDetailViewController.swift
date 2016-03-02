@@ -36,9 +36,17 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let photoAsset = selectedMember!["profile_picture"] as? CKAsset
         profileImageView.image = UIImage(data: NSData(contentsOfURL: photoAsset!.fileURL)!)
-        arrayOfTaskNames = selectedMember!["CompletedTaskNames"] as! [String]
-        arrayOfTaskIncentives = selectedMember!["CompletedTaskIncentives"] as! [String]
-        numberOfTasksCompletedLabel.text = String((selectedMember!["CompletedTaskIncentives"] as! [String]).count)
+        
+        if selectedMember!["CompletedTaskNames"] != nil {
+            arrayOfTaskNames = selectedMember!["CompletedTaskNames"] as! [String]
+        }
+        if selectedMember!["CompletedTaskIncentives"] != nil {
+            arrayOfTaskIncentives = selectedMember!["CompletedTaskIncentives"] as! [String]
+            numberOfTasksCompletedLabel.text = String((selectedMember!["CompletedTaskIncentives"] as! [String]).count)
+        } else {
+            numberOfTasksCompletedLabel.text = "0"
+        }
+        
         getCurrentTasks()
     }
     
