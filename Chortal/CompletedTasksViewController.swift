@@ -179,7 +179,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     func longPressHandler(longPress: UIGestureRecognizer) {
         let state = longPress.state
         
-        let rejectPhotoAlert = UIAlertController(title: "Would you like to hide photo?", message: nil, preferredStyle: .ActionSheet)
+        let rejectPhotoAlert = UIAlertController(title: "Flag as inappropriate and hide photo?", message: nil, preferredStyle: .ActionSheet)
         let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
 
             for subview in self.scrollView.subviews {
