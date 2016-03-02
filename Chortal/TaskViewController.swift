@@ -30,7 +30,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         progressTasks = []
-        collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/3, collectionView.frame.width/3)
         
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
         descriptionLabel.text = currentTask?.valueForKey("description") as? String
@@ -188,11 +187,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                             print(imageAssetArray!.count)
 
                             x = x! + 1
-                            
-//                            let data = UIImagePNGRepresentation(image)
-//                            let filename = getDocumentsDirectory().stringByAppendingPathComponent("\(x).png")
-//                            data!.writeToFile(filename, atomically: true)
-//                            let imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: filename))
                             print("Image Asset Recognized")
                         }
                         
@@ -212,13 +206,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     
-//    func getDocumentsDirectory() -> NSString {
-//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-//        let documentsDirectory = paths[0]
-//        return documentsDirectory
-//    }
-    
-    
     //MARK: Delegate Functions
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.count
@@ -227,7 +214,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("pizza", forIndexPath: indexPath) as! CustomCamCollectionViewCell
         cell.imageView.image = images[indexPath.item]
-        cell.imageView.sizeToFit()
         
         return cell
     }

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +17,39 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_bg" translatesAutoresizingMaskIntoConstraints="NO" id="srW-YK-1nu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chortal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i8e-6w-0Jd">
+                                <rect key="frame" x="238" y="280" width="125" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="alJ-nV-RzN"/>
+                                    <constraint firstAttribute="height" constant="39" id="ilC-AB-qCm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="34"/>
+                                <color key="textColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chortalappicon" translatesAutoresizingMaskIntoConstraints="NO" id="yRV-ee-NWz">
+                                <rect key="frame" x="213" y="273" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Mvd-nU-vGH"/>
+                                    <constraint firstAttribute="width" constant="22" id="T5a-jO-WVN"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i8e-6w-0Jd" firstAttribute="leading" secondItem="yRV-ee-NWz" secondAttribute="trailing" constant="3" id="0CR-18-XOO"/>
+                            <constraint firstItem="i8e-6w-0Jd" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8NK-kU-OvE"/>
+                            <constraint firstItem="yRV-ee-NWz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-16" id="EI1-um-1TH"/>
+                            <constraint firstItem="i8e-6w-0Jd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="QvG-b7-xeA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="srW-YK-1nu" secondAttribute="trailing" constant="-20" id="hgb-tD-h58"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="srW-YK-1nu" secondAttribute="bottom" id="o83-Zp-qb8"/>
+                            <constraint firstItem="srW-YK-1nu" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="qhJ-Sx-cwM"/>
+                            <constraint firstItem="srW-YK-1nu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="z0J-WN-nZm"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +57,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chortalappicon" width="435" height="491"/>
+        <image name="common_bg" width="6404" height="8538"/>
+    </resources>
 </document>

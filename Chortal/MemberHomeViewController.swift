@@ -51,21 +51,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        //        if currentTask != nil {
-        //            if currentTask!.valueForKey("status") as? String == "unassigned" {
-        //                if inProgressArray != nil {
-        //                    for task in inProgressArray! {
-        //                        if task == currentTask {
-        //                            let index = inProgressArray?.indexOf(task)
-        //                            inProgressArray?.removeAtIndex(index!)
-        //                            unclaimedArray?.append(task)
-        //                            currentTask = nil
-        //                            taskTableView.reloadData()
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
     }
     
     
@@ -85,12 +70,12 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func getOrganization() {
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
+        loadingAlert("Loading tasks...", viewController: self)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
                 checkError(error!, view: self)
             }
             currentOrg = organizations![0] as CKRecord
-            self.loadingAlert("Loading tasks...", viewController: self)
             
             self.getTasks(true)
             self.getCurrentMember()

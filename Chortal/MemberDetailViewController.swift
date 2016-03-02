@@ -38,44 +38,22 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
         profileImageView.image = UIImage(data: NSData(contentsOfURL: photoAsset!.fileURL)!)
         arrayOfTaskNames = selectedMember!["CompletedTaskNames"] as! [String]
         arrayOfTaskIncentives = selectedMember!["CompletedTaskIncentives"] as! [String]
-//        getCompletedTasks()
+        numberOfTasksCompletedLabel.text = String((selectedMember!["CompletedTaskIncentives"] as! [String]).count)
         getCurrentTasks()
     }
     
     //MARK: Custom Functions
-//    func getCompletedTasks() {
-//        if selectedMember!["CompletedTaskNames"] != nil {
-//            let arrayOfCompletedTaskNames = selectedMember!["CompletedTaskNames"] as? [String]
-//            for task in arrayOfCompletedTaskNames! {
-//                publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
-//                    if error != nil {
-//                        print("error: \(error)")
-//                    } else {
-//                        self.arrayOfCompletedTasks.append(completedTask!)
-//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                            self.numberOfTasksCompletedLabel.text = String(self.arrayOfCompletedTasks.count)
-//                            self.tableView.reloadData()
-//                        })
-//                    }
-//                })
-//            }
-//        }
-//        else {
-//            self.numberOfTasksCompletedLabel.text = "0"
-//        }
-//    }
-    
     func getCurrentTasks() {
         if selectedMember!["current_tasks"] != nil {
             if (selectedMember!["current_tasks"] as! [CKReference]).count != 0 {
                 let arrayOfCurrentTasksReferences = selectedMember!["current_tasks"] as! [CKReference]
                 for task in arrayOfCurrentTasksReferences {
-                    publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
+                    publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (inProgressTask, error) -> Void in
                         if error != nil {
                             checkError(error!, view: self)
                         } else {
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                let taskName = "\(completedTask!["name"]!) \n"
+                                let taskName = "\(inProgressTask!["name"]!) \n"
                                 self.currentTasksLabel.text = self.currentTasksLabel.text?.stringByAppendingString(taskName)
                             })
                         }
