@@ -99,7 +99,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func backButtonTapped(sender: UIButton) {
-        performSegueWithIdentifier("submitTaskToMemberSidebar", sender: self)
+        UtilityFile.instantiateToMemberHome(self)
     }
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {
@@ -134,7 +134,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.performSegueWithIdentifier("submitTaskToMemberSidebar", sender: self)
+                    UtilityFile.instantiateToMemberHome(self)
                 })
             }
         }

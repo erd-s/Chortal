@@ -18,9 +18,10 @@ class UtilityFile {
         
     }
     
-//    class func instantiateToMemberHome (){
-//        
-//    }
-    
-    
+    class func instantiateToMemberHome (viewController: UIViewController) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        
+        let adminHomeVC = storyboard.instantiateViewControllerWithIdentifier("memberHomeMenu")
+        viewController.presentViewController(adminHomeVC, animated: true, completion: nil)
+    }
 }

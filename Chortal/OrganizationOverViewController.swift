@@ -59,9 +59,9 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     //MARK: Actions
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         if isMember == true {
-            performSegueWithIdentifier("orgOverviewToMember", sender: self)
+            UtilityFile.instantiateToMemberHome(self)
         } else {
-            performSegueWithIdentifier("orgOverviewToAdmin", sender: self)
+            UtilityFile.instantiateToAdminHome(self)
         }
         
         if backButton.enabled == true {
