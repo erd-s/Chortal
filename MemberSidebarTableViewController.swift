@@ -124,6 +124,7 @@ class MemberSidebarTableViewController: UITableViewController {
         } else if segue.identifier == "showMemberDetail" {
             let dvc = segue.destinationViewController as! MemberDetailViewController
             dvc.selectedMember = currentMember
+            dvc.fromMember = true
         }
     }
     

@@ -17,6 +17,7 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     var arrayOfCurrentTasks = [CKRecord]()
     var selectedMember: CKRecord?
+    var fromMember = false
     
     //MARK: Outlets
     
@@ -78,7 +79,13 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: IBActions
-    
+    @IBAction func backButtonTap(sender: UIBarButtonItem) {
+        if fromMember {
+            UtilityFile.instantiateToMemberHome(self)
+        } else {
+            performSegueWithIdentifier("unwindToOrgOverview", sender: self)
+        }
+    }
     //MARK: TableView Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!

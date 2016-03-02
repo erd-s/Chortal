@@ -3161,7 +3161,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="RNZ-MU-Tbx">
                                             <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <segue destination="hPG-n5-9mz" kind="unwind" unwindAction="unwindFromOrgOverviewToMemberSidebar:" id="bYA-yO-2l6"/>
+                                                <action selector="backButtonTap:" destination="Egs-dD-YSh" id="NCt-Kf-ytV"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -3220,6 +3220,7 @@
                         <outlet property="numberOfTasksCompletedLabel" destination="jhm-kc-yjW" id="cCQ-ZB-aAd"/>
                         <outlet property="profileImageView" destination="5M9-CH-aRb" id="Syf-mk-B25"/>
                         <outlet property="tableView" destination="dQ9-Yl-EOQ" id="gw6-Jc-mWm"/>
+                        <segue destination="hPG-n5-9mz" kind="unwind" identifier="unwindToOrgOverview" unwindAction="unwindToOrganizationOverview:" id="4pE-du-1W3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zqq-p0-XLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3574,11 +3575,11 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7Kh-Yt-WH9"/>
-        <segue reference="Pzb-0f-AmU"/>
-        <segue reference="R8e-6K-emX"/>
         <segue reference="91i-ee-wIH"/>
-        <segue reference="IeD-g1-6Nb"/>
+        <segue reference="7Kh-Yt-WH9"/>
+        <segue reference="kyT-jB-3iZ"/>
+        <segue reference="R8e-6K-emX"/>
+        <segue reference="Pzb-0f-AmU"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>
