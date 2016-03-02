@@ -191,7 +191,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         
         let rejectPhotoAlert = UIAlertController(title: "Flag as inappropriate and hide photo?", message: nil, preferredStyle: .ActionSheet)
         let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
-
+            
             for subview in self.scrollView.subviews {
                 print("subview: \(subview), pressLocation: \(self.pressLocation!)")
                 if subview.frame.contains(self.pressLocation!) {
@@ -217,16 +217,86 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     }
     
     @IBAction func acceptActionTap(sender: UIButton) {
-        currentCompletedTask.setValue("completed", forKey: "status")
-        publicDatabase.saveRecord(currentCompletedTask) { (currentTask, error) -> Void in
-            if error != nil {
-                print("error marking task as completed: \(error))")
-            } else {
-                print("sucesssfully saved task")
+        
+        publicDatabase.fetchRecordWithID((currentCompletedTask["member"] as! CKReference).recordID) { (memberRecord, error) -> Void in
+            var completedNamesArray = [String]()
+            var completedIncentivesArray = [String]()
+            
+            if (memberRecord!["CompletedTaskNames"] as? [String]) != nil {
+                if (memberRecord!["CompletedTaskNames"] as? [String])!.count > 0 {
+                    completedNamesArray = (memberRecord!["CompletedTaskNames"] as! [String])
+                }
+            }
+            
+            if (memberRecord!["CompletedTaskIncentives"] as? [String]) != nil {
+                if (memberRecord!["CompletedTaskIncentives"] as? [String])!.count > 0 {
+                    completedIncentivesArray = (memberRecord!["CompletedTaskIncentives"] as! [String])
+                }
+            }
+            
+            var memberTaskReferences = memberRecord!["current_tasks"] as! [CKReference]
+            for reference in memberTaskReferences {
+                if reference.recordID == self.currentCompletedTask.recordID {
+                    let referenceIndex = memberTaskReferences.indexOf(reference)
+                    memberTaskReferences.removeAtIndex(referenceIndex!)
+                }
+            }
+            
+            var organizationTaskReferences = currentOrg!["tasks"] as! [CKReference]
+            for reference in organizationTaskReferences {
+                if reference.recordID == self.currentCompletedTask.recordID {
+                    let referenceIndex = organizationTaskReferences.indexOf(reference)
+                    organizationTaskReferences.removeAtIndex(referenceIndex!)
+                }
+            }
+            
+            completedNamesArray.append(self.currentCompletedTask["name"] as! String)
+            completedIncentivesArray.append(self.currentCompletedTask["incentive"] as! String)
+            
+            memberRecord?.setObject(completedNamesArray, forKey: "CompletedTaskNames")
+            memberRecord?.setObject(completedIncentivesArray, forKey: "CompletedTaskIncentives")
+            memberRecord?.setObject(memberTaskReferences, forKey: "current_tasks")
+            currentOrg?.setObject(organizationTaskReferences, forKey: "tasks")
+            
+            
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let modifyRecordsOperation = CKModifyRecordsOperation(recordsToSave: [memberRecord!], recordIDsToDelete: [self.currentCompletedTask.recordID])
+                
+                publicDatabase.addOperation(modifyRecordsOperation)
+                
+                modifyRecordsOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
+                    
+                    if error != nil {
+                        print("error saving member and deleting task: \(error!.description)"
+                        )
+                    }else {
+                        print("Successfully saved")
+                    }
+                }
                 self.currentIndex++
                 self.setDisplayedTask(self.currentIndex)
-            }
+            })
         }
+        
+        
+        
+        //        currentCompletedTask.setValue("completed", forKey: "status")
+        //
+        //
+        //
+        //
+        //
+        //
+        //        publicDatabase.saveRecord(currentCompletedTask) { (currentTask, error) -> Void in
+        //            if error != nil {
+        //                print("error marking task as completed: \(error))")
+        //            } else {
+        //                print("sucesssfully saved task")
+        //                self.currentIndex++
+        //                self.setDisplayedTask(self.currentIndex)
+        //            }
+        //        }
     }
     //MARK: Delegate Functions
     
