@@ -755,7 +755,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YH-kn-kFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2731.5" y="-1302"/>
+            <point key="canvasLocation" x="2709" y="-1257"/>
         </scene>
         <!--Organization Over View Controller-->
         <scene sceneID="JfD-VO-l1J">
@@ -1053,7 +1053,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="backButtonTapped:" destination="jop-HQ-7R7" eventType="touchUpInside" id="Py5-Zs-xso"/>
-                                                    <segue destination="Zag-Vo-TJP" kind="show" id="xRc-Re-fXI"/>
                                                 </connections>
                                             </button>
                                             <connections>
@@ -1227,6 +1226,7 @@
                         <outlet property="taskNameLabel" destination="mD5-87-juK" id="BYE-aA-Xhj"/>
                         <outlet property="timerLabel" destination="U4D-eM-Hly" id="Zws-gX-0lk"/>
                         <segue destination="9Q1-4F-eST" kind="unwind" identifier="unwindFromTaskView" unwindAction="unwindToSidebar:" id="FtH-O2-cLm"/>
+                        <segue destination="Zag-Vo-TJP" kind="show" identifier="submitTaskToMemberSidebar" id="XZm-Gf-FbH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rY-vf-2h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2075,7 +2075,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lX3-pa-Vxg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="adminHomeNavigation" automaticallyAdjustsScrollViewInsets="NO" id="lX3-pa-Vxg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="73Z-y3-w3i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3560,11 +3560,11 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fy4-9L-9AC"/>
-        <segue reference="zPk-oL-OAj"/>
-        <segue reference="GO8-wU-rPS"/>
-        <segue reference="91i-ee-wIH"/>
+        <segue reference="ZLP-fD-WgM"/>
+        <segue reference="XZm-Gf-FbH"/>
+        <segue reference="Pzb-0f-AmU"/>
         <segue reference="kyT-jB-3iZ"/>
+        <segue reference="91i-ee-wIH"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>

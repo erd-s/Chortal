@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier("adminHomeMenu")
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
-            
         } else {
             if userDefaults.boolForKey("multipleUsers") == true {
                 
