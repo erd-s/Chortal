@@ -1386,7 +1386,7 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" prompt="" id="F3b-Nl-sNJ">
+                    <navigationItem key="navigationItem" id="F3b-Nl-sNJ">
                         <barButtonItem key="leftBarButtonItem" title="☰" id="EwG-bk-wjh">
                             <connections>
                                 <action selector="menuButtonTapped:" destination="WqG-jG-oPD" id="yAr-pq-W3m"/>
@@ -1467,7 +1467,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ne4-M0-AOE" firstAttribute="top" secondItem="UJR-2D-c5r" secondAttribute="bottom" constant="-20" id="3gQ-ju-Pgt"/>
                             <constraint firstItem="Ne4-M0-AOE" firstAttribute="top" secondItem="UJR-2D-c5r" secondAttribute="bottom" id="8ID-CW-NYJ"/>
@@ -3222,7 +3222,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zqq-p0-XLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hPG-n5-9mz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3144" y="392"/>
+            <point key="canvasLocation" x="3144" y="430"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="Nhn-gx-OPC">
