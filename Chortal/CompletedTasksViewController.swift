@@ -26,6 +26,10 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler:")
+        longPress.delegate = self
+        scrollView.addGestureRecognizer(longPress)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -37,10 +41,12 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     //MARK: Custom Functions
     func fetchCompletedTasks() {
         var layedOutData = false
+        var taskCount = 0
         
         if currentOrg!["tasks"] != nil {
             if (currentOrg!["tasks"] as! [CKReference]).count > 0 {
                 for taskReference in currentOrg!["tasks"] as![CKReference] {
+                    
                     publicDatabase.fetchRecordWithID(taskReference.recordID, completionHandler: { (fetchedTask, error) -> Void in
                         if error != nil {
                             print("error fetching tasks: \(error)")
@@ -53,6 +59,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                                     self.setDisplayedTask(self.currentIndex)
                                 })
                             }
+                        } else if self.completedTaskArray.count == 0 {
+                            taskCount++
+                            if taskCount == (currentOrg!["tasks"] as! [CKReference]).count {
+                                self.finishAndExit("No completed tasks.")
+                            }
                         }
                     })
                 }
@@ -60,8 +71,8 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         }
     }
     
-    func finishAndExit() {
-        let alertController = UIAlertController(title: "No more completed tasks.", message: nil, preferredStyle: .Alert)
+    func finishAndExit(title: String) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
         let ok = UIAlertAction(title: "Ok", style: .Default) { (UIAlertAction) -> Void in
             self.performSegueWithIdentifier("unwindToSidebar", sender: self)
         }
@@ -79,12 +90,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         if index == 0 {
             currentCompletedTask = completedTaskArray[0]
         } else if index == completedTaskArray.count {
-            finishAndExit()
+            finishAndExit("Done. No more completed tasks.")
         }
         else {
             currentCompletedTask = completedTaskArray[index]
         }
-        
         layoutData()
     }
     
@@ -135,9 +145,6 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 1
         imageView.userInteractionEnabled = true
-        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler:")
-        longPress.delegate = self
-        imageView.addGestureRecognizer(longPress)
         
         scrollView.contentSize.width = (scrollView.frame.width + (position * scrollView.frame.width))
         scrollView.addSubview(imageView)
@@ -155,14 +162,18 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
             self.currentCompletedTask!.setValue("rejected", forKey: "status")
             self.currentCompletedTask.setValue(textField?.text, forKey: "rejection_message")
             
-            self.loadingAlert("Task complete...", viewController: self)
+            self.loadingAlert("Updating task.", viewController: self)
             publicDatabase.saveRecord(self.currentCompletedTask) { (currentTask, error) -> Void in
                 if error != nil {
                     print("error marking task as completed: \(error))")
                 } else {
                     print("sucesssfully saved task")
-                    self.currentIndex++
-                    self.setDisplayedTask(self.currentIndex)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            self.currentIndex++
+                            self.setDisplayedTask(self.currentIndex)
+                        })
+                    })
                 }
             }
         }
@@ -178,14 +189,13 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     func longPressHandler(longPress: UIGestureRecognizer) {
         let state = longPress.state
         
-        let rejectPhotoAlert = UIAlertController(title: "Would you like to hide photo?", message: nil, preferredStyle: .ActionSheet)
+        let rejectPhotoAlert = UIAlertController(title: "Flag as inappropriate and hide photo?", message: nil, preferredStyle: .ActionSheet)
         let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
-            var index = 0
+
             for subview in self.scrollView.subviews {
-                print("subview: \(subview), pressLocation: \(self.pressLocation)")
+                print("subview: \(subview), pressLocation: \(self.pressLocation!)")
                 if subview.frame.contains(self.pressLocation!) {
-                    self.scrollView.subviews[index].hidden = true
-                    index++
+                    subview.hidden = true
                 }
             }
         }

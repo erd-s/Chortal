@@ -118,7 +118,9 @@ class MemberSidebarTableViewController: UITableViewController {
 //            if currentTask == nil {
 //                errorAlert("Oops!", message: "You don't have a task.")
 //            }
-            
+        } else if segue.identifier == "OrgCellID" {
+            let dvc = segue.destinationViewController as! OrganizationOverViewController
+            dvc.isMember = true
         }
     }
     

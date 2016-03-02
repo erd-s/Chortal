@@ -27,6 +27,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     override func viewDidAppear(animated: Bool) {
+        allMembers.removeAll()
         if currentOrg!["members"] != nil {
             getMembers()
         } else {
@@ -85,8 +86,8 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
         
         cell.memberNameLabel!.text = cellRecord.valueForKey("name") as? String
         cell.layer.cornerRadius = 5.0
-        cell.layer.borderColor = UIColor.lightGrayColor().CGColor
-        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = chortalGreen.CGColor
+        cell.layer.borderWidth = 0.5
         cell.contentView.frame = cell.frame
         
         return cell

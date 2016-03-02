@@ -29,6 +29,8 @@ class TakeTaskViewController: UIViewController {
     @IBOutlet weak var takeTaskButton: UIButton!
     @IBOutlet weak var taskMemberLabel: UILabel!
     @IBOutlet weak var incentiveLabel: UILabel!
+    @IBOutlet weak var commentsGreenLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
     
     //MARK: View Loading
     override func viewDidLoad() {
@@ -107,6 +109,15 @@ class TakeTaskViewController: UIViewController {
             getTaskOwner()
         } else {
             self.taskMemberLabel.text = "No one!"
+        }
+        
+        if task!["status"] as? String != "rejected" {
+            commentsGreenLabel.hidden = true
+            commentsLabel.hidden = true
+        } else {
+            commentsLabel.numberOfLines = 0
+            commentsLabel.text = task!["rejection_message"] as? String
+            commentsLabel.sizeToFit()
         }
     }
     

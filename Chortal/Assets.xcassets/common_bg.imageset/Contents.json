@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "common_bg.png",
+      "filename" : "sidebar gradient.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "common_bg@2x.png",
       "scale" : "2x"
     },
     {

@@ -102,7 +102,7 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         let view = UIView()
-        view.frame = CGRectMake(cell.frame.origin.x + 5 , cell.frame.origin.y + 4, self.view.frame.width - 15, cell.layer.frame.height - 7)
+        view.frame = CGRectMake(cell.frame.origin.x + 5 , cell.frame.origin.y + 4, self.tableView.frame.width - 15, cell.layer.frame.height - 7)
         view.layer.borderColor = chortalGreen.CGColor
         view.layer.borderWidth = 1.0
         view.layer.cornerRadius = 5.0
