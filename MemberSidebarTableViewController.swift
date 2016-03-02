@@ -121,6 +121,9 @@ class MemberSidebarTableViewController: UITableViewController {
         } else if segue.identifier == "OrgCellID" {
             let dvc = segue.destinationViewController as! OrganizationOverViewController
             dvc.isMember = true
+        } else if segue.identifier == "showMemberDetail" {
+            let dvc = segue.destinationViewController as! MemberDetailViewController
+            dvc.selectedMember = currentMember
         }
     }
     
@@ -146,4 +149,5 @@ class MemberSidebarTableViewController: UITableViewController {
             })
         }
     }
+    
 }
