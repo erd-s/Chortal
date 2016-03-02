@@ -67,7 +67,9 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         }
         
         alertController.addAction(ok)
-        presentViewController(alertController, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     // take task 1, display it, when it gets rejected or accepted, go to the next task and start over.
