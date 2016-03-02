@@ -9,12 +9,12 @@
 import UIKit
 import CloudKit
 
-class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
+class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     //MARK: Properties
     var completedTaskArray = [CKRecord]()
     var currentIndex = 0
     var currentCompletedTask: CKRecord!
-    var layoutTriggeredAtLeastOnce = false
+    var pressLocation: CGPoint?
     
     //MARK: Outlets
     @IBOutlet weak var taskNameLabel: UILabel!
@@ -30,87 +30,101 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        fetchCompletedRecords()
-        loadingAlert("Loading tasks...", viewController: self)
+        fetchCompletedTasks()
         
     }
     
     //MARK: Custom Functions
-    func fetchCompletedRecords() {
+    func fetchCompletedTasks() {
+        var layedOutData = false
+        
         if currentOrg!["tasks"] != nil {
-            for ref in currentOrg!["tasks"] as! [CKReference] {
-                publicDatabase.fetchRecordWithID(ref.recordID, completionHandler: { (taskRecord, error) -> Void in
-                    if error != nil {
-                        print("there was an error retrieving completed tasks. \(error)")
-                    } else {
-                        if taskRecord!["status"] as? String == "pending" {
-                            self.completedTaskArray.append(taskRecord!)
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                    self.layOutDataForCompletedRecord()
+            if (currentOrg!["tasks"] as! [CKReference]).count > 0 {
+                for taskReference in currentOrg!["tasks"] as![CKReference] {
+                    publicDatabase.fetchRecordWithID(taskReference.recordID, completionHandler: { (fetchedTask, error) -> Void in
+                        if error != nil {
+                            print("error fetching tasks: \(error)")
+                        }
+                        if fetchedTask!["status"] as? String == "pending" {
+                            self.completedTaskArray.append(fetchedTask!)
+                            if layedOutData == false {
+                                layedOutData = true
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    self.setDisplayedTask(self.currentIndex)
                                 })
-                            })
-                        } else {
-                            if ref == (currentOrg!["tasks"] as! [CKReference]).last {
-                                if taskRecord!["status"] as? String != "pending" {
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                            self.presentNoCompletedTasksAlertController("No completed tasks.")
-                                        })
-                                    })
-                                }
                             }
                         }
-                    }
-                })
+                    })
+                }
             }
-        } else {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.presentNoCompletedTasksAlertController("Please assign a task first.")
-                })
-            })
         }
     }
     
-    func layOutDataForCompletedRecord() {
-        if completedTaskArray.count > currentIndex {
-            currentCompletedTask = completedTaskArray[currentIndex]
-            taskNameLabel.text = currentCompletedTask["name"] as? String
-            incentiveLabel.text = currentCompletedTask["incentive"] as? String
-            taskDescriptionLabel.text = currentCompletedTask["description"] as? String
-            taskDescriptionLabel.numberOfLines = 0
-            taskDescriptionLabel.sizeToFit()
-            let timeTakenInSeconds = currentCompletedTask["taskCompletedTime"] as? Double
+    func finishAndExit() {
+        let alertController = UIAlertController(title: "No more completed tasks.", message: nil, preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "Ok", style: .Default) { (UIAlertAction) -> Void in
+            self.performSegueWithIdentifier("unwindToSidebar", sender: self)
+        }
+        
+        alertController.addAction(ok)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    // take task 1, display it, when it gets rejected or accepted, go to the next task and start over.
+    // finish when an index reaches the count of the total number of tasks.
+    
+    func setDisplayedTask(index: Int){
+        if index == 0 {
+            currentCompletedTask = completedTaskArray[0]
+        } else if index == completedTaskArray.count {
+            finishAndExit()
+        }
+        else {
+            currentCompletedTask = completedTaskArray[index]
+        }
+        
+        layoutData()
+    }
+    
+    func layoutData() {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.taskNameLabel.text = self.currentCompletedTask["name"] as? String
             
-            
+            let timeTakenInSeconds = self.currentCompletedTask["taskCompletedTime"] as? Double
             if timeTakenInSeconds < 60 {
-                timeTakenLabel.text = "\(Int(timeTakenInSeconds!))s"
+                self.timeTakenLabel.text = "\(Int(timeTakenInSeconds!))s"
             } else if timeTakenInSeconds < 3600 {
                 let timeTakenInMinutes = Int(timeTakenInSeconds! / 60)
-                timeTakenLabel.text = "\(timeTakenInMinutes))m"
+                self.timeTakenLabel.text = "\(timeTakenInMinutes)m"
             } else if timeTakenInSeconds < 86400 {
                 let timeTakenInHours = Int(timeTakenInSeconds! / 3600)
-                timeTakenLabel.text = "\(timeTakenInHours))h"
+                self.timeTakenLabel.text = "\(timeTakenInHours)h"
             } else {
                 let timeTakenInDays = Int(timeTakenInSeconds! / 86400)
-                timeTakenLabel.text = "\(timeTakenInDays))d"
+                self.timeTakenLabel.text = "\(timeTakenInDays)d"
             }
             
-            var x = 0
+            if self.currentCompletedTask["description"] as? String == "" {
+                self.taskDescriptionLabel.text = "No description."
+            } else {
+                self.taskDescriptionLabel.text = self.currentCompletedTask["description"] as? String
+            }
             
-            for photoAsset in (currentCompletedTask["photos"] as? [CKAsset])! {
-                let photo = UIImage(data: NSData(contentsOfURL: photoAsset.fileURL)!)
-                addPhotoToScrollView(photo!, position: CGFloat(x))
-                x = x + 1
+            if self.currentCompletedTask["incentive"] as? String == "" {
+                self.incentiveLabel.text = "No incentive."
+            } else {
+                self.incentiveLabel.text = self.currentCompletedTask["incentive"] as? String
             }
-            layoutTriggeredAtLeastOnce = true
-            currentIndex = currentIndex + 1
-        } else {
-            if layoutTriggeredAtLeastOnce == true {
-                presentNoCompletedTasksAlertController("No more completed tasks.")
-            }
-            presentNoCompletedTasksAlertController("No completed tasks.")
+        }
+        var x = CGFloat(0)
+        for imageAsset in currentCompletedTask["photos"] as! [CKAsset] {
+            let image = UIImage(data: NSData(contentsOfURL: imageAsset.fileURL)!)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.addPhotoToScrollView(image!, position: x)
+                x++
+            })
         }
     }
     
@@ -120,17 +134,13 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
         imageView.image = photo
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 1
+        imageView.userInteractionEnabled = true
+        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler:")
+        longPress.delegate = self
+        imageView.addGestureRecognizer(longPress)
+        
         scrollView.contentSize.width = (scrollView.frame.width + (position * scrollView.frame.width))
         scrollView.addSubview(imageView)
-    }
-    
-    func presentNoCompletedTasksAlertController(title: String) {
-        let noTasksAlertController = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) -> Void in
-            self.performSegueWithIdentifier("unwindToSidebar", sender: self)
-        }
-        noTasksAlertController.addAction(okAction)
-        presentViewController(noTasksAlertController, animated: true, completion: nil)
     }
     
     func presentRejectionAlertController() {
@@ -151,15 +161,12 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
                     print("error marking task as completed: \(error))")
                 } else {
                     print("sucesssfully saved task")
+                    self.currentIndex++
+                    self.setDisplayedTask(self.currentIndex)
                 }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        self.layOutDataForCompletedRecord()
-                    })
-                })
             }
-            
         }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         rejectionAlertController.addAction(rejectAction)
@@ -168,29 +175,49 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate {
         presentViewController(rejectionAlertController, animated: true, completion: nil)
     }
     
+    func longPressHandler(longPress: UIGestureRecognizer) {
+        let state = longPress.state
+        
+        let rejectPhotoAlert = UIAlertController(title: "Would you like to hide photo?", message: nil, preferredStyle: .ActionSheet)
+        let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
+            var index = 0
+            for subview in self.scrollView.subviews {
+                print("subview: \(subview), pressLocation: \(self.pressLocation)")
+                if subview.frame.contains(self.pressLocation!) {
+                    self.scrollView.subviews[index].hidden = true
+                    index++
+                }
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        rejectPhotoAlert.addAction(reject)
+        rejectPhotoAlert.addAction(cancel)
+        
+        if state == .Began {
+            pressLocation = longPress.locationInView(self.scrollView)
+            presentViewController(rejectPhotoAlert, animated: true, completion: nil)
+        }
+        
+    }
+    
     //MARK: Actions
     @IBAction func rejectActionTap(sender: UIButton) {
         presentRejectionAlertController()
-        currentIndex = currentIndex + 1
     }
     
     @IBAction func acceptActionTap(sender: UIButton) {
         currentCompletedTask.setValue("completed", forKey: "status")
-        loadingAlert("Task complete...", viewController: self)
         publicDatabase.saveRecord(currentCompletedTask) { (currentTask, error) -> Void in
             if error != nil {
                 print("error marking task as completed: \(error))")
             } else {
                 print("sucesssfully saved task")
+                self.currentIndex++
+                self.setDisplayedTask(self.currentIndex)
             }
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.layOutDataForCompletedRecord()
-                })
-            })
         }
     }
-    
     //MARK: Delegate Functions
     
     //MARK: Segues

@@ -51,21 +51,21 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        if currentTask != nil {
-            if currentTask!.valueForKey("status") as? String == "unassigned" {
-                if inProgressArray != nil {
-                    for task in inProgressArray! {
-                        if task == currentTask {
-                            let index = inProgressArray?.indexOf(task)
-                            inProgressArray?.removeAtIndex(index!)
-                            unclaimedArray?.append(task)
-                            currentTask = nil
-                            taskTableView.reloadData()
-                        }
-                    }
-                }
-            }
-        }
+//        if currentTask != nil {
+//            if currentTask!.valueForKey("status") as? String == "unassigned" {
+//                if inProgressArray != nil {
+//                    for task in inProgressArray! {
+//                        if task == currentTask {
+//                            let index = inProgressArray?.indexOf(task)
+//                            inProgressArray?.removeAtIndex(index!)
+//                            unclaimedArray?.append(task)
+//                            currentTask = nil
+//                            taskTableView.reloadData()
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
     
     
@@ -123,6 +123,9 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
                     self.inProgressArray?.append(task!)
+                    if (task!["member"] as! CKReference).recordID == currentMember?.recordID && currentTask == nil {
+                        currentTask = task
+                    }
                 } else if task!.valueForKey("status") as? String == "pending"  {
                     self.pendingArray?.append(task!)
                 } else if task?["status"] as? String == "unassigned" {

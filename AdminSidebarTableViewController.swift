@@ -99,11 +99,11 @@ class AdminSidebarTableViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if cell?.reuseIdentifier == "completedTask" {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if currentTask == nil {
-                    self.errorAlert("Oops!", message: "There are no completed tasks.")
-                } else {
+//                if currentTask == nil {
+//                    self.errorAlert("Oops!", message: "There are no completed tasks.")
+//                } else {
                     self.performSegueWithIdentifier("completedTaskSegue", sender: self)
-                }
+//                }
             })
             
         } else if cell?.reuseIdentifier == "settings" {
