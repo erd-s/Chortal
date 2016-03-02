@@ -77,6 +77,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         if organizationNameTextField.text == "" || adminNameTextField.text == "" {
             errorAlert("Error", message: "Please. Both fields are required.")
         } else {
+            isICloudContainerAvailable()
         loadingAlert("Creating Group...", viewController: self)
         let newOrg = CKRecord(recordType: "Organization")
         let newAdmin = CKRecord(recordType: "Admin")
@@ -96,6 +97,8 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         saveRecords([newOrg, newAdmin])
         }
     }
+    
+
     
     //MARK: Delegate Functions
     func textFieldShouldReturn(textField: UITextField) -> Bool {

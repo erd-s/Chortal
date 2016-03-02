@@ -36,12 +36,13 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-
+        isICloudContainerAvailable() 
         loadingAlert("Loading members...", viewController: self)
     }
     
     //MARK: Custom Functions
     func getCurrentOrganization() {
+        if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
         let currentOrgUID = userDefaults.objectForKey("currentOrgUID") as! String
         let predicate = NSPredicate(format: "uid == %@", currentOrgUID)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
@@ -60,6 +61,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
     }
+}
     
     func fetchMembers(currentOrganizationRecord: CKRecord) {
         let memRefArray = currentOrganizationRecord.valueForKey("members") as! NSMutableArray

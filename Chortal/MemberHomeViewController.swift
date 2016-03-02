@@ -256,6 +256,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         return cell
     }
+
+
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
