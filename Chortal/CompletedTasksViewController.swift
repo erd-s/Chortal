@@ -129,12 +129,15 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
             }
         }
         var x = CGFloat(0)
-        for imageAsset in currentCompletedTask["photos"] as! [CKAsset] {
-            let image = UIImage(data: NSData(contentsOfURL: imageAsset.fileURL)!)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.addPhotoToScrollView(image!, position: x)
-                x++
-            })
+        // image assets might not exist - > add conditional statement here to account for non-existance of assets.
+        if currentCompletedTask["photos"] != nil {
+            for imageAsset in currentCompletedTask["photos"] as! [CKAsset] {
+                let image = UIImage(data: NSData(contentsOfURL: imageAsset.fileURL)!)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.addPhotoToScrollView(image!, position: x)
+                    x++
+                })
+            }
         }
     }
     
@@ -261,7 +264,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
             
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let modifyRecordsOperation = CKModifyRecordsOperation(recordsToSave: [memberRecord!], recordIDsToDelete: [self.currentCompletedTask.recordID])
+                let modifyRecordsOperation = CKModifyRecordsOperation(recordsToSave: [memberRecord!, currentOrg!], recordIDsToDelete: [self.currentCompletedTask.recordID])
                 
                 publicDatabase.addOperation(modifyRecordsOperation)
                 
@@ -271,7 +274,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                         print("error saving member and deleting task: \(error!.description)"
                         )
                     }else {
-                        print("Successfully saved")
+                        print("Task, Member, and Admin Records Successfully saved")
                     }
                 }
                 self.currentIndex++

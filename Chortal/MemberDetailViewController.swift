@@ -12,6 +12,9 @@ import CloudKit
 class MemberDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     var arrayOfCompletedTasks = [CKRecord]()
+    var arrayOfTaskNames =  [String]()
+    var arrayOfTaskIncentives = [String]()
+    
     var arrayOfCurrentTasks = [CKRecord]()
     var selectedMember: CKRecord?
     
@@ -33,33 +36,34 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let photoAsset = selectedMember!["profile_picture"] as? CKAsset
         profileImageView.image = UIImage(data: NSData(contentsOfURL: photoAsset!.fileURL)!)
-        getCompletedTasks()
+        arrayOfTaskNames = selectedMember!["CompletedTaskNames"] as! [String]
+        arrayOfTaskIncentives = selectedMember!["CompletedTaskIncentives"] as! [String]
+//        getCompletedTasks()
         getCurrentTasks()
     }
     
     //MARK: Custom Functions
-    func getCompletedTasks() {
-        if selectedMember!["finished_tasks"] != nil {
-            let arrayOfCompletedTasksReferences = selectedMember!["finished_tasks"] as? [CKReference]
-            for task in arrayOfCompletedTasksReferences! {
-                publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
-                    if error != nil {
-                        print("error: \(error)")
-                    } else {
-                        self.arrayOfCompletedTasks.append(completedTask!)
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.numberOfTasksCompletedLabel.text = String(self.arrayOfCompletedTasks.count)
-                            self.tableView.reloadData()
-                        })
-                    }
-                    
-                })
-            }
-        }
-        else {
-            self.numberOfTasksCompletedLabel.text = "0"
-        }
-    }
+//    func getCompletedTasks() {
+//        if selectedMember!["CompletedTaskNames"] != nil {
+//            let arrayOfCompletedTaskNames = selectedMember!["CompletedTaskNames"] as? [String]
+//            for task in arrayOfCompletedTaskNames! {
+//                publicDatabase.fetchRecordWithID(task.recordID, completionHandler: { (completedTask, error) -> Void in
+//                    if error != nil {
+//                        print("error: \(error)")
+//                    } else {
+//                        self.arrayOfCompletedTasks.append(completedTask!)
+//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                            self.numberOfTasksCompletedLabel.text = String(self.arrayOfCompletedTasks.count)
+//                            self.tableView.reloadData()
+//                        })
+//                    }
+//                })
+//            }
+//        }
+//        else {
+//            self.numberOfTasksCompletedLabel.text = "0"
+//        }
+//    }
     
     func getCurrentTasks() {
         if selectedMember!["current_tasks"] != nil {
@@ -71,7 +75,7 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
                             print("error: \(error)")
                         } else {
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                let taskName = "\(completedTask!["name"]) \n"
+                                let taskName = "\(completedTask!["name"]!) \n"
                                 self.currentTasksLabel.text = self.currentTasksLabel.text?.stringByAppendingString(taskName)
                             })
                         }
@@ -92,10 +96,13 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
     //MARK: TableView Delegate Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pizza")!
-        if arrayOfCompletedTasks.count != 0 {
-            let taskAtIndex = arrayOfCompletedTasks[indexPath.row]
-            cell.textLabel!.text = taskAtIndex["name"] as? String
-            cell.detailTextLabel!.text = taskAtIndex["incentive"] as? String
+        if arrayOfTaskNames.count != 0 {
+            let taskNameAtIndex = arrayOfTaskNames[indexPath.row]
+            let taskIncentiveAtIndex = arrayOfTaskIncentives[indexPath.row]
+            cell.textLabel!.text = taskNameAtIndex
+            cell.detailTextLabel!.text = "Incentive Earned: \(taskIncentiveAtIndex)"
+            cell.detailTextLabel?.textColor = UIColor.whiteColor()
+            
         } else {
             cell.textLabel!.text = "No completed tasks."
             cell.detailTextLabel!.text = nil
@@ -118,8 +125,8 @@ class MemberDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arrayOfCompletedTasks.count != 0 {
-            return arrayOfCompletedTasks.count
+        if arrayOfTaskNames.count != 0 {
+            return arrayOfTaskNames.count
         } else {
             return 1
         }

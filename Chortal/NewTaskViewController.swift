@@ -53,8 +53,13 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         newTask = CKRecord(recordType: "Task")
         newTask.setObject(datePicker.date, forKey: "due")
         newTask.setObject(taskDescriptionTextField.text, forKey: "description")
+        
         newTask.setObject(taskNameTextField.text, forKey: "name")
-        newTask.setObject(incentiveTextField.text, forKey: "incentive")
+        if incentiveTextField.text?.characters.count > 0 {
+            newTask.setObject(incentiveTextField.text, forKey: "incentive")
+        } else {
+            newTask.setObject("None", forKey: "incentive")
+        }
         if requirePhotoSwitch.on {
             newTask.setObject("true", forKey: "photo_required")
         } else {

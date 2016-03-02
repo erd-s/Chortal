@@ -162,6 +162,9 @@ class TakeTaskViewController: UIViewController {
                 let currentTasks = currentMember?.valueForKey("current_tasks")
                 currentTasks?.insertObject(taskRef, atIndex: 0)
                 currentMember?.setValue(currentTasks, forKey: "current_tasks")
+            } else {
+                let currentTasks = [taskRef]
+                currentMember?.setValue(currentTasks, forKey: "current_tasks")
             }
         } else {
             let currentTasks = [taskRef]
