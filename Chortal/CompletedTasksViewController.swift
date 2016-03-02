@@ -41,10 +41,12 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     //MARK: Custom Functions
     func fetchCompletedTasks() {
         var layedOutData = false
+        var taskCount = 0
         
         if currentOrg!["tasks"] != nil {
             if (currentOrg!["tasks"] as! [CKReference]).count > 0 {
                 for taskReference in currentOrg!["tasks"] as![CKReference] {
+                    
                     publicDatabase.fetchRecordWithID(taskReference.recordID, completionHandler: { (fetchedTask, error) -> Void in
                         if error != nil {
                             print("error fetching tasks: \(error)")
@@ -57,6 +59,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                                     self.setDisplayedTask(self.currentIndex)
                                 })
                             }
+                        } else if self.completedTaskArray.count == 0 {
+                            taskCount++
+                            if taskCount == (currentOrg!["tasks"] as! [CKReference]).count {
+                                self.finishAndExit("No completed tasks.")
+                            }
                         }
                     })
                 }
@@ -64,8 +71,8 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         }
     }
     
-    func finishAndExit() {
-        let alertController = UIAlertController(title: "No more completed tasks.", message: nil, preferredStyle: .Alert)
+    func finishAndExit(title: String) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
         let ok = UIAlertAction(title: "Ok", style: .Default) { (UIAlertAction) -> Void in
             self.performSegueWithIdentifier("unwindToSidebar", sender: self)
         }
@@ -83,7 +90,7 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         if index == 0 {
             currentCompletedTask = completedTaskArray[0]
         } else if index == completedTaskArray.count {
-            finishAndExit()
+            finishAndExit("No more completed tasks.")
         }
         else {
             currentCompletedTask = completedTaskArray[index]
