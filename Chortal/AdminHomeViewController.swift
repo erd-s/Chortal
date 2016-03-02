@@ -67,7 +67,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getOrganization() {
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
-        let query = CKQuery(recordType: "asdfljka", predicate: predicate)
+        let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
                 checkError(error!, view: self)
