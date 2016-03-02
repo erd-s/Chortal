@@ -9,8 +9,6 @@
 import Foundation
 import CloudKit
 
-
-
 //    CKErrorInternalError           = 1,  /* CloudKit.framework encountered an error.  This is a non-recoverable error. */
 //    CKErrorPartialFailure          = 2,  /* Some items failed, but the operation succeeded overall */
 //    CKErrorNetworkUnavailable      = 3,  /* Network not available */
@@ -38,12 +36,8 @@ import CloudKit
 //    CKErrorQuotaExceeded           = 25, /* Saving a record would exceed quota */
 //    CKErrorZoneNotFound            = 26, /* The specified zone does not exist on the server */
 //    CKErrorLimitExceeded           = 27, /* The request to the server was too large. Retry this request as a smaller batch. */
-//    CKErrorUserDeletedZone         = 28, /* The user deleted this zone through the settings UI. Your client should either remove its local data or prompt the user before attempting to re-upload any data to this zone. */
-
-
-    
-    
-
+//    CKErrorUserDeletedZone         = 28, /* The user deleted this zone through the settings UI. Your client should either remove its local data or prompt the user before attempting to re-           
+                                           // upload any data to this zone. */
 
 enum HandleError: Int {
     case InternalError
@@ -75,13 +69,19 @@ enum HandleError: Int {
     case LimitExceeded
     case UserDeletedZone
 
-    func presentErrorMessage() -> UIViewController {
-        switch self {
-/* restart app */  case .InternalError, .InvalidArguments, .IncompatibleVersion, .BadDatabase, .BadContainer, .ServerRejectedRequest, .UnknownItem, .OperationCancelled, .UserDeletedZone
-/* continue */     case .PartialFailure
-/* retry later */  case .NetworkFailure, .NetworkUnavailable, .ServiceUnavailable, .ZoneBusy, .LimitExceeded
+    func presentErrorMessage(view: UIViewController, error: NSError) -> () {
+        let retryAfter = error.userInfo[CKErrorRetryAfterKey] as? NSTimeInterval
+        let retryAfterString = "\(retryAfter) seconds"
         
-            
+        switch self {
+/* restart app */
+        case .InternalError, .InvalidArguments, .IncompatibleVersion, .BadDatabase, .BadContainer, .ServerRejectedRequest, .UnknownItem, .OperationCancelled, .UserDeletedZone, .MissingEntitlement, .ChangeTokenExpired: return view.errorAlert("Error", message: "Please restart the app. Error: \(error.userInfo.description).")
+/* continue */
+        case .PartialFailure, .ResultsTruncated: return view.errorAlert("Error", message: "Error saving all records. Please try again. Error description: \(error.code)")
+/* retry later */
+        case .NetworkFailure, .NetworkUnavailable, .ServiceUnavailable, .ZoneBusy, .LimitExceeded, .RequestRateLimited, .AssetFileNotFound, .AssetFileModified, .ConstraintViolation, .OperationCancelled, .ServerRecordChanged, .BatchRequestFailed: return view.errorAlert("Error", message: "Please try again in \(retryAfterString).")
+/* log in to icloud */
+        case .NotAuthenticated, .PermissionFailure: return view.errorAlert("Error", message: "Please log in to iCloud and try again.")
         }
 }
 }
