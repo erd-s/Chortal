@@ -26,6 +26,10 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler:")
+        longPress.delegate = self
+        scrollView.addGestureRecognizer(longPress)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -135,9 +139,6 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 1
         imageView.userInteractionEnabled = true
-        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler:")
-        longPress.delegate = self
-        imageView.addGestureRecognizer(longPress)
         
         scrollView.contentSize.width = (scrollView.frame.width + (position * scrollView.frame.width))
         scrollView.addSubview(imageView)
@@ -180,12 +181,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         
         let rejectPhotoAlert = UIAlertController(title: "Would you like to hide photo?", message: nil, preferredStyle: .ActionSheet)
         let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
-            var index = 0
+
             for subview in self.scrollView.subviews {
-                print("subview: \(subview), pressLocation: \(self.pressLocation)")
+                print("subview: \(subview), pressLocation: \(self.pressLocation!)")
                 if subview.frame.contains(self.pressLocation!) {
-                    self.scrollView.subviews[index].hidden = true
-                    index++
+                    subview.hidden = true
                 }
             }
         }
