@@ -2075,7 +2075,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1QC-6y-Lo5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lX3-pa-Vxg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="adminHomeNavigation" automaticallyAdjustsScrollViewInsets="NO" id="lX3-pa-Vxg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="73Z-y3-w3i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3556,9 +3556,9 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GO8-wU-rPS"/>
-        <segue reference="Pzb-0f-AmU"/>
+        <segue reference="ZLP-fD-WgM"/>
         <segue reference="XZm-Gf-FbH"/>
+        <segue reference="Pzb-0f-AmU"/>
         <segue reference="kyT-jB-3iZ"/>
         <segue reference="91i-ee-wIH"/>
     </inferredMetricsTieBreakers>

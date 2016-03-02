@@ -55,14 +55,19 @@ class AdminSettingsViewController: UIViewController {
                 } else {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            self.performSegueWithIdentifier("saveAdminSettingsSegue", sender: self)
+                            UtilityFile.instantiateToAdminHome(self)
+
+                         //   self.performSegueWithIdentifier("saveAdminSettingsSegue", sender: self)
                         })
+                    
                     })
                 }
             })
         } else {
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.performSegueWithIdentifier("saveAdminSettingsSegue", sender: self)
+                UtilityFile.instantiateToAdminHome(self)
+
+//                self.performSegueWithIdentifier("saveAdminSettingsSegue", sender: self)
             })
         }
     }
