@@ -57,7 +57,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         
         saveOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
             if error != nil {
-                print(error)
+                checkError(error!, view: self)
             } else {
                 if saved != nil {
                     print("Saved Record: \(saved)")

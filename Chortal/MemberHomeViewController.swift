@@ -39,7 +39,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         title = userDefaults.valueForKey("currentOrgName") as? String
         
         taskTableView.separatorStyle = UITableViewCellSeparatorStyle.None
-
+        
         
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
@@ -51,21 +51,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-//        if currentTask != nil {
-//            if currentTask!.valueForKey("status") as? String == "unassigned" {
-//                if inProgressArray != nil {
-//                    for task in inProgressArray! {
-//                        if task == currentTask {
-//                            let index = inProgressArray?.indexOf(task)
-//                            inProgressArray?.removeAtIndex(index!)
-//                            unclaimedArray?.append(task)
-//                            currentTask = nil
-//                            taskTableView.reloadData()
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
     
     
@@ -85,12 +70,12 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func getOrganization() {
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
+        loadingAlert("Loading tasks...", viewController: self)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
-                print("error getting current organization: \(error)")
+                checkError(error!, view: self)
             }
             currentOrg = organizations![0] as CKRecord
-            self.loadingAlert("Loading tasks...", viewController: self)
             
             self.getTasks(true)
             self.getCurrentMember()
@@ -118,13 +103,55 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
         publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in
             if error != nil {
-                print("error fetching tasks: \(error)")
+                checkError(error!, view: self)
             } else {
                 
                 if task!.valueForKey("status") as? String == "inProgress"  || task!["status"] as? String == "rejected" {
                     self.inProgressArray?.append(task!)
                     if (task!["member"] as! CKReference).recordID == currentMember?.recordID && currentTask == nil {
                         currentTask = task
+                        var currentMemberTasks = [CKReference]()
+                        var x = 0
+                        if (currentMember!["current_tasks"] as! [CKReference]).count > 0 {
+                            var currentMemberTasks = currentMember!["current_tasks"] as! [CKReference]
+                            for task in currentMemberTasks {
+                                if task.recordID == currentTask?.recordID {
+                                    x++
+                                }
+                            }
+                            
+                            if x == 0 {
+                                let newTaskRef = CKReference(record: currentTask!, action: .None)
+                                currentMemberTasks.append(newTaskRef)
+                                currentMember?.setValue(currentMemberTasks, forKey: "current_tasks")
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    publicDatabase.saveRecord(currentMember!, completionHandler: { (savedRecord, error) -> Void in
+                                        if error != nil {
+                                            print("Error Modifying the Current Member: \(error?.description)")
+                                        } else {
+                                            print("Current Member Was Updated Successfully")
+                                        }
+                                    })
+                                })
+                            }
+                            
+                        } else {
+                            let newTaskRef = CKReference(record: currentTask!, action: .None)
+                            currentMemberTasks.append(newTaskRef)
+                            currentMember?.setValue(currentMemberTasks, forKey: "current_tasks")
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                publicDatabase.saveRecord(currentMember!, completionHandler: { (savedRecord, error) -> Void in
+                                    if error != nil {
+                                        print("Error Modifying the Current Member: \(error?.description)")
+                                    } else {
+                                        print("Current Member Was Updated Successfully")
+                                    }
+                                })
+                            })
+                            
+                        }
+                        
+                        
                     }
                 } else if task!.valueForKey("status") as? String == "pending"  {
                     self.pendingArray?.append(task!)
@@ -176,7 +203,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 let taskRef = currentMember?["current_tasks"] as! [CKReference]
                 publicDatabase.fetchRecordWithID(taskRef[0].recordID) { (fetchedRecord, error) -> Void in
                     if error != nil {
-                        print("Error: \(error?.description)")
+                        checkError(error!, view: self)
                     } else {
                         if fetchedRecord != nil {
                             currentTask = fetchedRecord
@@ -242,7 +269,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.detailTextLabel?.text = task.valueForKey("description") as? String
         cell.detailTextLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.textColor = UIColor.whiteColor()
-
+        
         let view = UIView()
         view.frame = CGRectMake(cell.frame.origin.x + 10 , cell.frame.origin.y + 4, self.view.frame.width - 15, cell.layer.frame.height - 7)
         view.layer.borderColor = chortalGreen.CGColor
@@ -278,7 +305,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         popOver.preferredContentSize = CGSizeMake(320, 320)
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.presentViewController(popOver, animated: true, completion: nil)
-
+            
         }
     }
     

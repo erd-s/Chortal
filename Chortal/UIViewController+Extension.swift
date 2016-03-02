@@ -25,10 +25,11 @@ extension UIViewController {
     }
     
     func errorAlert(title: String, message: String) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let okay = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(okay)
         self.presentViewController(alert, animated: true, completion: nil)
-        
+        }
     }
 }

@@ -48,7 +48,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         
         publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
             if error != nil {
-                print("Error: \(error?.description)")
+                checkError(error!, view: self)
             } else {
                 if results != nil {
                     self.orgRecord = results![0]
@@ -66,7 +66,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         for reference in memRefArray {
             publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (record, error) -> Void in
                 if error != nil {
-                    print("error fetching record for member reference \(error)")
+                    checkError(error!, view: self)
                 }
                 self.memberArray.append(record!)
                 dispatch_async(dispatch_get_main_queue()) {

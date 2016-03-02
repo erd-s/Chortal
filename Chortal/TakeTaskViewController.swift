@@ -127,7 +127,7 @@ class TakeTaskViewController: UIViewController {
         let ownerReference = task!["member"] as! CKReference
         publicDatabase.fetchRecordWithID(ownerReference.recordID, completionHandler: { (owner, error) -> Void in
             if error != nil {
-                print(error)
+                checkError(error!, view: self)
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.taskMemberLabel.text = "\(owner!["name"]!)"
@@ -162,6 +162,9 @@ class TakeTaskViewController: UIViewController {
                 let currentTasks = currentMember?.valueForKey("current_tasks")
                 currentTasks?.insertObject(taskRef, atIndex: 0)
                 currentMember?.setValue(currentTasks, forKey: "current_tasks")
+            } else {
+                let currentTasks = [taskRef]
+                currentMember?.setValue(currentTasks, forKey: "current_tasks")
             }
         } else {
             let currentTasks = [taskRef]
@@ -182,7 +185,7 @@ class TakeTaskViewController: UIViewController {
         saveOperation.atomic = true
         saveOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
             if error != nil {
-                print("save task and member failed: \(error)")
+                checkError(error!, view: self)
             } else {
                 print("saved records successfully")
                 currentTask = self.task

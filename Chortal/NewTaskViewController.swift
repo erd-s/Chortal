@@ -53,8 +53,13 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         newTask = CKRecord(recordType: "Task")
         newTask.setObject(datePicker.date, forKey: "due")
         newTask.setObject(taskDescriptionTextField.text, forKey: "description")
+        
         newTask.setObject(taskNameTextField.text, forKey: "name")
-        newTask.setObject(incentiveTextField.text, forKey: "incentive")
+        if incentiveTextField.text?.characters.count > 0 {
+            newTask.setObject(incentiveTextField.text, forKey: "incentive")
+        } else {
+            newTask.setObject("None", forKey: "incentive")
+        }
         if requirePhotoSwitch.on {
             newTask.setObject("true", forKey: "photo_required")
         } else {
@@ -91,7 +96,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             newTask.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
             publicDatabase.saveRecord(selectedMember, completionHandler: { (member, error) -> Void in
                 if error != nil {
-                    //do some error handling
+                    checkError(error!, view: self)
                 } else {
                     //do some good stuff
                 }
@@ -110,7 +115,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         saveRecordsOp.modifyRecordsCompletionBlock = { saved, deleted, error in
             if error != nil {
-                print(error)
+                checkError(error!, view: self)
             } else {
                 print("saved task")
                 dispatch_async(dispatch_get_main_queue()) {

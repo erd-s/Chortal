@@ -60,7 +60,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                 publicDatabase.fetchRecordWithID(memberReference.recordID, completionHandler: { (resultRecord, error) -> Void in
                     
                     if error != nil {
-                        print("Error Fetching Names for Uniequness Test: \(error?.description)")
+                        checkError(error!, view: self)
                     } else {
                         
                         if resultRecord!["name"] as? String == self.nameTextField.text {
@@ -114,8 +114,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         
         saveRecordsOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
-                print("error saving member and organization: \(error!.description)"
-                )
+                checkError(error!, view: self)
             }else {
                 print("Successfully saved")
             }
