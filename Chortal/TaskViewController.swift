@@ -30,7 +30,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         progressTasks = []
-        collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/2, collectionView.frame.width/2)
+        collectionViewFlow.itemSize = CGSizeMake(collectionView.frame.width/3, collectionView.frame.width/3)
         
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
         descriptionLabel.text = currentTask?.valueForKey("description") as? String
@@ -139,8 +139,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         }
     }
-    
-    
     
     @IBAction func submitTaskTapped(sender: UIButton) {
         imageAssetArray = [CKAsset]()

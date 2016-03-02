@@ -518,7 +518,7 @@
                                 <color key="textColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="k7B-kw-t4E">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="k7B-kw-t4E">
                                 <rect key="frame" x="20" y="182" width="73" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="73" id="9ME-8X-O4E"/>
@@ -1015,13 +1015,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Gu-eJ-qhB">
-                                                    <rect key="frame" x="8" y="8" width="271" height="157"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Gu-eJ-qhB">
+                                                    <rect key="frame" x="9" y="9" width="271" height="157"/>
                                                     <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="1Gu-eJ-qhB" firstAttribute="trailing" secondItem="ya3-Xw-FMI" secondAttribute="trailingMargin" constant="1" id="2Je-cd-IPk"/>
+                                            <constraint firstItem="1Gu-eJ-qhB" firstAttribute="bottom" secondItem="ya3-Xw-FMI" secondAttribute="bottomMargin" constant="1" id="W9M-8W-idN"/>
+                                            <constraint firstItem="1Gu-eJ-qhB" firstAttribute="leading" secondItem="ya3-Xw-FMI" secondAttribute="leadingMargin" constant="1" id="eX5-dM-LqN"/>
+                                            <constraint firstItem="1Gu-eJ-qhB" firstAttribute="top" secondItem="ya3-Xw-FMI" secondAttribute="topMargin" constant="1" id="zhM-vd-elR"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="1Gu-eJ-qhB" id="jgv-e8-VJh"/>
                                         </connections>
@@ -1147,7 +1154,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="No photos added to task." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bH-dC-Qfs">
                                 <rect key="frame" x="20" y="176" width="560" height="318"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.54339978450000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

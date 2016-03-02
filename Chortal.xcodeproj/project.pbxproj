@@ -112,8 +112,8 @@
 				9B3E414B1C739522007A16D3 /* NewTaskViewController.swift */,
 				138B2BA91C83A12D009180C9 /* OrganizationOverViewController.swift */,
 				9BD43F441C78CC4800D65902 /* TakeTaskViewController.swift */,
-				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
 				9B3E41491C73942D007A16D3 /* UniqueIDViewController.swift */,
+				9B3E41431C7382AE007A16D3 /* TaskViewController.swift */,
 				9B3E41451C7391D3007A16D3 /* WelcomeViewController.swift */,
 			);
 			name = ViewControllers;
