@@ -90,12 +90,11 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         if index == 0 {
             currentCompletedTask = completedTaskArray[0]
         } else if index == completedTaskArray.count {
-            finishAndExit("No more completed tasks.")
+            finishAndExit("Done. No more completed tasks.")
         }
         else {
             currentCompletedTask = completedTaskArray[index]
         }
-        
         layoutData()
     }
     
@@ -163,14 +162,18 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
             self.currentCompletedTask!.setValue("rejected", forKey: "status")
             self.currentCompletedTask.setValue(textField?.text, forKey: "rejection_message")
             
-            self.loadingAlert("Task complete...", viewController: self)
+            self.loadingAlert("Updating task.", viewController: self)
             publicDatabase.saveRecord(self.currentCompletedTask) { (currentTask, error) -> Void in
                 if error != nil {
                     print("error marking task as completed: \(error))")
                 } else {
                     print("sucesssfully saved task")
-                    self.currentIndex++
-                    self.setDisplayedTask(self.currentIndex)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            self.currentIndex++
+                            self.setDisplayedTask(self.currentIndex)
+                        })
+                    })
                 }
             }
         }
