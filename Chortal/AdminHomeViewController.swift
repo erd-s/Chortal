@@ -84,7 +84,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         let adminRef = currentOrg!["admin"] as! CKReference
         publicDatabase.fetchRecordWithID(adminRef.recordID) { (adminRecord, error) -> Void in
             if error != nil {
-                print("error getting admin: \(error)")
+                
             } else {
                 currentAdmin = adminRecord
                 if pushNotificationsSet == false {
