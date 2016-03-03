@@ -101,8 +101,10 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             if refreshControl.enabled == false {
                 refreshControl.enabled = true
                 refreshControl.endRefreshing()
+                tabBarItemSwitch()
             } else {
                 self.dismissViewControllerAnimated(true, completion: nil)
+                tabBarItemSwitch()
             }
         }
     }
@@ -223,6 +225,10 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                         })
                     }
                 }
+            } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.getTasks(showAlertController)
+                })
             }
         } else {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

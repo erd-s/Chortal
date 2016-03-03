@@ -314,7 +314,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     self.taskArray.removeAtIndex(indexPath.row)
                     
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let deleteOperation = CKModifyRecordsOperation(recordsToSave: [currentOrg!], recordIDsToDelete: [deleteRecord.recordID])
+                        let deleteOperation = CKModifyRecordsOperation(recordsToSave: [currentOrg!, ownerRecord!], recordIDsToDelete: [deleteRecord.recordID])
                         publicDatabase.addOperation(deleteOperation)
                         deleteOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
                             if error != nil {
