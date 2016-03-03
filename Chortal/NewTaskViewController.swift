@@ -69,47 +69,60 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     func assignReferences() {
-        organizationReference = CKReference.init(recordID: currentOrg!.recordID, action: .None)
-        taskReference = CKReference(recordID: newTask.recordID, action: .None)
-        
-        let arrayOfTaskRefs = NSMutableArray(object: taskReference)
-        
-        if currentOrg!.valueForKey("tasks") != nil {
-            arrayOfTaskRefs.addObjectsFromArray(currentOrg!.valueForKey("tasks") as! [AnyObject])
-            currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
-        } else {
-            currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
-        }
-        
-        if memberSegmentedControl.selected == true {
-            let memberReference = CKReference(record: selectedMember, action: .None)
-            let newCurrentTaskRef = NSMutableArray()
-            newCurrentTaskRef.addObject(taskReference)
-            if selectedMember["current_tasks"] != nil {
-                if (selectedMember["current_tasks"] as! [CKReference]).count != 0 {
-                    newCurrentTaskRef.addObjectsFromArray(selectedMember["current_tasks"] as! [CKReference])
-                }
-            }
-            newTask.setObject(memberReference, forKey: "member")
-            newTask.setValue("inProgress", forKey: "status")
-            selectedMember.setValue(newCurrentTaskRef, forKey: "current_tasks")
-            newTask.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
-            publicDatabase.saveRecord(selectedMember, completionHandler: { (member, error) -> Void in
-                if error != nil {
-                    checkError(error!, view: self)
+        publicDatabase.fetchRecordWithID(currentOrg!.recordID) { (currentOrgUpdated, error) -> Void in
+            if error != nil {
+                checkError(error!, view: self)
+            } else {
+                currentOrg = currentOrgUpdated
+                
+                
+                
+                
+                self.organizationReference = CKReference.init(recordID: currentOrg!.recordID, action: .None)
+                self.taskReference = CKReference(recordID: self.newTask.recordID, action: .None)
+                
+                let arrayOfTaskRefs = NSMutableArray(object: self.taskReference)
+                
+                if currentOrg!.valueForKey("tasks") != nil {
+                    arrayOfTaskRefs.addObjectsFromArray(currentOrg!.valueForKey("tasks") as! [AnyObject])
+                    currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
                 } else {
-                    //do some good stuff
+                    currentOrg!.setObject(arrayOfTaskRefs, forKey: "tasks")
                 }
-            })
-        } else {
-            newTask.setValue("unassigned", forKey: "status")
+                
+                if self.memberSegmentedControl.selected == true {
+                    let memberReference = CKReference(record: self.selectedMember, action: .None)
+                    let newCurrentTaskRef = NSMutableArray()
+                    newCurrentTaskRef.addObject(self.taskReference)
+                    if self.selectedMember["current_tasks"] != nil {
+                        if (self.selectedMember["current_tasks"] as! [CKReference]).count != 0 {
+                            newCurrentTaskRef.addObjectsFromArray(self.selectedMember["current_tasks"] as! [CKReference])
+                        }
+                    }
+                    self.newTask.setObject(memberReference, forKey: "member")
+                    self.newTask.setValue("inProgress", forKey: "statself.us")
+                    self.selectedMember.setValue(newCurrentTaskRef, forKey: "current_tasks")
+                    self.newTask.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
+                    publicDatabase.saveRecord(self.selectedMember, completionHandler: { (member, error) -> Void in
+                        if error != nil {
+                            checkError(error!, view: self)
+                        } else {
+                            //do some good stuff
+                        }
+                    })
+                } else {
+                    self.newTask.setValue("unassigned", forKey: "status")
+                }
+                
+                self.newTask.setObject(self.organizationReference, forKey: "organization")
+                
+                
+                self.saveTaskAndOrganization([self.newTask, currentOrg!])
+                
+            }
         }
-        
-        newTask.setObject(organizationReference, forKey: "organization")
-        
-        
-        saveTaskAndOrganization([newTask, currentOrg!])
     }
+    
     
     func saveTaskAndOrganization(records: [CKRecord]) {
         let saveRecordsOp = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
