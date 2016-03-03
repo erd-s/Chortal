@@ -1207,7 +1207,7 @@
                             <constraint firstItem="QVd-TZ-0rb" firstAttribute="top" secondItem="Jmz-PM-kZC" secondAttribute="bottom" constant="60" id="TuM-LP-Zac"/>
                             <constraint firstItem="5bH-dC-Qfs" firstAttribute="top" secondItem="eFL-Ku-qO3" secondAttribute="bottom" constant="16" id="TyA-vZ-8wo"/>
                             <constraint firstItem="Jmz-PM-kZC" firstAttribute="leading" secondItem="XOs-rr-HNj" secondAttribute="trailing" constant="16" id="WQm-YE-AW0">
-                                <variation key="widthClass=compact" constant="12"/>
+                                <variation key="widthClass=compact" constant="8"/>
                             </constraint>
                             <constraint firstItem="Jmz-PM-kZC" firstAttribute="trailing" secondItem="Pth-Vb-CJR" secondAttribute="trailingMargin" id="Wls-sL-PNV"/>
                             <constraint firstItem="1zE-f9-fB1" firstAttribute="top" secondItem="e6I-qt-zhi" secondAttribute="bottom" constant="7" id="X2s-q5-MfU"/>
