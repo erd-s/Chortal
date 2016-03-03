@@ -283,20 +283,13 @@
                                     <outlet property="delegate" destination="jP6-LE-g8W" id="2E4-0c-j8w"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBC-QL-I3q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBC-QL-I3q">
                                 <rect key="frame" x="20" y="150" width="560" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="frK-Sm-ECQ"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Create Group">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="28" name="AmericanTypewriter"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8b-z2-kJ7">
@@ -309,6 +302,9 @@
                                 <state key="normal" title="Want to join a group instead?">
                                     <color key="titleColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="vs4-mI-qZK" kind="show" id="kDn-BK-0Cd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
@@ -3576,6 +3572,7 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="kDn-BK-0Cd"/>
         <segue reference="EvV-MJ-BvJ"/>
         <segue reference="IeD-g1-6Nb"/>
         <segue reference="7Kh-Yt-WH9"/>
