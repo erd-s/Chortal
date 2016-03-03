@@ -273,48 +273,79 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             loadingAlert("Deleting record...", viewController: self)
             
             let deleteRecord = taskArray[indexPath.row]
-            var organizationTasks = currentOrg!["tasks"] as! [CKReference]
-            
-            
-            if let owningMember = deleteRecord["member"] as? CKReference {
-                publicDatabase.fetchRecordWithID(owningMember.recordID, completionHandler: { (ownerRecord, error) -> Void in
-                    var memberCurrentTasks = [CKReference]()
-                    var memberPendingTasks = [CKReference]()
-                    if ownerRecord!["current_tasks"] != nil {
-                        memberCurrentTasks = ownerRecord!["current_tasks"] as! [CKReference]
-                    }
-                    if ownerRecord!["pending_tasks"] != nil {
-                        memberPendingTasks = ownerRecord!["pending_tasks"] as! [CKReference]
-                    }
+            publicDatabase.fetchRecordWithID(deleteRecord.recordID, completionHandler: { (deleteRecord, error) -> Void in
+                if error != nil {
+                    checkError(error!, view: self)
+                } else {
+                    var organizationTasks = currentOrg!["tasks"] as! [CKReference]
                     
-                    for reference in memberCurrentTasks {
-                        if reference.recordID == deleteRecord.recordID {
-                            let index = memberCurrentTasks.indexOf(reference)
-                            memberCurrentTasks.removeAtIndex(index!)
+                    if let owningMember = deleteRecord!["member"] as? CKReference {
+                        publicDatabase.fetchRecordWithID(owningMember.recordID, completionHandler: { (ownerRecord, error) -> Void in
+                            var memberCurrentTasks = [CKReference]()
+                            var memberPendingTasks = [CKReference]()
+                            if ownerRecord!["current_tasks"] != nil {
+                                memberCurrentTasks = ownerRecord!["current_tasks"] as! [CKReference]
+                            }
+                            if ownerRecord!["pending_tasks"] != nil {
+                                memberPendingTasks = ownerRecord!["pending_tasks"] as! [CKReference]
+                            }
+                            
+                            for reference in memberCurrentTasks {
+                                if reference.recordID == deleteRecord!.recordID {
+                                    let index = memberCurrentTasks.indexOf(reference)
+                                    memberCurrentTasks.removeAtIndex(index!)
+                                }
+                            }
+                            
+                            for reference in memberPendingTasks {
+                                if reference.recordID == deleteRecord!.recordID {
+                                    let index = memberPendingTasks.indexOf(reference)
+                                    memberPendingTasks.removeAtIndex(index!)
+                                }
+                            }
+                            
+                            for reference in organizationTasks {
+                                if reference.recordID == deleteRecord!.recordID {
+                                    let removeIndex = organizationTasks.indexOf(reference)
+                                    organizationTasks.removeAtIndex(removeIndex!)
+                                }
+                            }
+                            
+                            ownerRecord?.setValue(memberCurrentTasks, forKey: "current_tasks")
+                            ownerRecord?.setValue(memberPendingTasks, forKey: "pending_tasks")
+                            currentOrg?.setValue(organizationTasks, forKey: "tasks")
+                            self.taskArray.removeAtIndex(indexPath.row)
+                            
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                let deleteOperation = CKModifyRecordsOperation(recordsToSave: [currentOrg!, ownerRecord!], recordIDsToDelete: [deleteRecord!.recordID])
+                                publicDatabase.addOperation(deleteOperation)
+                                deleteOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
+                                    if error != nil {
+                                        checkError(error!, view: self)
+                                    } else {
+                                        print("Successfully deleted record")
+                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
+                                            })
+                                        })
+                                    }
+                                }
+                            })
+                        })
+                    } else{
+                        
+                        for reference in organizationTasks {
+                            if reference.recordID == deleteRecord!.recordID {
+                                let removeIndex = organizationTasks.indexOf(reference)
+                                organizationTasks.removeAtIndex(removeIndex!)
+                            }
                         }
-                    }
-                    
-                    for reference in memberPendingTasks {
-                        if reference.recordID == deleteRecord.recordID {
-                            let index = memberPendingTasks.indexOf(reference)
-                            memberPendingTasks.removeAtIndex(index!)
-                        }
-                    }
-                    
-                    for reference in organizationTasks {
-                        if reference.recordID == deleteRecord.recordID {
-                            let removeIndex = organizationTasks.indexOf(reference)
-                            organizationTasks.removeAtIndex(removeIndex!)
-                        }
-                    }
-                    
-                    ownerRecord?.setValue(memberCurrentTasks, forKey: "current_tasks")
-                    ownerRecord?.setValue(memberPendingTasks, forKey: "pending_tasks")
-                    currentOrg?.setValue(organizationTasks, forKey: "tasks")
-                    self.taskArray.removeAtIndex(indexPath.row)
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let deleteOperation = CKModifyRecordsOperation(recordsToSave: [currentOrg!, ownerRecord!], recordIDsToDelete: [deleteRecord.recordID])
+                        
+                        currentOrg?.setValue(organizationTasks, forKey: "tasks")
+                        self.taskArray.removeAtIndex(indexPath.row)
+                        
+                        let deleteOperation = CKModifyRecordsOperation(recordsToSave: [currentOrg!], recordIDsToDelete: [deleteRecord!.recordID])
                         publicDatabase.addOperation(deleteOperation)
                         deleteOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
                             if error != nil {
@@ -327,36 +358,10 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                                     })
                                 })
                             }
-                        }     
-                    })
-                })
-            } else{
-                
-                for reference in organizationTasks {
-                    if reference.recordID == deleteRecord.recordID {
-                        let removeIndex = organizationTasks.indexOf(reference)
-                        organizationTasks.removeAtIndex(removeIndex!)
+                        }
                     }
                 }
-                
-                currentOrg?.setValue(organizationTasks, forKey: "tasks")
-                taskArray.removeAtIndex(indexPath.row)
-                
-                let deleteOperation = CKModifyRecordsOperation(recordsToSave: [currentOrg!], recordIDsToDelete: [deleteRecord.recordID])
-                publicDatabase.addOperation(deleteOperation)
-                deleteOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
-                    if error != nil {
-                        checkError(error!, view: self)
-                    } else {
-                        print("Successfully deleted record")
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
-                            })
-                        })
-                    }
-                }
-            }
+            })
         }
     }
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -1451,7 +1451,7 @@
                                     <tabBarItem tag="3" title="Pending" image="gift" selectedImage="gift" id="VIn-Na-bNJ"/>
                                 </items>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ne4-M0-AOE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ne4-M0-AOE">
                                 <rect key="frame" x="10" y="64" width="580" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="scrollIndicatorInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -1467,6 +1467,9 @@
                                         <edgeInsets key="layoutMargins" top="10" left="15" bottom="8" right="10"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="10" y="20" width="580" height="531"/>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="frK-Kv-yyV" id="wK0-Pg-IX9"/>
                                     <outlet property="delegate" destination="frK-Kv-yyV" id="4C9-We-Vcl"/>
@@ -1781,7 +1784,8 @@
                                         <exclude reference="sGc-rw-qcX"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="200" y="487" width="200" height="29"/>
                                     <mask key="constraints">
                                         <exclude reference="K3W-Ar-MtA"/>
                                         <exclude reference="Qyd-Hc-iyO"/>
@@ -2151,6 +2155,9 @@
                                 <state key="normal" title="TAKE PROFILE PHOTO">
                                     <color key="titleColor" red="0.098575122649999999" green="0.570211947" blue="0.088041462000000001" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="141.5" y="331" width="145" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="addButtonTapped:" destination="WDK-DS-eTY" eventType="touchUpInside" id="YYb-WJ-FtY"/>
                                 </connections>
@@ -2167,6 +2174,9 @@
                                 <state key="normal" title="ADD PROFILE PHOTO">
                                     <color key="titleColor" red="0.098575122649999999" green="0.570211947" blue="0.088041462000000001" alpha="0.80506465520000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="313.5" y="331" width="145" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="getPhotoFromLibrary:" destination="WDK-DS-eTY" eventType="touchUpInside" id="MzO-pN-tjK"/>
                                 </connections>
@@ -2824,6 +2834,9 @@
                                         <state key="normal" title="REJECT">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="176" height="30"/>
+                                        </variation>
                                         <connections>
                                             <action selector="rejectActionTap:" destination="haO-d7-fXS" eventType="touchUpInside" id="uFy-UR-2Yi"/>
                                         </connections>
@@ -2834,6 +2847,9 @@
                                         <state key="normal" title="ACCEPT">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="184" y="0.0" width="176" height="30"/>
+                                        </variation>
                                         <connections>
                                             <action selector="acceptActionTap:" destination="haO-d7-fXS" eventType="touchUpInside" id="9s7-VL-Ors"/>
                                         </connections>
@@ -2842,6 +2858,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="f78-w2-Cwb"/>
                                 </constraints>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="528" width="360" height="30"/>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
@@ -3015,6 +3034,9 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="246" y="229" width="110" height="22"/>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
