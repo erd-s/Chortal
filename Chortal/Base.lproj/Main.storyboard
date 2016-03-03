@@ -990,7 +990,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="N5n-Ja-Rz9"/>
                                     <constraint firstAttribute="width" constant="225" id="PsL-eI-eaj">
-                                        <variation key="widthClass=compact" constant="170"/>
+                                        <variation key="widthClass=compact" constant="185"/>
                                     </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1043,14 +1043,6 @@
                                     <outlet property="delegate" destination="jop-HQ-7R7" id="lS1-uj-UGv"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4D-eM-Hly">
-                                <rect key="frame" x="101" y="110" width="479" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="CVk-VD-fwb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TaskName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mD5-87-juK">
                                 <rect key="frame" x="101" y="74" width="479" height="21"/>
                                 <constraints>
@@ -1167,10 +1159,10 @@
                                 <rect key="frame" x="137" y="511" width="35" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="GmH-Cg-l5M">
-                                        <variation key="widthClass=compact" constant="31"/>
+                                        <variation key="widthClass=compact" constant="28"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="28" id="uXY-2H-XXP">
-                                        <variation key="widthClass=compact" constant="26"/>
+                                        <variation key="widthClass=compact" constant="20"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Add Photo" image="camera"/>
@@ -1178,6 +1170,14 @@
                                     <action selector="onCameraButtonTapped:" destination="jop-HQ-7R7" eventType="touchUpInside" id="Yoz-qJ-vcb"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4D-eM-Hly">
+                                <rect key="frame" x="101" y="110" width="479" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="CVk-VD-fwb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.95021497479999995" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1195,7 +1195,9 @@
                             <constraint firstItem="eB6-P4-pBf" firstAttribute="top" secondItem="uaY-Oj-QGF" secondAttribute="bottom" constant="20" id="GIw-FS-lzl"/>
                             <constraint firstItem="fU4-uo-hy8" firstAttribute="trailing" secondItem="Pth-Vb-CJR" secondAttribute="trailingMargin" id="KN8-fZ-dsy"/>
                             <constraint firstItem="e6I-qt-zhi" firstAttribute="leading" secondItem="Pth-Vb-CJR" secondAttribute="leadingMargin" id="KUJ-9a-3d2"/>
-                            <constraint firstItem="XOs-rr-HNj" firstAttribute="leading" secondItem="9QO-A7-rfq" secondAttribute="trailing" constant="16" id="MvZ-O5-KWb"/>
+                            <constraint firstItem="XOs-rr-HNj" firstAttribute="leading" secondItem="9QO-A7-rfq" secondAttribute="trailing" constant="16" id="MvZ-O5-KWb">
+                                <variation key="widthClass=compact" constant="12"/>
+                            </constraint>
                             <constraint firstItem="uaY-Oj-QGF" firstAttribute="top" secondItem="Pth-Vb-CJR" secondAttribute="topMargin" id="OPy-5t-kOR"/>
                             <constraint firstItem="xcx-95-avs" firstAttribute="top" secondItem="eFL-Ku-qO3" secondAttribute="bottom" constant="16" id="QQe-n3-86s"/>
                             <constraint firstItem="5bH-dC-Qfs" firstAttribute="trailing" secondItem="Pth-Vb-CJR" secondAttribute="trailingMargin" id="QTQ-g3-Ebo"/>
@@ -1204,7 +1206,9 @@
                             <constraint firstItem="XOs-rr-HNj" firstAttribute="top" secondItem="5bH-dC-Qfs" secondAttribute="bottom" constant="16" id="Tps-kI-d1e"/>
                             <constraint firstItem="QVd-TZ-0rb" firstAttribute="top" secondItem="Jmz-PM-kZC" secondAttribute="bottom" constant="60" id="TuM-LP-Zac"/>
                             <constraint firstItem="5bH-dC-Qfs" firstAttribute="top" secondItem="eFL-Ku-qO3" secondAttribute="bottom" constant="16" id="TyA-vZ-8wo"/>
-                            <constraint firstItem="Jmz-PM-kZC" firstAttribute="leading" secondItem="XOs-rr-HNj" secondAttribute="trailing" constant="16" id="WQm-YE-AW0"/>
+                            <constraint firstItem="Jmz-PM-kZC" firstAttribute="leading" secondItem="XOs-rr-HNj" secondAttribute="trailing" constant="16" id="WQm-YE-AW0">
+                                <variation key="widthClass=compact" constant="12"/>
+                            </constraint>
                             <constraint firstItem="Jmz-PM-kZC" firstAttribute="trailing" secondItem="Pth-Vb-CJR" secondAttribute="trailingMargin" id="Wls-sL-PNV"/>
                             <constraint firstItem="1zE-f9-fB1" firstAttribute="top" secondItem="e6I-qt-zhi" secondAttribute="bottom" constant="7" id="X2s-q5-MfU"/>
                             <constraint firstItem="XOs-rr-HNj" firstAttribute="centerY" secondItem="9QO-A7-rfq" secondAttribute="centerY" id="XQw-xE-paE"/>
