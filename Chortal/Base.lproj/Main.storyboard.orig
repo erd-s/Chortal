@@ -303,7 +303,11 @@
                                     <color key="titleColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+<<<<<<< HEAD
+                                    <segue destination="vs4-mI-qZK" kind="show" id="kDn-BK-0Cd"/>
+=======
                                     <segue destination="vs4-mI-qZK" kind="show" id="RJO-sM-k3b"/>
+>>>>>>> deleteTaskRedo
                                 </connections>
                             </button>
                         </subviews>
@@ -3590,7 +3594,14 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="b3d-Pl-qCO"/>
+        <segue reference="91i-ee-wIH"/>
+        <segue reference="IeD-g1-6Nb"/>
+        <segue reference="QNz-fF-lyI"/>
+=======
         <segue reference="7Kh-Yt-WH9"/>
+>>>>>>> deleteTaskRedo
         <segue reference="Pzb-0f-AmU"/>
         <segue reference="R8e-6K-emX"/>
         <segue reference="EvV-MJ-BvJ"/>
