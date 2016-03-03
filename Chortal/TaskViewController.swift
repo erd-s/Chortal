@@ -25,7 +25,9 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var incentiveLabel: UILabel!
     
+
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,8 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         descriptionLabel.text = currentTask?.valueForKey("description") as? String
         descriptionLabel.numberOfLines = 0
         descriptionLabel.sizeToFit()
+        
+        incentiveLabel.text = currentTask?["incentive"] as? String
         
         dueDate = currentTask?["due"] as? NSDate
         let timeInterval = (dueDate?.timeIntervalSinceNow)! as NSTimeInterval
