@@ -55,6 +55,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewDidAppear(animated: Bool) {
+        self.tabBar.userInteractionEnabled = false
         getOrganization()
     }
     
@@ -77,7 +78,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             } else if organizations?.count > 0 {
                 currentOrg = organizations![0] as CKRecord
                 self.loadingAlert("Loading tasks...", viewController: self)
-                
+                self.tabBar.userInteractionEnabled = true
+                self.menuButton.enabled = true
+                self.newTaskBarButton.enabled = true
                 self.getTasks(true)
                 self.getAdmin()
             }
@@ -112,8 +115,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 refreshControl.endRefreshing()
             } else {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.menuButton.enabled = true
-                    self.newTaskBarButton.enabled = true
+
                 })
                 
             }
