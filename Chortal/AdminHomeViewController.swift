@@ -102,7 +102,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 currentAdmin = adminRecord
                 if pushNotificationsSet == false {
                     setAdminPushNotifications()
-                    userDefaults.setBool(true, forKey: "pushNotificationsSet")
                 }
             }
         }

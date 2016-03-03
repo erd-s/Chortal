@@ -31,6 +31,8 @@ func setAdminPushNotifications() {
             print(error)
         } else {
             print("saved push notification subcriptions for admin")
+            userDefaults.setBool(true, forKey: "pushNotificationsSet")
+
         }
     }
     
@@ -49,6 +51,7 @@ func setMemberPushNotifications() {
             print(error)
         } else {
             print("saved push notification subcriptions for member")
+            userDefaults.setBool(true, forKey: "pushNotificationsSet")
         }
     }
     
@@ -111,7 +114,7 @@ func pushNotificationTaskAssignedToUser() {
     let adminAssignedPredicate = NSPredicate(format: "lastModifiedUserRecordID == %@", (currentOrg?.creatorUserRecordID)!)
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskAssignedPredicate, adminAssignedPredicate, taskStatusPredicate])
-    let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
+    let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
     
     let notification = CKNotificationInfo()
 
