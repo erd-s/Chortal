@@ -100,7 +100,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     self.newTask.setObject(memberReference, forKey: "member")
-                    self.newTask.setValue("inProgress", forKey: "statself.us")
+                    self.newTask.setValue("inProgress", forKey: "status")
                     self.selectedMember.setValue(newCurrentTaskRef, forKey: "current_tasks")
                     self.newTask.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
                     publicDatabase.saveRecord(self.selectedMember, completionHandler: { (member, error) -> Void in
