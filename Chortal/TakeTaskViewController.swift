@@ -45,9 +45,14 @@ class TakeTaskViewController: UIViewController {
         }
         
         photoRequiredLabel.text = "Photos \(photoRequiredYesOrNo!)."
-        taskDescriptionLabel.text = task!["description"] as? String
+        if task!["description"] != nil && (task!["description"] as? String)?.characters.count > 0 {
+            taskDescriptionLabel.text = task!["description"] as? String
+        } else {
+            taskDescriptionLabel.text = "No description."
+        }
         taskDescriptionLabel.sizeToFit()
         taskDescriptionLabel.numberOfLines = 0
+        
         taskNameLabel.text = task!["name"] as? String
         incentiveLabel.text = task!["incentive"] as? String
         dueDate = task?["due"] as? NSDate
