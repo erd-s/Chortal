@@ -34,7 +34,12 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         progressTasks = []
         
         taskNameLabel.text = currentTask?.valueForKey("name") as? String
+        
+        if currentTask!["description"] as? String != nil && (currentTask!["description"] as? String)?.characters.count > 0 {
         descriptionLabel.text = currentTask?.valueForKey("description") as? String
+        } else {
+            descriptionLabel.text = "No description."
+        }
         descriptionLabel.numberOfLines = 0
         descriptionLabel.sizeToFit()
         
