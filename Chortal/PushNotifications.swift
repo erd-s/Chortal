@@ -31,6 +31,8 @@ func setAdminPushNotifications() {
             print(error)
         } else {
             print("saved push notification subcriptions for admin")
+            userDefaults.setBool(true, forKey: "pushNotificationsSet")
+
         }
     }
     
@@ -49,6 +51,7 @@ func setMemberPushNotifications() {
             print(error)
         } else {
             print("saved push notification subcriptions for member")
+            userDefaults.setBool(true, forKey: "pushNotificationsSet")
         }
     }
     

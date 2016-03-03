@@ -165,7 +165,7 @@
                                     <constraint firstAttribute="width" constant="250" id="K85-v8-dnR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation"/>
                                 <connections>
                                     <outlet property="delegate" destination="vs4-mI-qZK" id="bE4-9R-Uaf"/>
                                 </connections>
@@ -3576,11 +3576,11 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="91i-ee-wIH"/>
+        <segue reference="EvV-MJ-BvJ"/>
+        <segue reference="IeD-g1-6Nb"/>
         <segue reference="7Kh-Yt-WH9"/>
-        <segue reference="kyT-jB-3iZ"/>
-        <segue reference="R8e-6K-emX"/>
         <segue reference="Pzb-0f-AmU"/>
+        <segue reference="R8e-6K-emX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.058823529409999999" green="0.3921568627" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>
