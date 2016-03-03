@@ -76,6 +76,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 checkError(error!, view: self)
             }
             currentOrg = organizations![0] as CKRecord
+            userDefaults.setValue(currentOrg!["name"], forKey: "currentOrgName")
             
             self.getTasks(true)
             self.getCurrentMember()

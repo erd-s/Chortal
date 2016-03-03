@@ -109,7 +109,6 @@ func pushNotificationTaskAssignedToUser() {
     let taskAssignedPredicate = NSPredicate(format: "member == %@", currentMemberReference)
     let taskStatusPredicate = NSPredicate(format:  "%K == %@", "status", "inProgress")
     let adminAssignedPredicate = NSPredicate(format: "lastModifiedUserRecordID == %@", (currentOrg?.creatorUserRecordID)!)
-    // adminAssignedPredicate makes sure that the one modifying the task is the admin
     
     let compoundPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: [myOrgPredicate, taskAssignedPredicate, adminAssignedPredicate, taskStatusPredicate])
     let subscription = CKSubscription(recordType: "Task", predicate: compoundPredicate, options: CKSubscriptionOptions.FiresOnRecordUpdate)
@@ -131,7 +130,7 @@ func pushNotificationMemberJoined() {
     let notification = CKNotificationInfo()
 
     notification.alertLocalizationArgs = ["name"]
-    notification.alertLocalizationKey = "%@ has joined your organization."
+    notification.alertLocalizationKey = "%@ has joined your group."
     subscription.notificationInfo = notification
     
     adminSubscriptionsArray.append(subscription)
@@ -148,7 +147,7 @@ func pushNotificationTaskTaken() {
     let notification = CKNotificationInfo()
 
     notification.alertLocalizationArgs = ["name"]
-    notification.alertLocalizationKey = "Task: '%@' has been taken."
+    notification.alertLocalizationKey = "Task '%@' has been taken."
     subscription.notificationInfo = notification
     
     adminSubscriptionsArray.append(subscription)
@@ -164,7 +163,7 @@ func pushNotificationTaskCompleted() {
     let notification = CKNotificationInfo()
 
     notification.alertLocalizationArgs = ["name"]
-    notification.alertLocalizationKey = "Task: '%@' has been sent to you for approval."
+    notification.alertLocalizationKey = "Task '%@' has been sent to you for approval."
     subscription.notificationInfo = notification
     
     adminSubscriptionsArray.append(subscription)
