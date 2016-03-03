@@ -57,29 +57,35 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidAppear(animated: Bool) {
         tabBar.selectedItem = tabBar.items?.first
-        getOrganization()
+        getOrganization(true)
     }
     
     //MARK: Custom Functions
     func refresh (sender: AnyObject?) {
-        
-        getTasks(false)
         refreshControl.enabled = false
+        getOrganization(false)
     }
     
-    func getOrganization() {
+    func getOrganization(showLoadingAlert: Bool) {
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
-        loadingAlert("Loading tasks...", viewController: self)
+        if showLoadingAlert {
+            loadingAlert("Loading tasks...", viewController: self)
+        }
+        
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
             if error != nil {
                 checkError(error!, view: self)
             }
             currentOrg = organizations![0] as CKRecord
             userDefaults.setValue(currentOrg!["name"], forKey: "currentOrgName")
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.getCurrentMember(showLoadingAlert)
+                
+              //  self.getTasks(showLoadingAlert)
+            })
             
-            self.getTasks(true)
-            self.getCurrentMember()
+            
         }
     }
     
@@ -95,8 +101,10 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             if refreshControl.enabled == false {
                 refreshControl.enabled = true
                 refreshControl.endRefreshing()
+                tabBarItemSwitch()
             } else {
                 self.dismissViewControllerAnimated(true, completion: nil)
+                tabBarItemSwitch()
             }
         }
     }
@@ -181,12 +189,15 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    func getCurrentMember() {
+    func getCurrentMember(showAlertController: Bool) {
         for memberRef in currentOrg!["members"] as! [CKReference] {
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (memberRecord, error) -> Void in
                 if memberRecord!["name"] as? String == userDefaults.valueForKey("currentUserName") as? String {
                     currentMember = memberRecord
-                    self.getCurrentTaskForMember()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.getCurrentTaskForMember(showAlertController)
+                    })
+                    
                     print("current user is set")
                     if pushNotificationsSet == false {
                         setMemberPushNotifications()
@@ -196,7 +207,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func getCurrentTaskForMember() {
+    func getCurrentTaskForMember(showAlertController: Bool) {
         //        need to sort by metadata: modification date
         if currentMember?["current_tasks"] != nil {
             if (currentMember?["current_tasks"] as! [CKReference]).count > 0 {
@@ -208,9 +219,20 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                         if fetchedRecord != nil {
                             currentTask = fetchedRecord
                         }
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.getTasks(showAlertController)
+                        })
                     }
                 }
+            } else {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.getTasks(showAlertController)
+                })
             }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.getTasks(showAlertController)
+            })
         }
     }
     
@@ -244,9 +266,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func refreshButtonTapped(sender: UIBarButtonItem) {
-        loadingAlert("Loading tasks...", viewController: self)
-        getTasks(true)
-        
+        getOrganization(true)
     }
     
     
@@ -283,8 +303,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         return cell
     }
-
-
+    
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
