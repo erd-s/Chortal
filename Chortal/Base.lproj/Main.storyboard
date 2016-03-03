@@ -2442,9 +2442,13 @@
                                 <rect key="frame" x="170" y="84" width="260" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="V5b-WW-opR"/>
-                                    <constraint firstAttribute="height" constant="260" id="fk0-D8-RCb"/>
+                                    <constraint firstAttribute="height" constant="260" id="fk0-D8-RCb">
+                                        <variation key="widthClass=compact" constant="200"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" constant="260" id="lhW-DG-oyZ"/>
-                                    <constraint firstAttribute="width" constant="260" id="t95-ei-t1h"/>
+                                    <constraint firstAttribute="width" constant="260" id="t95-ei-t1h">
+                                        <variation key="widthClass=compact" constant="200"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
@@ -2540,7 +2544,9 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="cda-nw-hMj"/>
+                                    <constraint firstAttribute="width" constant="320" id="cda-nw-hMj">
+                                        <variation key="widthClass=compact" constant="270"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="30" id="hNM-9I-fgu"/>
                                     <constraint firstItem="g2y-D3-oUg" firstAttribute="top" secondItem="fSA-ms-P9H" secondAttribute="top" id="m9d-P6-jOV"/>
                                 </constraints>
@@ -2607,7 +2613,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="EHM-AH-ASb"/>
-                                    <constraint firstAttribute="width" constant="320" id="yXp-sO-Jcm"/>
+                                    <constraint firstAttribute="width" constant="320" id="yXp-sO-Jcm">
+                                        <variation key="widthClass=compact" constant="270"/>
+                                    </constraint>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -2630,7 +2638,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="JXD-Ht-0WW" secondAttribute="trailing" constant="-20" id="n3k-Ou-mfm"/>
                             <constraint firstItem="OTq-MG-peT" firstAttribute="centerX" secondItem="rKr-EF-tP7" secondAttribute="centerX" id="ogq-bZ-g8s"/>
                             <constraint firstItem="OTq-MG-peT" firstAttribute="top" secondItem="qpZ-1P-2Uc" secondAttribute="bottom" constant="28" id="qYL-HE-YsV">
-                                <variation key="widthClass=compact" constant="32"/>
+                                <variation key="widthClass=compact" constant="24"/>
                             </constraint>
                             <constraint firstItem="fSA-ms-P9H" firstAttribute="top" secondItem="aaJ-Hc-SrI" secondAttribute="bottom" constant="16" id="unw-TG-bdV"/>
                             <constraint firstItem="qpZ-1P-2Uc" firstAttribute="top" secondItem="fSA-ms-P9H" secondAttribute="bottom" constant="21" id="vml-r6-c49"/>
