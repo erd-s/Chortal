@@ -62,7 +62,7 @@
                                     <fragment content="Chortal">
                                         <attributes>
                                             <color key="NSColor" red="0.011764705882352941" green="0.45882352941176469" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="48" name="AmericanTypewriter"/>
+                                            <font key="NSFont" size="40" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -321,7 +321,9 @@
                             <constraint firstItem="HGZ-6e-BTY" firstAttribute="top" secondItem="ZLr-IX-XTL" secondAttribute="bottom" constant="3" id="SJi-gi-dfn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="30N-7Z-GOP" secondAttribute="trailing" constant="173" id="Se1-iS-J1G"/>
                             <constraint firstItem="lWW-Ro-sJF" firstAttribute="top" secondItem="sFM-iG-sV6" secondAttribute="bottom" constant="3" id="X4G-BS-BEb"/>
-                            <constraint firstItem="GBC-QL-I3q" firstAttribute="top" secondItem="16M-al-2gR" secondAttribute="bottom" constant="130" id="XLc-Ra-O4I"/>
+                            <constraint firstItem="GBC-QL-I3q" firstAttribute="top" secondItem="16M-al-2gR" secondAttribute="bottom" constant="130" id="XLc-Ra-O4I">
+                                <variation key="heightClass=regular" constant="90"/>
+                            </constraint>
                             <constraint firstItem="sFM-iG-sV6" firstAttribute="top" secondItem="HGZ-6e-BTY" secondAttribute="bottom" constant="25" id="XkP-eh-LMr"/>
                             <constraint firstItem="L8b-z2-kJ7" firstAttribute="leading" secondItem="s04-H3-UPv" secondAttribute="leadingMargin" constant="-20" id="ZMI-Ht-oZk"/>
                             <constraint firstItem="sFM-iG-sV6" firstAttribute="leading" secondItem="s04-H3-UPv" secondAttribute="leadingMargin" constant="8" id="eOp-Ta-w5R"/>
@@ -1438,9 +1440,6 @@
                                     <tabBarItem tag="2" title="In Progress" image="forklift" selectedImage="forklift" id="ZnQ-Oj-vra"/>
                                     <tabBarItem tag="3" title="Pending" image="gift" selectedImage="gift" id="VIn-Na-bNJ"/>
                                 </items>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="551" width="400" height="49"/>
-                                </variation>
                             </tabBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ne4-M0-AOE">
                                 <rect key="frame" x="10" y="64" width="580" height="487"/>
@@ -1458,9 +1457,6 @@
                                         <edgeInsets key="layoutMargins" top="10" left="15" bottom="8" right="10"/>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="10" y="64" width="380" height="487"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="frK-Kv-yyV" id="wK0-Pg-IX9"/>
                                     <outlet property="delegate" destination="frK-Kv-yyV" id="4C9-We-Vcl"/>
@@ -2137,7 +2133,9 @@
                                 <rect key="frame" x="136" y="331" width="156" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="SmH-uo-Zmb"/>
-                                    <constraint firstAttribute="width" constant="156" id="pzL-Ds-x2j"/>
+                                    <constraint firstAttribute="width" constant="156" id="pzL-Ds-x2j">
+                                        <variation key="widthClass=compact" constant="145"/>
+                                    </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="TAKE PROFILE PHOTO">
@@ -2150,7 +2148,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4o-a7-wYn" customClass="ChortalButton" customModule="Chortal" customModuleProvider="target">
                                 <rect key="frame" x="308" y="331" width="156" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="156" id="34Z-I6-YIR"/>
+                                    <constraint firstAttribute="width" constant="156" id="34Z-I6-YIR">
+                                        <variation key="widthClass=compact" constant="145"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="30" id="PfD-pF-6KK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -3572,10 +3572,10 @@
         <image name="wheelbarrow" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kDn-BK-0Cd"/>
-        <segue reference="EvV-MJ-BvJ"/>
+        <segue reference="b3d-Pl-qCO"/>
+        <segue reference="91i-ee-wIH"/>
         <segue reference="IeD-g1-6Nb"/>
-        <segue reference="7Kh-Yt-WH9"/>
+        <segue reference="QNz-fF-lyI"/>
         <segue reference="Pzb-0f-AmU"/>
         <segue reference="R8e-6K-emX"/>
     </inferredMetricsTieBreakers>
