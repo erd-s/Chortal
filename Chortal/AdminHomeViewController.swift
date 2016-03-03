@@ -66,9 +66,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     //MARK: Custom Functions
     func refresh (sender: AnyObject?) {
-        
-        getTasks(false)
         refreshControl.enabled = false
+        getTasks(false)
+        
     }
     
     func getOrganization() {
@@ -225,6 +225,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         view.clipsToBounds = true
         cell.addSubview(view)
         cell.sendSubviewToBack(view)
+        cell.layoutSubviews()
         
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.backgroundColor = UIColor.clearColor()
