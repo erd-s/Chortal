@@ -148,7 +148,7 @@ class TakeTaskViewController: UIViewController {
             
         } else {
             
-            let alert = UIAlertController(title: "Take Task?", message: "This task is due: \(String(dueDate!)). Photos \(photoRequiredYesOrNo). The timer will start when you click \"Accept\".", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Take Task?", message: "Are you sure you want to take this task? Photos \(photoRequiredYesOrNo!).", preferredStyle: .Alert)
             let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             let take = UIAlertAction(title: "Accept", style: .Default) { (UIAlertAction) -> Void in
                 self.setReferences()
