@@ -52,11 +52,16 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         menuButton.enabled = false
         newTaskBarButton.enabled = false
         tableView.reloadData()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         self.tabBar.userInteractionEnabled = false
+        
+        isICloudContainerAvailable()
+
         getOrganization()
+        
     }
     
     //MARK: Custom Functions
@@ -67,6 +72,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func getOrganization() {
+
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
@@ -102,6 +108,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     func getTasks(shouldShowAlertController: Bool) {
+    if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
+            print("true")
         inProgressArray = [CKRecord]()
         pendingArray = [CKRecord]()
         unclaimedArray = [CKRecord]()
@@ -120,7 +128,11 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 
             }
         }
-    }
+        }
+        }
+
+        
+    
     
     func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
         publicDatabase.fetchRecordWithID(reference.recordID, completionHandler: { (task, error) -> Void in
