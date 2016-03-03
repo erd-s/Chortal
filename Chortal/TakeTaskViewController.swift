@@ -48,7 +48,7 @@ class TakeTaskViewController: UIViewController {
         if task!["description"] != nil && (task!["description"] as? String)?.characters.count > 0 {
             taskDescriptionLabel.text = task!["description"] as? String
         } else {
-            taskDescriptionLabel.text = "No description."
+            taskDescriptionLabel.text = "None"
         }
         taskDescriptionLabel.sizeToFit()
         taskDescriptionLabel.numberOfLines = 0
@@ -113,7 +113,7 @@ class TakeTaskViewController: UIViewController {
             }
             getTaskOwner()
         } else {
-            self.taskMemberLabel.text = "No one!"
+            self.taskMemberLabel.text = "Nobody"
         }
         
         if task!["status"] as? String != "rejected" {
