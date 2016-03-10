@@ -31,6 +31,7 @@
 		9B5FC26E1C737B8B005976FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26C1C737B8B005976FB /* Main.storyboard */; };
 		9B5FC2701C737B8B005976FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC26F1C737B8B005976FB /* Assets.xcassets */; };
 		9B5FC2731C737B8B005976FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5FC2711C737B8B005976FB /* LaunchScreen.storyboard */; };
+		9B66A9911C91BAD60029F6A2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B66A9901C91BAD60029F6A2 /* LoadingView.swift */; };
 		9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */; };
 		9BA89FD51C7A76D500721A3D /* MemberSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD41C7A76D500721A3D /* MemberSidebarTableViewController.swift */; };
 		9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA89FD61C7A76DA00721A3D /* AdminSidebarTableViewController.swift */; };
@@ -70,6 +71,7 @@
 		9B5FC26F1C737B8B005976FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B5FC2721C737B8B005976FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B5FC2741C737B8B005976FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B66A9901C91BAD60029F6A2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9B87FCCF1C7A591000BB77DA /* Chortal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chortal-Bridging-Header.h"; sourceTree = "<group>"; };
 		9B87FCD01C7A591000BB77DA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		9B87FCD11C7A591000BB77DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				138B2BA71C837BD3009180C9 /* ChortalButton.swift */,
 				138B2B7D1C80DB01009180C9 /* MemberSelectTableViewCell.swift */,
 				9BBBC7341C7D5AAB006347C0 /* UIViewController+Extension.swift */,
+				9B66A9901C91BAD60029F6A2 /* LoadingView.swift */,
 				9BFD82BC1C77825B005A3967 /* Constants.swift */,
 				9B3EB2451C7D0DD300F7AC14 /* PushNotifications.swift */,
 				9B3E41531C73EA81007A16D3 /* CustomCamCollectionViewCell.swift */,
@@ -287,6 +290,7 @@
 				9BA89FD71C7A76DA00721A3D /* AdminSidebarTableViewController.swift in Sources */,
 				9B3E41421C738295007A16D3 /* CreateOrganizationViewController.swift in Sources */,
 				9BA89FD51C7A76D500721A3D /* MemberSidebarTableViewController.swift in Sources */,
+				9B66A9911C91BAD60029F6A2 /* LoadingView.swift in Sources */,
 				9B87FCD21C7A591000BB77DA /* SWRevealViewController.m in Sources */,
 				9B5FC2691C737B8B005976FB /* AppDelegate.swift in Sources */,
 				9BFD82BD1C77825B005A3967 /* Constants.swift in Sources */,

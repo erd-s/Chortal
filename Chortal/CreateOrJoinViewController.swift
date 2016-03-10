@@ -10,15 +10,13 @@ import UIKit
 
 class CreateOrJoinViewController: UIViewController {
     
-//    @IBOutlet weak var createGroupButton: ChortalButton!
-//    
-//    @IBOutlet weak var joinGroupButton: ChortalButton!
+let loadingView = LoadingView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
- //       ChortalButton.init()
-        
+        loadingView.addLoadingViewToView(self, loadingText: "loading...")
     }
+    
     override func viewDidAppear(animated: Bool) {
         isICloudContainerAvailable()
     }

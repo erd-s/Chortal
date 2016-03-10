@@ -24,7 +24,6 @@ extension UIViewController {
         
     }
     
-    
     func isICloudContainerAvailable()->Bool {
         if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
             print("trrue")
