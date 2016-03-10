@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoadingView: UIView {
+class LoadingView: UIView, UIGestureRecognizerDelegate {
 
     func addLoadingViewToView(viewController: UIViewController, loadingText: String) {
         self.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
@@ -26,7 +26,17 @@ class LoadingView: UIView {
         self.addSubview(label)
         self.addSubview(spinner)
         
+        let tap = UITapGestureRecognizer(target: self, action: "changeColor")
+        self.addGestureRecognizer(tap)
+        tap.delegate = self
+        
         viewController.view.addSubview(self)
     }
 
+    func changeColor() {
+        let randRed = CGFloat(arc4random_uniform(100))/100
+        let randGreen = CGFloat(arc4random_uniform(100))/100
+        let randBlue = CGFloat(arc4random_uniform(100))/100
+        self.backgroundColor = UIColor(red: randRed, green: randGreen, blue: randBlue, alpha: 0.8)
+    }
 }

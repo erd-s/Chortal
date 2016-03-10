@@ -19,4 +19,5 @@ view.addSubview(label)
 view.addSubview(spinner)
 
 
-XCPlaygroundPage.currentPage.liveView = view
+//XCPlaygroundPage.currentPage.liveView = view
+
