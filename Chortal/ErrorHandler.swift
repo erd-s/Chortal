@@ -73,7 +73,10 @@ enum HandleError: Int {
             
         case
         .NetworkFailure,
-        .NetworkUnavailable,
+        .NetworkUnavailable:
+            return (title: "Error", message: "Please check your network connection and try again.")
+        
+        case
         .ServiceUnavailable,
         .ZoneBusy,
         .LimitExceeded,

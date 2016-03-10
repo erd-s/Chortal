@@ -16,6 +16,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     var inProgressArray: [CKRecord]?
     var pendingArray: [CKRecord]?
     var taskReferenceArray: NSMutableArray?
+    let loadingView = LoadingView()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -46,6 +47,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         tableView.addSubview(refreshControl)
+        loadingView.addLoadingViewToView(self, loadingText: "Updating tasks...")
+        loadingView.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -83,7 +86,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 self.errorAlert("Error", message: "Organization not found.")
             } else if organizations?.count > 0 {
                 currentOrg = organizations![0] as CKRecord
-                self.loadingAlert("Loading tasks...", viewController: self)
+                self.loadingView.hidden = false
                 self.tabBar.userInteractionEnabled = true
                 self.menuButton.enabled = true
                 self.newTaskBarButton.enabled = true
@@ -121,9 +124,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     refreshControl.enabled = true
                     refreshControl.endRefreshing()
                 } else {
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        
-                    })
+                    loadingView.hidden = true
                     
                 }
             }
@@ -150,10 +151,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             self.menuButton.enabled = true
                             self.newTaskBarButton.enabled = true
-                        })
+                            self.loadingView.hidden = true
                     } else {
                         self.refreshControl.endRefreshing()
                         self.refreshControl.enabled = true
@@ -270,8 +270,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            loadingAlert("Deleting record...", viewController: self)
-            
+            loadingView.hidden = false
             let deleteRecord = taskArray[indexPath.row]
             publicDatabase.fetchRecordWithID(deleteRecord.recordID, completionHandler: { (deleteRecord, error) -> Void in
                 if error != nil {
@@ -325,9 +324,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                                     } else {
                                         print("Successfully deleted record")
                                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
                                                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
-                                            })
+                                            self.loadingView.hidden = true
                                         })
                                     }
                                 }
@@ -353,9 +351,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                             } else {
                                 print("Successfully deleted record")
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
                                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
-                                    })
+                                    self.loadingView.hidden = true
                                 })
                             }
                         }

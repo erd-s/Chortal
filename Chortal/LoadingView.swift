@@ -31,6 +31,7 @@ class LoadingView: UIView, UIGestureRecognizerDelegate {
         tap.delegate = self
         
         viewController.view.addSubview(self)
+        viewController.view.layoutIfNeeded()
     }
 
     func changeColor() {
