@@ -48,7 +48,6 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
         view.endEditing(true)
     }
     
-    
     //MARK: Actions
     @IBAction func changePhotoButtonTap(sender: AnyObject) {
         let picker = UIImagePickerController()

@@ -15,6 +15,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     var selectedIndexPath: NSIndexPath?
     var memberArray = [CKRecord]()
     var orgRecord: CKRecord?
+    let loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var memberTableView: UITableView!
@@ -27,17 +28,12 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         memberTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.automaticallyAdjustsScrollViewInsets = false
         
-        
-//        let inset = UIEdgeInsetsMake(10, 10, 10, 10)
-//        memberTableView.contentInset = inset
-        
-        
+        loadingView.addLoadingViewToView(self, loadingText: "Loading members...")
         getCurrentOrganization()
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         isICloudContainerAvailable() 
-        loadingAlert("Loading members...", viewController: self)
     }
     
     //MARK: Custom Functions
@@ -73,7 +69,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                 self.memberArray.append(record!)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.memberTableView.reloadData()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.loadingView.hidden = true
                 }
             })
         }
