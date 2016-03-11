@@ -72,6 +72,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         if showLoadingAlert {
             loadingView.hidden = false
+            tabBar.userInteractionEnabled = false
         }
         
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
@@ -103,6 +104,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 tabBarItemSwitch()
             } else {
                 loadingView.hidden = true
+                tabBar.userInteractionEnabled = true
                 tabBarItemSwitch()
             }
         }
@@ -172,6 +174,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
                         self.loadingView.hidden = true
+                        self.tabBar.userInteractionEnabled = true
                     } else {
                         self.refreshControl.endRefreshing()
                         self.refreshControl.enabled = true
