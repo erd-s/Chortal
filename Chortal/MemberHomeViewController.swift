@@ -22,6 +22,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
+    let loadingView = LoadingView()
     
     
     //MARK: Outlets
@@ -47,7 +48,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         taskTableView.addSubview(refreshControl)
-        
+        loadingView.addLoadingViewToView(self, loadingText: "Updating tasks...")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,7 +71,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         if showLoadingAlert {
-            loadingAlert("Loading tasks...", viewController: self)
+            loadingView.hidden = false
         }
         
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
@@ -81,8 +82,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             userDefaults.setValue(currentOrg!["name"], forKey: "currentOrgName")
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.getCurrentMember(showLoadingAlert)
-                
-              //  self.getTasks(showLoadingAlert)
             })
             
             
@@ -103,7 +102,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 refreshControl.endRefreshing()
                 tabBarItemSwitch()
             } else {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                loadingView.hidden = true
                 tabBarItemSwitch()
             }
         }
@@ -172,7 +171,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.loadingView.hidden = true
                     } else {
                         self.refreshControl.endRefreshing()
                         self.refreshControl.enabled = true
