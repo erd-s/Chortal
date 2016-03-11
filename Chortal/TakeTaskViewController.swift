@@ -99,9 +99,7 @@ class TakeTaskViewController: UIViewController {
             }
             
         }
-        
-        print("time interval: \(timeInterval) seconds")
-        
+    
         if task!["member"] != nil {
             takeTaskButton.enabled = false
             if (task!["status"] as? String == "inProgress")
@@ -184,7 +182,6 @@ class TakeTaskViewController: UIViewController {
         task?.setValue(memberRef, forKey: "member")
         task?.setValue("inProgress", forKey: "status")
         task?.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
-        print(task?.valueForKey("taskTaken"))
         saveTaskAndMember([task!, currentMember!])
     }
     
@@ -196,7 +193,6 @@ class TakeTaskViewController: UIViewController {
             if error != nil {
                 checkError(error!, view: self)
             } else {
-                print("saved records successfully")
                 currentTask = self.task
                 dispatch_async(dispatch_get_main_queue()) {
                         self.setDelegate()

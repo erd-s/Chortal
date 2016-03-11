@@ -173,11 +173,10 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                 if error != nil {
                     checkError(error!, view: self)
                 } else {
-                    print("sucesssfully saved task")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.currentIndex++
-                            self.setDisplayedTask(self.currentIndex)
-                            self.loadingView.hidden = true
+                        self.currentIndex++
+                        self.setDisplayedTask(self.currentIndex)
+                        self.loadingView.hidden = true
                     })
                 }
             }
@@ -198,7 +197,6 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
         let reject = UIAlertAction(title: "Hide", style: .Destructive) { (UIAlertAction) -> Void in
             
             for subview in self.scrollView.subviews {
-                print("subview: \(subview), pressLocation: \(self.pressLocation!)")
                 if subview.frame.contains(self.pressLocation!) {
                     subview.hidden = true
                 }
@@ -273,35 +271,14 @@ class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGe
                 modifyRecordsOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
                     
                     if error != nil {
-                        print("error saving member and deleting task: \(error!.description)"
-                        )
+                        
                     }else {
-                        print("Task, Member, and Admin Records Successfully saved")
                     }
                 }
                 self.currentIndex++
                 self.setDisplayedTask(self.currentIndex)
             })
         }
-        
-        
-        
-        //        currentCompletedTask.setValue("completed", forKey: "status")
-        //
-        //
-        //
-        //
-        //
-        //
-        //        publicDatabase.saveRecord(currentCompletedTask) { (currentTask, error) -> Void in
-        //            if error != nil {
-        //                print("error marking task as completed: \(error))")
-        //            } else {
-        //                print("sucesssfully saved task")
-        //                self.currentIndex++
-        //                self.setDisplayedTask(self.currentIndex)
-        //            }
-        //        }
     }
     //MARK: Delegate Functions
     

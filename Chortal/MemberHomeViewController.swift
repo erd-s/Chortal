@@ -137,9 +137,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     publicDatabase.saveRecord(currentMember!, completionHandler: { (savedRecord, error) -> Void in
                                         if error != nil {
-                                            print("Error Modifying the Current Member: \(error?.description)")
                                         } else {
-                                            print("Current Member Was Updated Successfully")
                                         }
                                     })
                                 })
@@ -152,9 +150,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 publicDatabase.saveRecord(currentMember!, completionHandler: { (savedRecord, error) -> Void in
                                     if error != nil {
-                                        print("Error Modifying the Current Member: \(error?.description)")
+                                        checkError(error!, view: self)
                                     } else {
-                                        print("Current Member Was Updated Successfully")
                                     }
                                 })
                             })
@@ -180,7 +177,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                         self.refreshControl.enabled = true
                     }
                     self.tabBarItemSwitch()
-                    print(self.unclaimedArray!.count)
                     
                 } else if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
                     
@@ -199,8 +195,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.getCurrentTaskForMember(showAlertController)
                     })
-                    
-                    print("current user is set")
                     if pushNotificationsSet == false {
                         setMemberPushNotifications()
                     }
@@ -352,7 +346,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
             let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
-            print("seguing task: \(dvc.task) over")
             dvc.organization = currentOrg
         }
     }

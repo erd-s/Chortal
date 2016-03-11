@@ -112,7 +112,6 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
                 if error != nil {
                     checkError(error!, view: self)
                 } else {
-                    print("saved new username successfully")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.loadingView.hidden = true
                         UtilityFile.instantiateToMemberHome(self)

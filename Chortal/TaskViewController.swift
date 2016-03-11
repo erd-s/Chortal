@@ -126,7 +126,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func modifyRecords (records: [CKRecord], sender: String) {
-        print("Modify records function called")
         let saveRecordsOperation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         
         publicDatabase.addOperation(saveRecordsOperation)
@@ -135,8 +134,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
             if error != nil {
                 checkError(error!, view: self)
             }else {
-                print("Successfully saved")
-                
                 currentTask = nil
 
             }
@@ -156,7 +153,6 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             loadingAlert("Submitting task...", viewController: self)
             var taskRefArray = currentMember!.valueForKey("current_tasks") as! [CKReference]
-            print(taskRefArray.count)
             
             if currentMember!["pending_tasks"] != nil {
                 memberPendingArray = currentMember!["pending_tasks"] as? [CKReference]
@@ -179,13 +175,11 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                     
                     
                     let timeTaken = elapsedTime - takenDate
-                    print("Time Taken to complete task:\(timeTaken)")
                     
                     currentTask?.setValue(timeTaken, forKey: "taskCompletedTime")
                     
                     if images.count > 0 {
                         for image in images {
-                            print(" image: \(image.description)")
                             
                             let path = NSTemporaryDirectory().stringByAppendingString("\(x).tmp")
                             let data = UIImageJPEGRepresentation(image, 0.7)
@@ -193,15 +187,11 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
                             
                             let imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: path))
                             imageAssetArray?.append(imageAsset)
-                            print(imageAssetArray!.count)
 
                             x = x! + 1
-                            print("Image Asset Recognized")
                         }
                         
                         currentTask?.setObject(imageAssetArray, forKey: "photos")
-                        print(imageAssetArray!.count)
-                        print(currentTask!["photos"])
                         
                     }
                     

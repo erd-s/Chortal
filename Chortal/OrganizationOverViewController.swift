@@ -40,13 +40,11 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     //MARK: Custom Functions
     func getMembers() {
         for memberRef in currentOrg!["members"] as! [CKReference] {
-            print("fetching member ref: \(memberRef)")
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (member , error) -> Void in
                 if error != nil {
                     checkError(error!, view: self)
                 }else {
                     self.allMembers.append(member!)
-                    print("all members array: \(self.allMembers)")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tableView.reloadData()
                     })

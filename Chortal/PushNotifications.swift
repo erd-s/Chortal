@@ -28,9 +28,7 @@ func setAdminPushNotifications() {
     let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: adminSubscriptionsArray, subscriptionIDsToDelete: nil)
     modifySubscriptionsOperation.modifySubscriptionsCompletionBlock = { saved, deleted, error in
         if error != nil {
-            print(error!)
         } else {
-            print("saved push notification subcriptions for admin")
             userDefaults.setBool(true, forKey: "pushNotificationsSet")
 
         }
@@ -48,9 +46,7 @@ func setMemberPushNotifications() {
     let modifySubscriptionsOperation = CKModifySubscriptionsOperation(subscriptionsToSave: memberSubscriptionsArray, subscriptionIDsToDelete: nil)
     modifySubscriptionsOperation.modifySubscriptionsCompletionBlock = { saved, deleted, error in
         if error != nil {
-            print(error!)
         } else {
-            print("saved push notification subcriptions for member")
             userDefaults.setBool(true, forKey: "pushNotificationsSet")
         }
     }

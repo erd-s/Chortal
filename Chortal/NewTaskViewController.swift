@@ -33,7 +33,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        loadingAlert("Creating task...", viewController: self)
         
         memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 0)
         memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 1)
@@ -133,7 +132,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 checkError(error!, view: self)
             } else {
-                print("saved task")
                 dispatch_async(dispatch_get_main_queue()) {
                         self.performSegueWithIdentifier("unwindFromTaskCreate", sender: self)
                 }
@@ -149,7 +147,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             for member in currentOrg?["members"] as! [CKReference] {
                 publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
                     if (error != nil) {
-                        print("error fetching members: \(error)")
                     }
                     else {
                         self.memberArray.append(memberRecord!)
@@ -164,7 +161,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             }
         }
         else {
-            dismissViewControllerAnimated(true, completion: nil)
+            loadingView.hidden = true
         }
     }
     

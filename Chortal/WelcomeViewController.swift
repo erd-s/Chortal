@@ -112,14 +112,12 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     
     func modifyRecords (records: [CKRecord]) {
-        print("Modify records function called")
         let saveRecordsOperation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         
         saveRecordsOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 checkError(error!, view: self)
             }else {
-                print("Successfully saved")
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.loadingView.hidden = true
