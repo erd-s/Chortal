@@ -14,6 +14,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     var organization : String?
     var allMembers = [CKRecord]()
     var isMember: Bool?
+    let loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var navTitle: UINavigationItem!
@@ -24,6 +25,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         navTitle.title = userDefaults.valueForKey("currentOrgName") as? String
+        loadingView.addLoadingViewToView(self, loadingText: "Loading members...")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -37,7 +39,6 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     
     //MARK: Custom Functions
     func getMembers() {
-        loadingAlert("Loading Members...", viewController: self)
         for memberRef in currentOrg!["members"] as! [CKReference] {
             print("fetching member ref: \(memberRef)")
             publicDatabase.fetchRecordWithID(memberRef.recordID, completionHandler: { (member , error) -> Void in
@@ -50,7 +51,9 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
                         self.tableView.reloadData()
                     })
                     if memberRef == (currentOrg!["members"] as! [CKReference]).last {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.loadingView.hidden = true
+                        })
                     }
                 }
             })
