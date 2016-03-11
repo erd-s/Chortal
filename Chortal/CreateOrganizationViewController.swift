@@ -14,6 +14,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     var uid: String!
     
     
+    
     //MARK: Outlets
     @IBOutlet weak var organizationNameTextField: UITextField!
     @IBOutlet weak var adminNameTextField: UITextField!

@@ -12,6 +12,7 @@ import CloudKit
 class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var orgRecordToJoin: CKRecord?
+    let loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var uidTextField: UITextField!
@@ -22,6 +23,9 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        loadingView.addLoadingViewToView(self, loadingText: "Joining organization...")
+        loadingView.center.y = view.center.y + 25
+        loadingView.hidden = true
     }
     
     //MARK: Custom Functions
@@ -37,8 +41,7 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
         let predicate = NSPredicate(format: "uid == %@", uidTextField.text!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         isICloudContainerAvailable()
-        loadingAlert("Joining Group...", viewController: self)
-        
+        loadingView.hidden = false
         
         publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
             if error != nil {
@@ -49,15 +52,12 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
                         self.orgRecordToJoin = results![0]
                         
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
                                 self.performSegueWithIdentifier("enterNameSegue", sender: self)
-                            })
                         }
                     } else {
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                self.errorAlert("Oops!", message: "That invite code doesn't exist. Please try again.")
-                            })
+                            self.loadingView.hidden = true
+                            self.errorAlert("Oops!", message: "That invite code doesn't exist. Please try again.")
                         }
                     }
                 }
