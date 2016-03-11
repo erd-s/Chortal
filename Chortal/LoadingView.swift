@@ -19,6 +19,8 @@ class LoadingView: UIView, UIGestureRecognizerDelegate {
         
         let label = UILabel(frame: CGRect(x: 30, y: 0, width: 170, height: 30))
         label.text = loadingText
+        label.textAlignment = .Center
+        
         
         let spinner = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         spinner.startAnimating()
@@ -31,6 +33,7 @@ class LoadingView: UIView, UIGestureRecognizerDelegate {
         tap.delegate = self
         
         viewController.view.addSubview(self)
+        viewController.view.bringSubviewToFront(self)
         viewController.view.layoutIfNeeded()
     }
 

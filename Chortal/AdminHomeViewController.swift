@@ -47,8 +47,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         tableView.addSubview(refreshControl)
+        tableView.alpha = 0.4
         loadingView.addLoadingViewToView(self, loadingText: "Updating tasks...")
-        loadingView.hidden = true
+        loadingView.hidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,10 +87,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 self.errorAlert("Error", message: "Organization not found.")
             } else if organizations?.count > 0 {
                 currentOrg = organizations![0] as CKRecord
-                self.loadingView.hidden = false
-                self.tabBar.userInteractionEnabled = true
-                self.menuButton.enabled = true
-                self.newTaskBarButton.enabled = true
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tabBar.userInteractionEnabled = true
+                    self.menuButton.enabled = true
+                    self.newTaskBarButton.enabled = true
+                    self.loadingView.hidden = true
+                    })
                 self.getTasks(true)
                 self.getAdmin()
             }
@@ -124,14 +127,10 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     refreshControl.enabled = true
                     refreshControl.endRefreshing()
                 } else {
-                    loadingView.hidden = true
-                    
-                }
+                                    }
             }
         }
     }
-    
-    
     
     
     func fetchTaskRecord (reference: CKReference, shouldShowAlertController: Bool, indexNumber: Int) {
@@ -151,9 +150,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             self.menuButton.enabled = true
                             self.newTaskBarButton.enabled = true
                             self.loadingView.hidden = true
+                        })
+
                     } else {
                         self.refreshControl.endRefreshing()
                         self.refreshControl.enabled = true
@@ -161,7 +163,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                     self.tabBarItemSwitch()
                     print(self.unclaimedArray!.count)
-                    
+                    self.loadingView.hidden = true
                 } else if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
                     
                     self.fetchTaskRecord(self.taskReferenceArray![indexNumber+1] as! CKReference, shouldShowAlertController: shouldShowAlertController, indexNumber: indexNumber + 1)
@@ -270,7 +272,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            loadingView.hidden = false
             let deleteRecord = taskArray[indexPath.row]
             publicDatabase.fetchRecordWithID(deleteRecord.recordID, completionHandler: { (deleteRecord, error) -> Void in
                 if error != nil {
