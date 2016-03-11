@@ -12,6 +12,7 @@ import CloudKit
 class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Properties
     var imageAsset:CKAsset?
+    let loadingView = LoadingView()
     
     
     //MARK: Outlets
@@ -26,6 +27,8 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        loadingView.addLoadingViewToView(self, loadingText: "Saving settings...")
+        loadingView.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,23 +76,15 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
             picker.dismissViewControllerAnimated(true) { () -> Void in
                 self.defaultPhotoImageView.image = imageToSave
                 self.defaultPhotoImageView.contentMode = UIViewContentMode.ScaleAspectFit
-                self.saveImageLocaly()
+                self.saveImageLocally()
             }
-            
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-//    func getDocumentsDirectory() -> NSString {
-//        let path = NSTemporaryDirectory().stringByAppendingString("profile_picture.tmp")
-//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-//        let documentsDirectory = paths[0]
-//        return path
-//    }
-    
-    func saveImageLocaly () {
+    func saveImageLocally () {
         let path = NSTemporaryDirectory().stringByAppendingString("profile_picture.tmp")
         let data = UIImageJPEGRepresentation(defaultPhotoImageView!.image!, 0.7)
         data!.writeToFile(path, atomically: true)
@@ -97,26 +92,20 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
         self.imageAsset = CKAsset(fileURL: NSURL(fileURLWithPath: path))
     }
     
-//    path = [NSTemporaryDirectory() stringByAppendingString:@"toUploadThumb.tmp"];
-//    imageData = UIImageJPEGRepresentation(thumbImage,0.5);
-//    [imageData writeToFile:path atomically:YES];
-//    NSURL *thumbURL = [NSURL fileURLWithPath:path];
-
-    
     @IBAction func undoButtonTapped(sender: UIBarButtonItem) {
         UtilityFile.instantiateToMemberHome(self)
     }
     
     
     @IBAction func saveButtonTap(sender: AnyObject) {
-        loadingAlert("Saving settings...", viewController: self)
+        loadingView.hidden = false
         currentMember!.setObject(imageAsset, forKey: "profile_picture")
-
+        
         if multipleUsersSwitch.on    { userDefaults.setBool(true, forKey: "multipleUsers") }
         else { userDefaults.setBool(false, forKey: "multipleUsers") }
         
         if (nameTextField.text != memberName) || (currentMember!["profile_photo"] as? CKAsset != imageAsset) {
-
+            
             userDefaults.setValue(nameTextField.text, forKey: "currentUserName")
             currentMember?.setValue(nameTextField.text, forKey: "name")
             publicDatabase.saveRecord(currentMember!, completionHandler: { (memberSaved, error) -> Void in
@@ -125,15 +114,15 @@ class MemberSettingsViewController: UIViewController, UITextFieldDelegate, UIIma
                 } else {
                     print("saved new username successfully")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            UtilityFile.instantiateToMemberHome(self)
-                        })
+                        self.loadingView.hidden = true
+                        UtilityFile.instantiateToMemberHome(self)
                     })
                 }
             })
         } else {
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            UtilityFile.instantiateToMemberHome(self)
+                self.loadingView.hidden = true
+                UtilityFile.instantiateToMemberHome(self)
             })
         }
     }
