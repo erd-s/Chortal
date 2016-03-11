@@ -10,7 +10,7 @@ import UIKit
 
 class AdminSettingsViewController: UIViewController {
     //MARK: Properties
-    
+    let loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var nameTextField: UITextField!
@@ -23,6 +23,8 @@ class AdminSettingsViewController: UIViewController {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        loadingView.addLoadingViewToView(self, loadingText: "Saving settings...")
+        loadingView.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,7 +43,7 @@ class AdminSettingsViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func saveButtonTap(sender: AnyObject) {
-        loadingAlert("Saving settings...", viewController: self)
+        loadingView.hidden = false
         
         userDefaults.setValue(nameTextField.text, forKey: "adminName")
         
@@ -53,17 +55,12 @@ class AdminSettingsViewController: UIViewController {
                     checkError(error!, view: self)
                 } else {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             UtilityFile.instantiateToAdminHome(self)
-                        })
-                    
                     })
                 }
             })
         } else {
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
                 UtilityFile.instantiateToAdminHome(self)
-            })
         }
     }
 

@@ -12,6 +12,7 @@ import CloudKit
 class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var uid: String!
+    let loadingView = LoadingView()
     
     
     //MARK: Outlets
@@ -24,6 +25,8 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        loadingView.addLoadingViewToView(self, loadingText: "Creating Group...")
+        loadingView.hidden = true
     }
     
     //MARK: Custom Functions
@@ -60,11 +63,9 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
                 checkError(error!, view: self)
             } else {
                 if saved != nil {
-                    print("Saved Record: \(saved)")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        self.loadingView.hidden = true
                             self.performSegueWithIdentifier("continueToUIDSegue", sender: self)
-                        })
                     })
                 }
             }
@@ -78,7 +79,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
             errorAlert("Error", message: "Please. Both fields are required.")
         } else {
             isICloudContainerAvailable()
-        loadingAlert("Creating Group...", viewController: self)
+        loadingView.hidden = false
         let newOrg = CKRecord(recordType: "Organization")
         let newAdmin = CKRecord(recordType: "Admin")
         

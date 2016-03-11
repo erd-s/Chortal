@@ -17,6 +17,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     var taskReference: CKReference!
     var organizationReference: CKReference!
     var selectedMember: CKRecord!
+    let loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var taskNameTextField: UITextField!
@@ -32,11 +33,12 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        loadingAlert("Creating task...", viewController: self)
         
         memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 0)
         memberSegmentedControl.setEnabled(false, forSegmentAtIndex: 1)
         datePicker.minimumDate = NSDate()
+        loadingView.addLoadingViewToView(self, loadingText: "Creating task...")
+        loadingView.hidden = true
         fetchMembers()
     }
     
@@ -130,11 +132,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 checkError(error!, view: self)
             } else {
-                print("saved task")
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         self.performSegueWithIdentifier("unwindFromTaskCreate", sender: self)
-                    })
                 }
             }
         }
@@ -148,7 +147,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             for member in currentOrg?["members"] as! [CKReference] {
                 publicDatabase.fetchRecordWithID(member.recordID, completionHandler: { (memberRecord, error) -> Void in
                     if (error != nil) {
-                        print("error fetching members: \(error)")
                     }
                     else {
                         self.memberArray.append(memberRecord!)
@@ -163,7 +161,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
             }
         }
         else {
-            dismissViewControllerAnimated(true, completion: nil)
+            loadingView.hidden = true
         }
     }
     
@@ -179,7 +177,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: IBActions
     @IBAction func createTaskButtonTap(sender: AnyObject) {
         if taskNameTextField.text?.characters.count > 0 {
-            loadingAlert("Saving task...", viewController: self)
+            loadingView.hidden = false
             createNewTask()
         } else {
             let alert = UIAlertController(title: "Error", message: "Please enter a task name.", preferredStyle: .Alert)

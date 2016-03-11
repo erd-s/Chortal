@@ -26,11 +26,9 @@ extension UIViewController {
     
     func isICloudContainerAvailable()->Bool {
         if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
-            print("trrue")
             return true
             
         } else {
-            print("false")
             let alert = UIAlertController(title: "Oops!", message: "Please sign into iCloud and restart the app.", preferredStyle: .Alert)
             let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (UIAlertAction) -> Void in
                 UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)

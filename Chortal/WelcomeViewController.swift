@@ -19,7 +19,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     var memberArray = [] as NSMutableArray
     var seguedFromMemberSelect: Bool?
     var imageAsset: CKAsset?
-    
+    let loadingView = LoadingView()
     
     
     //MARK: Outlets
@@ -32,6 +32,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     override func viewDidLoad() {
         super.viewDidLoad()
         multipleUsersSwitch.selected = true
+        
+        loadingView.addLoadingViewToView(self, loadingText: "Creating profile...")
+        loadingView.center.y = view.center.y + 25
+        loadingView.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,9 +69,8 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                         
                         if resultRecord!["name"] as? String == self.nameTextField.text {
                             dispatch_async(dispatch_get_main_queue()) {
-                                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                    self.errorAlert("Error", message: "A member of \(self.orgRecord!["name"]!) already has that name. Please choose another.")
-                                })
+                                self.loadingView.hidden = true
+                                self.errorAlert("Error", message: "A member of \(self.orgRecord!["name"]!) already has that name. Please choose another.")
                             }
                         } else {
                             self.createMember()
@@ -109,19 +112,16 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     
     func modifyRecords (records: [CKRecord]) {
-        print("Modify records function called")
         let saveRecordsOperation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         
         saveRecordsOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordIDs, error in
             if error != nil {
                 checkError(error!, view: self)
             }else {
-                print("Successfully saved")
             }
             dispatch_async(dispatch_get_main_queue()) {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.performSegueWithIdentifier("logInSegue", sender: self)
-                })
+                self.loadingView.hidden = true
+                self.performSegueWithIdentifier("logInSegue", sender: self)
             }
         }
         publicDatabase.addOperation(saveRecordsOperation)
@@ -131,7 +131,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBAction func logInButtonTapped(sender: UIButton) {
         if nameTextField.text?.characters.count > 0 {
             if imageAsset != nil {
-                loadingAlert("Loading...", viewController: self)
+                loadingView.hidden = false
                 uniqueMemberNameCheck()
             } else {
                 errorAlert("Error", message: "Please enter your name and add a picture.")
@@ -198,11 +198,11 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-//    func getDocumentsDirectory() -> NSString {
-//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-//        let documentsDirectory = paths[0]
-//        return documentsDirectory
-//    }
+    //    func getDocumentsDirectory() -> NSString {
+    //        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    //        let documentsDirectory = paths[0]
+    //        return documentsDirectory
+    //    }
     
     func saveImageLocaly () {
         let path = NSTemporaryDirectory().stringByAppendingString("profile_picture.tmp")

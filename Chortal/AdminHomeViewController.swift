@@ -47,7 +47,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         tableView.addSubview(refreshControl)
-        tableView.alpha = 0.4
         loadingView.addLoadingViewToView(self, loadingText: "Updating tasks...")
         loadingView.hidden = false
     }
@@ -56,16 +55,13 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         menuButton.enabled = false
         newTaskBarButton.enabled = false
         tableView.reloadData()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         self.tabBar.userInteractionEnabled = false
         
         isICloudContainerAvailable()
-        
         getOrganization()
-        
     }
     
     //MARK: Custom Functions
@@ -92,7 +88,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     self.menuButton.enabled = true
                     self.newTaskBarButton.enabled = true
                     self.loadingView.hidden = true
-                    })
+                })
                 self.getTasks(true)
                 self.getAdmin()
             }
@@ -114,7 +110,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     func getTasks(shouldShowAlertController: Bool) {
         if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
-            print("true")
             inProgressArray = [CKRecord]()
             pendingArray = [CKRecord]()
             unclaimedArray = [CKRecord]()
@@ -127,7 +122,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                     refreshControl.enabled = true
                     refreshControl.endRefreshing()
                 } else {
-                                    }
+                }
             }
         }
     }
@@ -155,14 +150,13 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                             self.newTaskBarButton.enabled = true
                             self.loadingView.hidden = true
                         })
-
+                        
                     } else {
                         self.refreshControl.endRefreshing()
                         self.refreshControl.enabled = true
                         
                     }
                     self.tabBarItemSwitch()
-                    print(self.unclaimedArray!.count)
                     self.loadingView.hidden = true
                 } else if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
                     
@@ -323,9 +317,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                                     if error != nil {
                                         checkError(error!, view: self)
                                     } else {
-                                        print("Successfully deleted record")
                                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
+                                            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
                                             self.loadingView.hidden = true
                                         })
                                     }
@@ -350,9 +343,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                             if error != nil {
                                 checkError(error!, view: self)
                             } else {
-                                print("Successfully deleted record")
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
+                                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
                                     self.loadingView.hidden = true
                                 })
                             }

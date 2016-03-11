@@ -22,6 +22,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
+    let loadingView = LoadingView()
     
     
     //MARK: Outlets
@@ -47,7 +48,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         taskTableView.addSubview(refreshControl)
-        
+        loadingView.addLoadingViewToView(self, loadingText: "Updating tasks...")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,7 +71,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let predicate = NSPredicate(format: "uid == %@", orgUID!)
         let query = CKQuery(recordType: "Organization", predicate: predicate)
         if showLoadingAlert {
-            loadingAlert("Loading tasks...", viewController: self)
+            loadingView.hidden = false
+            tabBar.userInteractionEnabled = false
         }
         
         publicDatabase.performQuery(query, inZoneWithID: nil) { (organizations, error) -> Void in
@@ -81,8 +83,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             userDefaults.setValue(currentOrg!["name"], forKey: "currentOrgName")
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.getCurrentMember(showLoadingAlert)
-                
-              //  self.getTasks(showLoadingAlert)
             })
             
             
@@ -103,7 +103,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 refreshControl.endRefreshing()
                 tabBarItemSwitch()
             } else {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                loadingView.hidden = true
+                tabBar.userInteractionEnabled = true
                 tabBarItemSwitch()
             }
         }
@@ -136,9 +137,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     publicDatabase.saveRecord(currentMember!, completionHandler: { (savedRecord, error) -> Void in
                                         if error != nil {
-                                            print("Error Modifying the Current Member: \(error?.description)")
                                         } else {
-                                            print("Current Member Was Updated Successfully")
                                         }
                                     })
                                 })
@@ -151,9 +150,8 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 publicDatabase.saveRecord(currentMember!, completionHandler: { (savedRecord, error) -> Void in
                                     if error != nil {
-                                        print("Error Modifying the Current Member: \(error?.description)")
+                                        checkError(error!, view: self)
                                     } else {
-                                        print("Current Member Was Updated Successfully")
                                     }
                                 })
                             })
@@ -172,13 +170,13 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if reference.isEqual(self.taskReferenceArray!.lastObject) {
                     if shouldShowAlertController == true {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.loadingView.hidden = true
+                        self.tabBar.userInteractionEnabled = true
                     } else {
                         self.refreshControl.endRefreshing()
                         self.refreshControl.enabled = true
                     }
                     self.tabBarItemSwitch()
-                    print(self.unclaimedArray!.count)
                     
                 } else if !(self.taskReferenceArray![indexNumber].isEqual(self.taskReferenceArray?.lastObject))  {
                     
@@ -197,8 +195,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.getCurrentTaskForMember(showAlertController)
                     })
-                    
-                    print("current user is set")
                     if pushNotificationsSet == false {
                         setMemberPushNotifications()
                     }
@@ -350,7 +346,6 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
             let dvc = segue.destinationViewController as! TakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
-            print("seguing task: \(dvc.task) over")
             dvc.organization = currentOrg
         }
     }

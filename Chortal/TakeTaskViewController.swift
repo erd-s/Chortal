@@ -20,6 +20,7 @@ class TakeTaskViewController: UIViewController {
     var dueDate: NSDate?
     var delegate: ClaimTaskDelegate?
     var organization: CKRecord?
+    var loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var dueLabel: UILabel!
@@ -35,8 +36,6 @@ class TakeTaskViewController: UIViewController {
     //MARK: View Loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         if task?["photo_required"] as? String == "true" {
             photoRequiredYesOrNo = "are required"
@@ -100,9 +99,7 @@ class TakeTaskViewController: UIViewController {
             }
             
         }
-        
-        print("time interval: \(timeInterval) seconds")
-        
+    
         if task!["member"] != nil {
             takeTaskButton.enabled = false
             if (task!["status"] as? String == "inProgress")
@@ -124,6 +121,11 @@ class TakeTaskViewController: UIViewController {
             commentsLabel.text = task!["rejection_message"] as? String
             commentsLabel.sizeToFit()
         }
+        
+        loadingView.addLoadingViewToView(self, loadingText: "Taking task...")
+        loadingView.center.x = view.center.x - 20
+        loadingView.center.y = view.center.y - 100
+        loadingView.hidden = true
     }
     
     //MARK: Custom Functions
@@ -155,9 +157,9 @@ class TakeTaskViewController: UIViewController {
             }
             alert.addAction(cancel)
             alert.addAction(take)
+
             presentViewController(alert, animated: true, completion: nil)
         }
-        
     }
     
     func setReferences() {
@@ -180,25 +182,22 @@ class TakeTaskViewController: UIViewController {
         task?.setValue(memberRef, forKey: "member")
         task?.setValue("inProgress", forKey: "status")
         task?.setValue(NSDate.timeIntervalSinceReferenceDate(), forKey: "taskTaken")
-        print(task?.valueForKey("taskTaken"))
         saveTaskAndMember([task!, currentMember!])
     }
     
     func saveTaskAndMember(recordsToSave: [CKRecord]) {
-        loadingAlert("Taking task...", viewController: self)
+        loadingView.hidden = false
         let saveOperation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
         saveOperation.atomic = true
         saveOperation.modifyRecordsCompletionBlock = { saved, deleted, error in
             if error != nil {
                 checkError(error!, view: self)
             } else {
-                print("saved records successfully")
                 currentTask = self.task
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         self.setDelegate()
+                        self.loadingView.hidden = true
                         self.performSegueWithIdentifier("backHomeSegue", sender: self)
-                    })
                 }
             }
         }

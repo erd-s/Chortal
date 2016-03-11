@@ -15,6 +15,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     var selectedIndexPath: NSIndexPath?
     var memberArray = [CKRecord]()
     var orgRecord: CKRecord?
+    let loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var memberTableView: UITableView!
@@ -27,41 +28,34 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         memberTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.automaticallyAdjustsScrollViewInsets = false
         
-        
-//        let inset = UIEdgeInsetsMake(10, 10, 10, 10)
-//        memberTableView.contentInset = inset
-        
-        
+        loadingView.addLoadingViewToView(self, loadingText: "Loading members...")
         getCurrentOrganization()
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        isICloudContainerAvailable() 
-        loadingAlert("Loading members...", viewController: self)
+        isICloudContainerAvailable()
     }
     
     //MARK: Custom Functions
     func getCurrentOrganization() {
         if let _ = NSFileManager.defaultManager().ubiquityIdentityToken {
-        let currentOrgUID = userDefaults.objectForKey("currentOrgUID") as! String
-        let predicate = NSPredicate(format: "uid == %@", currentOrgUID)
-        let query = CKQuery(recordType: "Organization", predicate: predicate)
-        
-        publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
-            if error != nil {
-                checkError(error!, view: self)
-            } else {
-                if results != nil {
-                    self.orgRecord = results![0]
-                    self.fetchMembers(self.orgRecord!)
+            let currentOrgUID = userDefaults.objectForKey("currentOrgUID") as! String
+            let predicate = NSPredicate(format: "uid == %@", currentOrgUID)
+            let query = CKQuery(recordType: "Organization", predicate: predicate)
+            
+            publicDatabase.performQuery(query, inZoneWithID: nil) { (results, error) -> Void in
+                if error != nil {
+                    checkError(error!, view: self)
                 } else {
-                    
-                    print("Looks like there is no Org with that UID. Uh-oh!")
+                    if results != nil {
+                        self.orgRecord = results![0]
+                        self.fetchMembers(self.orgRecord!)
+                    } else {
+                    }
                 }
             }
         }
     }
-}
     
     func fetchMembers(currentOrganizationRecord: CKRecord) {
         let memRefArray = currentOrganizationRecord.valueForKey("members") as! NSMutableArray
@@ -73,7 +67,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
                 self.memberArray.append(record!)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.memberTableView.reloadData()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.loadingView.hidden = true
                 }
             })
         }
@@ -98,13 +92,13 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
         cell.profileImageView!.layer.cornerRadius = (cell.profileImageView!.frame.height)/2
         cell.profileImageView?.layer.masksToBounds = true
         cell.profileImageView?.clipsToBounds = true
-
+        
         cell.memberNameLabel!.text = cellRecord.valueForKey("name") as? String
         cell.layer.cornerRadius = 5.0
         cell.layer.borderColor = chortalGreen.CGColor
         cell.layer.borderWidth = 0.5
         cell.contentView.frame = cell.frame
-
+        
         return cell
     }
     
