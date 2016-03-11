@@ -47,7 +47,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         tableView.addSubview(refreshControl)
-        tableView.alpha = 0.4
         loadingView.addLoadingViewToView(self, loadingText: "Updating tasks...")
         loadingView.hidden = false
     }
@@ -56,16 +55,13 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         menuButton.enabled = false
         newTaskBarButton.enabled = false
         tableView.reloadData()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         self.tabBar.userInteractionEnabled = false
         
         isICloudContainerAvailable()
-        
         getOrganization()
-        
     }
     
     //MARK: Custom Functions

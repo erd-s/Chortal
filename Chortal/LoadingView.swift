@@ -13,7 +13,7 @@ class LoadingView: UIView, UIGestureRecognizerDelegate {
     func addLoadingViewToView(viewController: UIViewController, loadingText: String) {
         self.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
         self.backgroundColor = .lightGrayColor()
-        self.alpha = 0.80
+        self.alpha = 0.90
         self.layer.cornerRadius = 5
         self.center = viewController.view.center
         
