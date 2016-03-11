@@ -165,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				9B3E413C1C738239007A16D3 /* ViewControllers */,
-				9B87FCD31C7A592000BB77DA /* Sidebar */,
 				9B3E41551C73EA96007A16D3 /* Custom Classes */,
 				135F92021C737EE8005CBD24 /* Chortal.entitlements */,
 				9B5FC2681C737B8B005976FB /* AppDelegate.swift */,
@@ -175,13 +174,6 @@
 				9B5FC2741C737B8B005976FB /* Info.plist */,
 			);
 			path = Chortal;
-			sourceTree = "<group>";
-		};
-		9B87FCD31C7A592000BB77DA /* Sidebar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Sidebar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
