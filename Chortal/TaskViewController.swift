@@ -17,6 +17,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     var dueDate: NSDate?
     var progressTasks: [CKRecordID]?
     var x: Int?
+    let loadingView = LoadingView()
     
     //MARK: Outlets
     @IBOutlet weak var noPhotosLabel: UILabel!
@@ -92,6 +93,8 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
 
         x = 0
+        loadingView.addLoadingViewToView(self, loadingText: "Updating task...")
+        loadingView.hidden = true
     }
     
     //MARK: Custom Functions
@@ -111,7 +114,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func abandonTaskButtonTapped(sender: UIButton) {
-        loadingAlert("Abandoning task...", viewController: self)
+        loadingView.hidden = false
         var taskRefArray = currentMember!.valueForKey("current_tasks") as! [CKReference]
         for reference in taskRefArray {
             if reference.recordID == currentTask?.recordID {
@@ -138,9 +141,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
 
             }
             dispatch_async(dispatch_get_main_queue()) {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
                     UtilityFile.instantiateToMemberHome(self)
-                })
             }
         }
     }
@@ -151,7 +152,7 @@ class TaskViewController: UIViewController, UICollectionViewDataSource, UICollec
             errorAlert("Error", message: "Please add a photo to submit this task")
         } else {
             
-            loadingAlert("Submitting task...", viewController: self)
+            loadingView.hidden = false
             var taskRefArray = currentMember!.valueForKey("current_tasks") as! [CKReference]
             
             if currentMember!["pending_tasks"] != nil {
