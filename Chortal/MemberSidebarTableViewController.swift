@@ -119,10 +119,10 @@ class MemberSidebarTableViewController: UITableViewController {
 //                errorAlert("Oops!", message: "You don't have a task.")
 //            }
         } else if segue.identifier == "OrgCellID" {
-            let dvc = segue.destinationViewController as! OrganizationOverViewController
+            let dvc = segue.destinationViewController as! GroupSummaryViewController
             dvc.isMember = true
         } else if segue.identifier == "showMemberDetail" {
-            let dvc = segue.destinationViewController as! MemberDetailViewController
+            let dvc = segue.destinationViewController as! MemberProfileViewController
             dvc.selectedMember = currentMember
             dvc.fromMember = true
         }

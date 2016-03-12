@@ -91,7 +91,7 @@ class AdminSidebarTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "adminSidebarToOrgOverview" {
-            let dvc = segue.destinationViewController as! OrganizationOverViewController
+            let dvc = segue.destinationViewController as! GroupSummaryViewController
             dvc.isMember = false
         }
     }

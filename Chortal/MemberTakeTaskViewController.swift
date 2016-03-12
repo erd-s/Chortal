@@ -1,5 +1,5 @@
 //
-//  TakeTaskViewController.swift
+//  MemberTakeTaskViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/20/16.
@@ -13,7 +13,7 @@ protocol ClaimTaskDelegate {
     func claimTaskPressed (claimedTask: CKRecord?)
 }
 
-class TakeTaskViewController: UIViewController {
+class MemberTakeTaskViewController: UIViewController {
     //MARK: Properties
     var task: CKRecord?
     var photoRequiredYesOrNo: String?

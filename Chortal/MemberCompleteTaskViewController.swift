@@ -1,5 +1,5 @@
 //
-//  TaskViewController.swift
+//  MemberCompleteTaskViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/16/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class TaskViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemberCompleteTaskViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: Properties
     var images = [UIImage]()
     var memberPendingArray: [CKReference]?

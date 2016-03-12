@@ -118,7 +118,7 @@ class MemberSelectViewController: UIViewController, UITableViewDataSource, UITab
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "joinOrgSegue" {
-            let dvc = segue.destinationViewController as! WelcomeViewController
+            let dvc = segue.destinationViewController as! MemberCreateViewController
             dvc.seguedFromMemberSelect = true
             dvc.orgRecord = orgRecord
             

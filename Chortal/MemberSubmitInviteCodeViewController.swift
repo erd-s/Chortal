@@ -1,5 +1,5 @@
 //
-//  UniqueIDViewController.swift
+//  MemberSubmitInviteCodeViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/16/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class UniqueIDViewController: UIViewController, UITextFieldDelegate {
+class MemberSubmitInviteCodeViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var orgRecordToJoin: CKRecord?
     let loadingView = LoadingView()
@@ -75,7 +75,7 @@ class UniqueIDViewController: UIViewController, UITextFieldDelegate {
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "enterNameSegue" {
-            let dvc = segue.destinationViewController as! WelcomeViewController
+            let dvc = segue.destinationViewController as! MemberCreateViewController
             dvc.orgRecord = orgRecordToJoin
         }
     }

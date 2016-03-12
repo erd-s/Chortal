@@ -1,5 +1,5 @@
 //
-//  AssignUIDViewController.swift
+//  AdminGiveInviteCodeViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/16/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AssignUIDViewController: UIViewController {
+class AdminGiveInviteCodeViewController: UIViewController {
     //MARK: Properties
     var orgUID: String?
 

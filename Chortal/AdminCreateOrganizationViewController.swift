@@ -1,5 +1,5 @@
 //
-//  CreateOrganizationViewController.swift
+//  AdminCreateOrganizationViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/16/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
+class AdminCreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var uid: String!
     let loadingView = LoadingView()
@@ -109,7 +109,7 @@ class CreateOrganizationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "continueToUIDSegue" {
-            let dvc = segue.destinationViewController as! AssignUIDViewController
+            let dvc = segue.destinationViewController as! AdminGiveInviteCodeViewController
             dvc.orgUID = uid
         }
     }

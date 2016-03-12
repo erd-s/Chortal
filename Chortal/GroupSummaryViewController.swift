@@ -1,5 +1,5 @@
 //
-//  OrganizationOverViewController.swift
+//  GroupSummaryViewController.swift
 //  Chortal
 //
 //  Created by Kanybek Zhagusaev on 2/22/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class OrganizationOverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class GroupSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     //MARK: Properties
     var organization : String?
     var allMembers = [CKRecord]()
@@ -101,7 +101,7 @@ class OrganizationOverViewController: UIViewController, UITableViewDelegate, UIT
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "segueToMemberDetail" {
-            let dvc = segue.destinationViewController as! MemberDetailViewController
+            let dvc = segue.destinationViewController as! MemberProfileViewController
             let indexPath = tableView.indexPathForCell(sender as! MemberSelectTableViewCell)
             dvc.selectedMember = allMembers[indexPath!.row]
         }

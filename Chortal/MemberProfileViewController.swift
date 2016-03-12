@@ -1,5 +1,5 @@
 //
-//  MemberDetailViewController.swift
+//  MemberProfileViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 3/1/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class MemberDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MemberProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Properties
     var arrayOfCompletedTasks = [CKRecord]()
     var arrayOfTaskNames =  [String]()

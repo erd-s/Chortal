@@ -1,5 +1,5 @@
 //
-//  CreateOrJoinViewController.swift
+//  ChortalHomeViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/27/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateOrJoinViewController: UIViewController, UIGestureRecognizerDelegate {
+class ChortalHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     override func viewDidLoad() {

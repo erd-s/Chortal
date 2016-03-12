@@ -1,5 +1,5 @@
 //
-//  CompletedTasksViewController.swift
+//  AdminCompetedTasksViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/23/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class CompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class AdminCompletedTasksViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     //MARK: Properties
     var completedTaskArray = [CKRecord]()
     var currentIndex = 0

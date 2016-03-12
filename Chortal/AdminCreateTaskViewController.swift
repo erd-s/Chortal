@@ -1,5 +1,5 @@
 //
-//  NewTaskViewController.swift
+//  AdminCreateTaskViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/16/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class NewTaskViewController: UIViewController, UITextFieldDelegate {
+class AdminCreateTaskViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     var memberArray = [CKRecord]()
     var adminRecordID: CKRecordID!

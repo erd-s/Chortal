@@ -306,7 +306,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
         let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
         
-        let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
+        let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! MemberTakeTaskViewController
         popOver.delegate = self
         popOver.task = taskArray[indexPath.row]
         popOver.organization = currentOrg
@@ -344,7 +344,7 @@ class MemberHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "takeTaskSegue" {
             let indexPath = taskTableView.indexPathForCell(sender as! UITableViewCell)
-            let dvc = segue.destinationViewController as! TakeTaskViewController
+            let dvc = segue.destinationViewController as! MemberTakeTaskViewController
             dvc.task = taskArray[indexPath!.row]
             dvc.organization = currentOrg
         }

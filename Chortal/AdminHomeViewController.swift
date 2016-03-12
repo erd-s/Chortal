@@ -237,7 +237,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         let selectedCellSourceView = tableView.cellForRowAtIndexPath(indexPath)
         let selectedCellSourceRect = tableView.cellForRowAtIndexPath(indexPath)!.bounds
         
-        let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! TakeTaskViewController
+        let popOver = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("taskVC") as! MemberTakeTaskViewController
         
         popOver.task = taskArray[indexPath.row]
         popOver.organization = currentOrg

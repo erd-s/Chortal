@@ -1,5 +1,5 @@
 //
-//  WelcomeViewController.swift
+//  MemberCreateViewController.swift
 //  Chortal
 //
 //  Created by Christopher Erdos on 2/16/16.
@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class WelcomeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemberCreateViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: Properties
     var orgRecord: CKRecord?
